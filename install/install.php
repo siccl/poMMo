@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/install.php');
+require_once($pommo->_baseDir.'inc/classes/install.php');
 $pommo->init(array('authLevel' => 0, 'install' => TRUE));
 
 session_start(); // required by smartyValidate. TODO -> move to prepareForForm() ??
@@ -33,7 +33,7 @@ $dbo->dieOnQuery(FALSE);
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
+require_once($pommo->_baseDir.'inc/classes/template.php');
 $smarty = new PommoTemplate();
 $smarty->prepareForForm();
 
@@ -103,7 +103,7 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 				$pommo->reloadConfig();
 				
 				// load configuration [depricated?], set message defaults, load templates
-				Pommo::requireOnce($pommo->_baseDir.'inc/helpers/messages.php');
+				require_once($pommo->_baseDir.'inc/helpers/messages.php');
 				PommoHelperMessages::resetDefault('all');
 				
 				// install templates
@@ -113,7 +113,7 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 					
 				// serialize the latest updates
 				$GLOBALS['pommoFakeUpgrade'] = true;
-				Pommo::requireOnce($pommo->_baseDir . 'install/helper.upgrade.php');
+				require_once($pommo->_baseDir . 'install/helper.upgrade.php');
 				PommoUpgrade();
 
 				$logger->addMsg(Pommo::_T('Installation Complete! You may now login and setup poMMo.'));

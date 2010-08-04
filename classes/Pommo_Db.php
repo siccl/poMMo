@@ -26,7 +26,8 @@
  **********************/
 
 // Database Connection Class - holds the link, processes queiries, produces repots, etc.
-class PommoDB {
+class Pommo_Db
+{
 	var $_link;
 	var $_result;
 	var $_dieOnQuery;
@@ -38,7 +39,7 @@ class PommoDB {
 	var $_safeSQL; // holds Monte's SafeSQL Class , referenced via prepare()
 	var $_results; // array holding unique results (for use with executing queries within loops & not overwriting the loops conditional resultset)
 
-	function PommoDB($username = NULL, $password = NULL, $database = NULL, $hostname = NULL, $tablePrefix = NULL) {
+	function Pommo_Db($username = NULL, $password = NULL, $database = NULL, $hostname = NULL, $tablePrefix = NULL) {
 
 		// turn off magic quotes runtime
 		if (get_magic_quotes_runtime())

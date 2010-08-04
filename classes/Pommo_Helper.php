@@ -22,13 +22,14 @@
  * NOTE: Should be called statically e.g. PommoHelper::helperFunction($arg1,...);
  */
 
-class PommoHelper {
+class Pommo_Helper
+{
 	
 	// deeply strips slashes added by magic quotes. Generally used on $_POST & $_GET.
 	function slashStrip($input) {
 		if (is_array($input)) {
 			foreach ($input as $key => $value) {
-				$input[$key] = PommoHelper::slashStrip($value);
+				$input[$key] = Pommo_Helper::slashStrip($value);
 			}
 			return $input;
 		} else {
@@ -147,7 +148,7 @@ class PommoHelper {
 	}
 	
 	// trims an array of whitespace
-	function & trimArray(&$a) {array_walk($a,array('PommoHelper','trimValue')); return $a;}
+	function & trimArray(&$a) {array_walk($a,array('Pommo_Helper','trimValue')); return $a;}
 	function trimValue(&$value){$value = trim($value);}
 	
 	// returns true if the page has been requested via a browser XMLHTTPRequest (AJAX call)

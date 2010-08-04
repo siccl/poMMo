@@ -18,11 +18,12 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
  
- class PommoHelperMaintenance {
+ class Pommo_Helper_Maintenance
+ {
  	
  	function perform() {
  		global $pommo;
- 		PommoHelperMaintenance::memorizeBaseURL();
+ 		Pommo_Helper_Maintenance::memorizeBaseURL();
  		if(is_file($pommo->_workDir.'/import.csv'))
  			if (!unlink($pommo->_workDir.'/import.csv'))
  				Pommo::kill('Unable to remove import.csv');
@@ -76,7 +77,7 @@
 			while ($file = $dir->read()) {
 				if ($file != '.' && $file != '..') {
 					if (is_dir($dirName . '/' . $file)) {
-						PommoHelperMaintenance::delDir($dirName . '/' . $file, $orig);
+						Pommo_Helper_Maintenance::delDir($dirName . '/' . $file, $orig);
 					} else {
 						unlink($dirName . '/' . $file) or die('File ' . $dirName . '/' . $file . ' couldn\'t be deleted!');
 					}

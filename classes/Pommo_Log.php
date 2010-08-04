@@ -23,7 +23,8 @@
 
 // NOTE: messages are cleared upon page load (as inc/classes/pommo.php calls new constructor)
 // TODO -> add message "revival" from SESSION (if ever deemed necessary)
-class PommoLog {
+class Pommo_Log
+{
 	
 	var $_errors;
 	var $_log;
@@ -31,7 +32,8 @@ class PommoLog {
 	var $_verbosity;
 	var $_escape; // htmlspecialchars escaping (disabled by default)
 	
-	function PommoLog($verbosity = 3) {
+	function Pommo_Log($verbosity = 3)
+	{
 		$this->_errors = array();
 		$this->_messages = array();
 		$this->_log = FALSE;

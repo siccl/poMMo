@@ -20,7 +20,8 @@
 
 // common API
 
-class PommoAPI {
+class Pommo_Api
+{
 
 	function & getParams(& $defaults, & $args) {
 		$p = array_merge($defaults, $args);
@@ -30,7 +31,7 @@ class PommoAPI {
 			global $pommo;
 			if ($pommo->_verbosity < 3)
 				var_dump($defaults,$args);
-			Pommo::kill('Unknown argument passed to PommoAPI::getParams()', TRUE);
+			Pommo::kill('Unknown argument passed to Pommo_Api::getParams()', TRUE);
 		}
 
 		return $p;

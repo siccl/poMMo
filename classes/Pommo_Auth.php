@@ -19,7 +19,8 @@
  */
 
 // authentication object. Handles logged in user, permission level.
-class PommoAuth {
+class Pommo_Auth
+{
 
 	var $_username;	// current logged in user (default: null|session value)
 	var $_permissionLevel; // permission level of logged in user
@@ -27,14 +28,15 @@ class PommoAuth {
 
 
 	// default constructor. Get current logged in user from session. Check for permissions.
-	function PommoAuth($args = array ()) {
+	function Pommo_Auth($args = array ())
+	{
 		global $pommo;
 		
 		$defaults = array (
 			'username' => null,
 			'requiredLevel' => 0
 		);
-		$p = PommoAPI :: getParams($defaults, $args);
+		$p = Pommo_Api :: getParams($defaults, $args);
 		
 		if (empty($pommo->_session['username']))
 			$pommo->_session['username'] = $p['username'];

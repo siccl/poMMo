@@ -18,17 +18,17 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 // include smarty template class
-global $pommo;
-Pommo :: requireOnce($pommo->_baseDir . 'inc/lib/smarty/Smarty.class.php');
+require_once($pommo->_baseDir.'lib/smarty/Smarty.class.php');
 
 // wrapper class around smarty
-class PommoTemplate extends Smarty {
+class Pommo_Template extends Smarty
+{
 
 	var $_pommoTheme;
 
-	function PommoTemplate() {
+	function Pommo_Template()
+	{
 		global $pommo;
-
 		// set theme -- TODO; extend this to the theme selector
 		$this->_pommoTheme = 'default';
 
@@ -55,8 +55,9 @@ class PommoTemplate extends Smarty {
 		$this->assign('config', @array (
 			'app' => array (
 				'path' => $pommo->_baseDir,
-				'weblink' => '<a href="http://pommo.sourceforge.net/">' . Pommo::_T('poMMo Website') . '</a>',
-				'dateformat' => PommoHelper::timeGetFormat()
+				'weblink' => '<a href="http://pommo.sourceforge.net/">'.
+				Pommo::_T('poMMo Website') . '</a>',
+				'dateformat' => Pommo_Helper::timeGetFormat()
 				),
 			'site_name' => $pommo->_config['site_name'],
 			'site_url' => $pommo->_config['site_url'], 
@@ -78,25 +79,36 @@ class PommoTemplate extends Smarty {
 
 	// display function falls back to "default" theme if theme file not found
 	// also assigns any poMMo errors or messages
-	function display($resource_name, $cache_id = null, $compile_id = null, $display = false) {
+	function display($resource_name, $cache_id = null, $compile_id = null, $display = false)
+	{
 		global $pommo;
-
 		// attempt to load the theme's requested template
-		if (!is_file($this->template_dir . '/' . $resource_name))
+		if (!is_file($this->template_dir.'/'.$resource_name))
+		{
 			// template file not existant in theme, fallback to "default" theme
 			if (!is_file($this->_themeDir . 'default/' . $resource_name))
+			{
 				// requested template file does not exist in "default" theme, die.
-				Pommo :: kill(sprintf(Pommo::_T('Template file (%s) not found in default or current theme'), $resource_name));
-			else {
+				Pommo :: kill(sprintf(Pommo::_T('Template file (%s) not found in
+						default or current theme'), $resource_name));
+			}
+			else
+			{
 				$resource_name = $this->_themeDir . 'default/' . $resource_name;
 				$this->template_dir = $this->_themeDir . 'default';
 			}
+		}
 		if ($pommo->_logger->isMsg())
+		{
 			$this->assign('messages', $pommo->_logger->getMsg());
+		}
 		if ($pommo->_logger->isErr())
+		{
 			$this->assign('errors', $pommo->_logger->getErr());
-			
-		return parent :: display($resource_name, $cache_id = null, $compile_id = null, $display = false);
+		}
+
+		return parent::display($resource_name, $cache_id = null,
+				$compile_id = null, $display = false);
 	}
 	
 	function prepareForForm() {
