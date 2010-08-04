@@ -18,7 +18,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/lib/phpmailer/class.phpmailer.php');
+$pommo->requireOnce($pommo->_baseDir. 'inc/lib/phpmailer/class.phpmailer.php');
 
 // TODO; class depricated since PR13.2 .. needs major overhaul!
 //  OLDSCHOOL KLUDGE

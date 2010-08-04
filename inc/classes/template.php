@@ -18,7 +18,8 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 // include smarty template class
-Pommo :: requireOnce($GLOBALS['pommo']->_baseDir . 'inc/lib/smarty/Smarty.class.php');
+global $pommo;
+Pommo :: requireOnce($pommo->_baseDir . 'inc/lib/smarty/Smarty.class.php');
 
 // wrapper class around smarty
 class PommoTemplate extends Smarty {

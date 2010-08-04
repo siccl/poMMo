@@ -50,7 +50,7 @@
 		$p = PommoAPI :: getParams($defaults, $p);
 		
 		global $pommo;
-		$pommo->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/fields.php');
+		$pommo->requireOnce($pommo->_baseDir. 'inc/helpers/fields.php');
 		$logger =& $pommo->_logger;
 		
 		$fields = PommoField::get(array('active' => $p['active']));

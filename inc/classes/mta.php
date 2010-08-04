@@ -21,11 +21,11 @@
  // poMMo MTA - poMMo's background mailer
  
  // includes
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/mailctl.php');
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/mailer.php');
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/throttler.php');
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/mailings.php');
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscribers.php');
+$pommo->requireOnce($pommo->_baseDir. 'inc/classes/mailctl.php');
+$pommo->requireOnce($pommo->_baseDir. 'inc/classes/mailer.php');
+$pommo->requireOnce($pommo->_baseDir. 'inc/classes/throttler.php');
+$pommo->requireOnce($pommo->_baseDir. 'inc/helpers/mailings.php');
+$pommo->requireOnce($pommo->_baseDir. 'inc/helpers/subscribers.php');
 
  class PommoMTA {
 
@@ -410,7 +410,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscri
 		}
 		
 		// respwn
-		if (!PommoMailCtl::spawn($GLOBALS['pommo']->_baseUrl.'admin/mailings/mailings_send4.php?'.
+		if (!PommoMailCtl::spawn($pommo->_baseUrl.'admin/mailings/mailings_send4.php?'.
 			'code='.$this->_code.
 			'&serial='.$this->_serial.
 			'&id='.$this->_id))

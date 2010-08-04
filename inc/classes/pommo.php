@@ -395,10 +395,12 @@ class Pommo {
 	
 	// faster performance than standard require_once
 	// TODO -> extend function to make "smart" -- auto paths, jail to poMMo directory, etc.
-	function requireOnce($file) {
+	function requireOnce($file)
+	{
 		static $files;
 
-		if (!isset ($files[$file])) {
+		if (!isset ($files[$file]))
+		{
 			require ($file);
 			$files[$file] = TRUE;
 		}

@@ -19,7 +19,7 @@
  */
  
 // include the mailing prototype object 
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototypes.php');
+$pommo->requireOnce($pommo->_baseDir. 'inc/classes/prototypes.php');
 
 /**
 	 * Template: A Template for Mailings

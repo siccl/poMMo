@@ -19,7 +19,7 @@
  */
 
 // include the subscriber prototype object 
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototypes.php');
+$pommo->requireOnce($pommo->_baseDir. 'inc/classes/prototypes.php');
 
 /**
  * Subscriber: A Subscriber

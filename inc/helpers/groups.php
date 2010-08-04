@@ -19,7 +19,7 @@
  */
 
 // include the group prototype object 
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototypes.php');
+$pommo->requireOnce($pommo->_baseDir. 'inc/classes/prototypes.php');
 
 /**
  * Group: A Group of Subscribers
@@ -48,7 +48,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
  	function PommoGroup($groupID = NULL, $status = 1, $filter = FALSE) {
  		$this->_status = $status;
  		if (!is_numeric($groupID)) { // exception if no group ID was passed -- group assumes "all subscribers".
- 			$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscribers.php');
+ 			$pommo->requireOnce($pommo->_baseDir. 'inc/helpers/subscribers.php');
  			
  			$this->_group = array('rules' => array(), 'id' => 0);
  			$this->_id = 0;
@@ -77,7 +77,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
  	
  	// returns sorted/ordered/limited member IDs -- scoped to current group member IDs
  	function members($p = array(), $filter = array('field' => null, 'string' => null)) {
- 		$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscribers.php');
+ 		$pommo->requireOnce($pommo->_baseDir. 'inc/helpers/subscribers.php');
  		if(is_array($this->_memberIDs)) 
  			$p['id'] =& $this->_memberIDs;
  		else // status was already passed when fetching IDs
