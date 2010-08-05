@@ -17,7 +17,7 @@ IN PROGRESS;
 [FORM FIELD VALIDATION]
 
 poMMo uses a succint method for form field validation based on Smarty Validate.
-The Smarty Validate README can be found in inc/lib/smarty-plugins/validate
+The Smarty Validate README can be found in lib/smarty-plugins/validate
 
 Field validation rules and their error messages are defined in the PHP file (not .TPL).
 

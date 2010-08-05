@@ -39,8 +39,8 @@ class PommoTemplate extends Smarty {
 		$this->compile_dir = $pommo->_workDir . '/pommo/smarty';
 		$this->plugins_dir = array (
 				'plugins', // the default under SMARTY_DIR
-				$pommo->_baseDir . 'inc/lib/smarty-plugins/gettext',
-				$pommo->_baseDir . 'inc/lib/smarty-plugins/pommo');
+				$pommo->_baseDir . 'lib/smarty-plugins/gettext',
+				$pommo->_baseDir . 'lib/smarty-plugins/pommo');
 				
 		// set base/core variables available to all template
 		$this->assign('url', array (
@@ -101,9 +101,9 @@ class PommoTemplate extends Smarty {
 	function prepareForForm() {
 		global $pommo;
 
-		$this->plugins_dir[] = $pommo->_baseDir . 'inc/lib/smarty-plugins/validate';
+		$this->plugins_dir[] = $pommo->_baseDir . 'lib/smarty-plugins/validate';
 		Pommo :: requireOnce($pommo->_baseDir . 'inc/lib/class.smartyvalidate.php');
-		Pommo :: requireOnce($pommo->_baseDir . 'inc/lib/smarty-plugins/validate/function.validate.php');
+		Pommo :: requireOnce($pommo->_baseDir . 'lib/smarty-plugins/validate/function.validate.php');
 		$this->assign('vErr',array());
 	}
 
