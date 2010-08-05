@@ -24,65 +24,39 @@
 
 class Pommo
 {
-	private static $instance;	// Instance of the class
-	public $_revision = 42; // poMMo's current "file" revision #
-
-	public $_dbo; // holds the database object
-	public $_logger; // holds the logger (messaging) object
-	public $_auth; // holds the authentication object
-	public $_escaping; // (bool) if true, responses from logger and translation functions will be wrapped through htmlspecialchars
-
-	public $_baseDir; // poMMo's base directory (e.g. /home/www/site1/pommo/)
-	public $_baseUrl; // poMMo's base URL (e.g. http://www.site1.com/pommo/) - null = autodetect
-	public $_workDir; // poMMo's working (writable) directory (e.g. /home/www/site1/pommo/cache/)
-	public $_hostname; // WebServer hostname (e.g. www.site1.com) - null = autodetect
-	public $_hostport; // WebServer port (e.g. 80) - null = autodetect
-	public $_ssl; // bool - true if accessed via HTTPS
-	public $_http; // the "http(s)://hostname(:port)" full connection string
-	public $_language; // language to translate to (via Pommo::_T())
-	public $_slanguage; // the "session" language (if set)
-	public $_debug; // debug status (bool)
-	public $_verbosity; // logging + debugging verbosity (1(most)-3(less|default))
-	public $_dateformat; // prefered; 1: YYYY/MM/DD, 2: MM/DD/YYYY, 3: DD/MM/YYYY
-	public $_default_subscriber_sort; // what column (or field_id) should be used to sort the subscribers when managing them?
-
-	public $_hasConfigFile; // Tells us if config.php exists
-	public $_config; // configuration array to hold values loaded from the DB
-	public $_session;  // pointer to this install's/instance values in $_SESSION
+	public static $_baseDir;	// (e.g. /home/www/site1/pommo/)
+	public static $_baseUrl;	// (e.g. http://s.com/pommo/) - null = autodetect
+	public static $_config;	// Array to hold values loaded from the DB
+	public static $_auth;	// holds the authentication object
+	public static $_escaping;	// if true, responses from logger and translation
+								// functions will use htmlspecialchars
+	public static $_logger;	// holds the logger (messaging) object
+	public static $_workDir;	// Writable dir (/home/www/site/pommo/cache/)
+	public static $_debug;	// debug status (bool)
+	public static $_default_subscriber_sort;	// what column (or field_id)
+				// should be used to sort the subscribers when managing them?
+	public static $_verbosity;	// log + debug verbosity (1(most)-3(less|default))
+	public static $_dateformat;	// 1: YYYY/MM/DD, 2: MM/DD/YYYY, 3: DD/MM/YYYY
+	public static $_hasConfigFile;	// Tells us if config.php exists
+	public static $_hostname;	// (e.g. www.site1.com) - null = autodetect
+	public static $_hostport; 	// (e.g. 80) - null = autodetect
+	public static $_ssl;	// bool - true if accessed via HTTPS
+	public static $_http;	// "http(s)://hostname(:port)" full connection string
+	public static $_language;	// language to translate to (via Pommo::_T())
+	public static $_slanguage;	// the "session" language (if set)
+	public static $_l10n;	// True if language is not english
+	public static $_dbo;	// holds the database object
+	public static $_section;	// Current section
+	public static $_session;	// install/instance values in $_SESSION
 	
 	/*	__construct
-	 *	Private construct, can only instantiate by singleton
-	 *
-	 *	@param	string	$baseDir.- Location of pommo directory
+	 *	Does nothing since everything is static
 	 *
 	 *	@return	void
 	 */
-	private function __construct($baseDir)
+	private function __construct()
 	{
-		$this->_baseDir		= $baseDir;
-		$this->_config 		= array ();
-		$this->_auth 		= null;
-		$this->_escaping	= false;
 	}
-	
-	/*	singleton
-	 *	Function to instantiate class
-	 *
-	 *	@param	string	$baseDir.- Location of pommo directory
-	 *
-	 *	@return	void
-	 */
-	public static function singleton($baseDir)
-	{
-		if (!isset(self::$instance))
-		{
-			self::$instance = new Pommo($baseDir);
-		}
-		return self::$instance;
-	}
-
-	// preInit() 
-	
 	
 	/*	preInit
 	 *	populates poMMo's core with values from config.php.
@@ -90,33 +64,38 @@ class Pommo
 	 *
 	 *	@return	boolean	True if there is a config.php file, false otherwise
 	 */
-	function preInit()
+	public static function preInit($baseDir)
 	{
-		require_once($this->_baseDir.'classes/Pommo_Log.php');
-		require_once($this->_baseDir.'lib/SafeSQL.class.php');
-		require_once($this->_baseDir.'classes/Pommo_Db.php');
-		require_once($this->_baseDir.'classes/Pommo_Auth.php');
+		self::$_baseDir	= $baseDir;
+		self::$_config 	= array ();
+		self::$_auth 	= null;
+		self::$_escaping	= false;
+	
+		require_once(self::$_baseDir.'classes/Pommo_Log.php');
+		require_once(self::$_baseDir.'lib/SafeSQL.class.php');
+		require_once(self::$_baseDir.'classes/Pommo_Db.php');
+		require_once(self::$_baseDir.'classes/Pommo_Auth.php');
 		
 		// 	initialize logger
 		//	Check where this config variable comes from
-		$this->_logger = new Pommo_Log();
-		$this->_workDir = (empty($config['workDir'])) ?
-				$this->_baseDir.'cache' : $config['workDir'];
-		$this->_debug = (strtolower($config['debug']) != 'on') ? false : true; 
-		$this->_default_subscriber_sort =
+		self::$_logger = new Pommo_Log();
+		self::$_workDir = (empty($config['workDir'])) ?
+				self::$_baseDir.'cache' : $config['workDir'];
+		self::$_debug = (strtolower($config['debug']) != 'on') ? false : true; 
+		self::$_default_subscriber_sort =
 				(empty($config['default_subscriber_sort'])) ?
 				'email' : $config['default_subscriber_sort'];
-		$this->_verbosity = (empty($config['verbosity'])) ? 3 :
+		self::$_verbosity = (empty($config['verbosity'])) ? 3 :
 				$config['verbosity'];
-		$this->_logger->_verbosity = $this->_verbosity;
-		$this->_dateformat = ($config['date_format'] >= 1
+		self::$_logger->_verbosity = self::$_verbosity;
+		self::$_dateformat = ($config['date_format'] >= 1
 				&& $cofig['date_format'] <= 3) ?
 				intval($config['date_format']) : 1;
 
 		//	set base URL (e.g. http://mysite.com/news/pommo => 'news/pommo/')
 		if (isset ($config['baseURL']))
 		{
-			$this->_baseUrl = $config['baseURL'];
+			self::$_baseUrl = $config['baseURL'];
 		}
 		else
 		{
@@ -124,9 +103,9 @@ class Pommo
 			//	"last known good". Else, set it based off of REQUEST.
 			if (defined('_poMMo_embed'))
 			{
-				require_once($this->_baseDir.
+				require_once(self::$_baseDir.
 						'classes/Pommo_Helper_Maintenance.php');
-				$this->_baseUrl = Pommo_Helper_Maintenance::rememberBaseURL();
+				self::$_baseUrl = Pommo_Helper_Maintenance::rememberBaseURL();
 			}
 			else
 			{
@@ -135,56 +114,56 @@ class Pommo
 						'(/ajax|/mailing|/config)?)$@i';
 				$baseUrl = preg_replace($regex, '',
 						dirname($_SERVER['PHP_SELF']));
-				$this->_baseUrl = ($baseUrl == '/') ? $baseUrl : $baseUrl.'/';
+				self::$_baseUrl = ($baseUrl == '/') ? $baseUrl : $baseUrl.'/';
 			}
 		}
-
+		
 		// read in config.php (configured by user)
-		$config = Pommo_Helper::parseConfig($this->_baseDir.'config.php');
+		$config = Pommo_Helper::parseConfig(self::$_baseDir.'config.php');
 		
 		//	check to see if config.php was "properly" loaded
 		if (count($config) < 5)
 		{
-			$this->_hasConfigFile = false;
-			return $this->_hasConfigFile;
+			self::$_hasConfigFile = false;
+			return self::$_hasConfigFile;
 		}
 		
-		$this->_hasConfigFile = true;
+		self::$_hasConfigFile = true;
 		
 		//	the regex strips port info from hostname
-		$this->_hostname = (empty($config['hostname'])) ?
+		self::$_hostname = (empty($config['hostname'])) ?
 				preg_replace('/:\d+$/i', '', $_SERVER['HTTP_HOST']) :
 				$config['hostname'];
-		$this->_hostport = (empty($config['hostport'])) ?
+		self::$_hostport = (empty($config['hostport'])) ?
 				$_SERVER['SERVER_PORT'] : $config['hostport'];
-		$this->_ssl = (!isset($_SERVER['HTTPS']) ||
+		self::$_ssl = (!isset($_SERVER['HTTPS']) ||
 				strtolower($_SERVER['HTTPS']) != 'on') ? false : true;
-		$this->_http = (($this->_ssl) ? 'https://' : 'http://').
-				$this->_hostname;
-		if ($this->_hostport != 80 && $this->_hostport != 443)
+		self::$_http = ((self::$_ssl) ? 'https://' : 'http://').
+				self::$_hostname;
+		if (self::$_hostport != 80 && self::$_hostport != 443)
 		{
-			$this->_http .= ':'.$this->_hostport;
+			self::$_http .= ':'.self::$_hostport;
 		}
-			
-		$this->_language = (empty($config['lang'])) ? 'en' :
+		
+		self::$_language = (empty($config['lang'])) ? 'en' :
 				strtolower($config['lang']);
-		$this->_slanguage = (defined('_poMMo_lang')) ? _poMMo_lang : false;
+		self::$_slanguage = (defined('_poMMo_lang')) ? _poMMo_lang : false;
 		
 		//	include translation (l10n) methods if language is not English
-		$this->_l10n = FALSE;
-		if ($this->_language != 'en')
+		self::$_l10n = FALSE;
+		if (self::$_language != 'en')
 		{
-			$this->_l10n = TRUE;
-			Pommo::requireOnce($this->_baseDir.'inc/helpers/l10n.php');
-			PommoHelperL10n::init($this->_language, $this->_baseDir);
+			self::$_l10n = TRUE;
+			Pommo::requireOnce(self::$_baseDir.'inc/helpers/l10n.php');
+			PommoHelperL10n::init(self::$_language, self::$_baseDir);
 		}
 		
 		//	make sure workDir is writable
-		if (!is_dir($this->_workDir.'/pommo/smarty'))
+		if (!is_dir(self::$_workDir.'/pommo/smarty'))
 		{
 				
-			$wd = $this->_workDir;
-			$this->_workDir = null;
+			$wd = self::$_workDir;
+			self::$_workDir = null;
 			if (!is_dir($wd))
 			{
 				Pommo::kill(sprintf(Pommo::_T('Work Directory (%s) not found!
@@ -217,125 +196,140 @@ class Pommo
 				Pommo::kill(Pommo::_T('Could not create directory').' '.$wd.
 						'/pommo/smarty');
 			}
-			$this->_workdir = $wd;
+			self::$_workdir = $wd;
 		}
 
 		//	set the current "section" -- should be "user" for /user/* files,
 		//	"mailings" for /admin/mailings/* files, etc. etc.
-		$this->_section = preg_replace('@^admin/?@i', '',
-				str_replace($this->_baseUrl, '', dirname($_SERVER['PHP_SELF'])));
+		self::$_section = preg_replace('@^admin/?@i', '',
+				str_replace(self::$_baseUrl, '', dirname($_SERVER['PHP_SELF'])));
 		
 		// 	initialize database link
-		$this->_dbo = @new Pommo_Db($config['db_username'],
+		self::$_dbo = @new Pommo_Db($config['db_username'],
 				$config['db_password'], $config['db_database'],
 				$config['db_hostname'], $config['db_prefix']);
 
 		// 	turn off debugging if in user area
-		if($this->_section == 'user')
+		if(self::$_section == 'user')
 		{
-			$this->_debug = false;
-			$this->_dbo->debug(FALSE);
+			self::$_debug = false;
+			self::$_dbo->debug(FALSE);
 		}
 		
 		// if debugging is set in config.php, enable debugging on the database.
-		if ($this->_debug)
+		if (self::$_debug)
 		{
 			// don't enable debugging in ajax requests unless verbosity is < 3 
-			if (Pommo_Helper::isAjax() && $this->_verbosity > 2)
+			if (Pommo_Helper::isAjax() && self::$_verbosity > 2)
 			{
-				$this->_debug = false;
+				self::$_debug = false;
 			}
 			else
 			{
-				$this->_dbo->debug(TRUE);
+				self::$_dbo->debug(TRUE);
 			}
 		}
+		return true;
 	}
 
-	/** 
-	 * init -> called by page to load page state, populate config, and track authentication. 
-	 *	valid args [ passed as Pommo::init(array('arg' => val, 'arg2' => val)) ] ->
-	 *		authLevel	:	check that authenticated permission level is at least authLevel (non authenticated == 0). exit if not high enough. [default: 1]
-	 *		keep		:	keep data stored in session. [default: false]
-	 *		session		:	explicity set session name. [default: null]
-	 * 		install		:	bypass loading of config/version checking [default: false]
-     */
-
-	function init($args = array ()) {
-		
+	/*	init
+	 *	called by page to load page state, populate config, and track
+	 *	authentication.
+	 *
+	 *	@param	array	$args.- (passed as Pommo::init(array('arg' => val,
+	 *					'arg2' => val)) ]
+	 *					authLevel: check that authenticated permission level is
+	 *					at least authLevel (non authenticated == 0).
+	 *					exit if not high enough. [default: 1]
+	 *					keep: keep data stored in session. [default: false]
+	 *					session: explicity set session name. [default: null]
+	 * 					install: bypass loading of config/version checking
+	 *					[default: false]
+	 *
+	 *	@return	boolean	True on success
+	 */
+	public static function init($args = array ())
+	{
 		$defaults = array (
-			'authLevel' => 1,
-			'keep' => FALSE,
+			'authLevel'	=> 1,
+			'keep' 		=> FALSE,
 			'noSession' => FALSE,
 			'sessionID' => NULL,
-			'install' => FALSE
+			'install' 	=> FALSE
 		);
-	
-		// merge submitted parameters
-		$p = Pommo_Api :: getParams($defaults, $args);
+
+		// 	merge submitted parameters
+		$p = Pommo_Api::getParams($defaults, $args);
 		
-		// Return if not config.php file present
-		if (!$this->_hasConfigFile)
+		// 	Return if not config.php file present
+		if (!self::$_hasConfigFile)
 		{
 			return false;
 		}
-		
-		// Bypass Reading of Config, SESSION creation, and authentication checks and return
-		//  if 'install' passed
-		if ($p['install'])
-			return;
-			
-		// load configuration data
-		// note; cannot save in session, as session needs unique key -- this is simplest method.
-		$this->_config = Pommo_Api::configGetBase();
-		
-		// check current ("file") revision against database ("last") revision
-		$revision = isset($this->_config['revision']) ?
-			$this->_config['revision'] :
-			false;
-		
-		if(!defined('_poMMo_support'))
-			if (!$revision)
-				$this->kill(sprintf(Pommo :: _T('Error loading configuration. Has poMMo been installed? %sClick Here%s to install.'), '<a href="' . $this->_baseUrl . 'install/install.php">', '</a>'));
-			elseif ($this->_revision != $revision) $this->kill(sprintf(Pommo :: _T('Version Mismatch. %sClick Here%s to upgrade.'), '<a href="' . $this->_baseUrl . 'install/upgrade.php">', '</a>'));
-		
-		// toggle DB debugging
-		if ($this->_debug)
-			$this->_dbo->debug(TRUE);
-		
-		// Bypass SESSION creation, reading of config, authentication checks and return
-		//  if 'noSession' passed
-		if ($p['noSession'])
-			return;
 
-		// start the session
+		//	Bypass Reading of Config, SESSION creation, and authentication checks
+		//	and return if 'install' passed
+		if ($p['install'])
+		{
+			return;
+		}
+			
+		// 	load configuration data. Note: cannot save in session, as session	
+		//	needs unique key -- this is simplest method.
+		self::$_config = Pommo_Api::configGetBase();
+		
+		//	toggle DB debugging
+		if (self::$_debug)
+		{
+			self::$_dbo->debug(TRUE);
+		}
+
+		//	Bypass SESSION creation, reading of config, authentication checks
+		//	and return if 'noSession' passed
+		if ($p['noSession'])
+		{
+			return;
+		}
+
+		// 	Start the session
 		if (!empty($p['sessionID']))
+		{
 			session_id($p['sessionID']);
-		$this->startSession();
+		}
+		self::startSession();
 		
 		// check for "session" language -- user defined language on the fly.
-		if ($this->_slanguage) 
-			$this->_session['slanguage'] = $this->_slanguage;
+		if (self::$_slanguage)
+		{
+			self::$_session['slanguage'] = self::$_slanguage;
+		}
 			
-		if(isset($this->_session['slanguage'])) {
-			if($this->_session['slanguage'] == 'en')
-				$this->_l10n = FALSE;
-			else {
-				$this->_l10n = TRUE;
-				Pommo::requireOnce($this->_baseDir . 'inc/helpers/l10n.php');
-				PommoHelperL10n::init($this->_session['slanguage'], $this->_baseDir);
+		if (isset(self::$_session['slanguage']))
+		{
+			if (self::$_session['slanguage'] == 'en')
+			{
+				self::$_l10n = FALSE;
 			}
-			$this->_slanguage = $this->_session['slanguage'];
+			else
+			{
+				self::$_l10n = TRUE;
+				Pommo::requireOnce(self::$_baseDir.'inc/helpers/l10n.php');
+				PommoHelperL10n::init(self::$_session['slanguage'],
+						self::$_baseDir);
+			}
+			self::$_slanguage = self::$_session['slanguage'];
 		}
 		
-		// if authLevel == '*' || _poMMo_support (0 if poMMo not installed, 1 if installed)
-		if (defined('_poMMo_support')) {
-			Pommo::requireOnce($this->_baseDir.'inc/classes/install.php');
+		// 	if authLevel == '*' || _poMMo_support (0 if poMMo not installed,
+		//	1 if installed)
+		if (defined('_poMMo_support'))
+		{
+			require_once(self::$_baseDir.'inc/classes/install.php');
 			$p['authLevel'] = (PommoInstall::verify()) ? 1 : 0;
 		}
 		
 		// check authentication levels
-		$this->_auth = new Pommo_Auth(array (
+		self::$_auth = new Pommo_Auth(array (
 			'requiredLevel' => $p['authLevel']
 		));
 
@@ -343,17 +337,19 @@ class Pommo
 		// TODO --> phase this out in favor of page state system? 
 		// -- add "persistent" flag & complicate state initilization...
 		if (!$p['keep'])
-			$this->_session['data'] = array ();
+		{
+			self::$_session['data'] = array ();
+		}
 	}
 	
 	// reload base configuration from database
 	function reloadConfig() {
-		return $this->_config = Pommo_Api :: configGetBase(TRUE);
+		return self::$_config = Pommo_Api :: configGetBase(TRUE);
 	}
 	
 	function toggleEscaping($toggle = TRUE) {
-		$this->_escaping = $toggle;
-		$this->_logger->toggleEscaping($this->_escaping);
+		self::$_escaping = $toggle;
+		self::$_logger->toggleEscaping(self::$_escaping);
 		return $toggle;
 	}
 	
@@ -389,17 +385,17 @@ class Pommo
 			$value = array (
 				$value => TRUE
 			);
-		return (empty ($this->_session['data'])) ? 
-			$this->_session['data'] = $value : 
-			$this->_session['data'] = array_merge($this->_session['data'], $value);
+		return (empty (self::$_session['data'])) ? 
+			self::$_session['data'] = $value : 
+			self::$_session['data'] = array_merge(self::$_session['data'], $value);
 	}
 
 	function get($name = FALSE) {
 		if ($name)
-			return (isset($this->_session['data'][$name])) ? 
-				$this->_session['data'][$name] :
+			return (isset(self::$_session['data'][$name])) ? 
+				self::$_session['data'][$name] :
 				array();
-		return $this->_session['data'];
+		return self::$_session['data'];
 	}
 	
 
@@ -433,43 +429,60 @@ class Pommo
 		return;
 	}
 	
-	// kill => used to terminate a script
-	function kill($msg = NULL, $backtrace = FALSE) {
-		global $pommo;
-		
+	/*	kill
+	 *	Used to terminate a script
+	 *
+	 *	@param	string	$msg.- Message to display
+	 *	@param	array	$backtrace
+	 *
+	 *	@return	void
+	 */
+	public static function kill($msg = NULL, $backtrace = FALSE)
+	{
 		// output passed message
-		if ($msg || !ob_get_length()) {
-			
-			if (empty($pommo->_workDir)) {
-				echo ('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">');
-				echo ('<title>poMMo Error</title>'); // Very basics added for valid output
-				echo '<div><img src="' . $pommo->_baseUrl . 'themes/shared/images/icons/alert.png" alt="alert icon" style="vertical-align: middle; margin-right: 20px;"/> ' . $msg . '</div>';
+		if ($msg || !ob_get_length())
+		{
+			if (empty(self::$_workDir))
+			{
+				echo ('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+						"http://www.w3.org/TR/html4/strict.dtd">');
+				echo ('<title>poMMo Error</title>'); // Added for valid output
+				echo '<div><img src="'.$pommo->_baseUrl.
+						'themes/shared/images/icons/alert.png" alt="alert icon"
+						style="vertical-align: middle; margin-right: 20px;"/>'.
+						$msg.'</div>';
 			}
-			else {
-				$logger =& $pommo->_logger;
+			else
+			{
+				$logger = self::$_logger;
 				$logger->addErr($msg);
-				Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
+				require_once(self::$_baseDir.'inc/classes/template.php');
 				$smarty = new PommoTemplate();
-				$smarty->assign('fatalMsg',TRUE);
+				$smarty->assign('fatalMsg', TRUE);
 				$smarty->display('message.tpl');
-			}	
+			}
 		}
 		
 		// output debugging info if enabled (in config.php)
-		if ($pommo->_debug) {
-			if (is_object($pommo)) {
-				Pommo::requireOnce($pommo->_baseDir . 'inc/helpers/debug.php');
-				$debug = new PommoHelperDebug();
-				$debug->bmDebug();
-			}
+		if (self::$_debug)
+		{
+			require_once(self::$_baseDir.'inc/helpers/debug.php');
+			$debug = new PommoHelperDebug();
+			$debug->bmDebug();
 		}
 		
-		if ($backtrace) {
+		if ($backtrace)
+		{
 			$backtrace = debug_backtrace();
-			echo @ '<h2>BACKTRACE</h2>'
-				.'<p>'.@str_ireplace($pommo->_baseDir,'',$backtrace[1]['file']).':'.$backtrace[1]['line'].' '.$backtrace[1]['function'].'()</p>'
-				.'<p>'.@str_ireplace($pommo->_baseDir,'',$backtrace[2]['file']).' '.$backtrace[2]['function'].'()</p>'
-				.'<p>'.@str_ireplace($pommo->_baseDir,'',$backtrace[3]['file']).' '.$backtrace[3]['function'].'()</p>';
+			echo @'<h2>BACKTRACE</h2>'.
+					'<p>'.@str_ireplace($pommo->_baseDir, '',
+					$backtrace[1]['file']).':'.$backtrace[1]['line'].' '.
+					$backtrace[1]['function'].'()</p>'
+					.'<p>'.@str_ireplace($pommo->_baseDir, '',
+					$backtrace[2]['file']).' '.$backtrace[2]['function'].
+					'()</p>'.'<p>'.@str_ireplace($pommo->_baseDir, '',
+					$backtrace[3]['file']).' '.$backtrace[3]['function'].
+					'()</p>';
 		}
 
 		// print and clear output buffer
@@ -479,20 +492,33 @@ class Pommo
 		die();
 	}
 	
-	function startSession($name = null) {
-		static $start=false;
+	/*	startSession
+	 *	Starts a new session
+	 *
+	 *	@param	string	$name.- Session name
+	 *
+	 *	@return	void
+	 */
+	function startSession($name = null)
+	{
+		static $start = false;
 		if (!$start)
+		{
 			session_start();
+		}
 		$start = true;
 		
 		// generate unique session name
-		$key =& $this->_config['key'];
+		$key = self::$_config['key'];
 		
 		if(empty($key))
+		{
 			$key = '123456';
+		}
 		
 		// create SESSION placeholder for if this is a new session
-		if (empty ($_SESSION['pommo'.$key])) {
+		if (empty ($_SESSION['pommo'.$key]))
+		{
 			$_SESSION['pommo'.$key] = array (
 				'data' => array (),
 				'state' => array (),
@@ -500,7 +526,7 @@ class Pommo
 			);
 		}
 		
-		$this->_session =& $_SESSION['pommo'.$key];
+		self::$_session = $_SESSION['pommo'.$key];
 	}
 	
 	// error log, E_ERROR trapping
@@ -508,7 +534,7 @@ class Pommo
 	function logErrors() {
 		
 		// ignore call if verbosity maximum.
-		if($this->_verbosity < 2)
+		if(self::$_verbosity < 2)
 			return;
 			
 		// error handling
@@ -519,7 +545,7 @@ class Pommo
 		ini_set('html_errors',0);
 		
 		// set log file
-		ini_set('error_log',$this->_workDir . '/ERROR_LOG');
+		ini_set('error_log',self::$_workDir . '/ERROR_LOG');
 	}
 }
 ?>

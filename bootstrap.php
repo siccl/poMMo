@@ -33,6 +33,5 @@ require('classes/Pommo_Api.php');
 require('classes/Pommo.php');
 
 //	Instantiate pommo
-$pommo = Pommo::singleton(dirname(__FILE__).'/');
-$pommo->preinit();
+Pommo::preinit(dirname(__FILE__).'/');
 

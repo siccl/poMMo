@@ -22,38 +22,54 @@
 
 class Pommo_Api
 {
-
-	function & getParams(& $defaults, & $args) {
+	/*	getParams
+	 *	Merges default and given params
+	 *
+	 *	@param	array	$defaults.- Default parameters
+	 *	@param	array	$args.- Args passed
+	 *
+	 *	@return	array	$p.- Merged array
+	 */
+	public static function getParams(&$defaults, &$args)
+	{
 		$p = array_merge($defaults, $args);
 
-		// make sure all submitted parameters are "known" by verifying size of final array
-		if (count($p) > count($defaults)) {
-			global $pommo;
-			if ($pommo->_verbosity < 3)
-				var_dump($defaults,$args);
-			Pommo::kill('Unknown argument passed to Pommo_Api::getParams()', TRUE);
+		// 	make sure all submitted parameters are "known" by verifying size of
+		//	final array
+		if (count($p) > count($defaults))
+		{
+			if (Pommo::$_verbosity < 3)
+			{
+				var_dump($defaults, $args);
+			}
+			Pommo::kill('Unknown argument passed to Pommo_Api::getParams()',
+					TRUE);
 		}
 
 		return $p;
 	}
 
-
-	// Returns Base Configuration Data
-	function & configGetBase() {
-		global $pommo;
-		$dbo = & $pommo->_dbo;
+	/*	configGetBase
+	 *	Returns Base Configuration Data
+	 *
+	 *	@return	array	$config.- Config Base
+	 */
+	public static function configGetBase()
+	{
+		$dbo = Pommo::$_dbo;
 		$dbo->dieOnQuery(FALSE);
 		
 		$config = array();
 		
-		$query = "
-			SELECT config_name, config_value
-			FROM ".$dbo->table['config'] ."
-			WHERE autoload='on'";
+		$query = 'SELECT config_name, config_value
+			FROM '.$dbo->table['config'].'
+			WHERE autoload="on"';
 		$query = $dbo->prepare($query);
 		
 		while ($row = $dbo->getRows($query))
+		{
 			$config[$row['config_name']] = $row['config_value'];
+		}
 
 		$dbo->dieOnQUery(TRUE);
 		return $config;

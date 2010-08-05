@@ -23,28 +23,26 @@
  *********************************/
  
 require ('bootstrap.php');
-$pommo->init(array('authLevel' => 0));
-$logger	= & $pommo->_logger;
-$dbo 	= & $pommo->_dbo;
+Pommo::init(array('authLevel' => 0));
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once($pommo->_baseDir.'classes/Pommo_Template.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
 $smarty = new Pommo_Template();
 
 //	log the user out if requested
 if (isset($_GET['logout']))
 {
-	$pommo->_auth->logout();
-	header('Location: ' . $pommo->_http . $pommo->_baseUrl . 'index.php');
+	Pommo::$_auth->logout();
+	header('Location: ' . Pommo::$_http . Pommo::$_baseUrl . 'index.php');
 }
 
 // 	check if user is already logged in
-if ($pommo->_hasConfigFile && $pommo->_auth->isAuthenticated())
+if (Pommo::$_hasConfigFile && Pommo::$_auth->isAuthenticated())
 {
 	// If user is authenticated (has logged in), redirect to admin.php
-	Pommo::redirect($pommo->_http . $pommo->_baseUrl . 'admin/admin.php');
+	Pommo::redirect(Pommo::$_http . Pommo::$_baseUrl . 'admin/admin.php');
 }
 // 	Check if user submitted correct username & password. If so, Authenticate.
 elseif (isset($_POST['submit']) && !empty ($_POST['username'])
@@ -62,13 +60,13 @@ elseif (isset($_POST['submit']) && !empty ($_POST['username'])
 				== 'support.php')
 		{
 			// LOGIN SUCCESS -- PERFORM MAINTENANCE, SET AUTH, REDIRECT TO REFERER
-			require_once($pommo->_baseDir.'inc/helpers/maintenance.php');
+			require_once(Pommo::$_baseDir.'inc/helpers/maintenance.php');
 			PommoHelperMaintenance::perform();
 		}
 
-		$pommo->_auth->login($_POST['username']);
+		Pommo::$_auth->login($_POST['username']);
 		
-		Pommo::redirect($pommo->_http . $_POST['referer']);
+		Pommo::redirect(Pommo::$_http . $_POST['referer']);
 	}
 	else
 	{
@@ -91,16 +89,16 @@ elseif (!empty ($_POST['resetPassword']))
 	{
 		// user inputted captcha matched. Reset password
 		
-		Pommo::requireOnce($pommo->_baseDir.'inc/helpers/pending.php');
-		Pommo::requireOnce($pommo->_baseDir . 'inc/helpers/messages.php');
+		require_once(Pommo::$_baseDir.'inc/helpers/pending.php');
+		require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
 
 		// see if there is already a pending request for the administrator
 		// [subscriber id == 0]
 		if (PommoPending::isPending(0))
 		{
 			$input = urlencode(serialize(array('adminID' => TRUE,
-					'Email' => $pommo->_config['admin_email'])));
-			Pommo::redirect($pommo->_http . $pommo->_baseUrl .
+					'Email' => Pommo::$_config['admin_email'])));
+			Pommo::redirect(Pommo::$_http . Pommo::$_baseUrl .
 					'user/pending.php?input='.$input);
 		}
 
@@ -108,7 +106,7 @@ elseif (!empty ($_POST['resetPassword']))
 		$subscriber = array('id' => 0);
 		$code = PommoPending::add($subscriber,'password');
 		PommoHelperMessages::sendMessage(
-				array('to' => $pommo->_config['admin_email'],
+				array('to' => Pommo::$_config['admin_email'],
 				'code' => $code, 'type' => 'password'));
 		
 		$smarty->assign('captcha',FALSE);
@@ -120,7 +118,7 @@ elseif (!empty ($_POST['resetPassword']))
 		$logger->addMsg(Pommo::_T('Captcha did not match. Try again.'));
 	}
 }
-elseif (!$pommo->_hasConfigFile && $_POST['configure'])
+elseif (!Pommo::$_hasConfigFile && $_POST['configure'])
 {
 	//	Try to connect to database with data entered from the user.
 	//	I am not using /inc/classes/db.php because it kills the proccess when
@@ -180,19 +178,19 @@ elseif (!$pommo->_hasConfigFile && $_POST['configure'])
 					.'[date_format] = 1'.PHP_EOL;
 			fwrite($handle, $string);
 			fclose($handle);
-			$redir = $pommo->_baseUrl.'install/install.php';
+			$redir = Pommo::$_baseUrl.'install/install.php';
 			header('Location: '.$redir);
 			exit();
 		}
 	}
 }
 
-if ($pommo->_hasConfigFile)
+if (Pommo::$_hasConfigFile)
 {
 	//	referer (used to return user to requested page upon login success)
 	$smarty->assign('referer',
 			(isset($_REQUEST['referer']) ?
-			$_REQUEST['referer'] : $pommo->_baseUrl.'admin/admin.php'));
+			$_REQUEST['referer'] : Pommo::$_baseUrl.'admin/admin.php'));
 
 	$smarty->display('index.tpl');
 }
