@@ -18,35 +18,57 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-class PommoInstall {
+class Pommo_Install
+{
  	
- 	// parses a SQL file (usually generated via mysqldump)
- 	// text like ':::table:::' will be replaced with $dbo->table['table']; (to add prefix)
- 	
- 	function parseSQL($ignoreerrors = false, $file = false) {
- 		global $pommo;
-		$dbo =& $pommo->_dbo;
-		$logger =& $pommo->_logger;
+ 	/*	parseSQL
+ 	 *	parses a SQL file (usually generated via mysqldump)
+ 	 *	text like ':::table:::' will be replaced with $dbo->table['table'];
+ 	 *	(to add prefix)
+ 	 *
+ 	 *	@param	boolean	$ignoreerrors
+ 	 *	@param	boolean	$file
+ 	 *
+ 	 *	@return	boolean	True on success, false otherwise
+ 	 */
+ 	function parseSQL($ignoreerrors = false, $file = false)
+ 	{
+		$dbo 	= Pommo::$_dbo;
+		$logger = Pommo::$_logger;
 	
 		if (!$file)
-			$file = $pommo->_baseDir."install/sql.schema.php";
+		{
+			$file = Pommo::$_baseDir.'sql/sql.schema.php';
+		}
 			
 		$file_content = @file($file);
 		if (empty ($file_content))
+		{
 			Pommo::kill('Error installing. Could not read '.$file);
+		}
 		$query = '';
-		foreach ($file_content as $sql_line) {
+		foreach ($file_content as $sql_line)
+		{
 			$tsl = trim($sql_line);
-			if (($sql_line != "") && (substr($tsl, 0, 2) != "--") && (substr($tsl, 0, 1) != "#")) {
+			if (($sql_line != "")
+					&& (substr($tsl, 0, 2) != "--")
+					&& (substr($tsl, 0, 1) != "#"))
+			{
 				$query .= $sql_line;
-				if (preg_match("/;\s*$/", $sql_line)) {
+				if (preg_match("/;\s*$/", $sql_line))
+				{
 					$matches = array();
 					preg_match('/:::(.+):::/',$query,$matches);
 					if ($matches[1])
-						$query = preg_replace('/:::(.+):::/',$dbo->table[$matches[1]], $query);
-						$query = trim($query);
-					if (!$dbo->query($query) && !$ignoreerrors) {
-						$logger->addErr(Pommo::_T('Database Error: ').$dbo->getError());
+					{
+						$query = preg_replace('/:::(.+):::/',
+								$dbo->table[$matches[1]], $query);
+					}
+					$query = trim($query);
+					if (!$dbo->query($query) && !$ignoreerrors)
+					{
+						$logger->addErr(Pommo::_T('Database Error: ').
+								$dbo->getError());
 						return false;
 					}
 					$query = '';
@@ -60,7 +82,7 @@ class PommoInstall {
  	// returns bool (true if installed)
  	function verify() {
  		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
  		if (is_object($dbo)) {
 			$query = "SHOW TABLES LIKE '%s'";
 			$query = $dbo->prepare($query,array($dbo->_prefix.'%'));
@@ -75,8 +97,8 @@ class PommoInstall {
  	// returns update status
  	function incUpdate($serial, $sql, $msg = "Performing Update", $eval = false) {
  		global $pommo;
- 		$dbo =& $pommo->_dbo;
- 		$logger =& $pommo->_logger;
+ 		$dbo =& Pommo::$_dbo;
+ 		$logger =& Pommo::$_logger;
  			
  		if (!is_numeric($serial))
  			Pommo::kill('Invalid serial passed; '.$serial);

@@ -101,9 +101,9 @@ class Pommo_Api
 
 	// update the config table. 
 	//  $input must be an array as key:value ([config_name] => config_value)
-	function configUpdate($input, $force = FALSE) {
-		global $pommo;
-		$dbo = & $pommo->_dbo;
+	function configUpdate($input, $force = FALSE)
+	{
+		$dbo = Pommo::$_dbo;
 
 		if (!is_array($input))
 			Pommo :: kill('Bad input passed to updateConfig', TRUE);

@@ -343,8 +343,9 @@ class Pommo
 	}
 	
 	// reload base configuration from database
-	function reloadConfig() {
-		return self::$_config = Pommo_Api :: configGetBase(TRUE);
+	function reloadConfig()
+	{
+		return self::$_config = Pommo_Api::configGetBase(TRUE);
 	}
 	
 	function toggleEscaping($toggle = TRUE) {

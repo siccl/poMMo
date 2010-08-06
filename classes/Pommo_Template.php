@@ -118,15 +118,16 @@ class Pommo_Template extends Smarty
 	function prepareForForm() {
 
 		$this->plugins_dir[] = Pommo::$_baseDir . 'lib/smarty-plugins/validate';
-		Pommo :: requireOnce(Pommo::$_baseDir . 'inc/lib/class.smartyvalidate.php');
-		Pommo :: requireOnce(Pommo::$_baseDir . 'lib/smarty-plugins/validate/function.validate.php');
+		require_once(Pommo::$_baseDir.'inc/lib/class.smartyvalidate.php');
+		require_once(Pommo::$_baseDir.
+				'lib/smarty-plugins/validate/function.validate.php');
 		$this->assign('vErr',array());
 	}
 
 	// Loads field data into template, as well as _POST (or a saved subscribeForm). 
 	function prepareForSubscribeForm() {
 		$dbo =& Pommo::$_dbo;
-		Pommo :: requireOnce(Pommo::$_baseDir . 'inc/helpers/fields.php');
+		require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
 
 		// Get array of fields. Key is ID, value is an array of the demo's info
 		$fields = PommoField::get(array('active' => TRUE,'byName' => FALSE));

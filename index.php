@@ -178,7 +178,7 @@ elseif (!Pommo::$_hasConfigFile && $_POST['configure'])
 					.'[date_format] = 1'.PHP_EOL;
 			fwrite($handle, $string);
 			fclose($handle);
-			$redir = Pommo::$_baseUrl.'install/install.php';
+			$redir = Pommo::$_baseUrl.'install.php';
 			header('Location: '.$redir);
 			exit();
 		}

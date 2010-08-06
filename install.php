@@ -21,24 +21,24 @@
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('../bootstrap.php');
-require_once($pommo->_baseDir.'inc/classes/install.php');
-$pommo->init(array('authLevel' => 0, 'install' => TRUE));
+require('bootstrap.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Install.php');
+Pommo::init(array('authLevel' => 0, 'install' => TRUE));
 
 session_start(); // required by smartyValidate. TODO -> move to prepareForForm() ??
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 $dbo->dieOnQuery(FALSE);
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 // Check to make sure poMMo is not already installed.
-if (PommoInstall::verify()) {
+if (Pommo_Install::verify()) {
 	$logger->addErr(Pommo::_T('poMMo is already installed.'));
 	$smarty->assign('installed', TRUE);
 	$smarty->display('install.tpl');
@@ -85,7 +85,7 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 			if (isset ($_REQUEST['debugInstall']))
 				$dbo->debug(TRUE);
 
-			$install = PommoInstall::parseSQL();
+			$install = Pommo_Install::parseSQL();
 
 			if ($install) {
 				// installation of DB went OK, set configuration values to user supplied ones
@@ -94,27 +94,23 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 
 				// install configuration
 				$_POST['admin_password'] = md5($_POST['admin_password']);
-				PommoAPI::configUpdate($_POST);
+				Pommo_Api::configUpdate($_POST);
 				
 				// generate key to uniquely identify this installation
-				$key = PommoHelper::makeCode(6);
-				PommoAPI::configUpdate(array('key' => $key),TRUE);
+				$key = Pommo_Helper::makeCode(6);
+				Pommo_Api::configUpdate(array('key' => $key),TRUE);
 				
-				$pommo->reloadConfig();
+				Pommo::reloadConfig();
 				
 				// load configuration [depricated?], set message defaults, load templates
-				require_once($pommo->_baseDir.'inc/helpers/messages.php');
-				PommoHelperMessages::resetDefault('all');
+				require_once(Pommo::$_baseDir.
+						'classes/Pommo_Helper_Messages.php');
+				Pommo_Helper_Messages::resetDefault('all');
 				
 				// install templates
-				$file = $pommo->_baseDir."install/sql.templates.php";
-				if(!PommoInstall::parseSQL(false,$file))
+				$file = Pommo::$_baseDir.'sql/sql.templates.php';
+				if(!Pommo_Install::parseSQL(false,$file))
 					$logger->addErr('Error Loading Default Mailing Templates.');
-					
-				// serialize the latest updates
-				$GLOBALS['pommoFakeUpgrade'] = true;
-				require_once($pommo->_baseDir . 'install/helper.upgrade.php');
-				PommoUpgrade();
 
 				$logger->addMsg(Pommo::_T('Installation Complete! You may now login and setup poMMo.'));
 				$logger->addMsg(Pommo::_T('Login Username: ') . 'admin');
@@ -144,4 +140,4 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 $smarty->assign($_POST);
 $smarty->display('install.tpl');
 Pommo::kill();
-?>
+
