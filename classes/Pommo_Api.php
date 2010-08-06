@@ -78,8 +78,7 @@ class Pommo_Api
 	// Gets specified config value(s) from the DB. 
 	// Pass a single or array of config_names, returns array of their name>value.
 	function configGet($arg) {
-		global $pommo;
-		$dbo = & $pommo->_dbo;
+		$dbo = Pommo::$_dbo;
 		$dbo->dieOnQuery(FALSE);
 
 
@@ -143,12 +142,10 @@ class Pommo_Api
 	// accepts array of ovverriding variables
 	// returns the current page state (array)
 	function & stateInit($name = 'default', $defaults = array (), $source = array()) {
-		global $pommo;
-				
-		if (empty($pommo->_session['state'][$name]))
-			$pommo->_session['state'][$name] = $defaults;
+		if (empty(Pommo::$_session['state'][$name]))
+			Pommo::$_session['state'][$name] = $defaults;
 		
-		$state =& $pommo->_session['state'][$name];
+		$state = Pommo::$_session['state'][$name];
 		
 		if(empty($defaults))
 			return $state;
@@ -178,16 +175,14 @@ class Pommo_Api
 	//   if not supplied, ALL page states are cleared
 	// returns (bool)
 	function stateReset($state = array()) {
-		global $pommo;
-		
 		if (!is_array($state))
 			$state = array($state);
 		
 		if (empty($state))
-			$pommo->_session['state'] = array();
+			Pommo::$_session['state'] = array();
 		else
 			foreach($state as $s)
-				unset($pommo->_session['state'][$s]);
+				unset(Pommo::$_session['state'][$s]);
 				
 		return true;
 	}

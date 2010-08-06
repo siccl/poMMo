@@ -27,26 +27,26 @@ if (isset($_POST['lang'])) {
 	$lang = true;
 }
 	
-require('../bootstrap.php');
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+require('bootstrap.php');
+Pommo::init();
+$logger = Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+Pommo::requireOnce(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 $smarty->assign('header',array(
-	'main' => 'poMMo '.$pommo->_config['version'],
-	'sub' => sprintf(Pommo::_T('Powerful mailing list software for %s'),$pommo->_config['list_name']) 
+	'main' => 'poMMo '.Pommo::$_config['version'],
+	'sub' => sprintf(Pommo::_T('Powerful mailing list software for %s'),Pommo::$_config['list_name']) 
 	));
 
 if($lang)
 	$logger->addErr(Pommo::_T('You have changed the language for this session. To make this the default language, you must update your config.php file.'));
 
-$smarty->assign('lang',($pommo->_slanguage) ? $pommo->_slanguage : $pommo->_language);	
+$smarty->assign('lang',(Pommo::$_slanguage) ? Pommo::$_slanguage : Pommo::$_language);	
 $smarty->display('admin/admin.tpl');
 Pommo::kill();
 	

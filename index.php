@@ -24,6 +24,7 @@
  
 require ('bootstrap.php');
 Pommo::init(array('authLevel' => 0));
+$logger = Pommo::$_logger;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
@@ -42,13 +43,13 @@ if (isset($_GET['logout']))
 if (Pommo::$_hasConfigFile && Pommo::$_auth->isAuthenticated())
 {
 	// If user is authenticated (has logged in), redirect to admin.php
-	Pommo::redirect(Pommo::$_http . Pommo::$_baseUrl . 'admin/admin.php');
+	Pommo::redirect(Pommo::$_http . Pommo::$_baseUrl . 'admin.php');
 }
 // 	Check if user submitted correct username & password. If so, Authenticate.
 elseif (isset($_POST['submit']) && !empty ($_POST['username'])
 		&& !empty ($_POST['password']))
 {
-	$auth = PommoAPI::configGet(array (
+	$auth = Pommo_Api::configGet(array (
 		'admin_username',
 		'admin_password'
 	));
@@ -60,8 +61,8 @@ elseif (isset($_POST['submit']) && !empty ($_POST['username'])
 				== 'support.php')
 		{
 			// LOGIN SUCCESS -- PERFORM MAINTENANCE, SET AUTH, REDIRECT TO REFERER
-			require_once(Pommo::$_baseDir.'inc/helpers/maintenance.php');
-			PommoHelperMaintenance::perform();
+			require_once(Pommo::$_baseDir.'classes/Pommo_Helper_Maintenance.php');
+			Pommo_Helper_Maintenance::perform();
 		}
 
 		Pommo::$_auth->login($_POST['username']);
@@ -190,7 +191,7 @@ if (Pommo::$_hasConfigFile)
 	//	referer (used to return user to requested page upon login success)
 	$smarty->assign('referer',
 			(isset($_REQUEST['referer']) ?
-			$_REQUEST['referer'] : Pommo::$_baseUrl.'admin/admin.php'));
+			$_REQUEST['referer'] : Pommo::$_baseUrl.'admin.php'));
 
 	$smarty->display('index.tpl');
 }

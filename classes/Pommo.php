@@ -457,8 +457,8 @@ class Pommo
 			{
 				$logger = self::$_logger;
 				$logger->addErr($msg);
-				require_once(self::$_baseDir.'inc/classes/template.php');
-				$smarty = new PommoTemplate();
+				require_once(self::$_baseDir.'classes/Pommo_Template.php');
+				$smarty = new Pommo_Template();
 				$smarty->assign('fatalMsg', TRUE);
 				$smarty->display('message.tpl');
 			}
