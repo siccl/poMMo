@@ -48,7 +48,7 @@ class Pommo_Auth
 			Pommo::$_session['username'] = $p['username'];
 		}
 
-		$this->_username = Pommo::$_session['username'];
+		$this->_username = &Pommo::$_session['username'];
 		$this->_permissionLevel = $this->getPermissionLevel($this->_username);
 
 		if ($p['requiredLevel'] > $this->_permissionLevel)

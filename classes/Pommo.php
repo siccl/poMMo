@@ -527,7 +527,7 @@ class Pommo
 			);
 		}
 		
-		self::$_session = $_SESSION['pommo'.$key];
+		self::$_session = &$_SESSION['pommo'.$key];
 	}
 	
 	// error log, E_ERROR trapping
