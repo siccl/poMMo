@@ -66,9 +66,9 @@ class Pommo
 	 */
 	public static function preInit($baseDir)
 	{
-		self::$_baseDir	= $baseDir;
-		self::$_config 	= array ();
-		self::$_auth 	= null;
+		self::$_baseDir		= $baseDir;
+		self::$_config 		= array ();
+		self::$_auth 		= null;
 		self::$_escaping	= false;
 	
 		require_once(self::$_baseDir.'classes/Pommo_Log.php');
@@ -297,7 +297,7 @@ class Pommo
 			session_id($p['sessionID']);
 		}
 		self::startSession();
-		
+
 		// check for "session" language -- user defined language on the fly.
 		if (self::$_slanguage)
 		{
@@ -549,4 +549,4 @@ class Pommo
 		ini_set('error_log',self::$_workDir . '/ERROR_LOG');
 	}
 }
-?>
+

@@ -45,29 +45,31 @@ if (Pommo::$_hasConfigFile && Pommo::$_auth->isAuthenticated())
 	// If user is authenticated (has logged in), redirect to admin.php
 	Pommo::redirect(Pommo::$_http . Pommo::$_baseUrl . 'admin.php');
 }
-// 	Check if user submitted correct username & password. If so, Authenticate.
-elseif (isset($_POST['submit']) && !empty ($_POST['username'])
-		&& !empty ($_POST['password']))
+// 	Log in attempt. Authenticate.
+elseif (isset($_POST['submit'])
+		&& !empty($_POST['username'])
+		&& !empty($_POST['password']))
 {
 	$auth = Pommo_Api::configGet(array (
 		'admin_username',
 		'admin_password'
 	));
-	if ($_POST['username'] == $auth['admin_username'] && md5($_POST['password'])
-			== $auth['admin_password'])
+	
+	if ($_POST['username'] == $auth['admin_username']
+			&& md5($_POST['password']) == $auth['admin_password'])
 	{
 		// don't perform maintenance if accessing support area
-		if(!isset($_GET['referer']) || !basename($_GET['referer'])
-				== 'support.php')
+		if(!isset($_GET['referer'])
+				|| !basename($_GET['referer']) == 'support.php')
 		{
-			// LOGIN SUCCESS -- PERFORM MAINTENANCE, SET AUTH, REDIRECT TO REFERER
+			// login success. Perform maintenance, set auth, redirect to referer
 			require_once(Pommo::$_baseDir.'classes/Pommo_Helper_Maintenance.php');
 			Pommo_Helper_Maintenance::perform();
 		}
 
 		Pommo::$_auth->login($_POST['username']);
 		
-		Pommo::redirect(Pommo::$_http . $_POST['referer']);
+		Pommo::redirect(Pommo::$_http.$_POST['referer']);
 	}
 	else
 	{

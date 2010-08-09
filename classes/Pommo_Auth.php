@@ -26,48 +26,54 @@ class Pommo_Auth
 	var $_permissionLevel; // permission level of logged in user
 	var $_requiredLevel; // required level of permission (default: 1)
 
-
-	// default constructor. Get current logged in user from session. Check for permissions.
-	function Pommo_Auth($args = array ())
+	/*	__construct
+	 *	default constructor. Get current logged in user from session.
+	 *	permissions.
+	 *
+	 *	@param	array	$args
+	 *
+	 *	@return	void
+	 */
+	function __construct($args = array ())
 	{
-		global $pommo;
-		
 		$defaults = array (
 			'username' => null,
 			'requiredLevel' => 0
 		);
-		$p = Pommo_Api :: getParams($defaults, $args);
+
+		$p = Pommo_Api::getParams($defaults, $args);
 		
-		if (empty($pommo->_session['username']))
-			$pommo->_session['username'] = $p['username'];
-		
-		$this->_username = & $pommo->_session['username'];
+		if (empty(Pommo::$_session['username']))
+		{
+			Pommo::$_session['username'] = $p['username'];
+		}
+
+		$this->_username = Pommo::$_session['username'];
 		$this->_permissionLevel = $this->getPermissionLevel($this->_username);
 
-		if ($p['requiredLevel'] > $this->_permissionLevel) {
-			global $pommo;
-			Pommo::kill(sprintf(Pommo::_T('Denied access. You must %slogin%s to access this page...'), '<a href="' . $pommo->_baseUrl . 'index.php?referer=' . $_SERVER['PHP_SELF'] . '">', '</a>'));
+		if ($p['requiredLevel'] > $this->_permissionLevel)
+		{
+			Pommo::kill(sprintf(Pommo::_T('Denied access. You must %slogin%s to
+					access this page...'), '<a href="'.Pommo::$_baseUrl.
+					'index.php?referer='.$_SERVER['PHP_SELF'].'">', '</a>'));
 		}
 
 	}
 
-	// TODO -> extend this when multi-user support is implemented. For now default to 5 if a user
-	// is logged in (successfully authenticated). 5 should be max (administrator/superuser privileges)
-	
-	/*
-	 * corinna: OO Design proposal:
-	 * Classes for the User type instead of a permission level
-	 * interface iUser (maybe add this later -> less administration effort? for all this classes)
-	 * admins are a Object AdminUser(derived from iUser)
-	 * When multi user support is enabled the users are of the type class ExtendedUser, and this class has overloaded existing functions 
-	 * and extended functionality (Permission Handling, ...)
-	 * The problem with PHP is the non persistence, e.g. that the objects are deleted when the 
-	 * requested files are interpreted... With servlets,... the user objects are organzized as i describe
-	 * above but i don't know if there is a standard way for php?
+
+	/*	getPermissionLevel
+	 *	Returns current user permission level
+	 *
+	 *	@param	string	$username
+	 *
+	 *	@return	int		0 if not logged in
 	 */
-	function getPermissionLevel($username = null) {
+	function getPermissionLevel($username = null)
+	{
 		if ($username)
+		{
 			return 5;
+		}
 		return 0;
 	}
 	
@@ -78,9 +84,17 @@ class Pommo_Auth
 		return;
 	}
 	
-	function login($username) {
+	/*	login
+	 *	Saves a user login
+	 *
+	 *	@param	string	$username.- User name to save for session
+	 *
+	 *	@return	boolean	True;
+	 */
+	function login($username)
+	{
 		$this->_username = $username;
-		return;
+		return true;
 	}
 	
 	// Check if a user is authenticated (logged on)
@@ -88,4 +102,4 @@ class Pommo_Auth
 		return (empty($this->_username)) ? false : true;
 	}
 }
-?>
+

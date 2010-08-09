@@ -75,24 +75,33 @@ class Pommo_Api
 		return $config;
 	}
 
-	// Gets specified config value(s) from the DB. 
-	// Pass a single or array of config_names, returns array of their name>value.
-	function configGet($arg) {
+	/*	configGet
+	 *	Gets specified config value(s) from the DB. 
+	 * 	Pass a single or array of config_names, returns array name->value.
+	 *
+	 *	@param	mixed	$arg.- Value or values to get
+	 *
+	 *	@return	array	$config.- Config Base
+	 */
+	function configGet($arg)
+	{
 		$dbo = Pommo::$_dbo;
 		$dbo->dieOnQuery(FALSE);
 
-
 		if ($arg == 'all')
+		{
 			$arg = null;
+		}
 			
-		$query = "
-			SELECT config_name,config_value
-			FROM ". $dbo->table['config']."
-			[WHERE config_name IN(%Q)]";
-		$query = $dbo->prepare($query,array($arg));
+		$query = 'SELECT config_name,config_value
+			FROM '.$dbo->table['config'].'
+			[WHERE config_name IN(%Q)]';
+		$query = $dbo->prepare($query, array($arg));
 		
 		while ($row = $dbo->getRows($query))
+		{
 			$config[$row['config_name']] = $row['config_value'];
+		}
 
 		$dbo->dieOnQUery(TRUE);
 		return $config;
