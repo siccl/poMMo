@@ -441,7 +441,7 @@ class Pommo
 	public static function kill($msg = NULL, $backtrace = FALSE)
 	{
 		// output passed message
-		if ($msg || !ob_get_length())
+		if ($msg)
 		{
 			if (empty(self::$_workDir))
 			{
