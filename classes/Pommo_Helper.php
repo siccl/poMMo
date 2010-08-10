@@ -113,9 +113,9 @@ class Pommo_Helper
 	// accepts a single email (str) or array of emails
 	//  accepts a flag to include unsubcribed subscribers
 	// returns an array of duplicate found emails. FALSE if no dupes were found. 
-	function & isDupe(&$in,$includeUnsubscribed = false) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+	function isDupe(&$in,$includeUnsubscribed = false)
+	{
+		$dbo = Pommo::$_dbo;
 		
 		if(empty($in))
 			return false;
@@ -158,8 +158,7 @@ class Pommo_Helper
 	
 	// Returns the current dateformat as a string
 	function timeGetFormat() {
-		global $pommo;
-		switch ($pommo->_dateformat) {
+		switch (Pommo::$_dateformat) {
 			case 2: $format = 'MM/DD/YYYY'; break;
 			case 3: $format = 'DD/MM/YYYY'; break;
 			default: $format = 'YYYY/MM/DD'; break;
@@ -169,12 +168,11 @@ class Pommo_Helper
 	// converts a timestamp to human readable string. 
 	// Function will allow overidding of default date display format (MM/DD/YY vs. DD/MM/YY vs. YYYY/MM/DD etc.)
 	function timeToStr($int) {
-		global $pommo;
 		
 		if (!defined('ADODB_DATE_VERSION')) // safely load ADODB date library
-			Pommo::requireOnce($pommo->_baseDir.'inc/lib/adodb/adodb-time.inc.php');
+			require_once(Pommo::$_baseDir.'inc/lib/adodb/adodb-time.inc.php');
 
-		switch ($pommo->_dateformat) {
+		switch (Pommo::$_dateformat) {
 			case 1: $format = '%Y/%m/%d'; break;
 			case 2: $format = '%m/%d/%Y'; break;
 			case 3: $format = '%d/%m/%Y'; break;
@@ -188,10 +186,9 @@ class Pommo_Helper
 	// piggy backs on adodb's excellent time library -- supporting a wide range of dates (100AD +)
 	function timeFromStr($str)
 	{
-		global $pommo;
 		
 		if (!defined('ADODB_DATE_VERSION')) // safely load ADODB date library
-			Pommo::requireOnce($pommo->_baseDir.'inc/lib/adodb/adodb-time.inc.php');
+			require_once(Pommo::$_baseDir.'inc/lib/adodb/adodb-time.inc.php');
 		
 		// normalize delimiter
 		str_replace('-','/',$str);
@@ -203,7 +200,7 @@ class Pommo_Helper
 		if (count($a) != 3 || !is_numeric($a[0]) || !is_numeric($a[1]) || !is_numeric($a[2]))
 			return false;
 			
-		switch($pommo->_dateformat) {
+		switch(Pommo::$_dateformat) {
 			case 1: 
 				$year = substr($a[0],0,4);
 				$month = substr($a[1],0,2);

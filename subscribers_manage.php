@@ -21,19 +21,19 @@
  /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/groups.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/fields.php');
+require ('bootstrap.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger	= Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 	
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->assign('returnStr', Pommo::_T('Subscribers Page'));
 
 
@@ -48,9 +48,9 @@ $smarty->assign('returnStr', Pommo::_T('Subscribers Page'));
  */
 
 // Initialize page state with default values overriden by those held in $_REQUEST
-$state =& PommoAPI::stateInit('subscribers_manage',array(
+$state = Pommo_API::stateInit('subscribers_manage',array(
 	'limit' => 150,
-	'sort' => $pommo->_default_subscriber_sort,
+	'sort' => Pommo::$_default_subscriber_sort,
 	'order' => 'asc',
 	'status' => 1,
 	'group' => 'all',
@@ -63,34 +63,48 @@ $state =& PommoAPI::stateInit('subscribers_manage',array(
 	VALIDATION ROUTINES
 *********************************/
 	
-if(!is_numeric($state['limit']) || $state['limit'] < 1 || $state['limit'] > 1000)
+if (!is_numeric($state['limit'])
+		|| $state['limit'] < 1
+		|| $state['limit'] > 1000)
+{
 	$state['limit'] = 150;
+}
 	
 if($state['order'] != 'asc' && $state['order'] != 'desc')
+{
 	$state['order'] = 'asc';
+}
 	
-if(!is_numeric($state['sort']) &&
-	$state['sort'] != 'email' &&
-	$state['sort'] != 'ip' &&
-	$state['sort'] != 'time_registered' &&
-	$state['sort'] != 'time_touched')
-		$state['sort'] = 'email';
+if (!is_numeric($state['sort'])
+		&& $state['sort'] != 'email'
+		&& $state['sort'] != 'ip'
+		&& $state['sort'] != 'time_registered'
+		&& $state['sort'] != 'time_touched')
+{
+	$state['sort'] = 'email';
+}
 		
-if(!is_numeric($state['status']))
+if (!is_numeric($state['status']))
+{
 	$state['status'] = 1;
+}
 	
-if(!is_numeric($state['group']) && $state['group'] != 'all')
+if (!is_numeric($state['group']) && $state['group'] != 'all')
+{
 	$state['group'] = 'all';
+}
 
 if(isset($_REQUEST['searchClear']))
+{
 	$state['search'] = false;
-elseif(isset($_REQUEST['searchField']) && (
-	is_numeric($_REQUEST['searchField']) ||
- 	$_REQUEST['searchField'] == 'email' ||
-	$_REQUEST['searchField'] == 'ip' ||
-	$_REQUEST['searchField'] == 'time_registered' ||
-	$_REQUEST['searchField'] == 'time_touched')) 
-	{
+}
+elseif(isset($_REQUEST['searchField'])
+		&& (is_numeric($_REQUEST['searchField'])
+		|| $_REQUEST['searchField'] == 'email'
+		|| $_REQUEST['searchField'] == 'ip'
+		|| $_REQUEST['searchField'] == 'time_registered'
+		|| $_REQUEST['searchField'] == 'time_touched'))
+{
 	$_REQUEST['searchString'] = trim($_REQUEST['searchString']);
 	$state['search'] = (empty($_REQUEST['searchString'])) ?
 		false :
@@ -98,7 +112,7 @@ elseif(isset($_REQUEST['searchField']) && (
 		'field' => $_REQUEST['searchField'],
 		'string' => trim($_REQUEST['searchString'])
 		);
-	}
+}
 
 
 /**********************************
@@ -106,7 +120,7 @@ elseif(isset($_REQUEST['searchField']) && (
 *********************************/
 
 // Get the *empty* group [no member IDs. 3rd arg is set TRUE]
-$group = new PommoGroup($state['group'], $state['status'], $state['search']);
+$group = new Pommo_Groups($state['group'], $state['status'], $state['search']);
 
 // Calculate and Remember number of pages for this group/status combo
 $state['pages'] = (is_numeric($group->_tally) && $group->_tally > 0) ?
@@ -115,9 +129,8 @@ $state['pages'] = (is_numeric($group->_tally) && $group->_tally > 0) ?
 	
 $smarty->assign('state',$state);
 $smarty->assign('tally',$group->_tally);
-$smarty->assign('groups',PommoGroup::get());
-$smarty->assign('fields',PommoField::get());
+$smarty->assign('groups',Pommo_Groups::get());
+$smarty->assign('fields',Pommo_Fields::get());
 
 $smarty->display('admin/subscribers/subscribers_manage.tpl');
-Pommo::kill();
-?>
+

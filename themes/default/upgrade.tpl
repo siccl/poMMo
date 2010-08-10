@@ -6,7 +6,7 @@
 
 <ul class="inpage_menu">
 <li>{$config.app.weblink}</li>
-<li><a href="{$url.base}admin/admin.php">{t}Admin Page{/t}</a></li>
+<li><a href="{$url.base}admin.php">{t}Admin Page{/t}</a></li>
 </ul>
 
 <p><img src="{$url.theme.shared}images/icons/alert.png" alt="alert icon" class="navimage" /> {t}Welcome to the poMMo online upgrade process. This script will automatically upgrade your old version of poMMo.{/t}</p>

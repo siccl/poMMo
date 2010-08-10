@@ -19,7 +19,7 @@
  */
 
 // include the field prototype object 
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototypes.php');
+require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
 
 /**
  * Field: A SubscriberField
@@ -35,14 +35,14 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
  *	field_type		(enum)			checkbox, multiple, text, date, number, comment
  */
  
-class PommoField {
+class Pommo_Fields {
 	
 	// makes a field
 	// accepts a field template (assoc array)
 	// return a field (array)
 	function & make($in = array()) {
 		$o = PommoType::field();
-		return PommoAPI::getParams($o, $in);
+		return Pommo_Api::getParams($o, $in);
 	}
 	
 	// makes a field based off a database row (field schema) 
@@ -62,7 +62,7 @@ class PommoField {
 		if (!empty($row['field_array']))
 			$in['array'] = unserialize($row['field_array']);
 		
-		$o = PommoAPI::getParams(PommoType::field(),$in);
+		$o = Pommo_Api::getParams(PommoType::field(),$in);
 		return $o;
 	}
 	
@@ -70,8 +70,7 @@ class PommoField {
 	// accepts a field (array)
 	// returns true if field ($in) is valid, false if not
 	function validate(&$in) {
-		global $pommo;
-		$logger =& $pommo->_logger;
+		$logger = Pommo::$_logger;
 		
 		$invalid = array();
 		
@@ -135,10 +134,9 @@ class PommoField {
 	// returns an array of fields. Array key(s) correlates to field key.
 	function & get($p = array()) {
 		$defaults = array('active' => false, 'id' => null, 'byName' => true);
-		$p = PommoAPI :: getParams($defaults, $p);
+		$p = Pommo_Api::getParams($defaults, $p);
 		
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo = Pommo::$_dbo;
 		
 		$p['active'] = ($p['active']) ? 'on' : null;
 		
@@ -167,8 +165,7 @@ class PommoField {
 	//   id (int || array) -> an array of field IDs
 	// returns an array of field names. Array key(s) correlates to field ID.
 	function & getNames($id = null) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$o = array();
 		
@@ -192,8 +189,7 @@ class PommoField {
 	// accepts a field type or array of types
 	// returns an array of field IDs
 	function & getByType($type) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		if(!is_array($type))
 			$type = array($type);
@@ -211,8 +207,7 @@ class PommoField {
 	// accepts a field (array)
 	// returns the database ID of the added field or FALSE if failed
 	function add(&$in) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		// set the ordering of field if not provided
 		if (!is_numeric($in['ordering'])) {
@@ -256,8 +251,7 @@ class PommoField {
 	// accepts a single ID (int) or array of IDs 
 	// returns the # of deleted fields (int). 0 (false) if none.
 	function delete(&$id) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			DELETE
@@ -272,8 +266,7 @@ class PommoField {
 	// accepts a field (array)
 	// returns success (bool)
 	function update(&$in) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$in['array'] = (empty($in['array'])) ? null : serialize($in['array']);
 		
@@ -309,9 +302,8 @@ class PommoField {
 	// accepts a value (str)
 	// returns field options (array), or false (bool)
 	function optionAdd(&$field, $value) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
-		$logger =& $pommo->_logger;
+		$dbo =& Pommo::$_dbo;
+		$logger =& Pommo::$_logger;
 		
 		$value = PommoHelper::trimArray(explode(',',$value));
 		
@@ -334,9 +326,8 @@ class PommoField {
 	// accepts a value (str)
 	// returns field options (array), or false (bool)
 	function optionDel(&$field, &$value) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
-		$logger =& $pommo->_logger;
+		$dbo =& Pommo::$_dbo;
+		$logger =& Pommo::$_logger;
 		
 		// remove value from array
 		$key = array_search($value,$field['array']);
@@ -362,8 +353,7 @@ class PommoField {
 	// accepts a value to match (str) [optional]
 	// returns an (array) of subscriber IDs.
 	function subscribersAffected($id = array(), $val = null) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$o = array();
 		

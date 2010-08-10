@@ -17,22 +17,21 @@
  * along with program; see the file docs/LICENSE. If not, write to the
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
- 
- /**********************************
+
+/**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('../../../bootstrap.php');
+require('bootstrap.php');
+Pommo::init();
+$logger	= Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
-	
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
-
-$smarty->display('admin/subscribers/ajax/subscriber_export.tpl');
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
+	
+$smarty->display('admin/subscribers/admin_subscribers.tpl');
 Pommo::kill();
-?>
+

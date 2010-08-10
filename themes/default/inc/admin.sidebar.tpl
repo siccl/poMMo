@@ -9,7 +9,7 @@
 	</ul>
 	{/if}
 </li>
-<li><a href="{$url.base}admin/subscribers/admin_subscribers.php">{t}Subscribers{/t}</a>
+<li><a href="{$url.base}admin_subscribers.php">{t}Subscribers{/t}</a>
 	{if $section == "subscribers"}
 	<ul>
 	<li><a href="subscribers_manage.php">{t}Manage{/t}</a></li>

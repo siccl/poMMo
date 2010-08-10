@@ -21,25 +21,24 @@
 /**********************************
 	INITIALIZATION METHODS
 *********************************/
-require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/groups.php');
+require ('../bootstrap.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
 // Remember the Page State
-$state =& PommoAPI::stateInit('subscribers_manage');
+$state = Pommo_Api::stateInit('subscribers_manage');
 
 // Fetch group + member IDs
-$group = new PommoGroup($state['group'], $state['status'], $state['search']);
-
+$group = new Pommo_Groups($state['group'], $state['status'], $state['search']);
 
 /**********************************
 	JSON OUTPUT INITIALIZATION
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-$json = new PommoJSON();
+require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+$json = new Pommo_Json();
 
 /**********************************
 	PAGINATION AND ORDERING
@@ -53,7 +52,6 @@ if(!empty($_REQUEST['page']) && (
 		)
 	))
 		$state['limit'] = $_REQUEST['rows'];
-		
 		
 // Get and Remember the requested page
 if(!empty($_REQUEST['page']) && (
@@ -71,7 +69,6 @@ if(!empty($_REQUEST['sidx']) && (
 	$_REQUEST['sidx'] == 'touched'
 	))
 		$state['sort'] = $_REQUEST['sidx'];
-		
 // Get and Remember the sort order
 if(!empty($_REQUEST['sord']) && (
 	$_REQUEST['sord'] == 'asc' || 
@@ -88,24 +85,22 @@ if($start < 0)
 /**********************************
 	RECORD RETREVIAL
 *********************************/
-
 // Normalize sort column to match DB column
 if ($state['sort'] == 'registered' || $state['sort'] == 'touched') 
 	$state['sort'] = 'time_'.$state['sort'];
 elseif (substr($state['sort'],0,1) == 'd')
 	$state['sort'] = substr($state['sort'],1);
-	
+
 // fetch subscribers for this page
 $subscribers = $group->members(array(
 	'sort' => $state['sort'],
 	'order' => $state['order'],
 	'limit' => $state['limit'],
 	'offset' => $start));
-	
+
 /**********************************
 	OUTPUT FORMATTING
 *********************************/
-
 // format subscribers for JSON output to jqGrid
 $subOut = array();
 
@@ -132,5 +127,4 @@ $json->add(array(
 	)
 );
 $json->serve();
-?>
 

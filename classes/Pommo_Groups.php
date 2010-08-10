@@ -19,7 +19,7 @@
  */
 
 // include the group prototype object 
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototypes.php');
+require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
 
 /**
  * Group: A Group of Subscribers
@@ -36,7 +36,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
  *	value			(str)		Match Value
  */
  
- class PommoGroup {
+ class Pommo_Groups {
  	var $_name; // name of group
  	var $_group; // the group object
  	var $_tally; // the group tally
@@ -45,10 +45,10 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
  	var $_id; // ID of bgroup
  	
  	// ============ NON STATIC METHODS ===================
- 	function PommoGroup($groupID = NULL, $status = 1, $filter = FALSE) {
+ 	function __construct($groupID = NULL, $status = 1, $filter = FALSE) {
  		$this->_status = $status;
  		if (!is_numeric($groupID)) { // exception if no group ID was passed -- group assumes "all subscribers".
- 			$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscribers.php');
+ 			require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
  			
  			$this->_group = array('rules' => array(), 'id' => 0);
  			$this->_id = 0;
@@ -60,7 +60,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
  			
  			$this->_tally = (is_array($filter)) ? 
  				count($this->_memberIDs) :
- 				PommoSubscriber::tally($status);
+ 				Pommo_Subscribers::tally($status);
  					
  			return;
  		}
@@ -76,14 +76,20 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
  	}
  	
  	// returns sorted/ordered/limited member IDs -- scoped to current group member IDs
- 	function members($p = array(), $filter = array('field' => null, 'string' => null)) {
- 		$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscribers.php');
- 		if(is_array($this->_memberIDs)) 
+ 	function members($p = array(),
+ 			$filter = array('field' => null, 'string' => null))
+ 	{
+ 		require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
+ 		if(is_array($this->_memberIDs))
+ 		{
  			$p['id'] =& $this->_memberIDs;
+ 		}
  		else // status was already passed when fetching IDs
+ 		{
  			$p['status'] = $this->_status;
- 			
- 		return PommoSubscriber::get($p, $filter);
+ 		}
+
+ 		return Pommo_Subscribers::get($p, $filter);
  	}
  	
  	
@@ -94,7 +100,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 	// return a group object (array)
 	function & make($in = array()) {
 		$o = PommoType::group();
-		return PommoAPI::getParams($o, $in);
+		return Pommo_Api::getParams($o, $in);
 	}
 	
 	// make a group template based off a database row (group/group_rules schema)
@@ -105,7 +111,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 		'id' => $row['group_id'],
 		'name' => $row['group_name']);
 		$o = PommoType::group();
-		return PommoAPI::getParams($o,$in);
+		return Pommo_Api::getParams($o,$in);
 	}
 	
 	// group validation
@@ -114,8 +120,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 	
 	// TODO -> add validation of group array
 	function validate(&$in) {
-		global $pommo;
-		$logger =& $pommo->_logger;
+		$logger =& Pommo::$_logger;
 		
 		$invalid = array();
 
@@ -137,10 +142,9 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 	// returns an array of groups. Array key(s) correlates to group ID.
 	function & get($p = array()) {
 		$defaults = array('id' => null);
-		$p = PommoAPI :: getParams($defaults, $p);
+		$p = Pommo_Api::getParams($defaults, $p);
 		
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$o = array();
 		
@@ -178,8 +182,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 	//   id (int || array) -> an array of field IDs
 	// returns an array of group names. Array key(s) correlates to group ID.
 	function & getNames($id = null) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$o = array();
 		
@@ -204,9 +207,8 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 	// accepts a toggle (bool) to return IDs or Group Tally
 	// returns an array of subscriber IDs
 	function & getMemberIDs($group, $status = 1, $filter = false) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
-		$pommo->requireOnce($pommo->_baseDir. 'inc/classes/sql.gen.php');
+		$dbo =& Pommo::$_dbo;
+		$pommo->requireOnce(Pommo::$_baseDir. 'inc/classes/sql.gen.php');
 		
 		if (empty($group['rules']) && $group['id'] != 0) {
 			$o = array();
@@ -223,9 +225,8 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 	// accepts a toggle (bool) to return IDs or Group Tally
 	// returns a tally (int)
 	function tally($group, $status = 1) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
-		$pommo->requireOnce($pommo->_baseDir. 'inc/classes/sql.gen.php');
+		$dbo =& Pommo::$_dbo;
+		$pommo->requireOnce(Pommo::$_baseDir. 'inc/classes/sql.gen.php');
 		
 		if (empty($group['rules']))
 			return 0;
@@ -239,8 +240,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 	// accepts a group object (array)
 	// returns the database ID of the added group or FALSE if failed
 	function add(&$in) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		if (!PommoGroup::validate($in))
 			return false;
@@ -260,8 +260,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 	// accepts a single ID (int) or array of IDs 
 	// returns the # of deleted groups (int). 0 (false) if none.
 	function delete(&$id) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			DELETE
@@ -288,8 +287,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 	// accepts a single ID (int) or array of IDs.
 	// Returns a count (int) of affected rules. 0 if none.
 	function rulesAffected($id = array()) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			SELECT DISTINCT count(rule_id)
@@ -305,8 +303,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 	// accepts a name (str)
 	// returns (bool) true if exists, false if not
 	function nameExists($name = null) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			SELECT count(group_id)
@@ -321,8 +318,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 	// accepts a name (str)
 	// returns success (bool)
 	function nameChange($id, $name) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			UPDATE ".$dbo->table['groups']."

@@ -11,5 +11,5 @@
  */
 
 require('../bootstrap.php');
-Pommo::redirect('/admin/admin.php');
-?>
+Pommo::redirect('/admin.php');
+

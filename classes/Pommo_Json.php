@@ -18,18 +18,17 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-class PommoJSON {
+class Pommo_Json
+{
 
 	var $_output;
 	var $_successMsg;
 	var $_failMsg;
 
-	function PommoJSON($toggleEscaping = true) {
-		global $pommo;
-		
+	function __construct($toggleEscaping = true) {
 		if($toggleEscaping) {
-			$pommo->logErrors(); // PHP Errors are logged, turns display_errors off.
-			$pommo->toggleEscaping(); // Wraps _T and logger responses with htmlspecialchars()
+			Pommo::logErrors(); // PHP Errors are logged, turns display_errors off.
+			Pommo::toggleEscaping(); // Wraps _T and logger responses with htmlspecialchars()
 		}
 		
 		$this->_output = array(

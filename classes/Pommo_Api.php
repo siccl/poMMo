@@ -174,7 +174,7 @@ class Pommo_Api
 		
 		// normalize the page state
 		if (count($state) > count($defaults)) 
-			$state = PommoHelper::arrayIntersect($state, $defaults);
+			$state = Pommo_Helper::arrayIntersect($state, $defaults);
 			
 		return $state;
 	}

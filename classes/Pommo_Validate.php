@@ -18,7 +18,8 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
  
- class PommoValidate {
+class Pommo_Validate
+{
  	// validates supplied subscriber data against fields
 	// accepts a subscriber's data (array)
 	// accepts a parameter array
@@ -39,7 +40,8 @@
 	//   NOTE: has the MAGIC FUNCTIONALITY of shortening value to 60 characters (or 255 if a comment type)
 	
 	// TODO -> should fields be passed by reference? e.g. are they usually already available when subscriberData() is called?
-	function subscriberData(&$in, $p = array()) {
+	function subscriberData(&$in, $p = array())
+	{
 		$defaults = array(
 			'prune' => true,
 			'active' => true,
@@ -47,13 +49,12 @@
 			'ignore' => false,
 			'ignoreInactive' => true,
 			'skipReq' => false);
-		$p = PommoAPI :: getParams($defaults, $p);
+		$p = Pommo_Api::getParams($defaults, $p);
 		
-		global $pommo;
-		$pommo->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/fields.php');
-		$logger =& $pommo->_logger;
+		require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
+		$logger = Pommo::$_logger;
 		
-		$fields = PommoField::get(array('active' => $p['active']));
+		$fields = Pommo_Fields::get(array('active' => $p['active']));
 		
 		$valid = true;
 		foreach ($fields as $id => $field) {
@@ -119,9 +120,9 @@
 				case "date": // convert date to timestamp [float; using adodb time library]
 					
 					if(is_numeric($in[$id]))
-						$in[$id] = PommoHelper::timeToStr($in[$id]);
+						$in[$id] = Pommo_Helper::timeToStr($in[$id]);
 						
-					$in[$id] = PommoHelper::timeFromStr($in[$id]);
+					$in[$id] = Pommo_Helper::timeFromStr($in[$id]);
 					
 					if(!$in[$id]) {
 						if ($p['ignore'] || ($inactive && $p['ignoreInactive'])) {
@@ -129,7 +130,7 @@
 							break;
 						}
 						if ($p['log'])
-							$logger->addErr(sprintf(Pommo::_T('Field (%s) must be a date ('.PommoHelper::timeGetFormat().').'),$field['prompt']));
+							$logger->addErr(sprintf(Pommo::_T('Field (%s) must be a date ('.Pommo_Helper::timeGetFormat().').'),$field['prompt']));
 						$valid = false;
 					}
 					break;
@@ -148,11 +149,9 @@
 		}
 		// prune
 		if($p['prune'])
-			$in = PommoHelper::arrayIntersect($in,$fields);
+			$in = Pommo_Helper::arrayIntersect($in,$fields);
 			
 		return $valid;
 	}
  }
-?>
-
 

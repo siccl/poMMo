@@ -21,21 +21,20 @@
  /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/fields.php');
+require ('../bootstrap.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 	
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
-$smarty->assign('fields',PommoField::get());
+$smarty->assign('fields', Pommo_Fields::get());
 
 $smarty->display('admin/subscribers/ajax/subscriber_add.tpl');
-Pommo::kill();
-?>
+
