@@ -17,34 +17,37 @@
  * along with program; see the file docs/LICENSE. If not, write to the
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-require('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/subscribers.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/fields.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/groups.php');
+require('../bootstrap.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
-$pommo->toggleEscaping(TRUE);
+Pommo::toggleEscaping(TRUE);
 
-$state =& PommoAPI::stateInit('subscribers_manage');
-$fields = PommoField::get();
+$state 	= Pommo_API::stateInit('subscribers_manage');
+$fields = Pommo_Fields::get();
 	
 
 $ids = FALSE;
-if(!empty($_POST['ids']))
+if (!empty($_POST['ids']))
+{
 	$ids = explode(',',$_POST['ids']);
-
+}
 
 // ====== CSV EXPORT ======
-if($_POST['type'] == 'csv') {
-	if (!$ids) {
-		$group = new PommoGroup($state['group'], $state['status']);
+if ($_POST['type'] == 'csv')
+{
+	if (!$ids)
+	{
+		$group = new Pommo_Groups($state['group'], $state['status']);
 		$subscribers = $group->members();
 	}
 	else 
-		$subscribers = PommoSubscriber::get(array('id' => $ids));
+		$subscribers = Pommo_Subscribers::get(array('id' => $ids));
 	
 	// supply headers
 	$o = '"'.Pommo::_T('Email').'"';
@@ -93,11 +96,11 @@ if($_POST['type'] == 'csv') {
 // ====== TXT EXPORT ======
 
 if (!$ids) {
-	$group = new PommoGroup($state['group'], $state['status']);
+	$group = new Pommo_Groups($state['group'], $state['status']);
 	$ids =& $group->_memberIDs; 	
 }
 
-$emails = PommoSubscriber::getEmail(array('id' => $ids));
+$emails = Pommo_Subscribers::getEmail(array('id' => $ids));
 
 $o = '';
 foreach($emails as $e)
