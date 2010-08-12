@@ -19,7 +19,7 @@
  */
  
 // include the mailing prototype object 
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototypes.php');
+require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
 
 /**
  * Mailing: A poMMo Mailing
@@ -48,7 +48,8 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
  *  current_status	(enum)		'started', 'stopped' (default)
  */ 
 
-class PommoMailing {
+class Pommo_Mailing
+{
 	
 	// make a mailing template
 	// accepts a mailing template (assoc array)
@@ -58,7 +59,7 @@ class PommoMailing {
 		$o = ($current) ?
 			PommoType::mailingCurrent() :
 			PommoType::mailing();
-		return PommoAPI::getParams($o, $in);
+		return Pommo_Api::getParams($o, $in);
 	}
 	
 	// make a mailing template based off a database row (mailing* schema)
@@ -94,8 +95,8 @@ class PommoMailing {
 		}
 
 		$o = ($row['status'] == 1) ?
-			PommoAPI::getParams(PommoType::mailingCurrent(),$in) :
-			PommoAPI::getParams(PommoType::mailing(),$in);
+			Pommo_Api::getParams(PommoType::mailingCurrent(),$in) :
+			Pommo_Api::getParams(PommoType::mailing(),$in);
 		return $o;
 	}
 	
@@ -103,14 +104,13 @@ class PommoMailing {
 	// accepts a mailing object (array)
 	// returns true if mailing ($in) is valid, false if not
 	function validate(&$in) {
-		global $pommo;
-		$logger =& $pommo->_logger;
+		$logger =& Pommo::$_logger;
 		
 		$invalid = array();
 
-		if (empty($in['fromemail']) || !PommoHelper::isEmail($in['fromemail']))
+		if (empty($in['fromemail']) || !Pommo_Helper::isEmail($in['fromemail']))
 			$invalid[] = 'fromemail';
-		if (empty($in['frombounce']) || !PommoHelper::isEmail($in['frombounce']))
+		if (empty($in['frombounce']) || !Pommo_Helper::isEmail($in['frombounce']))
 			$invalid[] = 'frombounce';
 		if (empty($in['subject']))
 			$invalid[] = 'subject';
@@ -176,10 +176,9 @@ class PommoMailing {
 	// returns an array of mailings. Array key(s) correlates to mailing ID.
 	function & get($p = array()) {
 		$defaults = array('active' => false, 'noBody' => false, 'id' => null, 'code' => null, 'sort' => null, 'order' => null, 'limit' => null, 'offset' => null);
-		$p = PommoAPI :: getParams($defaults, $p);
+		$p = Pommo_Api :: getParams($defaults, $p);
 		
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$p['active'] = ($p['active']) ? 1 : null;
 		
@@ -221,8 +220,7 @@ class PommoMailing {
 	//  OR if the mailing is a current mailing (status == 1), returns
 	//  the security code of the mailing. FALSE if failed
 	function add(&$in) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		// set the start time if not provided
 		if (empty($in['start']))
@@ -276,7 +274,7 @@ class PommoMailing {
 		// insert current if applicable
 		if (!empty($in['status']) && $in['status'] == 1) {
 			if(empty($in['code']))
-				$in['code'] = PommoHelper::makeCode();
+				$in['code'] = Pommo_Helper::makeCode();
 			
 			$query = "
 			INSERT INTO " . $dbo->table['mailing_current'] . "
@@ -305,8 +303,7 @@ class PommoMailing {
 	// accepts a single ID (int) or array of IDs 
 	// returns the # of deleted subscribers (int). 0 (false) if none.
 	function delete(&$id) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			DELETE
@@ -336,8 +333,7 @@ class PommoMailing {
 	// checks if a mailing is processing
 	// returns (bool) - true if current mailing
 	function isCurrent() {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			SELECT count(mailing_id)
@@ -349,8 +345,7 @@ class PommoMailing {
 	// gets the number of mailings
 	// returns mailing tally (int)
 	function tally() {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			SELECT count(mailing_id)
@@ -364,8 +359,7 @@ class PommoMailing {
 	// returns an array of notices, if timestamp set to true, array will contain an array of keys that are timestamps, and value is an array of notices
 	//   e.g. array('<timestamp>' => array('notice1','notice2'))
 	function & getNotices($id,$limit = 50, $timestamp = FALSE) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$limit = intval($limit);
 		if($limit == 0)
@@ -395,8 +389,7 @@ class PommoMailing {
 	
 	// returns the # of sent mails for a mailing
 	function getSent($id) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			SELECT sent FROM ".$dbo->table['mailings']
@@ -407,8 +400,7 @@ class PommoMailing {
 	
 	// returns the Subject of a Mailing
 	function getSubject($id) {
-		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			SELECT subject FROM ".$dbo->table['mailings']

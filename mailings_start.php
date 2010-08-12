@@ -21,40 +21,49 @@
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/mailings.php');
+require ('bootstrap.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger	= Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
-if (PommoMailing::isCurrent())
-	Pommo::kill(sprintf(Pommo::_T('A Mailing is currently processing. Visit the %sStatus%s page to check its progress.'),'<a href="mailing_status.php">','</a>'));
+if (Pommo_Mailing::isCurrent())
+{
+	Pommo::kill(sprintf(Pommo::_T('A Mailing is currently processing. Visit the
+			%sStatus%s page to check its progress.'),
+			'<a href="mailing_status.php">', '</a>'));
+}
 
-if ($pommo->_config['demo_mode'] == 'on')
-	$logger->addMsg(sprintf(Pommo::_T('%sDemonstration Mode%s is on -- no Emails will actually be sent. This is good for testing settings.'),'<a href="'.$pommo->_baseUrl.'admin/setup/setup_configure.php#mailings">','</a>'));
+if (Pommo::$_config['demo_mode'] == 'on')
+{
+	$logger->addMsg(sprintf(Pommo::_T('%sDemonstration Mode%s is on -- no Emails
+			will actually be sent. This is good for testing settings.'),
+			'<a href="'.Pommo::$_baseUrl.
+			'admin/setup/setup_configure.php#mailings">', '</a>'));
+}
 
 
-// WYSIWYG JavaScript Includes
-Pommo::requireOnce($pommo->_baseDir.'themes/wysiwyg/editors.php');
+require_once(Pommo::$_baseDir.'themes/wysiwyg/editors.php');
 $editors = new PommoWYSIWYG();
 $editor = $editors->loadEditor();
 if (!$editor)
+{
 	die('Could not find requested WYSIWYG editor ('.$editor.') in editors.php');
-$smarty->assign('wysiwygJS',$editor);
+}
+$smarty->assign('wysiwygJS', $editor);
 
 // translation assignments for dialg titles...
-$smarty->assign('t_personalization',Pommo::_T('Personalization'));
-$smarty->assign('t_testMailing',Pommo::_T('Test Mailing'));
-$smarty->assign('t_saveTemplate',Pommo::_T('Save Template'));
+$smarty->assign('t_personalization', Pommo::_T('Personalization'));
+$smarty->assign('t_testMailing', Pommo::_T('Test Mailing'));
+$smarty->assign('t_saveTemplate', Pommo::_T('Save Template'));
 
 
 $smarty->display('admin/mailings/mailings_start.tpl');
-Pommo::kill();
-?>
+
