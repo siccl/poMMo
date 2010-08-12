@@ -23,16 +23,16 @@
  	function perform() {
  		global $pommo;
  		PommoHelperMaintenance::memorizeBaseURL();
- 		if(is_file($pommo->_workDir.'/import.csv'))
- 			if (!unlink($pommo->_workDir.'/import.csv'))
+ 		if(is_file(Pommo::$_workDir.'/import.csv'))
+ 			if (!unlink(Pommo::$_workDir.'/import.csv'))
  				Pommo::kill('Unable to remove import.csv');
  				
  		// truncate error log
- 		if (filesize($pommo->_workDir . '/ERROR_LOG') > 25)
-			rename($pommo->_workDir . '/ERROR_LOG', $pommo->_workDir . '/ERROR_LOG_OLD');
+ 		if (filesize(Pommo::$_workDir . '/ERROR_LOG') > 25)
+			rename(Pommo::$_workDir . '/ERROR_LOG', Pommo::$_workDir . '/ERROR_LOG_OLD');
 			
-		if (!$handle = fopen($pommo->_workDir . '/ERROR_LOG','w')) {
-			$pommo->_logger->addErr(Pommo::_T('Can write to ERROR_LOG. Check work directory permissions!'));
+		if (!$handle = fopen(Pommo::$_workDir . '/ERROR_LOG','w')) {
+			Pommo::$_logger->addErr(Pommo::_T('Can write to ERROR_LOG. Check work directory permissions!'));
 			return;
 		}
 		fwrite($handle,"<?php die(); ?>\n");
@@ -45,10 +45,10 @@
  	function memorizeBaseURL() {
  		global $pommo;
  		
- 		if (!$handle = fopen($pommo->_workDir . '/maintenance.php', 'w'))
+ 		if (!$handle = fopen(Pommo::$_workDir . '/maintenance.php', 'w'))
 			Pommo::kill('Unable to prepare maintenance.php for writing');
 			
-		$fileContent = "<?php die(); ?>\n[baseURL] = \"$pommo->_baseUrl\"\n";
+		$fileContent = "<?php die(); ?>\n[baseURL] = \"Pommo::$_baseUrl\"\n";
 		
 		if (!fwrite($handle, $fileContent)) 
 			Pommo::kill('Unable to perform maintenance');
@@ -58,7 +58,7 @@
  	
  	function rememberBaseURL() {
  		global $pommo;
- 		$config = PommoHelper::parseConfig($pommo->_workDir . '/maintenance.php');
+ 		$config = PommoHelper::parseConfig(Pommo::$_workDir . '/maintenance.php');
  		return $config['baseURL'];
  	}
  	

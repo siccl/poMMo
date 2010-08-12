@@ -141,7 +141,7 @@ http://www.pommo.org/community/viewtopic.php?pid=5031#p5031
 	SHORT TERM
 		
 		(API) 		get rid of appendURL problem!
-					+ convert to $pommo->_state + save there
+					+ convert to Pommo::$_state + save there
 					
 			====>	BB: Corinna, See the new state handling in subscribers_manage & mailings_history
 			====>   BB: I've also added mailing composition to page states -- so user can bounce around program & not loose mailing data

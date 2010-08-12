@@ -22,21 +22,21 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/fields.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/mailings.php');
+require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
-$pommo->init(array('keep' => TRUE));
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init(array('keep' => TRUE));
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 	
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
-$current = PommoMailing::isCurrent();
+$current = Pommo_Mailing::isCurrent();
 
 
 if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
@@ -55,13 +55,13 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 
 	if (SmartyValidate :: is_valid($_POST) && !$current) {
 		// __ FORM IS VALID
-		Pommo::requireOnce($pommo->_baseDir.'inc/classes/mailctl.php');
-		Pommo::requireOnce($pommo->_baseDir.'inc/helpers/subscribers.php');
-		Pommo::requireOnce($pommo->_baseDir.'inc/helpers/validate.php');
+		require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');
+		require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
+		require_once(Pommo::$_baseDir.'inc/helpers/validate.php');
 		
 		// get a copy of the message state
 		// composition is valid (via preview.php)
-		$state = $pommo->_session['state']['mailing'];
+		$state = Pommo::$_session['state']['mailing'];
 		
 		// create temp subscriber
 		$subscriber = array(
@@ -84,13 +84,13 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 			} 
 			
 			// create mailing
-			$mailing = PommoMailing::make(array(), TRUE);
+			$mailing = Pommo_Mailing::make(array(), TRUE);
 			$state['status'] = 1;
 			$state['current_status'] = 'stopped';
 			$state['command'] = 'restart';
 			$state['charset'] = $state['list_charset'];
 			$mailing = PommoHelper::arrayIntersect($state, $mailing);
-			$code = PommoMailing::add($mailing);
+			$code = Pommo_Mailing::add($mailing);
 			
 			// populate queue
 			$queue = array($key);
@@ -98,7 +98,7 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 				$logger->addErr('Unable to Populate Queue');
 			
 			// spawn mailer
-			else if (!PommoMailCtl::spawn($pommo->_baseUrl.'admin/mailings/mailings_send4.php?test=TRUE&code='.$code))
+			else if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'admin/mailings/mailings_send4.php?test=TRUE&code='.$code))
 				$logger->addErr('Unable to spawn background mailer');
 			else 
 				$smarty->assign('sent',$_POST['email']);
@@ -114,8 +114,8 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 	}
 }
 
-if ($pommo->_config['demo_mode'] == 'on')
-	$logger->addMsg(sprintf(Pommo::_T('%sDemonstration Mode%s is on -- no Emails will actually be sent. This is good for testing settings.'),'<a href="'.$pommo->_baseUrl.'admin/setup/setup_configure.php#mailings">','</a>'));
+if (Pommo::$_config['demo_mode'] == 'on')
+	$logger->addMsg(sprintf(Pommo::_T('%sDemonstration Mode%s is on -- no Emails will actually be sent. This is good for testing settings.'),'<a href="'.Pommo::$_baseUrl.'admin/setup/setup_configure.php#mailings">','</a>'));
 
 $smarty->assign('fields',PommoField::get());
 $smarty->display('admin/mailings/mailing/ajax.mailingtest.tpl');

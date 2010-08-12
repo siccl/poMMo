@@ -38,7 +38,7 @@ class PommoSQL {
 	// DEPRECIATED....
 	function & fromFilter(&$in, $p = null) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$where = $joins = array();
 			
@@ -195,7 +195,7 @@ class PommoSQL {
 	// returns an array or SQL sub queries
 	function & getSubQueries(&$in) { 
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 
 		$o = array();
 		foreach($in as $fid => $a) {
@@ -237,7 +237,7 @@ class PommoSQL {
 			$groups[$group['id']] = TRUE;
 		
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		/*
 		SELECT count(subscriber_id)
@@ -309,7 +309,7 @@ class PommoSQL {
 		foreach($rules['exclude'] as $gid) {
 			if (!isset($groups[$gid])) {
 				$sql .= "\nAND subscriber_id NOT IN (\n";
-				$sql .= PommoSQL::groupSQL(current(PommoGroup::get(array('id' => $gid))));
+				$sql .= PommoSQL::groupSQL(current(Pommo_Groups::get(array('id' => $gid))));
 				$sql .= "\n)";
 			}
 			$q = TRUE;
@@ -318,7 +318,7 @@ class PommoSQL {
 		foreach($rules['include'] as $gid) {
 			if (!isset($groups[$gid])) {
 				$sql .= "\n".(($q) ? 'OR' : 'AND')." subscriber_id IN (\n";
-				$sql .= PommoSQL::groupSQL(current(PommoGroup::get(array('id' => $gid))));
+				$sql .= PommoSQL::groupSQL(current(Pommo_Groups::get(array('id' => $gid))));
 				$sql .= "\n)";
 			}
 			$q = TRUE;

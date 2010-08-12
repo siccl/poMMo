@@ -22,27 +22,27 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/groups.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 
 // add group if requested
 if (!empty ($_POST['group_name'])) {
-	if (PommoGroup::nameExists($_POST['group_name']))
+	if (Pommo_Groups::nameExists($_POST['group_name']))
 		$logger->addMsg(sprintf(Pommo::_T('Group name (%s) already exists'),$_POST['group_name']));
 	else {
-		$group = PommoGroup::make(array('name' => $_POST['group_name']));
-		$id = PommoGroup::add($group);
+		$group = Pommo_Groups::make(array('name' => $_POST['group_name']));
+		$id = Pommo_Groups::add($group);
 		($id) ?
 			Pommo::redirect("groups_edit.php?group=$id") :
 			$logger->addMsg(Pommo::_T('Error with addition.'));
@@ -51,11 +51,11 @@ if (!empty ($_POST['group_name'])) {
 
 if (!empty ($_GET['delete'])) {
 	// make sure it is a valid group
-	$group = current(PommoGroup::get(array('id' => $_GET['group_id'])));
+	$group = current(Pommo_Groups::get(array('id' => $_GET['group_id'])));
 	if (empty($group))
 		Pommo::redirect($_SERVER['PHP_SELF']);
 
-	$affected = PommoGroup::rulesAffected($group['id']);
+	$affected = Pommo_Groups::rulesAffected($group['id']);
 
 	// See if this change will affect any subscribers, if so, confirm the change.
 	if ($affected > 1 && empty ($_GET['dVal-force'])) {
@@ -68,7 +68,7 @@ if (!empty ($_GET['delete'])) {
 		Pommo::kill();
 	} else {
 		// delete group
-		if (!PommoGroup::delete($group['id']))
+		if (!Pommo_Groups::delete($group['id']))
 			$logger->addMsg(Pommo::_T('Group cannot be deleted.'));
 		else
 			$logger->addMsg(sprintf(Pommo::_T('%s deleted.'),$group['name']));
@@ -76,7 +76,7 @@ if (!empty ($_GET['delete'])) {
 }
 
 // Get array of mailing groups. Key is ID, value is name
-$groups = PommoGroup::getNames();
+$groups = Pommo_Groups::getNames();
 
 $smarty->assign('groups',$groups);
 $smarty->display('admin/subscribers/subscribers_groups.tpl');

@@ -22,14 +22,14 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
  
 // URL which processes the form input + adds (or warns) subscriber to pending table.
-$signup_url = "http://" . $_SERVER['HTTP_HOST'] . $pommo->_baseUrl . "user/process.php";
+$signup_url = "http://" . $_SERVER['HTTP_HOST'] . Pommo::$_baseUrl . "user/process.php";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -47,7 +47,7 @@ $form_name = "signup";
 
 <hr />
 
-<h1><?php echo $pommo->_config['list_name']; ?> Subscriber Form</h1>
+<h1><?php echo Pommo::$_config['list_name']; ?> Subscriber Form</h1>
 
 <!-- 	Set "ACTION" to the URL of poMMo's process.php
 	process.php located in the "user" directory of your poMMo installation.

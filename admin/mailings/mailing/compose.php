@@ -22,20 +22,20 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/mailings.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
-if (PommoMailing::isCurrent())
+if (Pommo_Mailing::isCurrent())
 	Pommo::kill(sprintf(Pommo::_T('A Mailing is currently processing. Visit the %sStatus%s page to check its progress.'),'<a href="mailing_status.php">','</a>'));
 
 // TODO -- fix stateInit so we don't NEED to supply the defaults that have already been defined
@@ -44,12 +44,12 @@ if(isset($_REQUEST['compose'])) {
 	/**********************************
 		JSON OUTPUT INITIALIZATION
 	 *********************************/
-	Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-	$json = new PommoJSON();
+	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+	$json = new Pommo_Json();
 	$json->success();
 }
 	
-$dbvalues = PommoAPI::configGet(array(
+$dbvalues = Pommo_Api::configGet(array(
 	'list_fromname',
 	'list_fromemail',
 	'list_frombounce',
@@ -58,7 +58,7 @@ $dbvalues = PommoAPI::configGet(array(
 ));
 
 // Initialize page state with default values overriden by those held in $_REQUEST
-$state =& PommoAPI::stateInit('mailing',array(
+$state =& Pommo_Api::stateInit('mailing',array(
 	'fromname' => $dbvalues['list_fromname'],
 	'fromemail' => $dbvalues['list_fromemail'],
 	'frombounce' => $dbvalues['list_frombounce'],
@@ -74,7 +74,7 @@ $_POST);
 $smarty->assign($state);
 
 // assign language (for wysiwyg)
-$smarty->assign('lang',($pommo->_slanguage) ? $pommo->_slanguage : $pommo->_language);	
+$smarty->assign('lang',(Pommo::$_slanguage) ? Pommo::$_slanguage : Pommo::$_language);	
 
 $smarty->display('admin/mailings/mailing/compose.tpl');
 Pommo::kill();

@@ -25,9 +25,9 @@
  *********************************/
 define('_poMMo_support', TRUE);
 require ('../../bootstrap.php');
-$pommo->init();
+Pommo::init();
 
-$dbo =& $pommo->_dbo;
+$dbo =& Pommo::$_dbo;
 
 $a = array(
 	'subscribers' => $dbo->table['subscribers'],
@@ -50,8 +50,8 @@ foreach($a as $id => $table) {
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 $message[] = 'Subscribers Reset.';
 $smarty->assign('messages', $message);

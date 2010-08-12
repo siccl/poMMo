@@ -23,20 +23,20 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../../bootstrap.php');
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 // Read user requested changes	
 if (!empty($_POST['throttle_restore'])) {
 	$input = array ('throttle_MPS' => 3, 'throttle_BPS' => 0, 'throttle_DP' => 10, 'throttle_DBPP' => 0,'throttle_DMPP' => 0);
-	PommoAPI::configUpdate($input,TRUE);
+	Pommo_Api::configUpdate($input,TRUE);
 	$smarty->assign('output',Pommo::_T('Configuration Updated.'));
 }
 elseif(!empty($_POST['throttle-submit'])) {
@@ -59,14 +59,14 @@ elseif(!empty($_POST['throttle-submit'])) {
 		 $_POST['dbpp']*1024 : 0;
 
 	if(!empty($input)) {
-		PommoAPI::configUpdate($input,TRUE);
+		Pommo_Api::configUpdate($input,TRUE);
 		$smarty->assign('output',Pommo::_T('Configuration Updated.'));
 	}
 	else 
 		$smarty->assign('output',Pommo::_T('Please review and correct errors with your submission.'));	
 }
 
-$config= PommoAPI::configGet(array('throttle_MPS', 'throttle_BPS', 'throttle_DP', 'throttle_DBPP','throttle_DMPP'));
+$config= Pommo_Api::configGet(array('throttle_MPS', 'throttle_BPS', 'throttle_DP', 'throttle_DBPP','throttle_DMPP'));
 
 $smarty->assign('mps',$config['throttle_MPS']*60);
 $smarty->assign('bps',$config['throttle_BPS']/1024);

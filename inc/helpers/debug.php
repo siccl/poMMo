@@ -28,17 +28,17 @@ class PommoHelperDebug {
 		echo "\n\nMYSQL HOST: " . mysql_get_host_info() . "<br><br>\n\n";
 		echo "\n\nMYSQL SERVER: " . mysql_get_server_info() . "<br><br>\n\n";
 		echo "\n\nBACKTRACE: " . $this->bmBacktrace() . "<br><br>\n\n";
-		echo "\nBaseURL:" . $pommo->_baseUrl . "<br>\n";
-		echo "\n HTTP:" . $pommo->_http . "<br>\n";
-		echo "\nBaseDir: " . $pommo->_baseDir . "<br>\n";
-		echo "\nWorkDir:" . $pommo->_workDir . "<br>\n";
-		echo "\nLang:" . $pommo->_lang . "<br>\n";
-		echo "\nVerbosity:" . $pommo->_verbosity . "<br>\n";
-		echo "\nRevision: " . $pommo->_revision . "<br>\n";
-		echo "\nSection: " . $pommo->_section . "<br>\n";
+		echo "\nBaseURL:" . Pommo::$_baseUrl . "<br>\n";
+		echo "\n HTTP:" . Pommo::$_http . "<br>\n";
+		echo "\nBaseDir: " . Pommo::$_baseDir . "<br>\n";
+		echo "\nWorkDir:" . Pommo::$_workDir . "<br>\n";
+		echo "\nLang:" . Pommo::$_lang . "<br>\n";
+		echo "\nVerbosity:" . Pommo::$_verbosity . "<br>\n";
+		echo "\nRevision: " . Pommo::$_revision . "<br>\n";
+		echo "\nSection: " . Pommo::$_section . "<br>\n";
 
 		echo "\n\n<br><br><b>CONFIG DEBUG</b><hr><br>\n\n";
-		$config = PommoAPI :: configGet('all');
+		$config = Pommo_Api :: configGet('all');
 		if (!empty ($config)) {
 			echo "\n\n<br>CONFIG:<br>\n\n";
 			foreach ($config as $name => $value) {

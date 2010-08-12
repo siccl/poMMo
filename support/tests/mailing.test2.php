@@ -23,15 +23,15 @@
  *********************************/
 define('_poMMo_support', TRUE);
 require ('../../bootstrap.php');
-$pommo->init(array('install' => TRUE));
-$logger =& $pommo->_logger;
+Pommo::init(array('install' => TRUE));
+$logger =& Pommo::$_logger;
 
 // start error logging
-$pommo->logErrors();
+Pommo::logErrors();
 
 // ignore user abort
 ignore_user_abort(true);
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/mailctl.php');
+require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');
 
 $code = (empty($_GET['code'])) ? null : $_GET['code'];
 $spawn = (!isset($_GET['spawn'])) ? 0 : ($_GET['spawn'] + 1);
@@ -40,7 +40,7 @@ trigger_error('Testing Log, Spawn #'.$spawn);
 
 $fileContent = "<?php die(); ?>\n[code] = $code\n[spawn] = $spawn\n";
 
-if (!$handle = fopen($pommo->_workDir . '/mailing.test.php', 'w')) 
+if (!$handle = fopen(Pommo::$_workDir . '/mailing.test.php', 'w')) 
 	die('Unable to write to test file');
 
 if (fwrite($handle, $fileContent) === FALSE) 
@@ -55,19 +55,19 @@ if($spawn > 0)
 sleep(1);
 
 // respawn test
-if (!PommoMailCtl::spawn($pommo->_baseUrl.'support/tests/mailing.test2.php?'.
+if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'support/tests/mailing.test2.php?'.
 	'code='.$code.
 	'&spawn='.$spawn,true)) {
 
 	$fileContent .= '[error] = true';
-	$handle = fopen($pommo->_workDir . '/mailing.test.php', 'w');
+	$handle = fopen(Pommo::$_workDir . '/mailing.test.php', 'w');
 	fwrite($handle, $fileContent);
 	fclose($handle);
 	
 	$errors = $logger->getAll();
 	
 	$fileContent = print_r($errors,true);
-	$handle = fopen($pommo->_workDir . '/MAILING_TEST', 'w');
+	$handle = fopen(Pommo::$_workDir . '/MAILING_TEST', 'w');
 	fwrite($handle, $fileContent);
 	fclose($handle);
 }

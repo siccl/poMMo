@@ -23,30 +23,30 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/sql.gen.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/groups.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/fields.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/rules.php');
+require_once(Pommo::$_baseDir.'inc/classes/sql.gen.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
+require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'inc/helpers/rules.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->assign('returnStr', Pommo::_T('Groups Page'));
 
 
 // Initialize page state with default values overriden by those held in $_REQUEST
-$state =& PommoAPI::stateInit('groups_edit',array(
+$state =& Pommo_Api::stateInit('groups_edit',array(
 	'group' => 0),
 	$_REQUEST);
 	
 
-$groups = & PommoGroup::get();
+$groups = & Pommo_Groups::get();
 $fields = & PommoField::get();
 
 $group =& $groups[$state['group']];
@@ -79,7 +79,7 @@ $smarty->assign('logicNames',PommoRules::getEnglish());
 
 
 $smarty->assign('rules', $rules);
-$smarty->assign('tally', PommoGroup::tally($group));
+$smarty->assign('tally', Pommo_Groups::tally($group));
 $smarty->assign('ruleCount', count($rules['and'])+count($rules['or'])+count($rules['include'])+count($rules['exclude']));
 
 $smarty->assign('getURL',$_SERVER['PHP_SELF'].'?group_id='.$group['id']);

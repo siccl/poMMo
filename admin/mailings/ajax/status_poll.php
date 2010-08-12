@@ -22,11 +22,11 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/mailings.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 
 /** SET PAGE STATE
@@ -35,7 +35,7 @@ $dbo = & $pommo->_dbo;
  */
 
 // Initialize page state with default values overriden by those held in $_REQUEST
-$state =& PommoAPI::stateInit('subscribers_manage',array(
+$state =& Pommo_Api::stateInit('subscribers_manage',array(
 	'touched' => null,
 	'timestamp' => time(),
 	'notices' => array()
@@ -48,8 +48,8 @@ if(!empty($_GET['resetNotices']))
 /**********************************
 	JSON OUTPUT INITIALIZATION
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-$json = new PommoJSON();
+require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+$json = new Pommo_Json();
 
 $output = array(
 	'percent' => null,
@@ -67,8 +67,8 @@ $statusText = array(
 );
 
 $mailing = (isset($_GET['id'])) ?
-	 current(PommoMailing::get(array('id' => $_GET['id']))) :
-	 current(PommoMailing::get(array('active' => TRUE)));
+	 current(Pommo_Mailing::get(array('id' => $_GET['id']))) :
+	 current(Pommo_Mailing::get(array('active' => TRUE)));
 	 
 // status >> 1: Processing  2: Stopped  3: Frozen  4: Finished
 if ($mailing['status'] != 1)
@@ -95,7 +95,7 @@ if($output['status'] != 4) {
 $output['statusText'] = $statusText[$output['status']];
 
 // get last 50 unique notices
-$mailingNotices = PommoMailing::getNotices($mailing['id'], 50, true);
+$mailingNotices = Pommo_Mailing::getNotices($mailing['id'], 50, true);
 $newNotices = array();
 foreach($mailingNotices as $time => $arr) {
 	if(!isset($state['notices'][$time])) {
@@ -113,7 +113,7 @@ $output['notices'] = array_reverse($newNotices);
  
 // calculate sent
 if($output['status'] == 4) {
-	$output['sent'] = PommoMailing::getSent($mailing['id']);
+	$output['sent'] = Pommo_Mailing::getSent($mailing['id']);
 }
 else {
 	$query = "SELECT count(subscriber_id) FROM {$dbo->table['queue']} WHERE status > 0";
@@ -122,7 +122,7 @@ else {
 
 // cleanup session if frozen or finished.
 if ($output['status'] > 2)
-		PommoAPI::stateInit('subscribers_manage');
+		Pommo_Api::stateInit('subscribers_manage');
 		
 
 $output['percent'] = ($output['status'] == 4) ?

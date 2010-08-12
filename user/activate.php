@@ -22,18 +22,18 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/subscribers.php');
-Pommo::requireOnce($pommo->_baseDir . 'inc/helpers/messages.php');
+require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
+require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
 
-$pommo->init(array('authLevel' => 0,'noSession' => true));
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init(array('authLevel' => 0,'noSession' => true));
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 // make sure email/login is valid
 $subscriber = current(PommoSubscriber::get(array('email' => (empty($_REQUEST['email'])) ? '0' : $_REQUEST['email'], 'status' => 1)));

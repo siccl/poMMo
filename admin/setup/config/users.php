@@ -22,16 +22,16 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../../bootstrap.php');
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 SmartyValidate :: connect($smarty);
@@ -52,10 +52,10 @@ if (!SmartyValidate :: is_registered_form('users') || empty ($_POST)) {
 	$smarty->assign('vMsg', $vMsg);
 
 	// populate _POST with info from database (fills in form values...)
-	$dbVals = PommoAPI::configGet(array (
+	$dbVals = Pommo_Api::configGet(array (
 		'admin_username',
 	));
-	$dbVals['admin_email'] = $pommo->_config['admin_email'];
+	$dbVals['admin_email'] = Pommo::$_config['admin_email'];
 	$smarty->assign($dbVals);
 } else {
 	// ___ USER HAS SENT FORM ___
@@ -63,8 +63,8 @@ if (!SmartyValidate :: is_registered_form('users') || empty ($_POST)) {
 	/**********************************
 		JSON OUTPUT INITIALIZATION
 	 *********************************/
-	Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-	$json = new PommoJSON();
+	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+	$json = new Pommo_Json();
 
 	if (SmartyValidate :: is_valid($_POST, 'users')) {
 		// __ FORM IS VALID
@@ -73,11 +73,11 @@ if (!SmartyValidate :: is_registered_form('users') || empty ($_POST)) {
 		if (!empty ($_POST['admin_password']))
 			$_POST['admin_password'] = md5($_POST['admin_password']);
 
-		PommoAPI::configUpdate($_POST);
+		Pommo_Api::configUpdate($_POST);
 		
 		unset($_POST['admin_password'],$_POST['admin_password2']);
 		
-		$pommo->reloadConfig();
+		Pommo::reloadConfig();
 		
 		$json->success(Pommo::_T('Configuration Updated.'));
 	}

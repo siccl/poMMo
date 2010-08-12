@@ -25,9 +25,9 @@
  *********************************/
 define('_poMMo_support', TRUE);
 require ('../../bootstrap.php');
-$pommo->init();
+Pommo::init();
 	
-$dbo =& $pommo->_dbo;
+$dbo =& Pommo::$_dbo;
 
 foreach($dbo->table as $id => $table)
 {
@@ -49,8 +49,8 @@ foreach($dbo->table as $id => $table)
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 $message[] = 'Database Reset.';
 $smarty->assign('messages', $message);

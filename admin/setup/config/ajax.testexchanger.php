@@ -22,18 +22,18 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../../bootstrap.php');
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
-$exchanger = current(PommoAPI::configGet(array ('list_exchanger')));
+$exchanger = current(Pommo_Api::configGet(array ('list_exchanger')));
 
 SmartyValidate :: connect($smarty);
 if (!SmartyValidate :: is_registered_form('exchanger') || empty ($_POST)) {
@@ -46,7 +46,7 @@ if (!SmartyValidate :: is_registered_form('exchanger') || empty ($_POST)) {
 	$vMsg['email'] = Pommo::_T('Invalid email address');
 	$smarty->assign('vMsg', $vMsg);
 	
-	$dbvals = array('exchanger' => $exchanger, 'email' => $pommo->_config['admin_email']);
+	$dbvals = array('exchanger' => $exchanger, 'email' => Pommo::$_config['admin_email']);
 	$smarty->assign($dbvals);
 	
 } else {
@@ -55,12 +55,12 @@ if (!SmartyValidate :: is_registered_form('exchanger') || empty ($_POST)) {
 	/**********************************
 		JSON OUTPUT INITIALIZATION
 	 *********************************/
-	Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-	$json = new PommoJSON();
+	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+	$json = new Pommo_Json();
 	
 	if (SmartyValidate :: is_valid($_POST, 'exchanger')) {
 		// __ FORM IS VALID
-		Pommo::requireOnce($pommo->_baseDir.'inc/helpers/messages.php');
+		require_once(Pommo::$_baseDir.'inc/helpers/messages.php');
 		
 		$msg = (PommoHelperMessages::testExchanger($_POST['email'],$exchanger)) ? 
 			Pommo::_T('Mail Sent.') :

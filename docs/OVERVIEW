@@ -12,8 +12,8 @@ Directory Structure + Organizational Hierarchy of poMMo (http://www.pommo.org/)
 
 pommo/ 
 		"Base Directory"
-		$pommo->_baseURL will point to this directory relative to its location on the webserver's URL
-		$pommo->_baseDir will point to this directory relative to its location on the server filesystem
+		Pommo::$_baseURL will point to this directory relative to its location on the webserver's URL
+		Pommo::$_baseDir will point to this directory relative to its location on the server filesystem
 			 
 
 pommo/config.php

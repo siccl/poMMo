@@ -154,7 +154,7 @@ class Pommo
 		if (self::$_language != 'en')
 		{
 			self::$_l10n = TRUE;
-			Pommo::requireOnce(self::$_baseDir.'inc/helpers/l10n.php');
+			require_once(self::$_baseDir.'inc/helpers/l10n.php');
 			PommoHelperL10n::init(self::$_language, self::$_baseDir);
 		}
 		
@@ -313,7 +313,7 @@ class Pommo
 			else
 			{
 				self::$_l10n = TRUE;
-				Pommo::requireOnce(self::$_baseDir.'inc/helpers/l10n.php');
+				require_once(self::$_baseDir.'inc/helpers/l10n.php');
 				PommoHelperL10n::init(self::$_session['slanguage'],
 						self::$_baseDir);
 			}
@@ -360,25 +360,25 @@ class Pommo
 	 
 	 function _T($msg) {
 		global $pommo;
-		if($pommo->_escaping)
-			return ($pommo->_l10n) ? htmlspecialchars(PommoHelperL10n::translate($msg)) : htmlspecialchars($msg);
-		return ($pommo->_l10n) ? PommoHelperL10n::translate($msg) : $msg;
+		if(Pommo::$_escaping)
+			return (Pommo::$_l10n) ? htmlspecialchars(PommoHelperL10n::translate($msg)) : htmlspecialchars($msg);
+		return (Pommo::$_l10n) ? PommoHelperL10n::translate($msg) : $msg;
 	}
 
 	function _TP($msg, $plural, $count) { // for plurals
 		global $pommo;
-		if($pommo->_escaping)
-			return ($pommo->_l10n) ? htmlspecialchars(PommoHelperL10n::translatePlural($msg, $plural, $count)) : htmlspecialchars($msg);
-		return ($pommo->_l10n) ? PommoHelperL10n::translatePlural($msg, $plural, $count) : $msg;
+		if(Pommo::$_escaping)
+			return (Pommo::$_l10n) ? htmlspecialchars(PommoHelperL10n::translatePlural($msg, $plural, $count)) : htmlspecialchars($msg);
+		return (Pommo::$_l10n) ? PommoHelperL10n::translatePlural($msg, $plural, $count) : $msg;
 	}
 
 
 	/**
 	 *  _data Handler functions ==>
 	 *    (got rid of _data reference...)
-	 *    XXXX $pommo->_data is a reference to $_SESSION['pommo']['data'], an array in the Session
+	 *    XXXX Pommo::$_data is a reference to $_SESSION['pommo']['data'], an array in the Session
 	 *    which holds any data we'd like to persist through pages. This array is cleared by default 
-	 *    unless explicity saved by passing the 'keep' argument to the $pommo->init() function.
+	 *    unless explicity saved by passing the 'keep' argument to the Pommo::init() function.
 	 */
 
 	function set($value) {
@@ -407,26 +407,26 @@ class Pommo
 		// adds http & baseURL if they aren't already provided... allows code shortcuts ;)
 		//  if url DOES NOT start with '/', the section will automatically be appended
 		if (!preg_match('@^https?://@i', $url)) {
-			if (strpos($url, $pommo->_baseUrl) === false) { 
+			if (strpos($url, Pommo::$_baseUrl) === false) { 
 				if (substr($url, 0, 1) != '/') {
-					if ($pommo->_section != 'user' && $pommo->_section != 'admin') {
-						$url = $pommo->_http . $pommo->_baseUrl . 'admin/' . $pommo->_section . '/' . $url;
+					if (Pommo::$_section != 'user' && Pommo::$_section != 'admin') {
+						$url = Pommo::$_http . Pommo::$_baseUrl . 'admin/' . Pommo::$_section . '/' . $url;
 					} else {
-						$url = $pommo->_http . $pommo->_baseUrl . $pommo->_section . '/' . $url;
+						$url = Pommo::$_http . Pommo::$_baseUrl . Pommo::$_section . '/' . $url;
 					}
 				} else {
-					$url = $pommo->_http . $pommo->_baseUrl . str_replace($pommo->_baseUrl,'',substr($url,1)); 
+					$url = Pommo::$_http . Pommo::$_baseUrl . str_replace(Pommo::$_baseUrl,'',substr($url,1)); 
 				}
 			} else {
-				$url = $pommo->_http . $url;
+				$url = Pommo::$_http . $url;
 			}
 		}
 		header('Location: ' . $url);
 		if ($kill)
 			if ($msg)
-				$pommo->kill($msg);
+				Pommo::kill($msg);
 			else
-				$pommo->kill($pommo->_T('Redirecting, please wait...'));
+				Pommo::kill(Pommo::$_T('Redirecting, please wait...'));
 		return;
 	}
 	
@@ -448,7 +448,7 @@ class Pommo
 				echo ('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 						"http://www.w3.org/TR/html4/strict.dtd">');
 				echo ('<title>poMMo Error</title>'); // Added for valid output
-				echo '<div><img src="'.$pommo->_baseUrl.
+				echo '<div><img src="'.Pommo::$_baseUrl.
 						'themes/shared/images/icons/alert.png" alt="alert icon"
 						style="vertical-align: middle; margin-right: 20px;"/>'.
 						$msg.'</div>';
@@ -476,12 +476,12 @@ class Pommo
 		{
 			$backtrace = debug_backtrace();
 			echo @'<h2>BACKTRACE</h2>'.
-					'<p>'.@str_ireplace($pommo->_baseDir, '',
+					'<p>'.@str_ireplace(Pommo::$_baseDir, '',
 					$backtrace[1]['file']).':'.$backtrace[1]['line'].' '.
 					$backtrace[1]['function'].'()</p>'
-					.'<p>'.@str_ireplace($pommo->_baseDir, '',
+					.'<p>'.@str_ireplace(Pommo::$_baseDir, '',
 					$backtrace[2]['file']).' '.$backtrace[2]['function'].
-					'()</p>'.'<p>'.@str_ireplace($pommo->_baseDir, '',
+					'()</p>'.'<p>'.@str_ireplace(Pommo::$_baseDir, '',
 					$backtrace[3]['file']).' '.$backtrace[3]['function'].
 					'()</p>';
 		}

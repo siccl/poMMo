@@ -25,7 +25,7 @@ class PommoMailCtl {
 	// returns (bool) - true if success
 	function queueMake(&$in) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		// clearQueue
 		$query = "DELETE FROM ".$dbo->table['queue'];
@@ -61,7 +61,7 @@ class PommoMailCtl {
 	// spawns a page in the background, used by mail processor.
 	function spawn($page, $log = false) {
 		global $pommo;
-		$logger =& $pommo->_logger;
+		$logger =& Pommo::$_logger;
 
 		/* Convert illegal characters in url */
 		$page = str_replace(' ', '%20', $page);
@@ -70,15 +70,15 @@ class PommoMailCtl {
 		$errstr = '';
 
 		// NOTE: fsockopen() SSL Support requires PHP 4.3+ with OpenSSL compiled in
-		$ssl = ($pommo->_ssl) ? 'ssl://' : '';
+		$ssl = (Pommo::$_ssl) ? 'ssl://' : '';
 
 		$out = "GET $page HTTP/1.1\r\n";
-		$out .= "Host: " . $pommo->_hostname . "\r\n";
+		$out .= "Host: " . Pommo::$_hostname . "\r\n";
 		
 		//$out .= 'User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.2.1) Gecko/20021204\r\n';
 		//$out .= "Keep-Alive: 300\r\n";
 		//$out .= "Connection: keep-alive\r\n";
-		//$out .= "Referer: $pommo->_http\r\n";
+		//$out .= "Referer: Pommo::$_http\r\n";
 
 		// to allow for basic .htaccess http authentication, 
 		//   uncomment and fill in the following;
@@ -88,16 +88,16 @@ class PommoMailCtl {
 
 		$spawnPage = $out;
 		
-		$logger->addMsg('Attempting to spawn '.(($ssl) ? 'https://' : 'http://').$pommo->_hostname.':'.$pommo->_hostport.$page,2,TRUE);
+		$logger->addMsg('Attempting to spawn '.(($ssl) ? 'https://' : 'http://').Pommo::$_hostname.':'.Pommo::$_hostport.$page,2,TRUE);
 		
-		$socket = fsockopen($ssl . $pommo->_hostname, $pommo->_hostport, $errno, $errstr, 25);
+		$socket = fsockopen($ssl . Pommo::$_hostname, Pommo::$_hostport, $errno, $errstr, 25);
 
 		// LOG SPAWN ATTEMPTS TO FILE *TEMP, DEBUG*
-		if($log || $pommo->_debug) {
-			if(is_file($pommo->_workDir . '/SPAWN_0'))
-				copy($pommo->_workDir . '/SPAWN_0',$pommo->_workDir . '/SPAWN_1');
+		if($log || Pommo::$_debug) {
+			if(is_file(Pommo::$_workDir . '/SPAWN_0'))
+				copy(Pommo::$_workDir . '/SPAWN_0',Pommo::$_workDir . '/SPAWN_1');
 				
-			if ($handle = fopen($pommo->_workDir . '/SPAWN_0', 'w')) {
+			if ($handle = fopen(Pommo::$_workDir . '/SPAWN_0', 'w')) {
 				fwrite($handle, $out);
 				fclose($handle);
 			}
@@ -120,7 +120,7 @@ class PommoMailCtl {
 	// returns success (bool)
 	function mark($serial, $id) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		if(!is_numeric($serial))
 			return false;
@@ -137,7 +137,7 @@ class PommoMailCtl {
 	// shortens notices to the last 50
 	function finish($id = 0, $cancel = false, $test = false) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 
 		$status = ($cancel) ? 2 : 0;
 		
@@ -183,8 +183,8 @@ class PommoMailCtl {
 	
 	function addNotices($id) {	
 		global $pommo;
-		$logger =& $pommo->_logger;
-		$dbo =& $pommo->_dbo;
+		$logger =& Pommo::$_logger;
+		$dbo =& Pommo::$_dbo;
 		
 		if(!is_numeric($id))
 			return;
@@ -213,7 +213,7 @@ class PommoMailCtl {
 	// accepts # of notices to keep -- if 0, none are kept
 	function delNotices($id, $keep = 50) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$keep = intval($keep);
 		if ($keep == 0) {

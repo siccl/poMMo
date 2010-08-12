@@ -22,17 +22,17 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/templates.php');
+require_once(Pommo::$_baseDir.'inc/helpers/templates.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 
@@ -55,13 +55,13 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 	if (SmartyValidate :: is_valid($_POST)) {
 		// __ FORM IS VALID
 		
-		$t = PommoMailingTemplate::make(array(
+		$t = Pommo_MailingTemplate::make(array(
 			'name' => $_POST['name'],
 			'description' => $_POST['description'],
-			'body' => $pommo->_session['state']['mailing']['body'],
-			'altbody' => $pommo->_session['state']['mailing']['altbody']
+			'body' => Pommo::$_session['state']['mailing']['body'],
+			'altbody' => Pommo::$_session['state']['mailing']['altbody']
 		));
-		$id = PommoMailingTemplate::add($t);
+		$id = Pommo_MailingTemplate::add($t);
 		
 		if ($id) {
 			$logger->addMsg(sprintf(Pommo::_T('Template %s saved.'),'<strong>'.$_POST['name'].'</strong>'));

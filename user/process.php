@@ -22,23 +22,23 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/validate.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/subscribers.php');
+require_once(Pommo::$_baseDir.'inc/helpers/validate.php');
+require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
 
-$pommo->init(array('authLevel' => 0,'noSession' => true));
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init(array('authLevel' => 0,'noSession' => true));
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 // attempt to detect if referer was set 
 //  TODO; enable HTTP_REFERER after stripping out ?input= tags. These will continually repeat
 //$referer = (!empty($_POST['bmReferer'])) ? $_POST['bmReferer'] : $_SERVER['HTTP_REFERER'];
-$referer = (!empty($_POST['bmReferer'])) ? $_POST['bmReferer'] : $pommo->_http.$pommo->_baseUrl.'user/subscribe.php';
+$referer = (!empty($_POST['bmReferer'])) ? $_POST['bmReferer'] : Pommo::$_http.Pommo::$_baseUrl.'user/subscribe.php';
 
 // append stored input
 $smarty->assign('referer',$referer.'?input='.urlencode(serialize($_POST)));
@@ -82,14 +82,14 @@ $comments = (isset($_POST['comments'])) ? substr($_POST['comments'],0,255) : fal
 	ADD SUBSCRIBER
  *********************************/
  
-$config = PommoAPI::configGet(array (
+$config = Pommo_Api::configGet(array (
 	'site_success', // URL to redirect to on success, null is us (default)
 	'site_confirm', // URL users will see upon subscription attempt, null is us (default)
 	'list_confirm', // Requires email confirmation
 	'notices'
 ));
 $notices = unserialize($config['notices']);
-Pommo::requireOnce($pommo->_baseDir . 'inc/helpers/messages.php');
+require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
 
 if ($config['list_confirm'] == 'on') { // email confirmation required. 
 	// add user as "pending"

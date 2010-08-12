@@ -25,17 +25,17 @@
 	INITIALIZATION METHODS
 *********************************/
 require('../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/pending.php');
+require_once(Pommo::$_baseDir.'inc/helpers/pending.php');
 
-$pommo->init(array('authLevel' => 0, 'noSession' => true));
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init(array('authLevel' => 0, 'noSession' => true));
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 if (empty($_GET['code'])) {
 	$logger->addMsg(Pommo::_T('No code given.'));
@@ -53,7 +53,7 @@ if (!$pending) {
 }
 
 // Load success messages and redirection URL from config
-$config = PommoAPI::configGet(array (
+$config = Pommo_Api::configGet(array (
 	'site_success',
 	'messages',
 	'notices'
@@ -63,10 +63,10 @@ $notices = unserialize($config['notices']);
 
 if(PommoPending::perform($pending)) {
 	
-	Pommo::requireOnce($pommo->_baseDir . 'inc/helpers/messages.php');
+	require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
 	
 	// get subscriber info
-	Pommo::requireOnce($pommo->_baseDir.'inc/helpers/subscribers.php');
+	require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
 	$subscriber = current(PommoSubscriber::get(array('id' => $pending['subscriber_id'])));
 			
 	switch ($pending['type']) {

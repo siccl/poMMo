@@ -22,22 +22,22 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/import.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/subscribers.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'inc/helpers/import.php');
+require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
+require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
 
-$pommo->init(array('keep' => TRUE));
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init(array('keep' => TRUE));
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
-$emails =& $pommo->get('emails');
-$dupes =& $pommo->get('dupes');
+$emails =& Pommo::get('emails');
+$dupes =& Pommo::get('dupes');
 $fields =& PommoField::get();
 $flag = FALSE;
 

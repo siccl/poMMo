@@ -23,9 +23,9 @@
  *********************************/
 define('_poMMo_support', TRUE);
 require ('../../bootstrap.php');
-$pommo->init();
+Pommo::init();
 
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/mailctl.php');
+require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');
 
 echo 'Please Wait...';
 ob_flush();
@@ -33,23 +33,23 @@ flush();
 
 $code = PommoHelper::makeCode();
 
-if(!PommoMailCtl::spawn($pommo->_baseUrl.'support/tests/mailing.test2.php?code='.$code,true)) 
+if(!PommoMailCtl::spawn(Pommo::$_baseUrl.'support/tests/mailing.test2.php?code='.$code,true)) 
 	Pommo::kill('Initial Spawn Failed! You must correct this before poMMo can send mailings.');
 
 sleep(6);
 
-if (!is_file($pommo->_workDir . '/mailing.test.php')) {
+if (!is_file(Pommo::$_workDir . '/mailing.test.php')) {
 	// make sure we can write to the file
-	if (!$handle = fopen($pommo->_workDir . '/mailing.test.php', 'w')) 
+	if (!$handle = fopen(Pommo::$_workDir . '/mailing.test.php', 'w')) 
 		die('Unable to write to test file!');
 	fclose($handle);
-	unlink($pommo->_workDir.'/mailing.test.php');
+	unlink(Pommo::$_workDir.'/mailing.test.php');
 	
 	Pommo::kill('Initial Spawn Failed (test file not written)! You must correct this before poMMo can send mailings.');
 }
 	
-$o = PommoHelper::parseConfig($pommo->_workDir . '/mailing.test.php');
-unlink($pommo->_workDir.'/mailing.test.php') or die('could not remove mailing.test.php');
+$o = PommoHelper::parseConfig(Pommo::$_workDir . '/mailing.test.php');
+unlink(Pommo::$_workDir.'/mailing.test.php') or die('could not remove mailing.test.php');
 
 if(isset($o['error']))
 	Pommo::kill('ERROR WITH RESAWN. SEE THE OUTPUT OF \'MAILING_TEST\' IN THE WORK DIRECTORY');

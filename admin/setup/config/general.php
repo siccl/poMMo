@@ -22,15 +22,15 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../../bootstrap.php');
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 SmartyValidate :: connect($smarty);
@@ -58,15 +58,15 @@ if (!SmartyValidate :: is_registered_form('general') || empty ($_POST)) {
 	$smarty->assign('vMsg', $vMsg);
 	
 	// populate _POST with info from database (fills in form values...)
-	$dbVals = PommoAPI::configGet(array (
+	$dbVals = Pommo_Api::configGet(array (
 		'site_success',
 		'site_confirm',
 		'list_exchanger',
 		'list_confirm'
 	));
-	$dbVals['site_url'] = $pommo->_config['site_url'];
-	$dbVals['site_name'] = $pommo->_config['site_name'];
-	$dbVals['list_name'] = $pommo->_config['list_name'];
+	$dbVals['site_url'] = Pommo::$_config['site_url'];
+	$dbVals['site_name'] = Pommo::$_config['site_name'];
+	$dbVals['list_name'] = Pommo::$_config['list_name'];
 	
 	$smarty->assign($dbVals);
 } else {
@@ -75,14 +75,14 @@ if (!SmartyValidate :: is_registered_form('general') || empty ($_POST)) {
 	/**********************************
 		JSON OUTPUT INITIALIZATION
 	 *********************************/
-	Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-	$json = new PommoJSON();
+	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+	$json = new Pommo_Json();
 	
 	if (SmartyValidate :: is_valid($_POST, 'general')) {
 		// __ FORM IS VALID
 
-		PommoAPI::configUpdate($_POST);
-		$pommo->reloadConfig();
+		Pommo_Api::configUpdate($_POST);
+		Pommo::reloadConfig();
 
 		$json->success(Pommo::_T('Configuration Updated.'));
 	}

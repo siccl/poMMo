@@ -1941,7 +1941,7 @@ msgstr "Behoort tot Groep"
 #
 #. aardvark-development/themes/default/admin/subscribers/subscribers_manage.tpl
 # File: pommo_theme_lang.php, line: 1221
-# File: aardvark-development/inc/helpers/groups.php, line: 55
+# File: aardvark-development/classes/Pommo_Groups.php, line: 55
 msgid "All Subscribers"
 msgstr "Alle Leden"
 #
@@ -3400,11 +3400,11 @@ msgstr "Verkeerde Versie. %sKlik hier%s om te upgraden."
 msgid "Redirecting, please wait..."
 msgstr "Doorsturen, een ogenblik....."
 #
-# File: aardvark-development/inc/classes/template.php, line: 57
+# File: aardvark-development/classes/Pommo_Template.php, line: 57
 msgid "poMMo Website"
 msgstr "poMMo Website"
 #
-# File: aardvark-development/inc/classes/template.php, line: 88
+# File: aardvark-development/classes/Pommo_Template.php, line: 88
 #, php-format
 msgid "Template file (%s) not found in default or current theme"
 msgstr "Template bestand (%s) niet gevonden in het standaard of huidig Thema."

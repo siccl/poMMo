@@ -22,21 +22,21 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/mailctl.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/mailings.php');
+require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 
 /**********************************
 	JSON OUTPUT INITIALIZATION
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-$json = new PommoJSON();
+require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+$json = new Pommo_Json();
 
-$mailing = current(PommoMailing::get(array('active' => TRUE)));
+$mailing = current(Pommo_Mailing::get(array('active' => TRUE)));
 
 switch ($_GET['cmd']) {
 	case 'cancel' : // cancel a mailing
@@ -51,7 +51,7 @@ switch ($_GET['cmd']) {
 			$json->fail();
 		
 		if($_GET['cmd'] == 'restart' || $_GET['cmd'] == 'cancel') 
-			PommoMailCtl::spawn($pommo->_baseUrl.'admin/mailings/mailings_send4.php?id='.$mailing['id'].'&code='.$mailing['code']);
+			PommoMailCtl::spawn(Pommo::$_baseUrl.'admin/mailings/mailings_send4.php?id='.$mailing['id'].'&code='.$mailing['code']);
 		break;
 }
 $json->success();

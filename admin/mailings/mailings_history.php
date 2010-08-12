@@ -22,17 +22,17 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/mailings.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->assign('returnStr', Pommo::_T('Mailings Page'));
 
 
@@ -42,7 +42,7 @@ $smarty->assign('returnStr', Pommo::_T('Mailings Page'));
  * order	- Order Type (ascending - ASC /descending - DESC)
  */
 // Initialize page state with default values overriden by those held in $_REQUEST
-$state =& PommoAPI::stateInit('mailings_history',array(
+$state =& Pommo_Api::stateInit('mailings_history',array(
 	'limit' => 10,
 	'sort' => 'end',
 	'order' => 'desc',
@@ -73,7 +73,7 @@ if($state['sort'] != 'start' &&
 *********************************/
 
 // Calculate and Remember number of pages
-$tally = PommoMailing::tally();
+$tally = Pommo_Mailing::tally();
 $state['pages'] = (is_numeric($tally) && $tally > 0) ?
 	ceil($tally/$state['limit']) :
 	0;

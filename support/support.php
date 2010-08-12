@@ -23,20 +23,20 @@
  *********************************/
 define('_poMMo_support', TRUE);
 require ('../bootstrap.php');
-$pommo->init();
+Pommo::init();
 
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 
-$smarty->assign('version',$pommo->_config['version']);
-$smarty->assign('revision',$pommo->_config['revision']);
+$smarty->assign('version',Pommo::$_config['version']);
+$smarty->assign('revision',Pommo::$_config['revision']);
 
 $smarty->display('support/support.tpl');
 Pommo::kill();

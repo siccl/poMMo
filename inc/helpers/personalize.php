@@ -18,8 +18,8 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/fields.php');
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscribers.php');
+require_once(Pommo::$_baseDir. 'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir. 'inc/helpers/subscribers.php');
 
 class PommoHelperPersonalize {
 	
@@ -112,10 +112,10 @@ class PommoHelperPersonalize {
 					$replace = $s['registered'];
 					break;
 				case '!unsubscribe':
-					$replace = $GLOBALS['pommo']->_http.$GLOBALS['pommo']->_baseUrl.'user/update.php?email='.$s['email'].'&code='.md5($s['id'].$s['registered']);
+					$replace = Pommo::$_http.Pommo::$_baseUrl.'user/update.php?email='.$s['email'].'&code='.md5($s['id'].$s['registered']);
 					break;
 				case '!weblink':
-					$replace = $GLOBALS['pommo']->_http.$GLOBALS['pommo']->_baseUrl.'user/mailings.php?mail_id='.$_GET['id'];
+					$replace = Pommo::$_http.Pommo::$_baseUrl.'user/mailings.php?mail_id='.$_GET['id'];
 					break;
 				case '!subscriber_id':
 					$replace = $s['id'];
@@ -187,10 +187,10 @@ class PommoHelperPersonalize {
 					$replace = $s['registered'];
 					break;
 				case '!unsubscribe':
-					$replace = $GLOBALS['pommo']->_http.$GLOBALS['pommo']->_baseUrl.'user/update.php?email='.$s['email'].'&code='.PommoSubscriber::getActCode($s);
+					$replace = Pommo::$_http.Pommo::$_baseUrl.'user/update.php?email='.$s['email'].'&code='.PommoSubscriber::getActCode($s);
 					break;
 				case '!weblink':
-					$replace = $GLOBALS['pommo']->_http.$GLOBALS['pommo']->_baseUrl.'user/mailings.php?mail_id='.$_GET['id'].'&email='.$s['email'].'&code='.PommoSubscriber::getActCode($s);
+					$replace = Pommo::$_http.Pommo::$_baseUrl.'user/mailings.php?mail_id='.$_GET['id'].'&email='.$s['email'].'&code='.PommoSubscriber::getActCode($s);
 					break;
 				case '!subscriber_id':
 					$replace = $s['id'];

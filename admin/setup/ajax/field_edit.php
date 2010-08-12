@@ -22,18 +22,18 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
 
-$pommo->init(array('keep' => TRUE));
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init(array('keep' => TRUE));
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 // validate field ID
@@ -62,8 +62,8 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 	/**********************************
 		JSON OUTPUT INITIALIZATION
 	 *********************************/
-	Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-	$json = new PommoJSON();
+	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+	$json = new Pommo_Json();
 	
 	SmartyValidate :: connect($smarty);
 

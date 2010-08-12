@@ -1923,7 +1923,7 @@ msgstr "Appartenant au Groupe:"
 #
 #. aardvark-development/themes/default/admin/subscribers/subscribers_manage.tpl
 # File: pommo_theme_lang.php, line: 1221
-# File: aardvark-development/inc/helpers/groups.php, line: 55
+# File: aardvark-development/classes/Pommo_Groups.php, line: 55
 msgid "All Subscribers"
 msgstr "Tous les abonnés"
 #
@@ -3365,11 +3365,11 @@ msgstr "La version ne correspond pas. Avez vous %s mis à niveau %s ?"
 msgid "Redirecting, please wait..."
 msgstr "Vous êtes redirigé, veuillez patienter ..."
 #
-# File: aardvark-development/inc/classes/template.php, line: 57
+# File: aardvark-development/classes/Pommo_Template.php, line: 57
 msgid "poMMo Website"
 msgstr "Site Web de poMMo"
 #
-# File: aardvark-development/inc/classes/template.php, line: 88
+# File: aardvark-development/classes/Pommo_Template.php, line: 88
 #, php-format
 msgid "Template file (%s) not found in default or current theme"
 msgstr "Fichier modèe non trouvé dans le thème par défaut."

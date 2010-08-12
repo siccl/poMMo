@@ -22,15 +22,15 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../../bootstrap.php');
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 // ADD CUSTOM VALIDATOR FOR CHARSET
@@ -75,7 +75,7 @@ if (!SmartyValidate :: is_registered_form('mailings') || empty ($_POST)) {
 	$smarty->assign('vMsg', $vMsg);
 	
 	// populate _POST with info from database (fills in form values...)
-	$dbVals = PommoAPI::configGet(array (
+	$dbVals = Pommo_Api::configGet(array (
 		'list_fromname',
 		'list_fromemail',
 		'list_frombounce',
@@ -83,7 +83,7 @@ if (!SmartyValidate :: is_registered_form('mailings') || empty ($_POST)) {
 		'public_history',
 		'maxRuntime'
 	));
-	$dbVals['demo_mode'] = (!empty ($pommo->_config['demo_mode']) && ($pommo->_config['demo_mode'] == "on")) ? 'on' : 'off';
+	$dbVals['demo_mode'] = (!empty (Pommo::$_config['demo_mode']) && (Pommo::$_config['demo_mode'] == "on")) ? 'on' : 'off';
 	$smarty->assign($dbVals);
 } else {
 	// ___ USER HAS SENT FORM ___
@@ -91,14 +91,14 @@ if (!SmartyValidate :: is_registered_form('mailings') || empty ($_POST)) {
 	/**********************************
 		JSON OUTPUT INITIALIZATION
 	 *********************************/
-	Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-	$json = new PommoJSON();
+	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+	$json = new Pommo_Json();
 	
 	if (SmartyValidate :: is_valid($_POST, 'mailings')) {
 		// __ FORM IS VALID
 
-		PommoAPI::configUpdate($_POST);
-		$pommo->reloadConfig();
+		Pommo_Api::configUpdate($_POST);
+		Pommo::reloadConfig();
 		
 		$json->success(Pommo::_T('Configuration Updated.'));
 	}

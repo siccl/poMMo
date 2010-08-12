@@ -1714,7 +1714,7 @@ msgid "Belonging to Group"
 msgstr ""
 
 #. aardvark-development/themes/default/admin/subscribers/subscribers_manage.tpl
-#: pommo_theme_lang.php:1221 aardvark-development/inc/helpers/groups.php:55
+#: pommo_theme_lang.php:1221 aardvark-development/classes/Pommo_Groups.php:55
 msgid "All Subscribers"
 msgstr ""
 
@@ -3072,11 +3072,11 @@ msgstr ""
 msgid "Redirecting, please wait..."
 msgstr ""
 
-#: aardvark-development/inc/classes/template.php:57
+#: aardvark-development/classes/Pommo_Template.php:57
 msgid "poMMo Website"
 msgstr ""
 
-#: aardvark-development/inc/classes/template.php:88
+#: aardvark-development/classes/Pommo_Template.php:88
 #, php-format
 msgid "Template file (%s) not found in default or current theme"
 msgstr ""

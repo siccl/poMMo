@@ -21,7 +21,7 @@
 // TODO -> homogenize/reduce the get methods -- make more efficient!
 
 // include the pending prototype object 
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototypes.php');
+require_once(Pommo::$_baseDir. 'inc/classes/prototypes.php');
 
 class PommoPending {
 	// make a pending template
@@ -29,7 +29,7 @@ class PommoPending {
 	// return a pending object (array)
 	function & make($in = array()) {
 		$o = PommoType::pending();
-		return PommoAPI::getParams($o, $in);
+		return Pommo_Api::getParams($o, $in);
 	}
 	
 	// make a pending template based off a database row (subscriber_pending schema)
@@ -44,7 +44,7 @@ class PommoPending {
 		'type' => $row['pending_type']);
 		
 		$o = PommoType::pending();
-		return PommoAPI::getParams($o,$in);
+		return Pommo_Api::getParams($o,$in);
 	}
 	
 	// pending object validation
@@ -53,7 +53,7 @@ class PommoPending {
 	// returns true if pending object ($in) is valid, false if not
 	function validate(&$in) {
 		global $pommo;
-		$logger =& $pommo->_logger;
+		$logger =& Pommo::$_logger;
 		
 		$invalid = array();
 		
@@ -86,7 +86,7 @@ class PommoPending {
 	// returns pending object (array) or false if not found.
 	function get($code = null){
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$o = array();
 		
@@ -107,7 +107,7 @@ class PommoPending {
 	// returns pending object (array) or false if not found.
 	function getByEmail($email = null){
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$o = array();
 		
@@ -135,7 +135,7 @@ class PommoPending {
 	// returns pending object (array) or false if not found.
 	function getBySubID($id = null){
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$o = array();
 		
@@ -155,7 +155,7 @@ class PommoPending {
 	// returns true if pending exists, false if not (bool)
 	function isPending($id = null){
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			SELECT 
@@ -175,7 +175,7 @@ class PommoPending {
 	// returns true if pending exists, false if not (bool)
 	function & isEmailPending($email = null){
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			SELECT 
@@ -198,8 +198,8 @@ class PommoPending {
 	// returns the pending code (str) or FALSE if error
 	function add(&$subscriber, $type = null) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
-		$logger =& $pommo->_logger;
+		$dbo =& Pommo::$_dbo;
+		$logger =& Pommo::$_logger;
 		
 		switch ($type) {
 			case 'add':
@@ -258,11 +258,11 @@ class PommoPending {
 	// return success (bool)
 	function cancel(&$in) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		// if the user is pending to be added, remove entire subscriber.
 		if ($in['type'] == 'add') {
-			$pommo->requireOnce($pommo->_baseDir.'inc/helpers/subscribers.php');
+			Pommo::requireOnce(Pommo::$_baseDir.'inc/helpers/subscribers.php');
 			return PommoSubscriber::delete($in['subscriber_id']);
 		}
 		
@@ -283,8 +283,8 @@ class PommoPending {
 	// returns success (bool)
 	function perform(&$in) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
-		$logger =& $pommo->_logger;
+		$dbo =& Pommo::$_dbo;
+		$logger =& Pommo::$_logger;
 		
 		if (!is_numeric($in['id']) || !is_numeric($in['subscriber_id'])) {
 			$logger->addErr('PommoPending::perform() -> invalid pending object sent.');
@@ -304,7 +304,7 @@ class PommoPending {
 				}
 				break;
 			case 'change': // update
-				$pommo->requireOnce($pommo->_baseDir. 'inc/helpers/subscribers.php');
+				Pommo::requireOnce(Pommo::$_baseDir. 'inc/helpers/subscribers.php');
 				$subscriber =& $in['array'];
 				
 				if (!PommoSubscriber::update($subscriber,'REPLACE_ACTIVE')) {
@@ -313,19 +313,19 @@ class PommoPending {
 				}
 				break;
 			case 'password' : // change (admin) password
-				$pommo->requireOnce($pommo->_baseDir. 'inc/helpers/subscribers.php');
+				Pommo::requireOnce(Pommo::$_baseDir. 'inc/helpers/subscribers.php');
 				$password = PommoHelper::makePassword();
 				
-				$config = PommoAPI::configGet(array(
+				$config = Pommo_Api::configGet(array(
 					'admin_username',
 					'admin_email'
 				));
 				
-				if(!PommoAPI::configUpdate(array('admin_password' => md5($password)),TRUE)) {
+				if(!Pommo_Api::configUpdate(array('admin_password' => md5($password)),TRUE)) {
 					$logger->addMsg('Error updating password.');
 					return false;
 				}
-				$logger->addErr(sprintf(Pommo::_T('You may now %1$s login %2$s with username: %3$s and password: %4$s '), '<a href="'.$pommo->_baseUrl.'index.php">','</a>','<span style="font-size: 130%">' . $config['admin_username'] . '</span>', '<span style="font-size: 130%">' . $password . '</span>'));
+				$logger->addErr(sprintf(Pommo::_T('You may now %1$s login %2$s with username: %3$s and password: %4$s '), '<a href="'.Pommo::$_baseUrl.'index.php">','</a>','<span style="font-size: 130%">' . $config['admin_username'] . '</span>', '<span style="font-size: 130%">' . $password . '</span>'));
 				break;
 		}
 		

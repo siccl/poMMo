@@ -22,17 +22,17 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/import.php');
+require_once(Pommo::$_baseDir.'inc/helpers/import.php');
 
-$pommo->init();
-$logger	= &$pommo->_logger;
-$dbo 	= &$pommo->_dbo;
+Pommo::init();
+$logger	= &Pommo::$_logger;
+$dbo 	= &Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 
 // Maximum File Size (in MB) 
@@ -88,16 +88,16 @@ if (isset($_POST['submit']))
 			if ($box)
 			{
 				// when PHP5 is widespread, switch to file_put_contents()  && use the $fp stream
-				if (!$handle = fopen($pommo->_workDir.'/import.csv', 'w'))
+				if (!$handle = fopen(Pommo::$_workDir.'/import.csv', 'w'))
 				{
 					Pommo::kill('Could not write to temp CSV file ('.
-							$pommo->_workDir.'/import.csv)');
+							Pommo::$_workDir.'/import.csv)');
 				}
 				
 				if (fwrite($handle, $_POST['box']) === FALSE)
 				{
 					Pommo::kill('Could not write to temp CSV file ('.
-							$pommo->_workDir.'/import.csv)');
+							Pommo::$_workDir.'/import.csv)');
 				}
 				
 				 fclose($handle);
@@ -105,14 +105,14 @@ if (isset($_POST['submit']))
 			else
 			{
 				if (!move_uploaded_file($_FILES[$fname]['tmp_name'],
-						$pommo->_workDir.'/import.csv'))
+						Pommo::$_workDir.'/import.csv'))
 				{
 					Pommo::kill('Could not write to temp CSV file ('.
-							$pommo->_workDir.'/import.csv)');
+							Pommo::$_workDir.'/import.csv)');
 				}
 			}
 			
-			$pommo->set(array('preview' => $a));
+			Pommo::set(array('preview' => $a));
 			Pommo::redirect('import_csv.php'.(
 				isset($_REQUEST['excludeUnsubscribed']) ?
 				'?excludeUnsubscribed=true' : ''
@@ -145,7 +145,7 @@ if (isset($_POST['submit']))
 			$emails = array_diff($a, $dupes);
 			
 			//	Saves emails in session and redirects to confirmation page
-			$pommo->set(array(
+			Pommo::set(array(
 				'emails' => $emails,
 				'dupes' => (count($dupes))));
 			Pommo::redirect('import_txt.php');

@@ -22,27 +22,27 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/groups.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/mailctl.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/mailings.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
+require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
-if (PommoMailing::isCurrent())
+if (Pommo_Mailing::isCurrent())
 	Pommo::kill(sprintf(Pommo::_T('A Mailing is currently processing. Visit the %sStatus%s page to check its progress.'),'<a href="mailing_status.php">','</a>'));
 
 // TODO -- fix stateInit so we don't NEED to supply the defaults that have already been defined
 
-$dbvalues = PommoAPI::configGet(array(
+$dbvalues = Pommo_Api::configGet(array(
 	'list_fromname',
 	'list_fromemail',
 	'list_frombounce',
@@ -51,7 +51,7 @@ $dbvalues = PommoAPI::configGet(array(
 ));
 
 // Initialize page state with default values overriden by those held in $_REQUEST
-$state =& PommoAPI::stateInit('mailing',array(
+$state =& Pommo_Api::stateInit('mailing',array(
 	'fromname' => $dbvalues['list_fromname'],
 	'fromemail' => $dbvalues['list_fromemail'],
 	'frombounce' => $dbvalues['list_frombounce'],
@@ -82,7 +82,7 @@ $memberIDs = array();
 $names = array();
 $tally = 0;
 foreach( $groups as $group ) {
-	$pgroup = new PommoGroup($group, 1);
+	$pgroup = new Pommo_Groups($group, 1);
 	$names []= $pgroup->_name;
 	if ( is_array( $pgroup->_memberIDs ) ) {
 		$memberIDs = array_merge( $memberIDs, $pgroup->_memberIDs );
@@ -108,8 +108,8 @@ if (!empty ($_REQUEST['sendaway'])) {
 	/**********************************
 		JSON OUTPUT INITIALIZATION
 	 *********************************/
-	Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-	$json = new PommoJSON();
+	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+	$json = new Pommo_Json();
 	
 	if ($state['tally'] > 0) {
 		
@@ -118,24 +118,24 @@ if (!empty ($_REQUEST['sendaway'])) {
 			$state['altbody'] = '';
 		} 
 		
-		$mailing = PommoMailing::make(array(), TRUE);
+		$mailing = Pommo_Mailing::make(array(), TRUE);
 		$state['status'] = 1;
 		$state['current_status'] = 'stopped';
 		$state['command'] = 'restart';
 		$mailing = PommoHelper::arrayIntersect($state, $mailing);
 
-		$code = PommoMailing::add($mailing);
+		$code = Pommo_Mailing::add($mailing);
 		
 		if(!PommoMailCtl::queueMake($memberIDs))
 			$json->fail('Unable to populate queue');
 			
-		if (!PommoMailCtl::spawn($pommo->_baseUrl.'admin/mailings/mailings_send4.php?code='.$code))
+		if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'admin/mailings/mailings_send4.php?code='.$code))
 			$json->fail('Unable to spawn background mailer');
 			
 		// clear mailing composistion data from session
-		PommoAPI::stateReset(array('mailing'));
+		Pommo_Api::stateReset(array('mailing'));
 		$json->add('callbackFunction','redirect');
-		$json->add('callbackParams',$pommo->_baseUrl.'admin/mailings/mailing_status.php');
+		$json->add('callbackParams',Pommo::$_baseUrl.'admin/mailings/mailing_status.php');
 		
 	}
 	else {

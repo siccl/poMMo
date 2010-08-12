@@ -22,22 +22,22 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/groups.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/fields.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/rules.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
+require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'inc/helpers/rules.php');
 			
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	JSON OUTPUT INITIALIZATION
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-$json = new PommoJSON();
+require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+$json = new Pommo_Json();
 
 // Remember the Page State
-$state =& PommoAPI::stateInit('groups_edit');
+$state =& Pommo_Api::stateInit('groups_edit');
 
 // EXAMINE CALL
 switch ($_REQUEST['call']) {
@@ -47,10 +47,10 @@ switch ($_REQUEST['call']) {
 		/**********************************
 			SETUP TEMPLATE, PAGE
 		 *********************************/
-		Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-		$smarty = new PommoTemplate();
+		require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+		$smarty = new Pommo_Template();
 
-		$group = current(PommoGroup::get(array('id' => $state['group'])));
+		$group = current(Pommo_Groups::get(array('id' => $state['group'])));
 		if(empty($group))
 			die('invalid input');
 	
@@ -87,7 +87,7 @@ switch ($_REQUEST['call']) {
 			Pommo::kill();
 		}
 		elseif($_REQUEST['ruleType'] == 'group') {
-			$match = PommoGroup::getNames($_REQUEST['fieldID']);
+			$match = Pommo_Groups::getNames($_REQUEST['fieldID']);
 			$key = key($match);
 			
 			$smarty->assign('match_name',$match[$key]);
@@ -120,13 +120,13 @@ switch ($_REQUEST['call']) {
 				break;
 		}
 		$json->add('callbackFunction','redirect');
-		$json->add('callbackParams',$pommo->_baseUrl.'admin/subscribers/groups_edit.php');
+		$json->add('callbackParams',Pommo::$_baseUrl.'admin/subscribers/groups_edit.php');
 		$json->serve();
 	break;
 	
 	case 'updateRule' :
-		Pommo::requireOnce($pommo->_baseDir.'inc/classes/sql.gen.php');
-		$group =& current(PommoGroup::get(array('id' => $state['group'])));
+		require_once(Pommo::$_baseDir.'inc/classes/sql.gen.php');
+		$group =& current(Pommo_Groups::get(array('id' => $state['group'])));
 		$rules = PommoSQL::sortRules($group['rules']);
 		
 		switch ($_REQUEST['request']) {
@@ -143,13 +143,13 @@ switch ($_REQUEST['call']) {
 				break;
 		}
 		$json->add('callbackFunction','redirect');
-		$json->add('callbackParams',$pommo->_baseUrl.'admin/subscribers/groups_edit.php');
+		$json->add('callbackParams',Pommo::$_baseUrl.'admin/subscribers/groups_edit.php');
 		$json->serve();
 	break;
 
 	case 'renameGroup': 
 		if (!empty($_REQUEST['group_name']))
-			if (PommoGroup::nameChange($state['group'], $_REQUEST['group_name']))
+			if (Pommo_Groups::nameChange($state['group'], $_REQUEST['group_name']))
 				$json->success(Pommo::_T('Group Renamed'));
 			$json->fail('invalid group name');
 		break;

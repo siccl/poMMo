@@ -32,11 +32,11 @@ else
 ignore_user_abort(true);
 
 require ('../../bootstrap.php');
-$pommo->init(array('noSession' => TRUE));
+Pommo::init(array('noSession' => TRUE));
 
 $code = (empty($_GET['code'])) ? null : $_GET['code'];
 
-if (!$handle = fopen($pommo->_workDir . '/mailing.test.php', 'w')) 
+if (!$handle = fopen(Pommo::$_workDir . '/mailing.test.php', 'w')) 
 	die('Unable to write to test file');
 
 for($i=0; $i <= 90; $i+=5) {

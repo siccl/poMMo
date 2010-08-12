@@ -18,11 +18,11 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 require('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/subscribers.php');
+require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 $map = array(
 	'sent' => 1,

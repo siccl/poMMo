@@ -25,10 +25,10 @@
  *********************************/
 define('_poMMo_support', TRUE);
 require ('../../bootstrap.php');
-$pommo->init();
+Pommo::init();
 
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/install.php'); 
-$dbo =& $pommo->_dbo;
+require_once(Pommo::$_baseDir.'inc/classes/install.php'); 
+$dbo =& Pommo::$_dbo;
 
 // reset DB
 
@@ -45,15 +45,15 @@ foreach($dbo->table as $id => $table) {
 		die('ERROR setting AUTO_INCREMENT on '.$id); 
 }
 
-$file = $pommo->_baseDir."install/sql.sample.php";
+$file = Pommo::$_baseDir."install/sql.sample.php";
 if(!PommoInstall::parseSQL(false,$file))
 	die('Could not load sample data. Database Reset.');
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 $message[] = 'Database Reset. Sample Data Loaded.';
 $smarty->assign('messages', $message);

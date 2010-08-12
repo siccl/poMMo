@@ -127,7 +127,7 @@ class Pommo_Db
 	 * 
 	 * Example invocations from partent script:
 	 * 
-	 *   $dbo = & $pommo->_dbo;
+	 *   $dbo = & Pommo::$_dbo;
 	 *   $dbo->dieOnQuery(TRUE);
 	 *   $dbo->debug(TRUE);
 	 * 
@@ -157,7 +157,7 @@ class Pommo_Db
 
 	function & query(& $query, $row = NULL, $col = NULL) {
 		global $pommo;
-		$logger =& $pommo->_logger;
+		$logger =& Pommo::$_logger;
 		
 		// execute query
 		$this->_result = mysql_query($query, $this->_link);

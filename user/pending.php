@@ -22,17 +22,17 @@
 	INITIALIZATION METHODS
 *********************************/
 require('../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/pending.php');
+require_once(Pommo::$_baseDir.'inc/helpers/pending.php');
 
-$pommo->init(array('authLevel' => 0, 'noSession' => true));
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init(array('authLevel' => 0, 'noSession' => true));
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 $input = (isset($_GET['input'])) ?
 	unserialize($_GET['input']) : array('Email' => NULL);
@@ -63,7 +63,7 @@ switch ($pending['type']) {
 // check if user wants to reconfirm or cancel their request
 if (!empty ($_POST)) {
 	if (isset ($_POST['reconfirm'])) {
-		Pommo::requireOnce($pommo->_baseDir . 'inc/helpers/messages.php');
+		require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
 		PommoHelperMessages::sendMessage(array('to' => $input['Email'], 'code' => $pending['code'], 'type' => $pending['type']));	
 	} elseif (isset($_POST['cancel'])) {
 		if (PommoPending::cancel($pending))

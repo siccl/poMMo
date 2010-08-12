@@ -22,51 +22,51 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/install.php');
-$pommo->init(array('authLevel' => 0, 'install' => TRUE));
-$pommo->reloadConfig();
+require_once(Pommo::$_baseDir.'inc/classes/install.php');
+Pommo::init(array('authLevel' => 0, 'install' => TRUE));
+Pommo::reloadConfig();
 
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 $dbo->dieOnQuery(FALSE);
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 // Check to make sure poMMo is installed
 if (!PommoInstall::verify()) {
-	$logger->addErr(sprintf(Pommo::_T('poMMo does not appear to be installed! Please %s INSTALL %s before attempting an upgrade.'), '<a href="' . $pommo->_baseUrl . 'install/install.php">', '</a>'));
+	$logger->addErr(sprintf(Pommo::_T('poMMo does not appear to be installed! Please %s INSTALL %s before attempting an upgrade.'), '<a href="' . Pommo::$_baseUrl . 'install/install.php">', '</a>'));
 	$smarty->display('upgrade.tpl');
 	Pommo::kill();
 }
 
 // Check to make sure poMMo is PR14 or higher.
-if ($pommo->_config['revision'] < 26) {
+if (Pommo::$_config['revision'] < 26) {
 	$logger->addErr('Upgrade path unavailable. Cannot upgrade from Aardvark PR13.2 or below!');
 	$smarty->display('upgrade.tpl');
 	Pommo::kill();
 }
 
 // Check to make sure poMMo is not already up to date.
-if ($pommo->_config['revision'] == $pommo->_revision && !isset ($_REQUEST['forceUpgrade']) && !isset ($_REQUEST['continue'])) {
+if (Pommo::$_config['revision'] == Pommo::$_revision && !isset ($_REQUEST['forceUpgrade']) && !isset ($_REQUEST['continue'])) {
 	$logger->addErr(sprintf(Pommo::_T('poMMo appears to be up to date. If you want to force an upgrade, %s click here %s'), '<a href="' . $_SERVER['PHP_SELF'] . '?forceUpgrade=TRUE">', '</a>'));
 	$smarty->display('upgrade.tpl');
 	Pommo::kill();
 }
 
 // include the upgrade procedure file
-Pommo::requireOnce($pommo->_baseDir . 'install/helper.upgrade.php');
+require_once(Pommo::$_baseDir . 'install/helper.upgrade.php');
 
 if (isset ($_REQUEST['disableDebug']))
 	unset ($_REQUEST['debugInstall']);
 elseif (isset ($_REQUEST['debugInstall'])) $smarty->assign('debug', TRUE);
 
 if (empty($_REQUEST['continue'])) {
-	$logger->addErr(sprintf(Pommo::_T('To upgrade poMMo, %s click here %s'), '<a href="' . $pommo->_baseUrl . 'install/upgrade.php?continue=TRUE">', '</a>'));
+	$logger->addErr(sprintf(Pommo::_T('To upgrade poMMo, %s click here %s'), '<a href="' . Pommo::$_baseUrl . 'install/upgrade.php?continue=TRUE">', '</a>'));
 } else {
 	$smarty->assign('attempt', TRUE);
 
@@ -80,7 +80,7 @@ if (empty($_REQUEST['continue'])) {
 		$logger->addErr(Pommo::_T('Upgrade Complete!'));
 
 		// Read in RELEASE Notes -- TODO -> use file_get_contents() one day when everyone has PHP 4.3
-		$filename = $pommo->_baseDir . 'docs/RELEASE';
+		$filename = Pommo::$_baseDir . 'docs/RELEASE';
 		$handle = fopen($filename, "r");
 		$x = fread($handle, filesize($filename));
 		fclose($handle);
@@ -94,8 +94,8 @@ if (empty($_REQUEST['continue'])) {
 	// clear the working directory template files
 	$smarty->display('upgrade.tpl');
 	
-	Pommo::requireOnce($pommo->_baseDir.'inc/helpers/maintenance.php');
-	if(!PommoHelperMaintenance::delDir($pommo->_workDir.'/pommo/smarty'))
+	require_once(Pommo::$_baseDir.'inc/helpers/maintenance.php');
+	if(!PommoHelperMaintenance::delDir(Pommo::$_workDir.'/pommo/smarty'))
 		$logger->addErr('Unable to Clear Working Directory (non fatal)');
 	
 	Pommo::kill();	

@@ -19,7 +19,7 @@
  */
  
 // include the mailing prototype object 
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototypes.php');
+require_once(Pommo::$_baseDir. 'inc/classes/prototypes.php');
 
 /**
 	 * Template: A Template for Mailings
@@ -31,14 +31,14 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/prototy
 	 *  altbody			(str)		Text body
 	 */
 
-class PommoMailingTemplate {
+class Pommo_MailingTemplate {
 	
 	// make a mailing template
 	// accepts a mailing template (assoc array)
 	// return a template object (array)
 	function & make($in = array()) {
 		$o = PommoType::template();
-		return PommoAPI::getParams($o, $in);
+		return Pommo_Api::getParams($o, $in);
 	}
 	
 	// make a mailing template based off a database row (mailing* schema)
@@ -52,7 +52,7 @@ class PommoMailingTemplate {
 		'body' => $row['body'],
 		'altbody' => $row['altbody']);
 		
-		$o = PommoAPI::getParams(PommoType::template(),$in);
+		$o = Pommo_Api::getParams(PommoType::template(),$in);
 		return $o;
 	}
 	
@@ -70,7 +70,7 @@ class PommoMailingTemplate {
 			$invalid[] = Pommo::_T('Both HTML and Text cannot be empty');
 		
 		if (!empty($invalid)) {
-			$pommo->_logger->addErr(implode(',',$invalid),3);
+			Pommo::$_logger->addErr(implode(',',$invalid),3);
 			return false;
 		}
 		return true;
@@ -83,10 +83,10 @@ class PommoMailingTemplate {
 	// returns an array of mailings. Array key(s) correlates to template ID.
 	function & get($p = array()) {
 		$defaults = array('id' => null, 'name' => null);
-		$p = PommoAPI :: getParams($defaults, $p);
+		$p = Pommo_Api :: getParams($defaults, $p);
 		
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$o = array();
 		
@@ -100,7 +100,7 @@ class PommoMailingTemplate {
 		$query = $dbo->prepare($query,array($p['name'],$p['id']));
 		
 		while ($row = $dbo->getRows($query)) {
-			$o[$row['template_id']] = PommoMailingTemplate::makeDB($row); }
+			$o[$row['template_id']] = Pommo_MailingTemplate::makeDB($row); }
 
 		return $o;
 	}
@@ -112,10 +112,10 @@ class PommoMailingTemplate {
 	// returns an array of mailings. Array key(s) correlates to template ID.
 	function & getNames($p = array()) {
 		$defaults = array('id' => null, 'name' => null);
-		$p = PommoAPI :: getParams($defaults, $p);
+		$p = Pommo_Api :: getParams($defaults, $p);
 		
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$o = array();
 		
@@ -142,10 +142,10 @@ class PommoMailingTemplate {
 	// returns an array of mailings. Array key(s) correlates to template ID.
 	function & getDescriptions($p = array()) {
 		$defaults = array('id' => null, 'name' => null);
-		$p = PommoAPI :: getParams($defaults, $p);
+		$p = Pommo_Api :: getParams($defaults, $p);
 		
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$o = array();
 		
@@ -170,9 +170,9 @@ class PommoMailingTemplate {
 	// returns the database ID of the added mailing
 	function add(&$in) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
-		if (!PommoMailingTemplate::validate($in)) 
+		if (!Pommo_MailingTemplate::validate($in)) 
 			return false;
 		
 		$query = "
@@ -199,7 +199,7 @@ class PommoMailingTemplate {
 	// returns the # of deleted subscribers (int). 0 (false) if none.
 	function delete(&$id) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			DELETE

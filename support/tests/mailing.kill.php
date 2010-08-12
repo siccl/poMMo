@@ -23,9 +23,9 @@
  *********************************/
 define('_poMMo_support', TRUE);
 require ('../../bootstrap.php');
-$pommo->init();
+Pommo::init();
 	
-$dbo =& $pommo->_dbo;
+$dbo =& Pommo::$_dbo;
 
 
 $query = "DELETE FROM ".$dbo->table['mailing_current'];

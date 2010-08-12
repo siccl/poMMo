@@ -22,26 +22,26 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/mailings.php');
-$pommo->init();
+require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
+Pommo::init();
 
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 if(isset($_REQUEST['mailings'])) {
 	if(is_array($_REQUEST['mailings']))
 		$_REQUEST['mailings'] = $_REQUEST['mailings'][0];
-	$mailing = current(PommoMailing::get(array('id' => $_REQUEST['mailings'])));
+	$mailing = current(Pommo_Mailing::get(array('id' => $_REQUEST['mailings'])));
 }
 else
-	$mailing = $pommo->_session['state']['mailing'];
+	$mailing = Pommo::$_session['state']['mailing'];
 
 	
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 $smarty->assign($mailing);
 $smarty->display('inc/mailing.tpl');

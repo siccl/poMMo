@@ -206,7 +206,7 @@ class Pommo_Mailing
 		$query = $dbo->prepare($query,array($p['active'],$p['id'],$p['code'], $p['sort'], $p['order'], $p['offset'], $p['limit']));
 		
 		while ($row = $dbo->getRows($query)) {
-			$o[$row['mailing_id']] = PommoMailing::makeDB($row);
+			$o[$row['mailing_id']] = Pommo_Mailing::makeDB($row);
 		}
 		
 		return $o;
@@ -229,7 +229,7 @@ class Pommo_Mailing
 		if (empty($in['sent']))
 			$in['sent'] = 0;
 
-		if (!PommoMailing::validate($in))
+		if (!Pommo_Mailing::validate($in))
 			return false;
 		
 		$query = "

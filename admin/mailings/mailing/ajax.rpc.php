@@ -22,38 +22,38 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../../bootstrap.php');
-$pommo->init();
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	JSON OUTPUT INITIALIZATION
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-$json = new PommoJSON();
+require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+$json = new Pommo_Json();
 
 
 // EXAMINE CALL
 switch ($_REQUEST['call']) {
 	case 'wysiwyg': // update wysiwyg ++ state
 		$wysiwyg = (isset($_REQUEST['enable'])) ? 'on' : 'off';
-		$pommo->_session['state']['mailing']['wysiwyg'] = $wysiwyg;
-		PommoAPI::configUpdate(array('list_wysiwyg' => $wysiwyg), true);
+		Pommo::$_session['state']['mailing']['wysiwyg'] = $wysiwyg;
+		Pommo_Api::configUpdate(array('list_wysiwyg' => $wysiwyg), true);
 	break;
 	
 	case 'savebody' : 
-		$pommo->_session['state']['mailing']['body'] = $_REQUEST['body'];
-		$pommo->_session['state']['mailing']['altbody'] = $_REQUEST['altbody'];
+		Pommo::$_session['state']['mailing']['body'] = $_REQUEST['body'];
+		Pommo::$_session['state']['mailing']['altbody'] = $_REQUEST['altbody'];
 	break;
 	
 	case 'altbody' :
-		Pommo::requireOnce($pommo->_baseDir.'inc/lib/lib.html2txt.php');
+		require_once(Pommo::$_baseDir.'inc/lib/lib.html2txt.php');
 		$h2t = & new html2text($_REQUEST['body']);
 		$json->add('altbody',$h2t->get_text());
 	break;
 	
 	case 'getTemplateDescription' :
-		Pommo::requireOnce($pommo->_baseDir.'inc/helpers/templates.php');
-		$template = PommoMailingTemplate::getDescriptions(array('id' => $_REQUEST['id']));
+		require_once(Pommo::$_baseDir.'inc/helpers/templates.php');
+		$template = Pommo_MailingTemplate::getDescriptions(array('id' => $_REQUEST['id']));
 		$msg = (empty($template[$_REQUEST['id']])) ? 'Unknown' : $template[$_REQUEST['id']];
 		die($msg);
 	

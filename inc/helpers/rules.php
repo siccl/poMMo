@@ -128,7 +128,7 @@ class PommoRules {
 	
 	function addBoolRule(&$group, &$match, &$logic) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			INSERT INTO " . $dbo->table['group_rules']."
@@ -142,7 +142,7 @@ class PommoRules {
 	
 	function addGroupRule(&$groupID, &$match, &$logic) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$query = "
 			INSERT INTO " . $dbo->table['group_rules']."
@@ -156,7 +156,7 @@ class PommoRules {
 	
 	function addFieldRule(&$group, &$field, &$logic, &$values, $type = 0) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$type = ($type == 'or')? 1 : 0;
 		
@@ -164,7 +164,7 @@ class PommoRules {
 		PommoRules::deleteRule($group, $field, $logic);
 		
 		// get the field
-		Pommo::requireOnce($pommo->_baseDir.'inc/helpers/fields.php');
+		require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
 		$field = current(PommoField::get(array('id' => $field)));
 
 		foreach($values as $value) {
@@ -185,7 +185,7 @@ class PommoRules {
 	
 	function deleteRule($gid, $fid, $logic) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$where = ($logic == 'is_in' || $logic == 'not_in') ? 
 			"AND field_id=0 AND rule_id=%i" :
@@ -200,7 +200,7 @@ class PommoRules {
 	
 	function changeType($gid, $fid, $logic, $type) {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$type = ($type == 'or') ? 1 : 0;
 			

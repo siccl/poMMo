@@ -22,26 +22,26 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../../bootstrap.php');
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 /**********************************
 	JSON OUTPUT INITIALIZATION
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-$json = new PommoJSON();
+require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+$json = new Pommo_Json();
 
 // Check if user requested to restore defaults
 if (isset($_POST['restore'])) {
-	Pommo::requireOnce($pommo->_baseDir.'inc/helpers/messages.php');
+	require_once(Pommo::$_baseDir.'inc/helpers/messages.php');
 	switch (key($_POST['restore'])) {
 		case 'subscribe' : $messages = PommoHelperMessages::ResetDefault('subscribe'); break;
 		case 'activate' : $messages = PommoHelperMessages::resetDefault('activate'); break;
@@ -53,7 +53,7 @@ if (isset($_POST['restore'])) {
 	$_POST = array();
 	
 	$json->add('callbackFunction','redirect');
-	$json->add('callbackParams',$pommo->_baseUrl.'admin/setup/setup_configure.php?tab=Messages');
+	$json->add('callbackParams',Pommo::$_baseUrl.'admin/setup/setup_configure.php?tab=Messages');
 	$json->serve();
 }
 
@@ -119,7 +119,7 @@ if (!SmartyValidate :: is_registered_form('messages') || empty ($_POST)) {
 	$smarty->assign('vMsg', $vMsg);
 
 	// populate _POST with info from database (fills in form values...)
-	$dbvalues = PommoAPI::configGet(array(
+	$dbvalues = Pommo_Api::configGet(array(
 		'messages',
 		'notices'));
 		
@@ -131,7 +131,7 @@ if (!SmartyValidate :: is_registered_form('messages') || empty ($_POST)) {
 		
 	if (empty($notices)) 
 		$notices = array(
-			'email' => $pommo->_config['admin_email'],
+			'email' => Pommo::$_config['admin_email'],
 			'subject' => Pommo::_T('[poMMo Notice]'),
 			'subscribe' => 'off',
 			'unsubscribe' => 'off',
@@ -209,7 +209,7 @@ else {
 		$notices['pending'] = $_POST['notify_pending'];
 		
 		$input = array('messages' => serialize($messages),'notices' => serialize($notices));
-		PommoAPI::configUpdate( $input, TRUE);
+		Pommo_Api::configUpdate( $input, TRUE);
 		
 		$json->success(Pommo::_T('Configuration Updated.'));
 	} 

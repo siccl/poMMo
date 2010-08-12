@@ -22,15 +22,15 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../bootstrap.php');
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 $smarty->assign('throttleTitle',Pommo::_T('Throttle Settings'));
 $smarty->assign('smtpTitle',Pommo::_T('SMTP Settings'));

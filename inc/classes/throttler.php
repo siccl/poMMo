@@ -165,7 +165,7 @@ class PommoThrottler {
 	function PommoThrottler($p = array(), & $history, &$sent, &$sentBytes) { 
 		global $pommo;
 		
-		$this->logger =& $pommo->_logger;
+		$this->logger =& Pommo::$_logger;
 		
 		$this->_targetMPS = floatval($p['MPS']);
 		$this->_targetBPS = floatval($p['BPS']);

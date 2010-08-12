@@ -18,7 +18,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/lib/phpmailer/class.phpmailer.php');
+require_once(Pommo::$_baseDir. 'inc/lib/phpmailer/class.phpmailer.php');
 
 // TODO; class depricated since PR13.2 .. needs major overhaul!
 //  OLDSCHOOL KLUDGE
@@ -52,11 +52,11 @@ class PommoMailer extends PHPMailer {
 	//  If an argument is not supplied, resorts to default value (from setup/config.php).
 	function PommoMailer($fromname = NULL, $fromemail = NULL, $frombounce = NULL, $exchanger = NULL, $demonstration = NULL, $charset = NULL, $personalize = FALSE) {
 		global $pommo;
-		$this->logger =& $pommo->_logger;
+		$this->logger =& Pommo::$_logger;
 		
 		// TODO -> only make this call if passed values don't exist ..'
 		
-		$listConfig = PommoAPI::configGet(array (
+		$listConfig = Pommo_Api::configGet(array (
 			'list_fromname',
 			'list_fromemail',
 			'list_frombounce',
@@ -78,7 +78,7 @@ class PommoMailer extends PHPMailer {
 			$exchanger = $listConfig['list_exchanger'];
 
 		if (empty ($demonstration))
-			$demonstration = $pommo->_config['demo_mode'];
+			$demonstration = Pommo::$_config['demo_mode'];
 			
 		if (empty($charset))
 			$charset = $listConfig['list_charset'];
@@ -101,7 +101,7 @@ class PommoMailer extends PHPMailer {
 
 		$this->_sentCount = 0;
 		
-		$langPath = $pommo->_baseDir . 'inc/lib/phpmailer/language/';
+		$langPath = Pommo::$_baseDir . 'inc/lib/phpmailer/language/';
 		if (!$this->SetLanguage('en', $langPath))
 			return false;
 	}
@@ -114,7 +114,7 @@ class PommoMailer extends PHPMailer {
 		elseif ($val == "off") 
 			$this->_demonstration = "off";
 		else
-			$this->_demonstration = $pommo->_config['demo_mode'];
+			$this->_demonstration = Pommo::$_config['demo_mode'];
 		return $this->_demonstration;
 	}
 
@@ -214,7 +214,7 @@ class PommoMailer extends PHPMailer {
 			$this->Mailer = $this->_exchanger;
 
 			if ($this->Mailer == 'smtp') { // loads the default relay (#1) -- use setRelay() to change.
-				$config = PommoAPI::configGet('smtp_1');
+				$config = Pommo_Api::configGet('smtp_1');
 				$smtp = unserialize($config['smtp_1']);
 	
 				if (!empty ($smtp['host']))
@@ -269,9 +269,9 @@ class PommoMailer extends PHPMailer {
 				// check for personalization personaliztion and override message body
 				if ($this->_personalize) {
 					global $pommo;
-					$this->Body = PommoHelperPersonalize::replace($this->_body, $subscriber, $pommo->_session['personalization_body']);
+					$this->Body = PommoHelperPersonalize::replace($this->_body, $subscriber, Pommo::$_session['personalization_body']);
 					if (!empty($this->_altbody))
-						$this->AltBody = PommoHelperPersonalize::replace($this->_altbody,$subscriber,$pommo->_session['personalization_altbody']);
+						$this->AltBody = PommoHelperPersonalize::replace($this->_altbody,$subscriber,Pommo::$_session['personalization_altbody']);
 				}
 
 				// send the mail. If unsucessful, add error message.

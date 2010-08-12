@@ -36,7 +36,7 @@ require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
  *	value			(str)		Match Value
  */
  
- class Pommo_Groups {
+class Pommo_Groups {
  	var $_name; // name of group
  	var $_group; // the group object
  	var $_tally; // the group tally
@@ -55,7 +55,7 @@ require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
  			$this->_name = Pommo::_T('All Subscribers');
  			
  			$this->_memberIDs = (is_array($filter)) ?
- 				PommoGroup::getMemberIDs($this->_group, $status, $filter) :
+ 				Pommo_Groups::getMemberIDs($this->_group, $status, $filter) :
  				null;
  			
  			$this->_tally = (is_array($filter)) ? 
@@ -65,11 +65,11 @@ require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
  			return;
  		}
 		
- 		$this->_group = current(PommoGroup::get(array('id' => $groupID)));
+ 		$this->_group = current(Pommo_Groups::get(array('id' => $groupID)));
 		$this->_id= $groupID;
  		$this->_name =& $this->_group['name'];
  		
-		$this->_memberIDs = PommoGroup::getMemberIDs($this->_group, $status, $filter);
+		$this->_memberIDs = Pommo_Groups::getMemberIDs($this->_group, $status, $filter);
 		$this->_tally = count($this->_memberIDs);
 		
 		return;
@@ -161,7 +161,7 @@ require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
 		
 		while ($row = $dbo->getRows($query)) {
 			if (empty($o[$row['group_id']]))
-				$o[$row['group_id']] = PommoGroup::makeDB($row);
+				$o[$row['group_id']] = Pommo_Groups::makeDB($row);
 			
 			if(!empty($row['rule_id'])) {
 				$c = array (
@@ -208,7 +208,7 @@ require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
 	// returns an array of subscriber IDs
 	function & getMemberIDs($group, $status = 1, $filter = false) {
 		$dbo =& Pommo::$_dbo;
-		$pommo->requireOnce(Pommo::$_baseDir. 'inc/classes/sql.gen.php');
+		Pommo::requireOnce(Pommo::$_baseDir. 'inc/classes/sql.gen.php');
 		
 		if (empty($group['rules']) && $group['id'] != 0) {
 			$o = array();
@@ -226,7 +226,7 @@ require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
 	// returns a tally (int)
 	function tally($group, $status = 1) {
 		$dbo =& Pommo::$_dbo;
-		$pommo->requireOnce(Pommo::$_baseDir. 'inc/classes/sql.gen.php');
+		Pommo::requireOnce(Pommo::$_baseDir. 'inc/classes/sql.gen.php');
 		
 		if (empty($group['rules']))
 			return 0;
@@ -242,7 +242,7 @@ require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
 	function add(&$in) {
 		$dbo =& Pommo::$_dbo;
 		
-		if (!PommoGroup::validate($in))
+		if (!Pommo_Groups::validate($in))
 			return false;
 			
 		$query = "

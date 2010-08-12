@@ -22,17 +22,17 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/import.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/subscribers.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/validate.php');
+require_once(Pommo::$_baseDir.'inc/helpers/import.php');
+require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
+require_once(Pommo::$_baseDir.'inc/helpers/validate.php');
 
-$pommo->init(array('keep' => TRUE));
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init(array('keep' => TRUE));
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 $dupes = $tally = $flagged = 0;
 $dupe_emails = array();
-$fp = fopen($pommo->_workDir.'/import.csv','r') 
+$fp = fopen(Pommo::$_workDir.'/import.csv','r') 
 	or die('Unable to open CSV file');
 	
 $includeUnsubscribed = isset($_REQUEST['excludeUnsubscribed']) ? false : true;
@@ -80,7 +80,7 @@ while (($row = fgetcsv($fp,2048,',','"')) !== FALSE) {
 	}
 
 }
-unlink($pommo->_workDir.'/import.csv');
+unlink(Pommo::$_workDir.'/import.csv');
 echo ('<div class="warn"><p>'.sprintf(Pommo::_T('%s subscribers imported! Of these, %s were flagged to update their records.'),$tally, $flagged).'<p>'.sprintf(Pommo::_T('%s duplicates encountered.'),$dupes).'</p></div>');
 echo "<table>";
 foreach($dupe_emails as $de) {

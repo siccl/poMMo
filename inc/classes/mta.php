@@ -21,11 +21,11 @@
  // poMMo MTA - poMMo's background mailer
  
  // includes
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/mailctl.php');
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/mailer.php');
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/classes/throttler.php');
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/mailings.php');
-$GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscribers.php');
+require_once(Pommo::$_baseDir. 'inc/classes/mailctl.php');
+require_once(Pommo::$_baseDir. 'inc/classes/mailer.php');
+require_once(Pommo::$_baseDir. 'inc/classes/throttler.php');
+require_once(Pommo::$_baseDir. 'classes/Pommo_Mailing.php');
+require_once(Pommo::$_baseDir. 'inc/helpers/subscribers.php');
 
  class PommoMTA {
 
@@ -80,7 +80,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscri
 			'serial' => false,
 			'spawn' => 1
 		);
-		$p = PommoAPI :: getParams($defaults, $args);
+		$p = Pommo_Api :: getParams($defaults, $args);
 		
 		foreach($p as $k => $v)
 			$this->{'_'.$k} = $v;
@@ -108,7 +108,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscri
 			'code' => (($this->_skipSecurity) ? null : $this->_code),
 			'id' => (($this->_id) ? $this->_id : null));
 			
-		$this->_mailing = current(PommoMailing::get($p));
+		$this->_mailing = current(Pommo_Mailing::get($p));
 		if(!is_numeric($this->_mailing['id']))
 			$this->shutdown('Unable to initialize mailing.');
 		$this->_id = $this->_mailing['id'];
@@ -135,8 +135,8 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscri
 	// polls the current mailing
 	function poll() {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
-		$logger =& $pommo->_logger;
+		$dbo =& Pommo::$_dbo;
+		$logger =& Pommo::$_logger;
 		
 		$query = "
 			SELECT command, current_status, serial
@@ -215,7 +215,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscri
 	// pulls from the queue
 	function pullQueue() {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		$relay = 1; // switched to static relay in PR15, will utilize swiftmailer's multi-SMTP support.
 		
@@ -291,7 +291,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscri
 	// continually sends mails from the queue until mailing completes or max runtime reached
 	function processQueue() {
 		global $pommo;
-		$logger =& $pommo->_logger;
+		$logger =& Pommo::$_logger;
 		
 		$timer = time();
 		while(true) {
@@ -310,7 +310,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscri
 				
 				// set $personal as subscriber if personalization is enabled 
 				$personal = FALSE;
-				if ($pommo->_session['personalization'])
+				if (Pommo::$_session['personalization'])
 					$personal =& $this->_queue[$this->_hash[$mail[0]]];
 				
 				if (!$this->_mailer->bmSendmail($mail[0], $personal)) // sending failed, write to log  
@@ -347,7 +347,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscri
 	// accepts a array of sent emails
 	function update() {
 		global $pommo;
-		$dbo =& $pommo->_dbo;
+		$dbo =& Pommo::$_dbo;
 		
 		if (!empty($this->_sent)) {
 			$a = array();
@@ -410,7 +410,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscri
 		}
 		
 		// respwn
-		if (!PommoMailCtl::spawn($GLOBALS['pommo']->_baseUrl.'admin/mailings/mailings_send4.php?'.
+		if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'admin/mailings/mailings_send4.php?'.
 			'code='.$this->_code.
 			'&serial='.$this->_serial.
 			'&id='.$this->_id))
@@ -429,7 +429,7 @@ $GLOBALS['pommo']->requireOnce($GLOBALS['pommo']->_baseDir. 'inc/helpers/subscri
 			exit();
 		
 		global $pommo;
-		$logger =& $pommo->_logger;
+		$logger =& Pommo::$_logger;
 		
 		$msg = ($msg) ? $msg : '*** ERROR THROWN *** PHP Invoked Shutdown Function. Processor Abruptly Terminated. See ERROR_LOG IN WORK DIRECTORY. Runtime: '.(time() - $this->_start).' seconds.';
 		

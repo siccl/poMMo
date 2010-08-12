@@ -1909,7 +1909,7 @@ msgstr ""
 #
 #. aardvark-development/themes/default/admin/subscribers/subscribers_manage.tpl
 # File: pommo_theme_lang.php, line: 1221
-# File: aardvark-development/inc/helpers/groups.php, line: 55
+# File: aardvark-development/classes/Pommo_Groups.php, line: 55
 msgid "All Subscribers"
 msgstr "Abonnenten"
 #
@@ -3339,11 +3339,11 @@ msgstr "Versionsprobleme!  Haben Sie die %s aktuelle Version %s ?"
 msgid "Redirecting, please wait..."
 msgstr "Weiterleitung, bitte warten"
 #
-# File: aardvark-development/inc/classes/template.php, line: 57
+# File: aardvark-development/classes/Pommo_Template.php, line: 57
 msgid "poMMo Website"
 msgstr "poMMo Website"
 #
-# File: aardvark-development/inc/classes/template.php, line: 88
+# File: aardvark-development/classes/Pommo_Template.php, line: 88
 #, php-format
 msgid "Template file (%s) not found in default or current theme"
 msgstr "Template-Datei im Standard-Layout nicht gefunden."

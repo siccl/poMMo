@@ -22,20 +22,20 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/mailings.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init();
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 // Remember the Page State
-$state =& PommoAPI::stateInit('mailings_history');
+$state =& Pommo_Api::stateInit('mailings_history');
 
 /**********************************
 	JSON OUTPUT INITIALIZATION
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-$json = new PommoJSON();
+require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+$json = new Pommo_Json();
 
 /**********************************
 	PAGINATION AND ORDERING
@@ -93,7 +93,7 @@ elseif($state['sort'] == 'start') $state['sort'] = 'started';
 elseif($state['sort'] == 'end') $state['sort'] = 'finished';
 	
 // Fetch Mailings for this Page
-$mailings = PommoMailing::get(array(
+$mailings = Pommo_Mailing::get(array(
 	'noBody' => TRUE,
 	'sort' => $state['sort'],
 	'order' => $state['order'],
@@ -141,7 +141,7 @@ foreach($mailings as $o) {
 $json->add(array(
 		'page' => $state['page'],
 		'total' => $state['pages'],
-		'records' => PommoMailing::tally(),
+		'records' => Pommo_Mailing::tally(),
 		'rows' => $records
 	)
 );

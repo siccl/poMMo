@@ -24,27 +24,27 @@
 $serial = (empty($_GET['serial'])) ? time() : addslashes($_GET['serial']);
 
 require ('../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/mta.php');
+require_once(Pommo::$_baseDir.'inc/classes/mta.php');
 
-$pommo->init(array('sessionID' => $serial, 'keep' => TRUE, 'authLevel' => 0));
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init(array('sessionID' => $serial, 'keep' => TRUE, 'authLevel' => 0));
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 // don't die on query so we can capture logs'
 // NOTE: Be extra careful to check the success of queries/methods!
 $dbo->dieOnQuery(FALSE);
 
 // turn logging off unless verbosity is 1
-if($pommo->_verbosity > 1)
+if(Pommo::$_verbosity > 1)
 	$dbo->debug(FALSE);
 
 // start error logging
-$pommo->logErrors();
+Pommo::logErrors();
 
 /**********************************
 	STARTUP ROUTINES
  *********************************/
-$config = PommoAPI::configGet(array(
+$config = Pommo_Api::configGet(array(
 	'list_exchanger',
 	'maxRuntime',
 	'smtp_1',
@@ -73,8 +73,8 @@ $p = array(
  *********************************/
 
 // calculate spawn # (number of times this MTA has spawned under this serial)
-$pommo->_session['spawn'] = (isset($pommo->_session['spawn'])) ? $pommo->_session['spawn']+1 : 1;
-$p['spawn'] = $pommo->_session['spawn'];
+Pommo::$_session['spawn'] = (isset(Pommo::$_session['spawn'])) ? Pommo::$_session['spawn']+1 : 1;
+$p['spawn'] = Pommo::$_session['spawn'];
 
 // initialize MTA
 $mailing = new PommoMTA($p);
@@ -87,21 +87,21 @@ $mailing->poll();
 // check if message body contains personalizations
 // personalizations are cached in session
 
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/personalize.php'); // require once here so that mailer can use
-if(!isset($pommo->_session['personalization'])) {
-	$pommo->_session['personalization'] = FALSE;
+require_once(Pommo::$_baseDir.'inc/helpers/personalize.php'); // require once here so that mailer can use
+if(!isset(Pommo::$_session['personalization'])) {
+	Pommo::$_session['personalization'] = FALSE;
 	$matches = array();
 	preg_match('/\[\[[^\]]+]]/', $mailing->_mailing['body'], $matches);
 	if (!empty($matches))
-		$pommo->_session['personalization'] = TRUE;
+		Pommo::$_session['personalization'] = TRUE;
 	preg_match('/\[\[[^\]]+]]/',  $mailing->_mailing['altbody'], $matches);
 	if (!empty($matches))
-		$pommo->_session['personalization'] = TRUE;
+		Pommo::$_session['personalization'] = TRUE;
 
 	// cache personalizations in session
-	if ($pommo->_session['personalization']) {
-		$pommo->_session['personalization_body'] = PommoHelperPersonalize::search($mailing->_mailing['body']);
-		$pommo->_session['personalization_altbody'] = PommoHelperPersonalize::search($mailing->_mailing['altbody']);
+	if (Pommo::$_session['personalization']) {
+		Pommo::$_session['personalization_body'] = PommoHelperPersonalize::search($mailing->_mailing['body']);
+		Pommo::$_session['personalization_altbody'] = PommoHelperPersonalize::search($mailing->_mailing['altbody']);
 	}
 }
 
@@ -110,7 +110,7 @@ if(!isset($pommo->_session['personalization'])) {
  *********************************/
 $html = ($mailing->_mailing['ishtml'] == 'on') ? TRUE : FALSE;
 
-$mailer = new PommoMailer($mailing->_mailing['fromname'],$mailing->_mailing['fromemail'],$mailing->_mailing['frombounce'], $config['list_exchanger'],NULL,$mailing->_mailing['charset'], $pommo->_session['personalization']);
+$mailer = new PommoMailer($mailing->_mailing['fromname'],$mailing->_mailing['fromemail'],$mailing->_mailing['frombounce'], $config['list_exchanger'],NULL,$mailing->_mailing['charset'], Pommo::$_session['personalization']);
 if (!$mailer->prepareMail($mailing->_mailing['subject'], $mailing->_mailing['body'], $html, $mailing->_mailing['altbody']))
 	$mailer->shutdown('*** ERROR *** prepareMail() returned errors.');
 	
@@ -132,8 +132,8 @@ $mailing->attach('_mailer',$mailer);
  $tid = 1; // forced shared throttler, until swiftmailer implementation
 //$tid = ($config['throttle_SMTP'] == 'shared') ? 1 : $relayID; /* old shared throttle support */
 
-if(empty($pommo->_session['throttler'][$tid]))
-	$pommo->_session['throttler'] = array (
+if(empty(Pommo::$_session['throttler'][$tid]))
+	Pommo::$_session['throttler'] = array (
 		$tid => array(
 			'base' => array(
 				'MPS' => $config['throttle_MPS'],
@@ -150,10 +150,10 @@ if(empty($pommo->_session['throttler'][$tid]))
 		);
  
 $throttler =& new PommoThrottler(
-	$pommo->_session['throttler'][$tid]['base'], 
-	$pommo->_session['throttler'][$tid]['domainHistory'], 
-	$pommo->_session['throttler'][$tid]['sent'],
-	$pommo->_session['throttler'][$tid]['sentBytes']
+	Pommo::$_session['throttler'][$tid]['base'], 
+	Pommo::$_session['throttler'][$tid]['domainHistory'], 
+	Pommo::$_session['throttler'][$tid]['sent'],
+	Pommo::$_session['throttler'][$tid]['sentBytes']
 	);
 
 $byteMask = $throttler->byteTracking();

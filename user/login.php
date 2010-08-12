@@ -22,20 +22,20 @@
 	INITIALIZATION METHODS
 *********************************/
 require('../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/pending.php');
+require_once(Pommo::$_baseDir.'inc/helpers/pending.php');
 
-$pommo->init(array('authLevel' => 0, 'noSession' => true));
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+Pommo::init(array('authLevel' => 0, 'noSession' => true));
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 session_start(); // required by smartyValidate. TODO -> move to prepareForForm() ??
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
-$smarty->assign('title', $pommo->_config['site_name'] . ' - ' . Pommo::_T('subscriber logon'));
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
+$smarty->assign('title', Pommo::$_config['site_name'] . ' - ' . Pommo::_T('subscriber logon'));
 
 $smarty->prepareForForm();
 
@@ -74,7 +74,7 @@ if (!SmartyValidate :: is_registered_form() || empty($_POST)) {
 		else {
 			// __ REPORT STATUS
 			$logger->addMsg(Pommo::_T('Email address not found! Please try again.'));
-			$logger->addMsg(sprintf(Pommo::_T('To subscribe, %sclick here%s'),'<a href="'.$pommo->_baseUrl.'user/subscribe.php?Email='.$_POST['Email'].'">','</a>'));
+			$logger->addMsg(sprintf(Pommo::_T('To subscribe, %sclick here%s'),'<a href="'.Pommo::$_baseUrl.'user/subscribe.php?Email='.$_POST['Email'].'">','</a>'));
 		}
 	}
 	$smarty->assign($_POST);

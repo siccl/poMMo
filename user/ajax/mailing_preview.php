@@ -22,23 +22,23 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/mailings.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
 
-$config = PommoAPI::configGet('public_history');
+$config = Pommo_Api::configGet('public_history');
 if($config['public_history'] == 'on') {
-	$pommo->init(array('authLevel' => 0));
+	Pommo::init(array('authLevel' => 0));
 } else {
 	Pommo::redirect('login.php');
 }
 
-$logger = & $pommo->_logger;
-$dbo = & $pommo->_dbo;
+$logger = & Pommo::$_logger;
+$dbo = & Pommo::$_dbo;
 
 if(isset($_REQUEST['mailings'])) {
 	if(is_array($_REQUEST['mailings']))
 		$_REQUEST['mailings'] = $_REQUEST['mailings'][0];
-	$mailing = current(PommoMailing::get(array('id' => $_REQUEST['mailings'])));
+	$mailing = current(Pommo_Mailing::get(array('id' => $_REQUEST['mailings'])));
 }
 else
 	die();
@@ -47,8 +47,8 @@ else
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 $smarty->assign($mailing);
 $smarty->display('inc/mailing.tpl');

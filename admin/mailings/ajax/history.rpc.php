@@ -22,17 +22,17 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../../../bootstrap.php');
-Pommo::requireOnce($pommo->_baseDir.'inc/helpers/mailings.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
-$pommo->init();
-$logger = & $pommo->_logger;
+Pommo::init();
+$logger = & Pommo::$_logger;
 
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/template.php');
-$smarty = new PommoTemplate();
+require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+$smarty = new Pommo_Template();
 
 // fetch the mailing IDs
 $mailingIDS = $_REQUEST['mailings'];
@@ -43,33 +43,33 @@ if(!is_array($mailingIDS))
 /**********************************
 	JSON OUTPUT INITIALIZATION
  *********************************/
-Pommo::requireOnce($pommo->_baseDir.'inc/classes/json.php');
-$json = new PommoJSON(false); // do not toggle escaping
+require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+$json = new Pommo_Json(false); // do not toggle escaping
 	
 // EXAMINE CALL
 switch ($_REQUEST['call']) {
 	case 'notice':
 		foreach($mailingIDS as $id) {
-			$logger->AddMsg('<br /><br />###'. sprintf(Pommo::_T('Displaying notices for mailing %s'),PommoMailing::getSubject($id)).' ###<br /><br />');
-			$notices = PommoMailing::getNotices($id);	
+			$logger->AddMsg('<br /><br />###'. sprintf(Pommo::_T('Displaying notices for mailing %s'),Pommo_Mailing::getSubject($id)).' ###<br /><br />');
+			$notices = Pommo_Mailing::getNotices($id);	
 			$logger->AddMsg($notices);
 		}
 	break;
 	
 	case 'reload' :
 	
-		Pommo::requireOnce($pommo->_baseDir.'inc/helpers/groups.php');
+		require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
 
-		$mailing = current(PommoMailing::get(array('id' => $_REQUEST['mailings'])));
+		$mailing = current(Pommo_Mailing::get(array('id' => $_REQUEST['mailings'])));
 		
 		// change group name to ID
-		$groups = PommoGroup::getNames();
+		$groups = Pommo_Groups::getNames();
 		$gid = 'all';
 		foreach($groups as $group) 
 			if ($group['name'] == $mailing['group'])
 				$gid = $group['id'];
 		
-		PommoAPI::stateReset(array('mailing'));
+		Pommo_Api::stateReset(array('mailing'));
 		
 		// if this is a plain text mailing, switch body + altbody.
 		if($mailing['ishtml'] == 'off') {
@@ -78,7 +78,7 @@ switch ($_REQUEST['call']) {
 		}
 		
 		// Initialize page state with default values overriden by those held in $_REQUEST
-		$state =& PommoAPI::stateInit('mailing',array(
+		$state =& Pommo_Api::stateInit('mailing',array(
 			'fromname' => $mailing['fromname'],
 			'fromemail' => $mailing['fromemail'],
 			'frombounce' => $mailing['frombounce'],
@@ -89,11 +89,11 @@ switch ($_REQUEST['call']) {
 			'altbody' => $mailing['altbody']
 		));
 
-		Pommo::redirect($pommo->_baseUrl.'admin/mailings/mailings_start.php');
+		Pommo::redirect(Pommo::$_baseUrl.'admin/mailings/mailings_start.php');
 	break;
 	
 	case 'delete' :
-		$deleted = PommoMailing::delete($mailingIDS);
+		$deleted = Pommo_Mailing::delete($mailingIDS);
 		$logger->addMsg(Pommo::_T('Please Wait').'...');
 		
 		$params = $json->encode(array('ids' => $mailingIDS));
