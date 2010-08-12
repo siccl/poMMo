@@ -21,7 +21,7 @@
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('../../../bootstrap.php');
+require ('../bootstrap.php');
 require_once(Pommo::$_baseDir.'inc/helpers/templates.php');
 
 Pommo::init();

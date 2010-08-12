@@ -21,7 +21,7 @@
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('../../../bootstrap.php');
+require ('../bootstrap.php');
 Pommo::init();
 $dbo = & Pommo::$_dbo;
 

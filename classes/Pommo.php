@@ -109,7 +109,7 @@ class Pommo
 			}
 			else
 			{
-				$regex = '@/(inc|setup|user|install|support(/tests|/util)?|'.
+				$regex = '@/(mailing|inc|setup|user|install|support(/tests|/util)?|'.
 						'admin(/subscribers|/user|/mailings|/setup)?'.
 						'(/ajax|/mailing|/config)?)$@i';
 				$baseUrl = preg_replace($regex, '',

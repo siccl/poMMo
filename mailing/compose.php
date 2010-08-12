@@ -21,7 +21,7 @@
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('../../../bootstrap.php');
+require ('../bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
 Pommo::init();
@@ -77,5 +77,4 @@ $smarty->assign($state);
 $smarty->assign('lang',(Pommo::$_slanguage) ? Pommo::$_slanguage : Pommo::$_language);	
 
 $smarty->display('admin/mailings/mailing/compose.tpl');
-Pommo::kill();
-?>
+
