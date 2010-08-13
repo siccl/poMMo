@@ -21,12 +21,12 @@
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('../../../bootstrap.php');
+require ('../bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
 Pommo::init();
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
 
 /** SET PAGE STATE
@@ -35,14 +35,16 @@ $dbo = & Pommo::$_dbo;
  */
 
 // Initialize page state with default values overriden by those held in $_REQUEST
-$state =& Pommo_Api::stateInit('subscribers_manage',array(
+$state = Pommo_Api::stateInit('subscribers_manage',array(
 	'touched' => null,
 	'timestamp' => time(),
 	'notices' => array()
 	));
 	
-if(!empty($_GET['resetNotices']))
+if (!empty($_GET['resetNotices']))
+{
 	$state['notices'] = array();
+}
 
 
 /**********************************
