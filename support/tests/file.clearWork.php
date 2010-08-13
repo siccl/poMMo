@@ -27,4 +27,4 @@ Pommo::init();
 
 require_once(Pommo::$_baseDir.'inc/helpers/maintenance.php');
 
-echo (PommoHelperMaintenance::delDir(Pommo::$_workDir)) ? 'Work Directory Cleared' : 'Unable to Clear Work Directory -- Does it exist?';
+echo (Pommo_HelperMaintenance::delDir(Pommo::$_workDir)) ? 'Work Directory Cleared' : 'Unable to Clear Work Directory -- Does it exist?';

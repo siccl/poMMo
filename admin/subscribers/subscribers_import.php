@@ -126,7 +126,7 @@ if (isset($_POST['submit']))
 			{
 				foreach ($data as $email)
 				{
-					if (PommoHelper::isEmail($email))
+					if (Pommo_Helper::isEmail($email))
 					{
 						array_push($a, $email);
 					}
@@ -136,7 +136,7 @@ if (isset($_POST['submit']))
 			//	Removes from the array E-mails that are already on the database
 			$includeUnsubscribed = isset($_REQUEST['excludeUnsubscribed']) ?
 					false : true;
-			$dupes = &PommoHelper::isDupe($a, $includeUnsubscribed);
+			$dupes = &Pommo_Helper::isDupe($a, $includeUnsubscribed);
 			
 			if (!$dupes)
 			{

@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 
 Pommo::init();
 $logger = & Pommo::$_logger;
@@ -64,7 +64,7 @@ $form_name = "signup";
 </div>
 
 <?php
-$fields = & PommoField::get(array('active' => TRUE,'byName' => FALSE));
+$fields = & Pommo_Fields::get(array('active' => TRUE,'byName' => FALSE));
 foreach (array_keys($fields) as $field_id) {
 	$field = & $fields[$field_id];
 

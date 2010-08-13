@@ -100,8 +100,8 @@ if(!isset(Pommo::$_session['personalization'])) {
 
 	// cache personalizations in session
 	if (Pommo::$_session['personalization']) {
-		Pommo::$_session['personalization_body'] = PommoHelperPersonalize::search($mailing->_mailing['body']);
-		Pommo::$_session['personalization_altbody'] = PommoHelperPersonalize::search($mailing->_mailing['altbody']);
+		Pommo::$_session['personalization_body'] = Pommo_HelperPersonalize::search($mailing->_mailing['body']);
+		Pommo::$_session['personalization_altbody'] = Pommo_HelperPersonalize::search($mailing->_mailing['altbody']);
 	}
 }
 

@@ -151,12 +151,12 @@ class PommoMailer extends PHPMailer {
 			return false;
 		}
 
-		if (!PommoHelper::isEmail($this->_fromemail)) {
+		if (!Pommo_Helper::isEmail($this->_fromemail)) {
 			$this->logger->addMsg("From email must be a valid email address.");
 			return false;	
 		}
 
-		if (!PommoHelper::isEmail($this->_frombounce)) {
+		if (!Pommo_Helper::isEmail($this->_frombounce)) {
 			$this->logger->addMsg("Bounce email must be a valid email address.");
 			return false;	
 		}
@@ -269,9 +269,9 @@ class PommoMailer extends PHPMailer {
 				// check for personalization personaliztion and override message body
 				if ($this->_personalize) {
 					global $pommo;
-					$this->Body = PommoHelperPersonalize::replace($this->_body, $subscriber, Pommo::$_session['personalization_body']);
+					$this->Body = Pommo_HelperPersonalize::replace($this->_body, $subscriber, Pommo::$_session['personalization_body']);
 					if (!empty($this->_altbody))
-						$this->AltBody = PommoHelperPersonalize::replace($this->_altbody,$subscriber,Pommo::$_session['personalization_altbody']);
+						$this->AltBody = Pommo_HelperPersonalize::replace($this->_altbody,$subscriber,Pommo::$_session['personalization_altbody']);
 				}
 
 				// send the mail. If unsucessful, add error message.

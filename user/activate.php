@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
 require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
 
 Pommo::init(array('authLevel' => 0,'noSession' => true));
@@ -36,7 +36,7 @@ require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
 $smarty = new Pommo_Template();
 
 // make sure email/login is valid
-$subscriber = current(PommoSubscriber::get(array('email' => (empty($_REQUEST['email'])) ? '0' : $_REQUEST['email'], 'status' => 1)));
+$subscriber = current(Pommo_Subscribers::get(array('email' => (empty($_REQUEST['email'])) ? '0' : $_REQUEST['email'], 'status' => 1)));
 if (empty($subscriber))
 	Pommo::redirect('login.php');
 
@@ -56,8 +56,8 @@ $test = $dbo->query($query,0);
 
 // attempt to send activation code if once has not recently been sent
 if (empty($test)) {
-	$code = PommoSubscriber::getActCode($subscriber);
-	if (PommoHelperMessages::sendMessage(array('to' => $subscriber['email'], 'code' => $code, 'type' => 'activate'))) {
+	$code = Pommo_Subscribers::getActCode($subscriber);
+	if (Pommo_HelperMessages::sendMessage(array('to' => $subscriber['email'], 'code' => $code, 'type' => 'activate'))) {
 		
 		$smarty->assign('sent', true);
 		

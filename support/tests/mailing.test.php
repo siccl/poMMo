@@ -31,7 +31,7 @@ echo 'Please Wait...';
 ob_flush();
 flush();
 
-$code = PommoHelper::makeCode();
+$code = Pommo_Helper::makeCode();
 
 if(!PommoMailCtl::spawn(Pommo::$_baseUrl.'support/tests/mailing.test2.php?code='.$code,true)) 
 	Pommo::kill('Initial Spawn Failed! You must correct this before poMMo can send mailings.');
@@ -48,7 +48,7 @@ if (!is_file(Pommo::$_workDir . '/mailing.test.php')) {
 	Pommo::kill('Initial Spawn Failed (test file not written)! You must correct this before poMMo can send mailings.');
 }
 	
-$o = PommoHelper::parseConfig(Pommo::$_workDir . '/mailing.test.php');
+$o = Pommo_Helper::parseConfig(Pommo::$_workDir . '/mailing.test.php');
 unlink(Pommo::$_workDir.'/mailing.test.php') or die('could not remove mailing.test.php');
 
 if(isset($o['error']))

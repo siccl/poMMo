@@ -44,15 +44,19 @@ $json = new Pommo_Json();
 $success = false;
 
 if(isset($_POST['skip']) || (isset($_POST['template']) && !is_numeric($_POST['template'])))
+{
 	$success = true;
-elseif(isset($_POST['load'])) {
+}
+elseif(isset($_POST['load']))
+{
 	$template = current(Pommo_MailingTemplate::get(array('id' => $_POST['template'])));
 	Pommo::$_session['state']['mailing']['body'] = $template['body'];
 	Pommo::$_session['state']['mailing']['altbody'] = $template['altbody'];
 	
 	$success = true;
 }
-elseif(isset($_POST['delete'])) {
+elseif(isset($_POST['delete']))
+{
 	$msg = (Pommo_MailingTemplate::delete($_POST['template'])) ?
 		Pommo::_T('Template Deleted') :
 		Pommo::_T('Error with deletion.');
@@ -63,11 +67,12 @@ elseif(isset($_POST['delete'])) {
 		'msg' => $msg)
 	);
 }
-else {
+else
+{
 	$smarty->assign('templates',Pommo_MailingTemplate::getNames());
 	$smarty->display('admin/mailings/mailing/templates.tpl');
 	Pommo::kill();
 }
 
 $json->serve($success);
-?>
+

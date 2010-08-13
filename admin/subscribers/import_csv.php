@@ -23,8 +23,8 @@
  *********************************/
 require ('../../bootstrap.php');
 require_once(Pommo::$_baseDir.'inc/helpers/import.php');
-require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
-require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 
 Pommo::init(array('keep' => TRUE));
 $logger = & Pommo::$_logger;
@@ -51,7 +51,7 @@ foreach($preview as $row) {
 $smarty->assign('excludeUnsubscribed',(isset($_REQUEST['excludeUnsubscribed'])?true:false));
 $smarty->assign('preview',$preview);
 $smarty->assign('colNum',$cols);
-$smarty->assign('fields',PommoField::get());
+$smarty->assign('fields',Pommo_Fields::get());
 
 $smarty->display('admin/subscribers/import_csv.tpl');
 Pommo::kill();

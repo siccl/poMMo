@@ -155,7 +155,7 @@ class Pommo_Fields {
 		$query = $dbo->prepare($query,array($p['active'],$p['id']));
 		
 		while ($row = $dbo->getRows($query))
-			$o[$row['field_id']] = PommoField::makeDB($row);
+			$o[$row['field_id']] = Pommo_Fields::makeDB($row);
 
 		return $o;
 	}
@@ -219,7 +219,7 @@ class Pommo_Fields {
 			$in['ordering'] = $dbo->query($query, 0) + 1;
 		}
 		
-		if (!PommoField::validate($in))
+		if (!Pommo_Fields::validate($in))
 			return false;
 			
 		$query = "
@@ -305,7 +305,7 @@ class Pommo_Fields {
 		$dbo =& Pommo::$_dbo;
 		$logger =& Pommo::$_logger;
 		
-		$value = PommoHelper::trimArray(explode(',',$value));
+		$value = Pommo_Helper::trimArray(explode(',',$value));
 		
 		// add value to the array
 		$field['array'] = array_unique(array_merge($field['array'],$value));

@@ -22,8 +22,8 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/validate.php');
-require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Validate.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
 require_once(Pommo::$_baseDir.'inc/helpers/pending.php');
 
 Pommo::init(array('authLevel' => 0,'noSession' => true));
@@ -40,10 +40,10 @@ $smarty = new Pommo_Template();
 $smarty->prepareForSubscribeForm();
 
 // fetch the subscriber, validate code
-$subscriber = current(PommoSubscriber::get(array('email' => (empty($_REQUEST['email'])) ? '0' : $_REQUEST['email'], 'status' => 1)));
+$subscriber = current(Pommo_Subscribers::get(array('email' => (empty($_REQUEST['email'])) ? '0' : $_REQUEST['email'], 'status' => 1)));
 if (empty($subscriber))
 	Pommo::redirect('login.php');
-if ($_REQUEST['code'] != PommoSubscriber::getActCode($subscriber))
+if ($_REQUEST['code'] != Pommo_Subscribers::getActCode($subscriber))
 	Pommo::kill(Pommo::_T('Invalid activation code.'));
 	
 // check if we have pending request
@@ -60,7 +60,7 @@ if (!isset($_POST['d']))
 	$smarty->assign('d', $subscriber['data']);
 
 // check for an update + validate new subscriber info (also converts dates to ints)
-if (!empty ($_POST['update']) && PommoValidate::subscriberData($_POST['d'])) {
+if (!empty ($_POST['update']) && Pommo_Validate::subscriberData($_POST['d'])) {
 	
 	$newsub = array(
 		'id' => $subscriber['id'],
@@ -71,9 +71,9 @@ if (!empty ($_POST['update']) && PommoValidate::subscriberData($_POST['d'])) {
 	if (!empty($_POST['newemail'])) { // if change in email, validate and send confirmation of update
 		if ($_POST['newemail'] != $_POST['newemail2']) 
 			$logger->addErr(Pommo::_T('Emails must match.'));
-		elseif (!PommoHelper::isEmail($_POST['newemail']))
+		elseif (!Pommo_Helper::isEmail($_POST['newemail']))
 			$logger->addErr(Pommo::_T('Invalid Email Address'));
-		elseif (PommoHelper::isDupe($_POST['newemail']))
+		elseif (Pommo_Helper::isDupe($_POST['newemail']))
 			$logger->addMsg(Pommo::_T('Email address already exists. Duplicates are not allowed.'));	
 		else {
 			$newsub['email'] = $_POST['newemail'];
@@ -81,20 +81,20 @@ if (!empty ($_POST['update']) && PommoValidate::subscriberData($_POST['d'])) {
 			if(!$code)
 				die('Failed to Generate Pending Subscriber Code');
 			require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
-			PommoHelperMessages::sendMessage(array('to' => $newsub['email'], 'code' => $code, 'type' => 'update'));
+			Pommo_HelperMessages::sendMessage(array('to' => $newsub['email'], 'code' => $code, 'type' => 'update'));
 			
 			if (isset($notices['update']) && $notices['update'] == 'on')
-				PommoHelperMessages::notify($notices, $newsub, 'update');
+				Pommo_HelperMessages::notify($notices, $newsub, 'update');
 		}		
 	}
 	// else if NO change in email, update subscriber
-	elseif (!PommoSubscriber::update($newsub, 'REPLACE_ACTIVE')) 
+	elseif (!Pommo_Subscribers::update($newsub, 'REPLACE_ACTIVE')) 
 		$logger->addErr('Error updating subscriber.');
 	else { // update successful
 		$logger->addMsg(Pommo::_T('Your records have been updated.'));
 		require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
 		if (isset($notices['update']) && $notices['update'] == 'on')
-			PommoHelperMessages::notify($notices, $newsub, 'update');	
+			Pommo_HelperMessages::notify($notices, $newsub, 'update');	
 	}
 }
 // check if an unsubscribe was requested
@@ -107,7 +107,7 @@ elseif (!empty ($_POST['unsubscribe'])) {
 		'status' => 0,
 		'data' => array()
 	);
-	if (!PommoSubscriber::update($newsub))
+	if (!Pommo_Subscribers::update($newsub))
 		$logger->addErr('Error updating subscriber.');
 	else {
 		$dbvalues = Pommo_Api::configGet(array('messages'));
@@ -116,10 +116,10 @@ elseif (!empty ($_POST['unsubscribe'])) {
 		require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
 		
 		// send unsubscription email / print unsubscription message
-		PommoHelperMessages::sendMessage(array('to' => $subscriber['email'], 'type' => 'unsubscribe'));
+		Pommo_HelperMessages::sendMessage(array('to' => $subscriber['email'], 'type' => 'unsubscribe'));
 		
 		if ($comments || isset($notices['unsubscribe']) && $notices['unsubscribe'] == 'on') 
-			PommoHelperMessages::notify($notices, $subscriber, 'unsubscribe',$comments);
+			Pommo_HelperMessages::notify($notices, $subscriber, 'unsubscribe',$comments);
 		
 		$smarty->assign('unsubscribe', TRUE);
 	}

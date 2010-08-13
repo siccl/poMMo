@@ -3224,24 +3224,24 @@ msgstr "Преглед на очакващите"
 msgid "subscriber updated."
 msgstr "Обновяване от абонат"
 #
-# File: aardvark-development/inc/helpers/validate.php, line: 71
+# File: aardvark-development/classes/Pommo_Validate.php, line: 71
 #, php-format
 msgid "%s is a required field."
 msgstr "беше задължително поле."
 #
-# File: aardvark-development/inc/helpers/validate.php, line: 92
-# File: aardvark-development/inc/helpers/validate.php, line: 105
-# File: aardvark-development/inc/helpers/validate.php, line: 115
+# File: aardvark-development/classes/Pommo_Validate.php, line: 92
+# File: aardvark-development/classes/Pommo_Validate.php, line: 105
+# File: aardvark-development/classes/Pommo_Validate.php, line: 115
 #, php-format
 msgid "Illegal input for field %s."
 msgstr ""
 #
-# File: aardvark-development/inc/helpers/validate.php, line: 132
+# File: aardvark-development/classes/Pommo_Validate.php, line: 132
 #, php-format
 msgid "Field (%s) must be a date ("
 msgstr ""
 #
-# File: aardvark-development/inc/helpers/validate.php, line: 143
+# File: aardvark-development/classes/Pommo_Validate.php, line: 143
 #, php-format
 msgid "Field (%s) must be a number."
 msgstr ""

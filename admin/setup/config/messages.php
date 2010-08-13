@@ -43,11 +43,11 @@ $json = new Pommo_Json();
 if (isset($_POST['restore'])) {
 	require_once(Pommo::$_baseDir.'inc/helpers/messages.php');
 	switch (key($_POST['restore'])) {
-		case 'subscribe' : $messages = PommoHelperMessages::ResetDefault('subscribe'); break;
-		case 'activate' : $messages = PommoHelperMessages::resetDefault('activate'); break;
-		case 'unsubscribe' : $messages = PommoHelperMessages::resetDefault('unsubscribe'); break;
-		case 'confirm' : $messages = PommoHelperMessages::resetDefault('confirm'); break;
-		case 'update' : $messages = PommoHelperMessages::resetDefault('update'); break;
+		case 'subscribe' : $messages = Pommo_HelperMessages::ResetDefault('subscribe'); break;
+		case 'activate' : $messages = Pommo_HelperMessages::resetDefault('activate'); break;
+		case 'unsubscribe' : $messages = Pommo_HelperMessages::resetDefault('unsubscribe'); break;
+		case 'confirm' : $messages = Pommo_HelperMessages::resetDefault('confirm'); break;
+		case 'update' : $messages = Pommo_HelperMessages::resetDefault('update'); break;
 	}
 	// reset _POST.
 	$_POST = array();
@@ -59,10 +59,10 @@ if (isset($_POST['restore'])) {
 
 // ADD CUSTOM VALIDATOR FOR CHARSET
 function check_notifyMails($value, $empty, & $params, & $formvars) {
-	$mails = PommoHelper::trimArray(explode(',',$value));
+	$mails = Pommo_Helper::trimArray(explode(',',$value));
 	$ret = true;
 	foreach($mails as $mail)
-		if (!empty($mail) && !PommoHelper::isEmail($mail))
+		if (!empty($mail) && !Pommo_Helper::isEmail($mail))
 			$ret = false;
 	return $ret;
 }
@@ -127,7 +127,7 @@ if (!SmartyValidate :: is_registered_form('messages') || empty ($_POST)) {
 	$messages = unserialize($dbvalues['messages']);
 		
 	if (empty($messages)) 
-		$messages = PommoHelperMessages::resetDefault('all');
+		$messages = Pommo_HelperMessages::resetDefault('all');
 		
 	if (empty($notices)) 
 		$notices = array(

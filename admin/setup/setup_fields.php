@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 
 Pommo::init();
 $logger = & Pommo::$_logger;
@@ -37,7 +37,7 @@ $smarty->prepareForForm();
 
 // add field if requested, redirect to its edit page on success
 if (!empty ($_POST['field_name'])) {
-	$field = PommoField::make(array(
+	$field = Pommo_Fields::make(array(
 		'name' => $_POST['field_name'],
 		'type' => $_POST['field_type'],
 		'prompt' => 'Field Prompt',
@@ -45,7 +45,7 @@ if (!empty ($_POST['field_name'])) {
 		'active' => 'off'
 	));
 	
-	$id = PommoField::add($field);
+	$id = Pommo_Fields::add($field);
 	if ($id)
 		$smarty->assign('added',$id);
 	else
@@ -55,14 +55,14 @@ if (!empty ($_POST['field_name'])) {
 // check for a deletion request
 if (!empty ($_GET['delete'])) {
 
-	$field = PommoField::get(array('id' => $_GET['field_id']));
+	$field = Pommo_Fields::get(array('id' => $_GET['field_id']));
 	$field =& current($field);
 	
 	if (count($field) === 0) {
 		$logger->addMsg(Pommo::_T('Error with deletion.'));
 	}
 	else {
-		$affected = PommoField::subscribersAffected($field['id']);
+		$affected = Pommo_Fields::subscribersAffected($field['id']);
 		if(count($affected) > 0 && empty($_GET['dVal-force'])) {
 			$smarty->assign('confirm', array (
 				'title' => Pommo::_T('Confirm Action'),
@@ -73,7 +73,7 @@ if (!empty ($_GET['delete'])) {
 			Pommo::kill();
 		}
 		else {
-			(PommoField::delete($field['id'])) ?
+			(Pommo_Fields::delete($field['id'])) ?
 				Pommo::redirect($_SERVER['PHP_SELF']) :
 				$logger->addMsg(Pommo::_T('Error with deletion.'));
 		}
@@ -81,7 +81,7 @@ if (!empty ($_GET['delete'])) {
 }
 
 // Get array of fields. Key is ID, value is an array of the demo's info
-$fields = PommoField::get(array('byName' => FALSE));
+$fields = Pommo_Fields::get(array('byName' => FALSE));
 if (!empty($fields))
 	$smarty->assign('fields', $fields);
 	

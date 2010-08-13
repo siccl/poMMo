@@ -29,7 +29,7 @@ require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');
 
 set_time_limit(0);
 
-$code = PommoHelper::makeCode();
+$code = Pommo_Helper::makeCode();
 
 if(!PommoMailCtl::spawn(Pommo::$_baseUrl.'support/tests/mailing.runtime2.php?code='.$code)) 
 	Pommo::kill('Initial Spawn Failed! You must correct this before poMMo can send mailings.');
@@ -56,7 +56,7 @@ $die = false;
 $time = 0;
 while(!$die) {
 	sleep(10);
-	$o = PommoHelper::parseConfig(Pommo::$_workDir . '/mailing.test.php');
+	$o = Pommo_Helper::parseConfig(Pommo::$_workDir . '/mailing.test.php');
 	if (!isset($o['code']) || $o['code'] != $code) {
 		unlink(Pommo::$_workDir.'/mailing.test.php');
 		Pommo::kill('Spawning Failed. Codes did not match.');	

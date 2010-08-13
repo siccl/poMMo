@@ -83,14 +83,19 @@ class Pommo_Json
 	}
 	
 	// return/output the JSON
-	function serve($success = true) {
+	function serve($success = true)
+	{
 		$this->_output['success'] = $success;
 		
 		// if a default fail or success message exists, prefix it to the output message
-		if($success && $this->_successMsg) 
+		if($success && $this->_successMsg)
+		{
 			$this->prefix($this->_successMsg, $this->_output['message']);
+		}
 		elseif(!$success && $this->_failMsg)
+		{
 			$this->prefix($this->_failMsg, $this->_output['message']);
+		}
 			
 		die($this->encode($this->_output));
 	}
@@ -101,9 +106,12 @@ class Pommo_Json
 		$this->serve(false);
 	}
 	
-	function success($msg = false) {
+	function success($msg = false)
+	{
 		if($msg)
+		{
 			$this->addMsg($msg);
+		}
 		$this->serve(true);
 	}
 		

@@ -19,7 +19,7 @@
  */
 
 /* Collection of useful helper functions/"utilities"
- * NOTE: Should be called statically e.g. PommoHelper::helperFunction($arg1,...);
+ * NOTE: Should be called statically e.g. Pommo_Helper::helperFunction($arg1,...);
  */
 
 class Pommo_Helper

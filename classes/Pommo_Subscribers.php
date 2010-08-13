@@ -546,7 +546,7 @@ class Pommo_Subscribers
 
 			switch ($mode) {
 				case "REPLACE_ACTIVE":
-					require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+					require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 					$fields = Pommo_Fields::get(array('active' => TRUE));
 					$select = array_keys($fields);
 					break;

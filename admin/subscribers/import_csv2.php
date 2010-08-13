@@ -23,8 +23,8 @@
  *********************************/
 require ('../../bootstrap.php');
 require_once(Pommo::$_baseDir.'inc/helpers/import.php');
-require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
-require_once(Pommo::$_baseDir.'inc/helpers/validate.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Validate.php');
 
 Pommo::init(array('keep' => TRUE));
 $logger = & Pommo::$_logger;
@@ -48,31 +48,31 @@ while (($row = fgetcsv($fp,2048,',','"')) !== FALSE) {
 		$fid =& $_POST['f'][$key];
 		if (is_numeric($fid))
 			$subscriber['data'][$fid] = $col;
-		elseif ($fid == 'email' && PommoHelper::isEmail($col))
+		elseif ($fid == 'email' && Pommo_Helper::isEmail($col))
 			$subscriber['email'] = $col;
 		elseif ($fid == 'registered')
-			$subscriber['registered'] = PommoHelper::timeFromStr($col);
+			$subscriber['registered'] = Pommo_Helper::timeFromStr($col);
 		elseif ($fid == 'ip')
 			$subscriber['ip'] = $col;
 	}
 	if ($subscriber['email']) {
 		// check for dupe
 		// TODO -- DO THIS IN BATCH ??
-		if (PommoHelper::isDupe($subscriber['email'],$includeUnsubscribed)) {
+		if (Pommo_Helper::isDupe($subscriber['email'],$includeUnsubscribed)) {
 			$dupes++;
 			$dupe_emails []= $subscriber['email'];
 			continue;
 		}
 
 		// validate/fix data
-		if(!PommoValidate::subscriberData($subscriber['data'], array(
+		if(!Pommo_Validate::subscriberData($subscriber['data'], array(
 			'log' => false,
 			'ignore' => true,
 			'active' => false)))
 			$subscriber['flag'] = 9;
 
 		// add subscriber
-		if (PommoSubscriber::add($subscriber)) {
+		if (Pommo_Subscribers::add($subscriber)) {
 			$tally++;
 			if (isset($subscriber['flag']))
 				$flagged++;

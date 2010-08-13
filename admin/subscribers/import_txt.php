@@ -23,8 +23,8 @@
  *********************************/
 require ('../../bootstrap.php');
 require_once(Pommo::$_baseDir.'inc/helpers/import.php');
-require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
-require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 
 Pommo::init(array('keep' => TRUE));
 $logger = & Pommo::$_logger;
@@ -38,7 +38,7 @@ $smarty = new Pommo_Template();
 
 $emails =& Pommo::get('emails');
 $dupes =& Pommo::get('dupes');
-$fields =& PommoField::get();
+$fields =& Pommo_Fields::get();
 $flag = FALSE;
 
 foreach($fields as $field)
@@ -56,7 +56,7 @@ if(isset($_GET['continue'])) {
 		if($flag)
 			$subscriber['flag'] = 9;
 		
-		if(!PommoSubscriber::add($subscriber))
+		if(!Pommo_Subscribers::add($subscriber))
 			die('Error importing subscriber');
 	}
 

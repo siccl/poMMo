@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../../bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 
 Pommo::init(array('keep' => TRUE));
 $logger = & Pommo::$_logger;
@@ -37,7 +37,7 @@ $smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 // validate field ID
-$field = current(PommoField::get(array('id' => $_REQUEST['field_id'])));
+$field = current(Pommo_Fields::get(array('id' => $_REQUEST['field_id'])));
 if ($field['id'] != $_REQUEST['field_id'])
 	die('bad field ID');
 	
@@ -74,14 +74,14 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 		
 		/*
 		// make a difference between updated & original field
-		$update = array_diff_assoc(PommoField::makeDB($_POST),$field);
+		$update = array_diff_assoc(Pommo_Fields::makeDB($_POST),$field);
 		// restore the ID
 		$update['id'] = $field['id'];
 		*/
 		
 		// let MySQL do the difference processing
-		$update = PommoField::makeDB($_POST);
-		if (!PommoField::update($update))
+		$update = Pommo_Fields::makeDB($_POST);
+		if (!Pommo_Fields::update($update))
 			$json->fail('error updating field');
 			
 		$json->add('callbackFunction','updateField');

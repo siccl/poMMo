@@ -58,7 +58,7 @@ $dbvalues = Pommo_Api::configGet(array(
 ));
 
 // Initialize page state with default values overriden by those held in $_REQUEST
-$state =& Pommo_Api::stateInit('mailing',array(
+$state = Pommo_Api::stateInit('mailing',array(
 	'fromname' => $dbvalues['list_fromname'],
 	'fromemail' => $dbvalues['list_fromemail'],
 	'frombounce' => $dbvalues['list_frombounce'],

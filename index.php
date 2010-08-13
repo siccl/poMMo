@@ -108,7 +108,7 @@ elseif (!empty ($_POST['resetPassword']))
 		// create a password change request, send confirmation mail
 		$subscriber = array('id' => 0);
 		$code = PommoPending::add($subscriber,'password');
-		PommoHelperMessages::sendMessage(
+		Pommo_HelperMessages::sendMessage(
 				array('to' => Pommo::$_config['admin_email'],
 				'code' => $code, 'type' => 'password'));
 		

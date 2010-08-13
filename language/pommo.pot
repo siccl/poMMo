@@ -2951,24 +2951,24 @@ msgstr ""
 msgid "subscriber updated."
 msgstr ""
 
-#: aardvark-development/inc/helpers/validate.php:71
+#: aardvark-development/classes/Pommo_Validate.php:71
 #, php-format
 msgid "%s is a required field."
 msgstr ""
 
-#: aardvark-development/inc/helpers/validate.php:92
-#: aardvark-development/inc/helpers/validate.php:105
-#: aardvark-development/inc/helpers/validate.php:115
+#: aardvark-development/classes/Pommo_Validate.php:92
+#: aardvark-development/classes/Pommo_Validate.php:105
+#: aardvark-development/classes/Pommo_Validate.php:115
 #, php-format
 msgid "Illegal input for field %s."
 msgstr ""
 
-#: aardvark-development/inc/helpers/validate.php:132
+#: aardvark-development/classes/Pommo_Validate.php:132
 #, php-format
 msgid "Field (%s) must be a date ("
 msgstr ""
 
-#: aardvark-development/inc/helpers/validate.php:143
+#: aardvark-development/classes/Pommo_Validate.php:143
 #, php-format
 msgid "Field (%s) must be a number."
 msgstr ""

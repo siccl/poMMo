@@ -193,7 +193,7 @@ switch ($_REQUEST['call'])
 		$out = array('email' => $subscriber['email'],'id' => $subscriber['id']);
 		
 		// return human readable date formatting
-		require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+		require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 		$dateFields = Pommo_Fields::getByType('date');
 		
 		foreach($subscriber['data'] as $k => $val) {

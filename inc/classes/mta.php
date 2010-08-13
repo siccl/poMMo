@@ -25,7 +25,7 @@ require_once(Pommo::$_baseDir. 'inc/classes/mailctl.php');
 require_once(Pommo::$_baseDir. 'inc/classes/mailer.php');
 require_once(Pommo::$_baseDir. 'inc/classes/throttler.php');
 require_once(Pommo::$_baseDir. 'classes/Pommo_Mailing.php');
-require_once(Pommo::$_baseDir. 'inc/helpers/subscribers.php');
+require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 
  class PommoMTA {
 
@@ -259,7 +259,7 @@ require_once(Pommo::$_baseDir. 'inc/helpers/subscribers.php');
 		if(!$dbo->query($query))
 			$this->shutdown('Database Query failed: '.$query);
 
-		$this->_queue =& PommoSubscriber::get(array(
+		$this->_queue =& Pommo_Subscribers::get(array(
 			'id' => $dbo->getAll(false, 'assoc', 'subscriber_id')));
 		
 		if (empty($this->_queue))
@@ -399,7 +399,7 @@ require_once(Pommo::$_baseDir. 'inc/helpers/subscribers.php');
 		
 		if ($this->_test) { // don't respawn if this is a test mailing
 			PommoMailCtl::finish($this->_id,TRUE,TRUE);
-			PommoSubscriber::delete(current($this->_hash));
+			Pommo_Subscribers::delete(current($this->_hash));
 			session_destroy();
 			exit();
 		}

@@ -3267,24 +3267,24 @@ msgstr "nowe przetwarzanie!"
 msgid "subscriber updated."
 msgstr "użytkownik zaktualizowany"
 #
-# File: aardvark-development/inc/helpers/validate.php, line: 71
+# File: aardvark-development/classes/Pommo_Validate.php, line: 71
 #, php-format
 msgid "%s is a required field."
 msgstr "%s jest polem wymaganym."
 #
-# File: aardvark-development/inc/helpers/validate.php, line: 92
-# File: aardvark-development/inc/helpers/validate.php, line: 105
-# File: aardvark-development/inc/helpers/validate.php, line: 115
+# File: aardvark-development/classes/Pommo_Validate.php, line: 92
+# File: aardvark-development/classes/Pommo_Validate.php, line: 105
+# File: aardvark-development/classes/Pommo_Validate.php, line: 115
 #, php-format
 msgid "Illegal input for field %s."
 msgstr "Niewłaściwa wartość w polu %s."
 #
-# File: aardvark-development/inc/helpers/validate.php, line: 132
+# File: aardvark-development/classes/Pommo_Validate.php, line: 132
 #, php-format
 msgid "Field (%s) must be a date ("
 msgstr "Pole (%s) musi być datą (dd/mm/yyyy)."
 #
-# File: aardvark-development/inc/helpers/validate.php, line: 143
+# File: aardvark-development/classes/Pommo_Validate.php, line: 143
 #, php-format
 msgid "Field (%s) must be a number."
 msgstr "Pole (%s) musi być liczbą."

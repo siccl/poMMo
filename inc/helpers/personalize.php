@@ -18,14 +18,14 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-require_once(Pommo::$_baseDir. 'inc/helpers/fields.php');
-require_once(Pommo::$_baseDir. 'inc/helpers/subscribers.php');
+require_once(Pommo::$_baseDir. 'classes/Pommo_Fields.php');
+require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 
-class PommoHelperPersonalize {
+class Pommo_HelperPersonalize {
 	
 	/*
 	 * COMPATIBILITY ISSUE WITH REGEX ON WINDOWS (IIS) -- DEPRICATING IN FAVOR OF
-	 * PommoHelperPersonalize::search()  and PommoHelperPersonalize::replace()
+	 * Pommo_HelperPersonalize::search()  and Pommo_HelperPersonalize::replace()
 	 * 
 	 * LEAVING IN SOURCE FOR REFERENCE....
 	 */
@@ -68,7 +68,7 @@ class PommoHelperPersonalize {
 	  	}
 	} 
 	function & get(&$body) {
-		$fields = PommoField::get();
+		$fields = Pommo_Fields::get();
 		
 		$matches = array();
 		$pattern = '/\[\[([^\]|]+)(?:\|([^\]]+))?]]/';
@@ -151,7 +151,7 @@ class PommoHelperPersonalize {
 		if (preg_match_all($pattern, $body, $matches) < 1)
 			return $personalizations;
 		
-		$fields = PommoField::get();
+		$fields = Pommo_Fields::get();
 		foreach($matches[0] as $str) {
 			$p = array();
 			$p['search'] = $str;
@@ -187,10 +187,10 @@ class PommoHelperPersonalize {
 					$replace = $s['registered'];
 					break;
 				case '!unsubscribe':
-					$replace = Pommo::$_http.Pommo::$_baseUrl.'user/update.php?email='.$s['email'].'&code='.PommoSubscriber::getActCode($s);
+					$replace = Pommo::$_http.Pommo::$_baseUrl.'user/update.php?email='.$s['email'].'&code='.Pommo_Subscribers::getActCode($s);
 					break;
 				case '!weblink':
-					$replace = Pommo::$_http.Pommo::$_baseUrl.'user/mailings.php?mail_id='.$_GET['id'].'&email='.$s['email'].'&code='.PommoSubscriber::getActCode($s);
+					$replace = Pommo::$_http.Pommo::$_baseUrl.'user/mailings.php?mail_id='.$_GET['id'].'&email='.$s['email'].'&code='.Pommo_Subscribers::getActCode($s);
 					break;
 				case '!subscriber_id':
 					$replace = $s['id'];

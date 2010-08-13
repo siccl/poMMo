@@ -25,7 +25,7 @@
 require ('../../bootstrap.php');
 require_once(Pommo::$_baseDir.'inc/classes/sql.gen.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
-require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 require_once(Pommo::$_baseDir.'inc/helpers/rules.php');
 
 Pommo::init();
@@ -47,7 +47,7 @@ $state =& Pommo_Api::stateInit('groups_edit',array(
 	
 
 $groups = & Pommo_Groups::get();
-$fields = & PommoField::get();
+$fields = & Pommo_Fields::get();
 
 $group =& $groups[$state['group']];
 

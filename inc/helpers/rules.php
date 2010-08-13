@@ -164,14 +164,14 @@ class PommoRules {
 		PommoRules::deleteRule($group, $field, $logic);
 		
 		// get the field
-		require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
-		$field = current(PommoField::get(array('id' => $field)));
+		require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
+		$field = current(Pommo_Fields::get(array('id' => $field)));
 
 		foreach($values as $value) {
 			// if this is a date type field, convert the values from human readable date
 			//  strings to timestamps appropriate for matching
 			if($field['type'] == 'date')
-				$value = PommoHelper::timeFromStr($value);
+				$value = Pommo_Helper::timeFromStr($value);
 			$v[] = $dbo->prepare("(%i,%i,'%s','%s',%i)",array($group, $field['id'], $logic, $value, $type));
 		}
 		

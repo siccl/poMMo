@@ -37,7 +37,11 @@ $smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 if (Pommo_Mailing::isCurrent())
-	Pommo::kill(sprintf(Pommo::_T('A Mailing is currently processing. Visit the %sStatus%s page to check its progress.'),'<a href="mailing_status.php">','</a>'));
+{
+	Pommo::kill(sprintf(Pommo::_T('A Mailing is currently processing. Visit the
+			%sStatus%s page to check its progress.'),
+			'<a href="mailing_status.php">', '</a>'));
+}
 
 $dbvalues = Pommo_Api::configGet(array(
 	'list_fromname',
@@ -48,18 +52,19 @@ $dbvalues = Pommo_Api::configGet(array(
 ));
 
 // Initialize page state with default values overriden by those held in $_REQUEST
-$state =& Pommo_Api::stateInit('mailing',array(
-	'fromname' => $dbvalues['list_fromname'],
-	'fromemail' => $dbvalues['list_fromemail'],
-	'frombounce' => $dbvalues['list_frombounce'],
-	'list_charset' => $dbvalues['list_charset'],
-	'wysiwyg' => $dbvalues['list_wysiwyg'],
-	'mailgroup' => 'all',
-	'subject' => '',
-	'body' => '',
-	'altbody' => ''
-),
-$_POST);
+$state = Pommo_Api::stateInit('mailing',
+		array(
+			'fromname' => $dbvalues['list_fromname'],
+			'fromemail' => $dbvalues['list_fromemail'],
+			'frombounce' => $dbvalues['list_frombounce'],
+			'list_charset' => $dbvalues['list_charset'],
+			'wysiwyg' => $dbvalues['list_wysiwyg'],
+			'mailgroup' => 'all',
+			'subject' => '',
+			'body' => '',
+			'altbody' => ''
+		),
+		$_POST);
 
 // SmartyValidate Custom Validation Function
 function check_charset($value, $empty, & $params, & $formvars) {
@@ -78,7 +83,8 @@ function check_charset($value, $empty, & $params, & $formvars) {
 	return in_array($value, $validCharsets);
 }
 
-if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
+if (!SmartyValidate :: is_registered_form() || empty ($_POST))
+{
 	// ___ USER HAS NOT SENT FORM ___
 
 	SmartyValidate :: connect($smarty, true);
@@ -101,7 +107,9 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 	$vMsg['ishtml'] = $vMsg['mailgroup'] = Pommo::_T('Invalid Input');
 	$smarty->assign('vMsg', $vMsg);
 	
-} else {
+}
+else
+{
 	// ___ USER HAS SENT FORM ___
 
 	/**********************************
@@ -110,15 +118,17 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
 	$json = new Pommo_Json();
 
-	SmartyValidate :: connect($smarty);
+	SmartyValidate::connect($smarty);
 
-	if (SmartyValidate :: is_valid($_POST)) {
+	if (SmartyValidate::is_valid($_POST))
+	{
 		// __ FORM IS VALID
 
-		SmartyValidate :: disconnect();
+		SmartyValidate::disconnect();
 		$json->success();
-
-	} else {
+	}
+	else
+	{
 		// __ FORM NOT VALID
 		
 		$json->add('fieldErrors',$smarty->getInvalidFields());
@@ -131,4 +141,5 @@ $smarty->assign( 'mailgroups', $mailgroups );
 $smarty->assign('groups', Pommo_Groups::get());
 $smarty->assign($state);
 $smarty->display('admin/mailings/mailing/setup.tpl');
+
 

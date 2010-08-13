@@ -22,8 +22,8 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/validate.php');
-require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Validate.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
 
 Pommo::init(array('authLevel' => 0,'noSession' => true));
 $logger = & Pommo::$_logger;
@@ -59,17 +59,17 @@ $subscriber = array(
 );
 
 // ** check for correct email syntax
-if (!PommoHelper::isEmail($subscriber['email']))
+if (!Pommo_Helper::isEmail($subscriber['email']))
 	$logger->addErr(Pommo::_T('Invalid Email Address'));
 		
 // ** check if email already exists in DB ("duplicates are bad..")
-if (PommoHelper::isDupe($subscriber['email'])) {
+if (Pommo_Helper::isDupe($subscriber['email'])) {
 	$logger->addErr(Pommo::_T('Email address already exists. Duplicates are not allowed.'));
 	$smarty->assign('dupe', TRUE);
 }
 
 // check if errors exist with data, if so print results and die.
-if ($logger->isErr() || !PommoValidate::subscriberData($subscriber['data'], array(
+if ($logger->isErr() || !Pommo_Validate::subscriberData($subscriber['data'], array(
 	'active' => FALSE))) {
 	$smarty->assign('back', TRUE);
 	$smarty->display('user/process.tpl');
@@ -94,11 +94,11 @@ require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
 if ($config['list_confirm'] == 'on') { // email confirmation required. 
 	// add user as "pending"
 	
-	$subscriber['pending_code'] = PommoHelper::makeCode();
+	$subscriber['pending_code'] = Pommo_Helper::makeCode();
 	$subscriber['pending_type'] = 'add';
 	$subscriber['status'] = 2;
 	
-	$id = PommoSubscriber::add($subscriber);
+	$id = Pommo_Subscribers::add($subscriber);
 	if (!$id) {
 		$logger->addErr('Error adding subscriber! Please contact the administrator.');
 		$smarty->assign('back', TRUE);
@@ -108,10 +108,10 @@ if ($config['list_confirm'] == 'on') { // email confirmation required.
 		$logger->addMsg(Pommo::_T('Subscription request received.'));
 		
 		// send confirmation message.
-		if (PommoHelperMessages::sendMessage(array('to' => $subscriber['email'], 'code' => $subscriber['pending_code'], 'type' => 'confirm'))) {
+		if (Pommo_HelperMessages::sendMessage(array('to' => $subscriber['email'], 'code' => $subscriber['pending_code'], 'type' => 'confirm'))) {
 			$subscriber['registered'] = date("F j, Y, g:i a",$subscriber['registered']);
 			if ($comments || isset($notices['pending']) && $notices['pending'] == 'on')
-				PommoHelperMessages::notify($notices, $subscriber, 'pending', $comments);
+				Pommo_HelperMessages::notify($notices, $subscriber, 'pending', $comments);
 			
 			if ($config['site_confirm'])
 				Pommo::redirect($config['site_confirm']);
@@ -119,23 +119,23 @@ if ($config['list_confirm'] == 'on') { // email confirmation required.
 		else {
 			$smarty->assign('back', TRUE);
 			// delete the subscriber
-			PommoSubscriber::delete($id);
+			Pommo_Subscribers::delete($id);
 		}
 	}
 }
 else { // no email confirmation required
-	if (!PommoSubscriber::add($subscriber)) {
+	if (!Pommo_Subscribers::add($subscriber)) {
 		$logger->addErr('Error adding subscriber! Please contact the administrator.');
 		$smarty->assign('back', TRUE);
 	}
 	else {
 		
 		// send/print welcome message
-		PommoHelperMessages::sendMessage(array('to' => $subscriber['email'], 'type' => 'subscribe'));
+		Pommo_HelperMessages::sendMessage(array('to' => $subscriber['email'], 'type' => 'subscribe'));
 	
 		$subscriber['registered'] = date("F j, Y, g:i a",$subscriber['registered']);
 		if ($comments || isset($notices['subscribe']) && $notices['subscribe'] == 'on')
-			PommoHelperMessages::notify($notices, $subscriber, 'subscribe',$comments);
+			Pommo_HelperMessages::notify($notices, $subscriber, 'subscribe',$comments);
 		
 		// redirect
 		if ($config['site_success'])

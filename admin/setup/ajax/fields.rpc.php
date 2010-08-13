@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../../../bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 
 Pommo::init();
 $logger = & Pommo::$_logger;
@@ -61,13 +61,13 @@ switch ($_REQUEST['call']) {
 	case 'addOption' :
 	
 		// validate field ID
-		$field = current(PommoField::get(array('id' => $_REQUEST['field_id'])));
+		$field = current(Pommo_Fields::get(array('id' => $_REQUEST['field_id'])));
 		if ($field['id'] != $_REQUEST['field_id'])
 			die('bad field ID');
 	
 	
 		if(!empty($_REQUEST['options']))
-			$options = PommoField::optionAdd($field,$_REQUEST['options']);
+			$options = Pommo_Fields::optionAdd($field,$_REQUEST['options']);
 			if(!options)
 				$json->fail(Pommo::_T('Error with addition.'));
 			$json->add('callbackFunction','updateOptions');
@@ -79,11 +79,11 @@ switch ($_REQUEST['call']) {
 	case 'delOption' :
 		
 		// validate field ID
-		$field = current(PommoField::get(array('id' => $_REQUEST['field_id'])));
+		$field = current(Pommo_Fields::get(array('id' => $_REQUEST['field_id'])));
 		if ($field['id'] != $_REQUEST['field_id'])
 			die('bad field ID');
 	
-		$affected = PommoField::subscribersAffected($field['id'],$_REQUEST['options']);
+		$affected = Pommo_Fields::subscribersAffected($field['id'],$_REQUEST['options']);
 		if(count($affected) > 0 && empty($_REQUEST['confirmed'])) {
 			$msg = sprintf(Pommo::_T('Deleting option %1$s will affect %2$s subscribers who have selected this choice. They will be flagged as needing to update their records.'), '<b>'.$_REQUEST['options'].'</b>', '<em>'.count($affected).'</em>');
 			$msg .= "\n ".Pommo::_T('Are you sure?');
@@ -93,15 +93,15 @@ switch ($_REQUEST['call']) {
 		}
 		else {
 			
-			require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
+			require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
 			
-			$options = PommoField::optionDel($field,$_REQUEST['options']);
+			$options = Pommo_Fields::optionDel($field,$_REQUEST['options']);
 			if(!options)
 				$json->fail(Pommo::_T('Error with deletion.'));
 			
 			// flag subscribers for update
 			if(count($affected) > 0)
-				PommoSubscriber::flagByID($affected);
+				Pommo_Subscribers::flagByID($affected);
 			
 			$json->add('callbackFunction','updateOptions');
 			$json->add('callbackParams',$options);

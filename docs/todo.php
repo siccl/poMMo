@@ -59,7 +59,7 @@ http://www.pommo.org/community/viewtopic.php?pid=5031#p5031
 	http://www.pommo.org/community/viewtopic.php?id=439
 
 	NOTES:
-		MAKE BETTER USE OF PommoValidate::FUNCTIONS  (move more stuff to this file!)
+		MAKE BETTER USE OF Pommo_Validate::FUNCTIONS  (move more stuff to this file!)
 
 	SHORT TERM: (PR16)
 	=====================================

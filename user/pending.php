@@ -47,11 +47,11 @@ if (!$pending)
 switch ($pending['type']) {
 	case "add" : 
 		$msg = Pommo::_T('subscription request');
-		$pending['type'] = 'confirm'; // normalize for PommoHelperMessages::sendMessage
+		$pending['type'] = 'confirm'; // normalize for Pommo_HelperMessages::sendMessage
 		break;
 	case "change" :
 		$msg = Pommo::_T('record update request');
-		$pending['type'] = 'update'; // normalize for PommoHelperMessages::sendMessage
+		$pending['type'] = 'update'; // normalize for Pommo_HelperMessages::sendMessage
 		break;
 	case "password" :
 		$msg = Pommo::_T('password change request');
@@ -64,7 +64,7 @@ switch ($pending['type']) {
 if (!empty ($_POST)) {
 	if (isset ($_POST['reconfirm'])) {
 		require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
-		PommoHelperMessages::sendMessage(array('to' => $input['Email'], 'code' => $pending['code'], 'type' => $pending['type']));	
+		Pommo_HelperMessages::sendMessage(array('to' => $input['Email'], 'code' => $pending['code'], 'type' => $pending['type']));	
 	} elseif (isset($_POST['cancel'])) {
 		if (PommoPending::cancel($pending))
 			$logger->addMsg(sprintf(Pommo::_T('Your %s has been cancelled.'),$msg));		

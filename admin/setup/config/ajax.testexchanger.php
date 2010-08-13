@@ -62,7 +62,7 @@ if (!SmartyValidate :: is_registered_form('exchanger') || empty ($_POST)) {
 		// __ FORM IS VALID
 		require_once(Pommo::$_baseDir.'inc/helpers/messages.php');
 		
-		$msg = (PommoHelperMessages::testExchanger($_POST['email'],$exchanger)) ? 
+		$msg = (Pommo_HelperMessages::testExchanger($_POST['email'],$exchanger)) ? 
 			Pommo::_T('Mail Sent.') :
 			Pommo::_T('Error Sending Mail');
 			

@@ -68,7 +68,7 @@ class Pommo_Helper_Messages
 			
 			
 			if (empty($subject) || empty($body)) {
-				$logger->addErr('PommoHelperMessages::sendMessage() - subject or body empty');
+				$logger->addErr('Pommo_HelperMessages::sendMessage() - subject or body empty');
 				return false;
 			}
 				
@@ -189,7 +189,7 @@ class Pommo_Helper_Messages
 		global $pommo;
 		require_once(Pommo::$_baseDir.'inc/classes/mailer.php');
 		
-		$mails = PommoHelper::trimArray(explode(',',$notices['email']));
+		$mails = Pommo_Helper::trimArray(explode(',',$notices['email']));
 		if(empty($mails[0]))
 			$mails = array(Pommo::$_config['admin_email']);
 			
@@ -203,8 +203,8 @@ class Pommo_Helper_Messages
 		if($comments) $body .= "COMMENTS: $comments \n\n";
 		$body .= "DATA:\n";
 		
-		require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
-		$fields = PommoField::getNames();
+		require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
+		$fields = Pommo_Fields::getNames();
 		
 		foreach($sub['data'] as $fid => $v)
 			$body .= "\t".$fields[$fid].": $v\n";

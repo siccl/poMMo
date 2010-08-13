@@ -155,7 +155,7 @@ class Pommo
 		{
 			self::$_l10n = TRUE;
 			require_once(self::$_baseDir.'inc/helpers/l10n.php');
-			PommoHelperL10n::init(self::$_language, self::$_baseDir);
+			Pommo_HelperL10n::init(self::$_language, self::$_baseDir);
 		}
 		
 		//	make sure workDir is writable
@@ -314,7 +314,7 @@ class Pommo
 			{
 				self::$_l10n = TRUE;
 				require_once(self::$_baseDir.'inc/helpers/l10n.php');
-				PommoHelperL10n::init(self::$_session['slanguage'],
+				Pommo_HelperL10n::init(self::$_session['slanguage'],
 						self::$_baseDir);
 			}
 			self::$_slanguage = self::$_session['slanguage'];
@@ -361,15 +361,15 @@ class Pommo
 	 function _T($msg) {
 		global $pommo;
 		if(Pommo::$_escaping)
-			return (Pommo::$_l10n) ? htmlspecialchars(PommoHelperL10n::translate($msg)) : htmlspecialchars($msg);
-		return (Pommo::$_l10n) ? PommoHelperL10n::translate($msg) : $msg;
+			return (Pommo::$_l10n) ? htmlspecialchars(Pommo_HelperL10n::translate($msg)) : htmlspecialchars($msg);
+		return (Pommo::$_l10n) ? Pommo_HelperL10n::translate($msg) : $msg;
 	}
 
 	function _TP($msg, $plural, $count) { // for plurals
 		global $pommo;
 		if(Pommo::$_escaping)
-			return (Pommo::$_l10n) ? htmlspecialchars(PommoHelperL10n::translatePlural($msg, $plural, $count)) : htmlspecialchars($msg);
-		return (Pommo::$_l10n) ? PommoHelperL10n::translatePlural($msg, $plural, $count) : $msg;
+			return (Pommo::$_l10n) ? htmlspecialchars(Pommo_HelperL10n::translatePlural($msg, $plural, $count)) : htmlspecialchars($msg);
+		return (Pommo::$_l10n) ? Pommo_HelperL10n::translatePlural($msg, $plural, $count) : $msg;
 	}
 
 
@@ -468,7 +468,7 @@ class Pommo
 		if (self::$_debug)
 		{
 			require_once(self::$_baseDir.'inc/helpers/debug.php');
-			$debug = new PommoHelperDebug();
+			$debug = new Pommo_HelperDebug();
 			$debug->bmDebug();
 		}
 		

@@ -95,7 +95,7 @@ if (empty($_REQUEST['continue'])) {
 	$smarty->display('upgrade.tpl');
 	
 	require_once(Pommo::$_baseDir.'inc/helpers/maintenance.php');
-	if(!PommoHelperMaintenance::delDir(Pommo::$_workDir.'/pommo/smarty'))
+	if(!Pommo_HelperMaintenance::delDir(Pommo::$_workDir.'/pommo/smarty'))
 		$logger->addErr('Unable to Clear Working Directory (non fatal)');
 	
 	Pommo::kill();	

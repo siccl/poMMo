@@ -145,36 +145,54 @@ class Pommo_Api
 		return true;
 	}
 	
-	// initializes a page state
-	// accepts name of page state (usually unique per page)
-	// accepts array of default state variables
-	// accepts array of ovverriding variables
-	// returns the current page state (array)
-	function & stateInit($name = 'default', $defaults = array (), $source = array()) {
+	/*	stateInit
+	 *	initializes a page state
+	 *
+	 *	@param	string	$name.- Name of page state (usually unique per page)
+	 *	@param 	array	$defaults.- Default state variables
+	 *	@param	array	$source.- Overriding variables
+	 *
+	 *	@return	array	$state.- Current state
+	 */
+	function stateInit($name = 'default', $defaults = array (), $source = array())
+	{
 		if (empty(Pommo::$_session['state'][$name]))
-			Pommo::$_session['state'][$name] = $defaults;
+		{
+			Pommo::$_session['state'][$name] = &$defaults;
+		}
 		
-		$state = Pommo::$_session['state'][$name];
+		$state = &Pommo::$_session['state'][$name];
 		
-		if(empty($defaults))
+		if (empty($defaults))
+		{
 			return $state;
+		}
 
 		//Add support for passing multi select options
-		if ( is_array($source) ) {
-			foreach( $source as $k => $v ) {
-				if ( is_array( $source[$k] ) ) {
-					$source[$k] = implode( ',', $source[$k] );
+		if (is_array($source))
+		{
+			foreach ($source as $k => $v)
+			{
+				if (is_array($source[$k]))
+				{
+					$source[$k] = implode(',', $source[$k]);
 				}
 			}
 		}
 
 		foreach(array_keys($state) as $key)
+		{
 			if (array_key_exists($key,$source))
+			{
 				$state[$key] = $source[$key];
+			}
+		}
 		
 		// normalize the page state
-		if (count($state) > count($defaults)) 
+		if (count($state) > count($defaults))
+		{
 			$state = Pommo_Helper::arrayIntersect($state, $defaults);
+		} 
 			
 		return $state;
 	}

@@ -59,7 +59,7 @@ if (!SmartyValidate :: is_registered_form() || empty($_POST)) {
 	SmartyValidate :: connect($smarty);
 	if (SmartyValidate :: is_valid($_POST)) {
 		// __ FORM IS VALID __
-		if (PommoHelper::isDupe($_POST['Email'])) {
+		if (Pommo_Helper::isDupe($_POST['Email'])) {
 			if (PommoPending::isEmailPending($_POST['Email'])) {
 				$input = urlencode(serialize(array('Email' => $_POST['Email'])));
 				SmartyValidate :: disconnect();

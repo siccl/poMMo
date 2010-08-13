@@ -66,16 +66,16 @@ if(PommoPending::perform($pending)) {
 	require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
 	
 	// get subscriber info
-	require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
-	$subscriber = current(PommoSubscriber::get(array('id' => $pending['subscriber_id'])));
+	require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
+	$subscriber = current(Pommo_Subscribers::get(array('id' => $pending['subscriber_id'])));
 			
 	switch ($pending['type']) {
 		case "add" :
 			// send/print welcome message
-			PommoHelperMessages::sendMessage(array('to' => $subscriber['email'], 'type' => 'subscribe'));
+			Pommo_HelperMessages::sendMessage(array('to' => $subscriber['email'], 'type' => 'subscribe'));
 		
 			if (isset($notices['subscribe']) && $notices['subscribe'] == 'on') 
-				PommoHelperMessages::notify($notices, $subscriber, 'subscribe');
+				Pommo_HelperMessages::notify($notices, $subscriber, 'subscribe');
 				
 			if (!empty($config['site_success']))
 				Pommo::redirect($config['site_success']);
@@ -85,7 +85,7 @@ if(PommoPending::perform($pending)) {
 		case "change" :
 		
 			if (isset($notices['update']) && $notices['update'] == 'on')
-				PommoHelperMessages::notify($notices, $subscriber, 'update');
+				Pommo_HelperMessages::notify($notices, $subscriber, 'update');
 				
 			$logger->addMsg(Pommo::_T('Your records have been updated.'));
 			break;

@@ -23,7 +23,7 @@
  *********************************/
 require ('../bootstrap.php');
 require_once(Pommo::$_baseDir.'inc/helpers/templates.php');
-require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 
 Pommo::init();
 $logger = & Pommo::$_logger;
@@ -35,7 +35,7 @@ $dbo = & Pommo::$_dbo;
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
 $smarty = new Pommo_Template();
 
-$smarty->assign('fields',PommoField::get(array('byName'=>true)));
+$smarty->assign('fields',Pommo_Fields::get(array('byName'=>true)));
 $smarty->display('admin/mailings/mailing/ajax.personalize.tpl');
 Pommo::kill();
 ?>

@@ -23,7 +23,7 @@
 *********************************/
 require ('../../../bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
-require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 require_once(Pommo::$_baseDir.'inc/helpers/rules.php');
 			
 Pommo::init();
@@ -55,7 +55,7 @@ switch ($_REQUEST['call']) {
 			die('invalid input');
 	
 		if($_REQUEST['ruleType'] == 'field') {
-			$field = current(PommoField::get(array('id' => $_REQUEST['fieldID'])));
+			$field = current(Pommo_Fields::get(array('id' => $_REQUEST['fieldID'])));
 			$logic = (isset($_REQUEST['logic']) && $_REQUEST['logic'] != "0") ? $_REQUEST['logic'] : false;
 			$type = ($_REQUEST['type'] == 'or') ? 'or' : 'and';
 			
@@ -66,7 +66,7 @@ switch ($_REQUEST['call']) {
 				foreach($group['rules'] as $rule) {
 					if($rule['logic'] == $logic && $rule['field_id'] == $_REQUEST['fieldID']) {
 						$values[] = ($field['type'] == 'date') ? 
-							PommoHelper::timeFromStr($rule['value']) :
+							Pommo_Helper::timeFromStr($rule['value']) :
 							$rule['value'];
 					}
 				}

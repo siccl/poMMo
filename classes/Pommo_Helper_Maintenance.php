@@ -56,7 +56,7 @@
  	}
  	
  	function rememberBaseURL() {
- 		$config = PommoHelper::parseConfig(Pommo::$_workDir . '/maintenance.php');
+ 		$config = Pommo_Helper::parseConfig(Pommo::$_workDir . '/maintenance.php');
  		return $config['baseURL'];
  	}
  	

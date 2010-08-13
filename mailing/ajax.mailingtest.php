@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/fields.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
 Pommo::init(array('keep' => TRUE));
@@ -56,8 +56,8 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 	if (SmartyValidate :: is_valid($_POST) && !$current) {
 		// __ FORM IS VALID
 		require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');
-		require_once(Pommo::$_baseDir.'inc/helpers/subscribers.php');
-		require_once(Pommo::$_baseDir.'inc/helpers/validate.php');
+		require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
+		require_once(Pommo::$_baseDir.'classes/Pommo_Validate.php');
 		
 		// get a copy of the message state
 		// composition is valid (via preview.php)
@@ -70,8 +70,8 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 			'ip' => $_SERVER['REMOTE_ADDR'],
 			'status' => 0,
 			'data' => $_POST['d']);
-		PommoValidate::subscriberData($subscriber['data'],array('active' => FALSE, 'ignore' => TRUE, 'log' => false));
-		$key = PommoSubscriber::add($subscriber);
+		Pommo_Validate::subscriberData($subscriber['data'],array('active' => FALSE, 'ignore' => TRUE, 'log' => false));
+		$key = Pommo_Subscribers::add($subscriber);
 		if (!$key)
 			$logger->addErr('Unable to Add Subscriber');
 		else { // temp subscriber created
@@ -89,7 +89,7 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 			$state['current_status'] = 'stopped';
 			$state['command'] = 'restart';
 			$state['charset'] = $state['list_charset'];
-			$mailing = PommoHelper::arrayIntersect($state, $mailing);
+			$mailing = Pommo_Helper::arrayIntersect($state, $mailing);
 			$code = Pommo_Mailing::add($mailing);
 			
 			// populate queue
@@ -117,7 +117,7 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 if (Pommo::$_config['demo_mode'] == 'on')
 	$logger->addMsg(sprintf(Pommo::_T('%sDemonstration Mode%s is on -- no Emails will actually be sent. This is good for testing settings.'),'<a href="'.Pommo::$_baseUrl.'admin/setup/setup_configure.php#mailings">','</a>'));
 
-$smarty->assign('fields',PommoField::get());
+$smarty->assign('fields',Pommo_Fields::get());
 $smarty->display('admin/mailings/mailing/ajax.mailingtest.tpl');
 Pommo::kill();
 ?>
