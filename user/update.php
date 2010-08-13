@@ -80,11 +80,11 @@ if (!empty ($_POST['update']) && Pommo_Validate::subscriberData($_POST['d'])) {
 			$code = PommoPending::add($newsub, 'change');
 			if(!$code)
 				die('Failed to Generate Pending Subscriber Code');
-			require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
-			Pommo_HelperMessages::sendMessage(array('to' => $newsub['email'], 'code' => $code, 'type' => 'update'));
+			require_once(Pommo::$_baseDir . 'classes/Pommo_Helper_Messages.php');
+			Pommo_Helper_Messages::sendMessage(array('to' => $newsub['email'], 'code' => $code, 'type' => 'update'));
 			
 			if (isset($notices['update']) && $notices['update'] == 'on')
-				Pommo_HelperMessages::notify($notices, $newsub, 'update');
+				Pommo_Helper_Messages::notify($notices, $newsub, 'update');
 		}		
 	}
 	// else if NO change in email, update subscriber
@@ -92,9 +92,9 @@ if (!empty ($_POST['update']) && Pommo_Validate::subscriberData($_POST['d'])) {
 		$logger->addErr('Error updating subscriber.');
 	else { // update successful
 		$logger->addMsg(Pommo::_T('Your records have been updated.'));
-		require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
+		require_once(Pommo::$_baseDir . 'classes/Pommo_Helper_Messages.php');
 		if (isset($notices['update']) && $notices['update'] == 'on')
-			Pommo_HelperMessages::notify($notices, $newsub, 'update');	
+			Pommo_Helper_Messages::notify($notices, $newsub, 'update');	
 	}
 }
 // check if an unsubscribe was requested
@@ -113,13 +113,13 @@ elseif (!empty ($_POST['unsubscribe'])) {
 		$dbvalues = Pommo_Api::configGet(array('messages'));
 		$messages = unserialize($dbvalues['messages']);
 		
-		require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
+		require_once(Pommo::$_baseDir . 'classes/Pommo_Helper_Messages.php');
 		
 		// send unsubscription email / print unsubscription message
-		Pommo_HelperMessages::sendMessage(array('to' => $subscriber['email'], 'type' => 'unsubscribe'));
+		Pommo_Helper_Messages::sendMessage(array('to' => $subscriber['email'], 'type' => 'unsubscribe'));
 		
 		if ($comments || isset($notices['unsubscribe']) && $notices['unsubscribe'] == 'on') 
-			Pommo_HelperMessages::notify($notices, $subscriber, 'unsubscribe',$comments);
+			Pommo_Helper_Messages::notify($notices, $subscriber, 'unsubscribe',$comments);
 		
 		$smarty->assign('unsubscribe', TRUE);
 	}

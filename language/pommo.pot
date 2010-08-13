@@ -2810,56 +2810,56 @@ msgstr ""
 msgid "Can write to ERROR_LOG. Check work directory permissions!"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:51
+#: aardvark-development/classes/Pommo_Helper_Messages.php:51
 #, php-format
 msgid ""
 "An actvation mail has been sent to %s. Please follow its instructions to "
 "access your records."
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:57
+#: aardvark-development/classes/Pommo_Helper_Messages.php:57
 #, php-format
 msgid ""
 "A confirmation mail has been sent to %s. Please follow its instructions to "
 "complete your request."
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:86
+#: aardvark-development/classes/Pommo_Helper_Messages.php:86
 msgid "Error sending mail"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:116
+#: aardvark-development/classes/Pommo_Helper_Messages.php:116
 #, php-format
 msgid ""
 "Welcome to our mailing list. You can always login to update your records or "
 "unsubscribe by visiting: %s"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:117
+#: aardvark-development/classes/Pommo_Helper_Messages.php:117
 #, php-format
 msgid "Welcome to %s"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:118
+#: aardvark-development/classes/Pommo_Helper_Messages.php:118
 msgid "Welcome to our mailing list. Enjoy your stay."
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:124
+#: aardvark-development/classes/Pommo_Helper_Messages.php:124
 #, php-format
 msgid "Farewell from %s"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:125
+#: aardvark-development/classes/Pommo_Helper_Messages.php:125
 msgid ""
 "You have been unsubscribed and will not receive any more mailings from us. "
 "Feel free to come back anytime!"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:126
+#: aardvark-development/classes/Pommo_Helper_Messages.php:126
 msgid "You have successfully unsubscribed. Enjoy your travels."
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:132
+#: aardvark-development/classes/Pommo_Helper_Messages.php:132
 #, php-format
 msgid ""
 "You have requested to subscribe to %s. We would like to validate your email "
@@ -2867,87 +2867,87 @@ msgid ""
 "added ->"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:132
-#: aardvark-development/inc/helpers/messages.php:138
-#: aardvark-development/inc/helpers/messages.php:145
-#: aardvark-development/inc/helpers/messages.php:151
+#: aardvark-development/classes/Pommo_Helper_Messages.php:132
+#: aardvark-development/classes/Pommo_Helper_Messages.php:138
+#: aardvark-development/classes/Pommo_Helper_Messages.php:145
+#: aardvark-development/classes/Pommo_Helper_Messages.php:151
 msgid "If you have received this message in error, please ignore it."
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:133
+#: aardvark-development/classes/Pommo_Helper_Messages.php:133
 msgid "Subscription request"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:138
+#: aardvark-development/classes/Pommo_Helper_Messages.php:138
 #, php-format
 msgid "Someone has requested to access to your records for %s."
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:138
+#: aardvark-development/classes/Pommo_Helper_Messages.php:138
 msgid ""
 "You may edit your information or unsubscribe by visiting the link below ->"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:139
+#: aardvark-development/classes/Pommo_Helper_Messages.php:139
 #, php-format
 msgid "%s: Account Access."
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:145
+#: aardvark-development/classes/Pommo_Helper_Messages.php:145
 #, php-format
 msgid "You have requested to change your password for %s."
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:145
-#: aardvark-development/inc/helpers/messages.php:151
+#: aardvark-development/classes/Pommo_Helper_Messages.php:145
+#: aardvark-development/classes/Pommo_Helper_Messages.php:151
 msgid "Please validate this request by clicking the link below ->"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:146
+#: aardvark-development/classes/Pommo_Helper_Messages.php:146
 msgid "Change Password request"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:151
+#: aardvark-development/classes/Pommo_Helper_Messages.php:151
 #, php-format
 msgid "You have requested to update your records for %s."
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:152
+#: aardvark-development/classes/Pommo_Helper_Messages.php:152
 msgid "Update Records request"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:167
+#: aardvark-development/classes/Pommo_Helper_Messages.php:167
 msgid "poMMo test message"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:168
+#: aardvark-development/classes/Pommo_Helper_Messages.php:168
 #, php-format
 msgid "This message indicates that poMMo is able to use the %s exchanger."
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:180
+#: aardvark-development/classes/Pommo_Helper_Messages.php:180
 #: aardvark-development/admin/setup/config/ajax.testexchanger.php:67
 msgid "Error Sending Mail"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:197
+#: aardvark-development/classes/Pommo_Helper_Messages.php:197
 #, php-format
 msgid "poMMo %s Notice"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:214
+#: aardvark-development/classes/Pommo_Helper_Messages.php:214
 msgid "new subscriber!"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:217
+#: aardvark-development/classes/Pommo_Helper_Messages.php:217
 msgid "user unsubscribed."
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:220
+#: aardvark-development/classes/Pommo_Helper_Messages.php:220
 msgid "new pending!"
 msgstr ""
 
-#: aardvark-development/inc/helpers/messages.php:223
+#: aardvark-development/classes/Pommo_Helper_Messages.php:223
 msgid "subscriber updated."
 msgstr ""
 

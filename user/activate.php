@@ -23,7 +23,7 @@
  *********************************/
 require ('../bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
-require_once(Pommo::$_baseDir . 'inc/helpers/messages.php');
+require_once(Pommo::$_baseDir . 'classes/Pommo_Helper_Messages.php');
 
 Pommo::init(array('authLevel' => 0,'noSession' => true));
 $logger = & Pommo::$_logger;
@@ -57,7 +57,7 @@ $test = $dbo->query($query,0);
 // attempt to send activation code if once has not recently been sent
 if (empty($test)) {
 	$code = Pommo_Subscribers::getActCode($subscriber);
-	if (Pommo_HelperMessages::sendMessage(array('to' => $subscriber['email'], 'code' => $code, 'type' => 'activate'))) {
+	if (Pommo_Helper_Messages::sendMessage(array('to' => $subscriber['email'], 'code' => $code, 'type' => 'activate'))) {
 		
 		$smarty->assign('sent', true);
 		

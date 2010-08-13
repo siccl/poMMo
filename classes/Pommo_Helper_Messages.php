@@ -68,7 +68,7 @@ class Pommo_Helper_Messages
 			
 			
 			if (empty($subject) || empty($body)) {
-				$logger->addErr('Pommo_HelperMessages::sendMessage() - subject or body empty');
+				$logger->addErr('Pommo_Helper_Messages::sendMessage() - subject or body empty');
 				return false;
 			}
 				

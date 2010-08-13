@@ -41,13 +41,13 @@ $json = new Pommo_Json();
 
 // Check if user requested to restore defaults
 if (isset($_POST['restore'])) {
-	require_once(Pommo::$_baseDir.'inc/helpers/messages.php');
+	require_once(Pommo::$_baseDir.'classes/Pommo_Helper_Messages.php');
 	switch (key($_POST['restore'])) {
-		case 'subscribe' : $messages = Pommo_HelperMessages::ResetDefault('subscribe'); break;
-		case 'activate' : $messages = Pommo_HelperMessages::resetDefault('activate'); break;
-		case 'unsubscribe' : $messages = Pommo_HelperMessages::resetDefault('unsubscribe'); break;
-		case 'confirm' : $messages = Pommo_HelperMessages::resetDefault('confirm'); break;
-		case 'update' : $messages = Pommo_HelperMessages::resetDefault('update'); break;
+		case 'subscribe' : $messages = Pommo_Helper_Messages::ResetDefault('subscribe'); break;
+		case 'activate' : $messages = Pommo_Helper_Messages::resetDefault('activate'); break;
+		case 'unsubscribe' : $messages = Pommo_Helper_Messages::resetDefault('unsubscribe'); break;
+		case 'confirm' : $messages = Pommo_Helper_Messages::resetDefault('confirm'); break;
+		case 'update' : $messages = Pommo_Helper_Messages::resetDefault('update'); break;
 	}
 	// reset _POST.
 	$_POST = array();
@@ -127,7 +127,7 @@ if (!SmartyValidate :: is_registered_form('messages') || empty ($_POST)) {
 	$messages = unserialize($dbvalues['messages']);
 		
 	if (empty($messages)) 
-		$messages = Pommo_HelperMessages::resetDefault('all');
+		$messages = Pommo_Helper_Messages::resetDefault('all');
 		
 	if (empty($notices)) 
 		$notices = array(
