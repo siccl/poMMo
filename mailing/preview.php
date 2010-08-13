@@ -135,7 +135,7 @@ if (!empty ($_REQUEST['sendaway'])) {
 		// clear mailing composistion data from session
 		Pommo_Api::stateReset(array('mailing'));
 		$json->add('callbackFunction','redirect');
-		$json->add('callbackParams',Pommo::$_baseUrl.'admin/mailings/mailing_status.php');
+		$json->add('callbackParams',Pommo::$_baseUrl.'mailing_status.php');
 		
 	}
 	else {

@@ -1,7 +1,7 @@
 <div id="sidebar">
 
 <ul id="nav">
-<li><a href="{$url.base}admin/mailings/admin_mailings.php">{t}Mailings{/t}</a>
+<li><a href="{$url.base}admin_mailings.php">{t}Mailings{/t}</a>
 	{if $section == "mailings"}
 	<ul>
 	<li><a href="mailings_start.php">{t}Send{/t}</a></li>
