@@ -3289,7 +3289,7 @@ msgstr "Veld (%s) moet een datum zijn"
 msgid "Field (%s) must be a number."
 msgstr "Veld (%s) moet een getal zijn."
 #
-# File: aardvark-development/inc/classes/install.php, line: 49
+# File: aardvark-development/classes/Pommo_Install.php, line: 49
 msgid "Database Error: "
 msgstr "Database Fout:"
 #

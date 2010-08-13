@@ -2973,7 +2973,7 @@ msgstr ""
 msgid "Field (%s) must be a number."
 msgstr ""
 
-#: aardvark-development/inc/classes/install.php:49
+#: aardvark-development/classes/Pommo_Install.php:49
 msgid "Database Error: "
 msgstr ""
 

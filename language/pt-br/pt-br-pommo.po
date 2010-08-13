@@ -3310,7 +3310,7 @@ msgstr "Campo (%s) deve ser uma data ("
 msgid "Field (%s) must be a number."
 msgstr "Campo (%s) deve ser um número."
 #
-# File: aardvark-development/inc/classes/install.php, line: 49
+# File: aardvark-development/classes/Pommo_Install.php, line: 49
 msgid "Database Error: "
 msgstr "Erro do banco de dados:"
 #

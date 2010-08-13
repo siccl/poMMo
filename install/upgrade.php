@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('../bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/classes/install.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Install.php');
 Pommo::init(array('authLevel' => 0, 'install' => TRUE));
 Pommo::reloadConfig();
 
@@ -38,7 +38,7 @@ $smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 // Check to make sure poMMo is installed
-if (!PommoInstall::verify()) {
+if (!Pommo_Install::verify()) {
 	$logger->addErr(sprintf(Pommo::_T('poMMo does not appear to be installed! Please %s INSTALL %s before attempting an upgrade.'), '<a href="' . Pommo::$_baseUrl . 'install/install.php">', '</a>'));
 	$smarty->display('upgrade.tpl');
 	Pommo::kill();

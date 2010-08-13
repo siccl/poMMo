@@ -23,11 +23,11 @@
 	INITIALIZATION METHODS
  *********************************/
 define('_poMMo_support', TRUE);
-require ('../bootstrap.php');
+require ('bootstrap.php');
 Pommo::init();
 
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
@@ -37,4 +37,4 @@ $smarty = new Pommo_Template();
 
 
 $smarty->display('support/support.lib.tpl');
-Pommo::kill();
+

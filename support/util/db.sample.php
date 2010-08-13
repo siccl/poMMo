@@ -27,7 +27,7 @@ define('_poMMo_support', TRUE);
 require ('../../bootstrap.php');
 Pommo::init();
 
-require_once(Pommo::$_baseDir.'inc/classes/install.php'); 
+require_once(Pommo::$_baseDir.'classes/Pommo_Install.php'); 
 $dbo =& Pommo::$_dbo;
 
 // reset DB
@@ -46,7 +46,7 @@ foreach($dbo->table as $id => $table) {
 }
 
 $file = Pommo::$_baseDir."install/sql.sample.php";
-if(!PommoInstall::parseSQL(false,$file))
+if(!Pommo_Install::parseSQL(false,$file))
 	die('Could not load sample data. Database Reset.');
 
 /**********************************

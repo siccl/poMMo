@@ -3246,7 +3246,7 @@ msgstr ""
 msgid "Field (%s) must be a number."
 msgstr ""
 #
-# File: aardvark-development/inc/classes/install.php, line: 49
+# File: aardvark-development/classes/Pommo_Install.php, line: 49
 msgid "Database Error: "
 msgstr "Грешка в базата данни: "
 #

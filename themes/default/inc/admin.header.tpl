@@ -29,7 +29,7 @@
 
 <ul id="menu">
 <li><a href="{$url.base}index.php?logout=TRUE">{t}Logout{/t}</a></li>
-<li class="advanced"><a href="{$url.base}support/support.php">{t}Support{/t}</a></li>
+<li class="advanced"><a href="{$url.base}support.php">{t}Support{/t}</a></li>
 <li><a href="{$url.base}admin.php">{t}Admin Page{/t}</a></li>
 </ul>
 

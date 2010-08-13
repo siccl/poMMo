@@ -3289,7 +3289,7 @@ msgstr "Pole (%s) musi być datą (dd/mm/yyyy)."
 msgid "Field (%s) must be a number."
 msgstr "Pole (%s) musi być liczbą."
 #
-# File: aardvark-development/inc/classes/install.php, line: 49
+# File: aardvark-development/classes/Pommo_Install.php, line: 49
 msgid "Database Error: "
 msgstr "Błąd bazy danych:"
 #

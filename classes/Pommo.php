@@ -324,8 +324,8 @@ class Pommo
 		//	1 if installed)
 		if (defined('_poMMo_support'))
 		{
-			require_once(self::$_baseDir.'inc/classes/install.php');
-			$p['authLevel'] = (PommoInstall::verify()) ? 1 : 0;
+			require_once(self::$_baseDir.'classes/Pommo_Install.php');
+			$p['authLevel'] = (Pommo_Install::verify()) ? 1 : 0;
 		}
 		
 		// check authentication levels
