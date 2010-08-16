@@ -31,7 +31,7 @@ set_time_limit(0);
 
 $code = Pommo_Helper::makeCode();
 
-if(!PommoMailCtl::spawn(Pommo::$_baseUrl.'support/tests/mailing.runtime2.php?code='.$code)) 
+if(!PommoMailCtl::spawn(Pommo::$_baseUrl.'mailing.runtime2.php?code='.$code)) 
 	Pommo::kill('Initial Spawn Failed! You must correct this before poMMo can send mailings.');
 
 echo 'Initial Run Time: '.ini_get('max_execution_time').' seconds <br>';

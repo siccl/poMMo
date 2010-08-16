@@ -33,7 +33,7 @@ flush();
 
 $code = Pommo_Helper::makeCode();
 
-if(!PommoMailCtl::spawn(Pommo::$_baseUrl.'support/tests/mailing.test2.php?code='.$code,true)) 
+if(!PommoMailCtl::spawn(Pommo::$_baseUrl.'mailing.test2.php?code='.$code,true)) 
 	Pommo::kill('Initial Spawn Failed! You must correct this before poMMo can send mailings.');
 
 sleep(6);

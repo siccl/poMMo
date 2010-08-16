@@ -55,7 +55,7 @@ if($spawn > 0)
 sleep(1);
 
 // respawn test
-if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'support/tests/mailing.test2.php?'.
+if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'mailing.test2.php?'.
 	'code='.$code.
 	'&spawn='.$spawn,true)) {
 
