@@ -51,7 +51,7 @@ $().ready(function() {
 		else
 		$('div.t_description div',scope)
 			.html('{/literal}<img src="{$url.theme.shared}images/loader.gif" alt="Loading Icon" title="Please Wait" border="0" />{literal}')
-			.load('mailing/ajax.rpc.php?call=getTemplateDescription&id='+v);
+			.load('ajax/ajax.rpc.php?call=getTemplateDescription&id='+v);
 	});
 	
 	// called as success callback from form submission

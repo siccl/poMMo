@@ -21,7 +21,7 @@
 
 
 <ul class="inpage_menu">
-<li><a href="mailing/ajax.mailingtest.php" id="e_test"><img src="{$url.theme.shared}images/icons/world_test.png" alt="icon" border="0" align="absmiddle" />{t}Send Test{/t}</a></li>
+<li><a href="ajax/ajax.mailingtest.php" id="e_test"><img src="{$url.theme.shared}images/icons/world_test.png" alt="icon" border="0" align="absmiddle" />{t}Send Test{/t}</a></li>
 <li><a href="#" id="e_send"><img src="{$url.theme.shared}images/icons/world.png" alt="icon" border="0" align="absmiddle" />{t}Send Mailing{/t}</a></li>
 </ul>
 

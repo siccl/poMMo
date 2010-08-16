@@ -19,8 +19,8 @@
 
 <ul class="inpage_menu">
 <li><a href="#" id="e_toggle"><img src="{$url.theme.shared}images/icons/viewhtml.png" alt="icon" border="0" align="absmiddle" /><span id="toggleText">{t}Enable WYSIWYG{/t}</span></a></li>
-<li><a href="mailing/ajax.personalize.php" id="e_personalize"><img src="{$url.theme.shared}images/icons/subscribers_tiny.png" alt="icon" border="0" align="absmiddle" /> {t}Add Personalization{/t}</a></li>
-<li><a href="mailing/ajax.addtemplate.php" id="e_template"><img src="{$url.theme.shared}images/icons/edit.png" alt="icon" border="0" align="absmiddle" /> {t}Save as Template{/t}</a></li>
+<li><a href="ajax/ajax.personalize.php" id="e_personalize"><img src="{$url.theme.shared}images/icons/subscribers_tiny.png" alt="icon" border="0" align="absmiddle" /> {t}Add Personalization{/t}</a></li>
+<li><a href="ajax/ajax.addtemplate.php" id="e_template"><img src="{$url.theme.shared}images/icons/edit.png" alt="icon" border="0" align="absmiddle" /> {t}Save as Template{/t}</a></li>
 </ul>
 
 <div class="compose">
@@ -64,13 +64,13 @@ $().ready(function() {ldelim}
 		if(wysiwyg.enabled) {
 			if(wysiwyg.disable()) {
 				$('#toggleText').html(offText) 
-				$.getJSON('mailing/ajax.rpc.php?call=wysiwyg&disable=true');
+				$.getJSON('ajax/ajax.rpc.php?call=wysiwyg&disable=true');
 			}
 		}
 		else {
 			if(wysiwyg.enable()) {
 				$('#toggleText').html(onText);
-				$.getJSON('mailing/ajax.rpc.php?call=wysiwyg&enable=true');
+				$.getJSON('ajax/ajax.rpc.php?call=wysiwyg&enable=true');
 			}
 		}
 		return false;
@@ -91,7 +91,7 @@ $().ready(function() {ldelim}
 		
 		poMMo.pause();
 		
-		$.post('mailing/ajax.rpc.php?call=savebody',post,function(){
+		$.post('ajax/ajax.rpc.php?call=savebody',post,function(){
 			$('#dialog').jqmShow(trigger);
 			poMMo.resume();
 		});
@@ -108,7 +108,7 @@ $().ready(function() {ldelim}
 		
 		poMMo.pause();
 		
-		$.post('mailing/ajax.rpc.php?call=altbody',post,function(json){
+		$.post('ajax/ajax.rpc.php?call=altbody',post,function(json){
 			$('textarea[@name=altbody]').val(json.altbody);
 			poMMo.resume();
 		},"json");
@@ -126,7 +126,7 @@ $().ready(function() {ldelim}
 		
 		poMMo.pause();
 		
-		$.post('mailing/ajax.rpc.php?call=savebody',post,function(){
+		$.post('ajax/ajax.rpc.php?call=savebody',post,function(){
 			poMMo.resume();
 		});
 	});
