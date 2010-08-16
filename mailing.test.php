@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
  *********************************/
 define('_poMMo_support', TRUE);
-require ('../../bootstrap.php');
+require ('bootstrap.php');
 Pommo::init();
 
 require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');

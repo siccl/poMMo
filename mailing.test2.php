@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
  *********************************/
 define('_poMMo_support', TRUE);
-require ('../../bootstrap.php');
+require ('bootstrap.php');
 Pommo::init(array('install' => TRUE));
 $logger =& Pommo::$_logger;
 

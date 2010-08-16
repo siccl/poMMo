@@ -22,7 +22,7 @@
 /**********************************
 	INITIALIZATION METHODS
 *********************************/
-require ('../../bootstrap.php');
+require ('bootstrap.php');
 require_once(Pommo::$_baseDir.'inc/classes/sql.gen.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');

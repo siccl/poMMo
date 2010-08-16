@@ -24,7 +24,7 @@
 /**********************************
 	INITIALIZATION METHODS
 *********************************/
-require('../bootstrap.php');
+require('bootstrap.php');
 require_once(Pommo::$_baseDir.'inc/helpers/pending.php');
 
 Pommo::init(array('authLevel' => 0, 'noSession' => true));

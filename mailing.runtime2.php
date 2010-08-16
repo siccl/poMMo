@@ -31,7 +31,7 @@ else
 	
 ignore_user_abort(true);
 
-require ('../../bootstrap.php');
+require ('bootstrap.php');
 Pommo::init(array('noSession' => TRUE));
 
 $code = (empty($_GET['code'])) ? null : $_GET['code'];
