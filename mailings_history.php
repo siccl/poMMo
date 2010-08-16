@@ -21,12 +21,12 @@
 /**********************************
 	INITIALIZATION METHODS
 *********************************/
-require ('../../bootstrap.php');
+require ('bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
 Pommo::init();
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
@@ -42,7 +42,7 @@ $smarty->assign('returnStr', Pommo::_T('Mailings Page'));
  * order	- Order Type (ascending - ASC /descending - DESC)
  */
 // Initialize page state with default values overriden by those held in $_REQUEST
-$state =& Pommo_Api::stateInit('mailings_history',array(
+$state = Pommo_Api::stateInit('mailings_history',array(
 	'limit' => 10,
 	'sort' => 'end',
 	'order' => 'desc',
@@ -53,19 +53,25 @@ $state =& Pommo_Api::stateInit('mailings_history',array(
 	VALIDATION ROUTINES
 *********************************/
 	
-if(!is_numeric($state['limit']) || $state['limit'] < 1 || $state['limit'] > 1000)
+if (!is_numeric($state['limit']) || $state['limit'] < 1 || $state['limit'] > 1000)
+{
 	$state['limit'] = 10;
+}
 	
-if($state['order'] != 'asc' && $state['order'] != 'desc')
+if ($state['order'] != 'asc' && $state['order'] != 'desc')
+{
 	$state['order'] = 'asc';
+}
 	
-if($state['sort'] != 'start' &&
+if ($state['sort'] != 'start' &&
 	$state['sort'] != 'end' &&
 	$state['sort'] != 'subject' &&
 	$state['sort'] != 'sent' &&
 	$state['sort'] != 'status' &&
 	$state['sort'] != 'group')
-		$state['sort'] = 'end';
+{
+	$state['sort'] = 'end';
+}
 		
 		
 /**********************************
@@ -83,5 +89,4 @@ $smarty->assign('tally',$tally);
 $smarty->assign('mailings', $mailings);
 
 $smarty->display('admin/mailings/mailings_history.tpl');
-Pommo::kill();
-?>
+
