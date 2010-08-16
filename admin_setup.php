@@ -21,10 +21,10 @@
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require('../../bootstrap.php');
+require('bootstrap.php');
 Pommo::init();
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
@@ -33,4 +33,4 @@ require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
 $smarty = new Pommo_Template();
 
 $smarty->display('admin/setup/admin_setup.tpl');
-Pommo::kill();
+

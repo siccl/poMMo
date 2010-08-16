@@ -8,7 +8,7 @@
 
 <div><a href="{$url.base}admin/setup/setup_fields.php"><img src="{$url.theme.shared}images/icons/fields.png" alt="subscriber icon" class="navimage" />{t}Subscriber Fields{/t}</a> - {t}Choose the information you'd like to collect from your subscribers.{/t}</div>
 
-<div><a href="{$url.base}admin/setup/setup_form.php"><img src="{$url.theme.shared}images/icons/form.png" alt="form icon" class="navimage" />{t}Subscription Form{/t}</a> - {t}Preview and Generate the subscription form for your website.{/t}</div>
+<div><a href="{$url.base}setup_form.php"><img src="{$url.theme.shared}images/icons/form.png" alt="form icon" class="navimage" />{t}Subscription Form{/t}</a> - {t}Preview and Generate the subscription form for your website.{/t}</div>
 
 </div>
 

@@ -18,7 +18,7 @@
 	</ul>
 	{/if}
 </li>
-<li><a href="{$url.base}admin/setup/admin_setup.php">{t}Setup{/t}</a>
+<li><a href="{$url.base}admin_setup.php">{t}Setup{/t}</a>
 	{if $section == "setup"}
 	<ul>
 	<li class="advanced"><a href="setup_configure.php">{t}Configure{/t}</a></li>

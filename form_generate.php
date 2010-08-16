@@ -21,12 +21,12 @@
 /**********************************
 	INITIALIZATION METHODS
 *********************************/
-require ('../../bootstrap.php');
+require ('bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 
 Pommo::init();
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
  
 // URL which processes the form input + adds (or warns) subscriber to pending table.
 $signup_url = "http://" . $_SERVER['HTTP_HOST'] . Pommo::$_baseUrl . "user/process.php";
