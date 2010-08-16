@@ -45,7 +45,7 @@ foreach($dbo->table as $id => $table) {
 		die('ERROR setting AUTO_INCREMENT on '.$id); 
 }
 
-$file = Pommo::$_baseDir."install/sql.sample.php";
+$file = Pommo::$_baseDir."sql/sql.sample.php";
 if(!Pommo_Install::parseSQL(false,$file))
 	die('Could not load sample data. Database Reset.');
 

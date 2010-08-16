@@ -66,7 +66,7 @@ if (isset ($_REQUEST['disableDebug']))
 elseif (isset ($_REQUEST['debugInstall'])) $smarty->assign('debug', TRUE);
 
 if (empty($_REQUEST['continue'])) {
-	$logger->addErr(sprintf(Pommo::_T('To upgrade poMMo, %s click here %s'), '<a href="' . Pommo::$_baseUrl . 'install/upgrade.php?continue=TRUE">', '</a>'));
+	$logger->addErr(sprintf(Pommo::_T('To upgrade poMMo, %s click here %s'), '<a href="' . Pommo::$_baseUrl . 'upgrade.php?continue=TRUE">', '</a>'));
 } else {
 	$smarty->assign('attempt', TRUE);
 
