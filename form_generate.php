@@ -29,7 +29,7 @@ $logger = Pommo::$_logger;
 $dbo 	= Pommo::$_dbo;
  
 // URL which processes the form input + adds (or warns) subscriber to pending table.
-$signup_url = "http://" . $_SERVER['HTTP_HOST'] . Pommo::$_baseUrl . "user/process.php";
+$signup_url = "http://" . $_SERVER['HTTP_HOST'] . Pommo::$_baseUrl . "process.php";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

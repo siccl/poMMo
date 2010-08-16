@@ -102,7 +102,7 @@ elseif (!empty ($_POST['resetPassword']))
 			$input = urlencode(serialize(array('adminID' => TRUE,
 					'Email' => Pommo::$_config['admin_email'])));
 			Pommo::redirect(Pommo::$_http . Pommo::$_baseUrl .
-					'user/pending.php?input='.$input);
+					'pending.php?input='.$input);
 		}
 
 		// create a password change request, send confirmation mail

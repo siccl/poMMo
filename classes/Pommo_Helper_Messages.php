@@ -62,8 +62,8 @@ class Pommo_Helper_Messages
 			
 			// personalize body
 			$url = ($type == 'activate') ? 
-				Pommo::$_http.Pommo::$_baseUrl.'user/update.php?email='.$p['to'].'&code='.$p['code'] :
-				Pommo::$_http.Pommo::$_baseUrl.'user/confirm.php?code='.$p['code'];
+				Pommo::$_http.Pommo::$_baseUrl.'update.php?email='.$p['to'].'&code='.$p['code'] :
+				Pommo::$_http.Pommo::$_baseUrl.'confirm.php?code='.$p['code'];
 			$body = preg_replace('@\[\[URL\]\]@i',$url,$body);
 			
 			
@@ -113,7 +113,7 @@ class Pommo_Helper_Messages
 
 		if ($section == 'all' || $section == 'subscribe') {
 		$messages['subscribe'] = array();
-		$messages['subscribe']['msg'] = sprintf(Pommo::_T('Welcome to our mailing list. You can always login to update your records or unsubscribe by visiting: %s'),"\n  ".Pommo::$_http.Pommo::$_baseUrl.'user/login.php');
+		$messages['subscribe']['msg'] = sprintf(Pommo::_T('Welcome to our mailing list. You can always login to update your records or unsubscribe by visiting: %s'),"\n  ".Pommo::$_http.Pommo::$_baseUrl.'login.php');
 		$messages['subscribe']['sub'] = sprintf(Pommo::_T('Welcome to %s'), Pommo::$_config['list_name']); 
 		$messages['subscribe']['web'] = Pommo::_T('Welcome to our mailing list. Enjoy your stay.');
 		$messages['subscribe']['email'] = false;

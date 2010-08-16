@@ -8,7 +8,7 @@
 <li><a href="setup_form.php">{t}Return to Subscription Forms{/t}</a></li>
 </ul>
 
-<p><img src="{$url.theme.shared}images/icons/embed.png" alt="embed" class="navimage right" /> {t}Subscription forms can easily be added to your website using a line of code. You can use the PHP include listed below, or embed the actual HTML. Remember, you can also direct subscribers to the {/t}<a href="{$url.base}user/subscribe.php">{t}Default Subscribe Form{/t}</a>.</p>
+<p><img src="{$url.theme.shared}images/icons/embed.png" alt="embed" class="navimage right" /> {t}Subscription forms can easily be added to your website using a line of code. You can use the PHP include listed below, or embed the actual HTML. Remember, you can also direct subscribers to the {/t}<a href="{$url.base}subscribe.php">{t}Default Subscribe Form{/t}</a>.</p>
 
 <h3>{t}Mini Subscription Form{/t}</h3>
 

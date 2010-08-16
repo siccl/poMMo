@@ -42,7 +42,7 @@
 <label for="public_history">{t}Public Mailings{/t}{fv message="public_history"}</label>
 <input type="radio" name="public_history" value="on"{if $public_history == 'on'} checked="checked"{/if} /> {t}on{/t}
 <input type="radio" name="public_history" value="off"{if $public_history != 'on'} checked="checked"{/if} /> {t}off{/t}
-<span class="notes">{t escape=no 1="<a href='`$url.base`user/mailings.php'>" 2='</a>'}(When on, the public can view past mailings at this %1URL%2){/t}</span>
+<span class="notes">{t escape=no 1="<a href='`$url.base`mailings.php'>" 2='</a>'}(When on, the public can view past mailings at this %1URL%2){/t}</span>
 </div>
 
 <div>

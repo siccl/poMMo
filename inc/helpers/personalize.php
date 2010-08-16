@@ -187,10 +187,10 @@ class Pommo_HelperPersonalize {
 					$replace = $s['registered'];
 					break;
 				case '!unsubscribe':
-					$replace = Pommo::$_http.Pommo::$_baseUrl.'user/update.php?email='.$s['email'].'&code='.Pommo_Subscribers::getActCode($s);
+					$replace = Pommo::$_http.Pommo::$_baseUrl.'update.php?email='.$s['email'].'&code='.Pommo_Subscribers::getActCode($s);
 					break;
 				case '!weblink':
-					$replace = Pommo::$_http.Pommo::$_baseUrl.'user/mailings.php?mail_id='.$_GET['id'].'&email='.$s['email'].'&code='.Pommo_Subscribers::getActCode($s);
+					$replace = Pommo::$_http.Pommo::$_baseUrl.'mailings.php?mail_id='.$_GET['id'].'&email='.$s['email'].'&code='.Pommo_Subscribers::getActCode($s);
 					break;
 				case '!subscriber_id':
 					$replace = $s['id'];

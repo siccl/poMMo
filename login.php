@@ -74,7 +74,7 @@ if (!SmartyValidate :: is_registered_form() || empty($_POST)) {
 		else {
 			// __ REPORT STATUS
 			$logger->addMsg(Pommo::_T('Email address not found! Please try again.'));
-			$logger->addMsg(sprintf(Pommo::_T('To subscribe, %sclick here%s'),'<a href="'.Pommo::$_baseUrl.'user/subscribe.php?Email='.$_POST['Email'].'">','</a>'));
+			$logger->addMsg(sprintf(Pommo::_T('To subscribe, %sclick here%s'),'<a href="'.Pommo::$_baseUrl.'subscribe.php?Email='.$_POST['Email'].'">','</a>'));
 		}
 	}
 	$smarty->assign($_POST);

@@ -38,7 +38,7 @@ $smarty = new Pommo_Template();
 // attempt to detect if referer was set 
 //  TODO; enable HTTP_REFERER after stripping out ?input= tags. These will continually repeat
 //$referer = (!empty($_POST['bmReferer'])) ? $_POST['bmReferer'] : $_SERVER['HTTP_REFERER'];
-$referer = (!empty($_POST['bmReferer'])) ? $_POST['bmReferer'] : Pommo::$_http.Pommo::$_baseUrl.'user/subscribe.php';
+$referer = (!empty($_POST['bmReferer'])) ? $_POST['bmReferer'] : Pommo::$_http.Pommo::$_baseUrl.'subscribe.php';
 
 // append stored input
 $smarty->assign('referer',$referer.'?input='.urlencode(serialize($_POST)));

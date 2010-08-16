@@ -1,6 +1,6 @@
 <div id="subscribeForm">
 
-<form method="post" action="{$url.base}user/process.php">
+<form method="post" action="{$url.base}process.php">
 <fieldset>
 <legend>{t}Join newsletter{/t}</legend>
 
