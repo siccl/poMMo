@@ -10,7 +10,7 @@
 
 <p>
 <img src="{$url.theme.shared}images/icons/fields.png" alt="fields icon" class="navimage right" />
-{t escape=no 1="<a href='`$url.base`admin/subscribers/subscribers_groups.php'>" 2="</a>"}Subscriber fields allow you to collect information on list members. They are typically displayed on the subscription form, although "hidden" ones can be used for administrative purposes. %1Groups%2 are based on subscriber field values.{/t}
+{t escape=no 1="<a href='`$url.base`subscribers_groups.php'>" 2="</a>"}Subscriber fields allow you to collect information on list members. They are typically displayed on the subscription form, although "hidden" ones can be used for administrative purposes. %1Groups%2 are based on subscriber field values.{/t}
 </p>
 
 <form method="post" action="">

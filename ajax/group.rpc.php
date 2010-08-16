@@ -83,7 +83,7 @@ switch ($_REQUEST['call']) {
 			$smarty->assign('values',$values);
 			$smarty->assign('firstVal',$firstVal);
 		
-			$smarty->display('admin/subscribers/ajax/rule.field.tpl');
+			$smarty->display('ajax/rule.field.tpl');
 			Pommo::kill();
 		}
 		elseif($_REQUEST['ruleType'] == 'group') {
@@ -93,7 +93,7 @@ switch ($_REQUEST['call']) {
 			$smarty->assign('match_name',$match[$key]);
 			$smarty->assign('match_id',$key);
 			
-			$smarty->display('admin/subscribers/ajax/rule.group.tpl');
+			$smarty->display('ajax/rule.group.tpl');
 			Pommo::kill();
 		}
 	break;
@@ -120,7 +120,7 @@ switch ($_REQUEST['call']) {
 				break;
 		}
 		$json->add('callbackFunction','redirect');
-		$json->add('callbackParams',Pommo::$_baseUrl.'admin/subscribers/groups_edit.php');
+		$json->add('callbackParams',Pommo::$_baseUrl.'groups_edit.php');
 		$json->serve();
 	break;
 	
@@ -143,7 +143,7 @@ switch ($_REQUEST['call']) {
 				break;
 		}
 		$json->add('callbackFunction','redirect');
-		$json->add('callbackParams',Pommo::$_baseUrl.'admin/subscribers/groups_edit.php');
+		$json->add('callbackParams',Pommo::$_baseUrl.'groups_edit.php');
 		$json->serve();
 	break;
 

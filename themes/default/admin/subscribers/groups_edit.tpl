@@ -6,7 +6,7 @@
 {include file="inc/admin.header.tpl"}
 
 <ul class="inpage_menu">
-<li><a href="{$url.base}admin/subscribers/subscribers_groups.php">{t 1=$returnStr}Return to %1{/t}</a></li>
+<li><a href="{$url.base}subscribers_groups.php">{t 1=$returnStr}Return to %1{/t}</a></li>
 </ul>
 
 <h2>{t}Edit Group{/t}</h2>
@@ -45,7 +45,7 @@
 </div>
 
 <div>
-<label for="group">{t escape=no 1="<strong><a href=\"`$url.base`admin/subscribers/subscribers_groups.php\">" 2="</a></strong>"}or, Select a %1 group %2 to include or exclude{/t}</label>
+<label for="group">{t escape=no 1="<strong><a href=\"`$url.base`subscribers_groups.php\">" 2="</a></strong>"}or, Select a %1 group %2 to include or exclude{/t}</label>
 <select name="group">
 <option value="">-- {t}Choose Group{/t} --</option>
 {foreach from=$legalGroups key=id item=name}<option value="{$id}">{$name}</option>{/foreach}
