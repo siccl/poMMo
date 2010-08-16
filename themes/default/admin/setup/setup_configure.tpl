@@ -21,10 +21,10 @@
 
 <div id="tabs">
 	<ul>
-	    <li><a href="config/users.php"><span>{t}Users{/t}</span></a></li>
-	    <li><a href="config/general.php"><span>{t}General{/t}</span></a></li>
-	    <li><a href="config/mailings.php"><span>{t}Mailings{/t}</span></a></li>
-	    <li><a href="config/messages.php"><span>{t}Messages{/t}</span></a></li>
+	    <li><a href="ajax/users.php"><span>{t}Users{/t}</span></a></li>
+	    <li><a href="ajax/general.php"><span>{t}General{/t}</span></a></li>
+	    <li><a href="ajax/mailings.php"><span>{t}Mailings{/t}</span></a></li>
+	    <li><a href="ajax/messages.php"><span>{t}Messages{/t}</span></a></li>
 	</ul>
 </div>
 

@@ -115,7 +115,7 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 }
 
 if (Pommo::$_config['demo_mode'] == 'on')
-	$logger->addMsg(sprintf(Pommo::_T('%sDemonstration Mode%s is on -- no Emails will actually be sent. This is good for testing settings.'),'<a href="'.Pommo::$_baseUrl.'admin/setup/setup_configure.php#mailings">','</a>'));
+	$logger->addMsg(sprintf(Pommo::_T('%sDemonstration Mode%s is on -- no Emails will actually be sent. This is good for testing settings.'),'<a href="'.Pommo::$_baseUrl.'setup_configure.php#mailings">','</a>'));
 
 $smarty->assign('fields',Pommo_Fields::get());
 $smarty->display('admin/mailings/mailing/ajax.mailingtest.tpl');

@@ -13,7 +13,7 @@
 
 <p>
 <img src="{$url.theme.shared}images/icons/groups.png" alt="groups icon" class="navimage right" />
-{t escape=no 1="<a href=\"`$url.base`admin/setup/setup_fields.php\">" 2="</a>"}To add subscribers to a group you must create matching rules. Subscribers are automatically added to a group if their %1subscriber field%2 values "match" a Group's rules. For example, if you collect "AGE" and "COUNTRY" as %1subscriber fields%2, you can match those who are 21+ and living in Japan by creating two rules; one which matches "AGE" to greater than 20, and another which matches "Japan" to "COUNTRY". Including or excluding members of other groups is possible.{/t}
+{t escape=no 1="<a href=\"`$url.base`setup_fields.php\">" 2="</a>"}To add subscribers to a group you must create matching rules. Subscribers are automatically added to a group if their %1subscriber field%2 values "match" a Group's rules. For example, if you collect "AGE" and "COUNTRY" as %1subscriber fields%2, you can match those who are 21+ and living in Japan by creating two rules; one which matches "AGE" to greater than 20, and another which matches "Japan" to "COUNTRY". Including or excluding members of other groups is possible.{/t}
 </p>
 
 {include file="inc/messages.tpl"}
@@ -37,7 +37,7 @@
 <legend>{t}Add Rule{/t}</legend>
 
 <div>
-<label for="field">{t escape=no 1="<strong><a href=\"`$url.base`admin/setup/setup_fields.php\">" 2="</a></strong>"}Select a %1 field %2 to filter{/t}</label>
+<label for="field">{t escape=no 1="<strong><a href=\"`$url.base`setup_fields.php\">" 2="</a></strong>"}Select a %1 field %2 to filter{/t}</label>
 <select name="field">
 <option value="">-- {t}Choose Subscriber Field{/t} --</option>
 {foreach from=$legalFieldIDs key=id item=name}<option value="{$id}">{$fields[$id].name}</option>{/foreach}

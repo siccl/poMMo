@@ -1,7 +1,7 @@
 <div class="helpToggle">
 <img src="{$url.theme.shared}images/icons/help.png" alt="help icon" style="float: left; margin: 0 10px; 0 5px;" />
 <p>
-{t escape=no 1="<a href=\"`$url.base`admin/setup/setup_fields.php\">" 2="</a>"}Mailings may be personalized per subscriber. You can inject %1subscriber field%2 values, clickable links, and tracking information.{/t}
+{t escape=no 1="<a href=\"`$url.base`setup_fields.php\">" 2="</a>"}Mailings may be personalized per subscriber. You can inject %1subscriber field%2 values, clickable links, and tracking information.{/t}
 </p>
 
 <p>

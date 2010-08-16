@@ -4,7 +4,7 @@
 {include file="inc/admin.header.tpl"}
 
 <p><img src="{$url.theme.shared}images/icons/alert.png" class="navimage right" alt="thunderbolt icon" />
-{t escape=no 1="<a href='`$url.base`admin/setup/setup_configure.php#mailings'>" 2='</a>'}Mailings take place in the background so feel free to close this page, visit other sites, or even turn off your computer. You can always return to this status page by visiting the Mailings section.  %1Throttle settings%2 can also be adjusted -- although you must pause and revive the mailing before changes take effect.{/t}</p>
+{t escape=no 1="<a href='`$url.base`setup_configure.php#mailings'>" 2='</a>'}Mailings take place in the background so feel free to close this page, visit other sites, or even turn off your computer. You can always return to this status page by visiting the Mailings section.  %1Throttle settings%2 can also be adjusted -- although you must pause and revive the mailing before changes take effect.{/t}</p>
 
 <div>{t 1=$mailing.tally}Sending message to %1 subscribers.{/t}</div>
 

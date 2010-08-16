@@ -46,7 +46,7 @@
 </div>
 
 <div>
-<a href="config/ajax.throttle.php" id="throttleTrigger"><img src="{$url.theme.shared}images/icons/right.png" alt="icon" class="navimage" /> {t}Set mailing throttle values{/t}</a>
+<a href="ajax/ajax.throttle.php" id="throttleTrigger"><img src="{$url.theme.shared}images/icons/right.png" alt="icon" class="navimage" /> {t}Set mailing throttle values{/t}</a>
 <span class="notes">{t}(controls mails per second, bytes per second, and domain limits){/t}</span>
 <br clear="left" />
 </div>

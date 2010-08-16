@@ -58,13 +58,13 @@
 <option value="mail"{if $list_exchanger == 'mail'} selected="selected"{/if}>{t}PHP Mail Function{/t}</option>
 <option value="smtp"{if $list_exchanger == 'smtp'} selected="selected"{/if}>SMTP Relay</option>
 </select>
-&nbsp;&nbsp; - &nbsp;&nbsp; <a href="config/ajax.testexchanger.php" id="testTrigger">{t}Test Exchanger{/t}</a>
+&nbsp;&nbsp; - &nbsp;&nbsp; <a href="ajax/ajax.testexchanger.php" id="testTrigger">{t}Test Exchanger{/t}</a>
 <span class="notes">{t}(Select Mail Exchanger){/t}</span>
 </div>
 
 <div class="hidden" id="configSMTP">
 	<br clear="both" />
-	<a href="config/ajax.smtp.php" id="smtpTrigger"><img src="{$url.theme.shared}images/icons/right.png" alt="icon" class="navimage" /> {t}Setup your SMTP Servers{/t}</a>
+	<a href="ajax/ajax.smtp.php" id="smtpTrigger"><img src="{$url.theme.shared}images/icons/right.png" alt="icon" class="navimage" /> {t}Setup your SMTP Servers{/t}</a>
 	<span class="notes">{t}(configure SMTP relays){/t}</span>
 	<br clear="both" />
 </div>

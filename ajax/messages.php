@@ -53,7 +53,7 @@ if (isset($_POST['restore'])) {
 	$_POST = array();
 	
 	$json->add('callbackFunction','redirect');
-	$json->add('callbackParams',Pommo::$_baseUrl.'admin/setup/setup_configure.php?tab=Messages');
+	$json->add('callbackParams',Pommo::$_baseUrl.'setup_configure.php?tab=Messages');
 	$json->serve();
 }
 
