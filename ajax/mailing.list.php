@@ -21,7 +21,7 @@
 /**********************************
 	INITIALIZATION METHODS
 *********************************/
-require ('../../bootstrap.php');
+require ('../bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
 $config = Pommo_Api::configGet('public_history');

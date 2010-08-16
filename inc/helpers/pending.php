@@ -262,7 +262,7 @@ class PommoPending {
 		
 		// if the user is pending to be added, remove entire subscriber.
 		if ($in['type'] == 'add') {
-			Pommo::requireOnce(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
+			require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
 			return Pommo_Subscribers::delete($in['subscriber_id']);
 		}
 		
@@ -304,7 +304,7 @@ class PommoPending {
 				}
 				break;
 			case 'change': // update
-				Pommo::requireOnce(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
+				require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 				$subscriber =& $in['array'];
 				
 				if (!Pommo_Subscribers::update($subscriber,'REPLACE_ACTIVE')) {
@@ -313,7 +313,7 @@ class PommoPending {
 				}
 				break;
 			case 'password' : // change (admin) password
-				Pommo::requireOnce(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
+				require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 				$password = Pommo_Helper::makePassword();
 				
 				$config = Pommo_Api::configGet(array(

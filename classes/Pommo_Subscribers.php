@@ -351,7 +351,7 @@ class Pommo_Subscribers
 	*/
 	function & getIDByAttr($f = array('subscriber_pending' => array(), 'subscriber_data' => array(), 'subscribers' => array())) {
 		$dbo = Pommo::$_dbo;
-		Pommo::requireOnce(Pommo::$_baseDir.'inc/classes/sql.gen.php');
+		require_once(Pommo::$_baseDir.'inc/classes/sql.gen.php');
 		
 		$sql = array('where' => array(), 'join' => array());
 		

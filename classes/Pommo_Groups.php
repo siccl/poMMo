@@ -208,7 +208,7 @@ class Pommo_Groups {
 	// returns an array of subscriber IDs
 	function & getMemberIDs($group, $status = 1, $filter = false) {
 		$dbo =& Pommo::$_dbo;
-		Pommo::requireOnce(Pommo::$_baseDir. 'inc/classes/sql.gen.php');
+		require_once(Pommo::$_baseDir. 'inc/classes/sql.gen.php');
 		
 		if (empty($group['rules']) && $group['id'] != 0) {
 			$o = array();
@@ -226,7 +226,7 @@ class Pommo_Groups {
 	// returns a tally (int)
 	function tally($group, $status = 1) {
 		$dbo =& Pommo::$_dbo;
-		Pommo::requireOnce(Pommo::$_baseDir. 'inc/classes/sql.gen.php');
+		require_once(Pommo::$_baseDir. 'inc/classes/sql.gen.php');
 		
 		if (empty($group['rules']))
 			return 0;
