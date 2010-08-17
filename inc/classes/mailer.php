@@ -18,7 +18,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-require_once(Pommo::$_baseDir. 'inc/lib/phpmailer/class.phpmailer.php');
+require_once(Pommo::$_baseDir. 'lib/phpmailer/class.phpmailer.php');
 
 // TODO; class depricated since PR13.2 .. needs major overhaul!
 //  OLDSCHOOL KLUDGE
@@ -101,7 +101,7 @@ class PommoMailer extends PHPMailer {
 
 		$this->_sentCount = 0;
 		
-		$langPath = Pommo::$_baseDir . 'inc/lib/phpmailer/language/';
+		$langPath = Pommo::$_baseDir . 'lib/phpmailer/language/';
 		if (!$this->SetLanguage('en', $langPath))
 			return false;
 	}

@@ -26,8 +26,8 @@ Pommo::init();
 $logger = & Pommo::$_logger;
 $dbo = & Pommo::$_dbo;
 
-require_once(Pommo::$_baseDir . 'inc/lib/phpmailer/class.phpmailer.php');
-require_once(Pommo::$_baseDir . 'inc/lib/phpmailer/class.smtp.php');
+require_once(Pommo::$_baseDir . 'lib/phpmailer/class.phpmailer.php');
+require_once(Pommo::$_baseDir . 'lib/phpmailer/class.smtp.php');
 
 
 /**********************************

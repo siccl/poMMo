@@ -29,16 +29,16 @@ class Pommo_HelperL10n {
 
 		// load gettext emulation layer if PHP is not compiled w/ gettext support
 		if (!function_exists('gettext')) {
-			require_once($baseDir.'inc/lib/gettext/gettext.php');
-			require_once($baseDir.'inc/lib/gettext/gettext.inc');
+			require_once($baseDir.'lib/gettext/gettext.php');
+			require_once($baseDir.'lib/gettext/gettext.inc');
 		}
 		
 		// set the locale
 		if (!Pommo_HelperL10n::_setLocale(LC_MESSAGES, $language, $baseDir)) {
 			
 			// *** SYSTEM LOCALE COULD NOT BE USED, USE EMULTATION ****
-			require_once($baseDir.'inc/lib/gettext/gettext.php');
-			require_once($baseDir.'inc/lib/gettext/gettext.inc');
+			require_once($baseDir.'lib/gettext/gettext.php');
+			require_once($baseDir.'lib/gettext/gettext.inc');
 			if (!Pommo_HelperL10n::_setLocaleEmu(LC_MESSAGES, $language, $baseDir))
 				Pommo::kill('Error setting up language translation!');
 		}

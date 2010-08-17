@@ -170,7 +170,7 @@ class Pommo_Helper
 	function timeToStr($int) {
 		
 		if (!defined('ADODB_DATE_VERSION')) // safely load ADODB date library
-			require_once(Pommo::$_baseDir.'inc/lib/adodb/adodb-time.inc.php');
+			require_once(Pommo::$_baseDir.'lib/adodb-time.inc.php');
 
 		switch (Pommo::$_dateformat) {
 			case 1: $format = '%Y/%m/%d'; break;
@@ -188,7 +188,7 @@ class Pommo_Helper
 	{
 		
 		if (!defined('ADODB_DATE_VERSION')) // safely load ADODB date library
-			require_once(Pommo::$_baseDir.'inc/lib/adodb/adodb-time.inc.php');
+			require_once(Pommo::$_baseDir.'lib/adodb-time.inc.php');
 		
 		// normalize delimiter
 		str_replace('-','/',$str);
