@@ -98,7 +98,7 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 				$logger->addErr('Unable to Populate Queue');
 			
 			// spawn mailer
-			else if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'admin/mailings/mailings_send4.php?test=TRUE&code='.$code))
+			else if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?test=TRUE&code='.$code))
 				$logger->addErr('Unable to spawn background mailer');
 			else 
 				$smarty->assign('sent',$_POST['email']);

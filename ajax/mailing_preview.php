@@ -23,14 +23,7 @@
  *********************************/
 require ('../bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
-
-
-$config = Pommo_Api::configGet('public_history');
-if($config['public_history'] == 'on') {
-	Pommo::init(array('authLevel' => 0));
-} else {
-	Pommo::redirect('login.php');
-}
+Pommo::init();
 
 $logger = & Pommo::$_logger;
 $dbo = & Pommo::$_dbo;
@@ -41,7 +34,7 @@ if(isset($_REQUEST['mailings'])) {
 	$mailing = current(Pommo_Mailing::get(array('id' => $_REQUEST['mailings'])));
 }
 else
-	die();
+	$mailing = Pommo::$_session['state']['mailing'];
 
 	
 /**********************************

@@ -129,7 +129,7 @@ if (!empty ($_REQUEST['sendaway'])) {
 		if(!PommoMailCtl::queueMake($memberIDs))
 			$json->fail('Unable to populate queue');
 			
-		if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'admin/mailings/mailings_send4.php?code='.$code))
+		if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?code='.$code))
 			$json->fail('Unable to spawn background mailer');
 			
 		// clear mailing composistion data from session

@@ -23,7 +23,7 @@
 *********************************/
 $serial = (empty($_GET['serial'])) ? time() : addslashes($_GET['serial']);
 
-require ('../../bootstrap.php');
+require ('../bootstrap.php');
 require_once(Pommo::$_baseDir.'inc/classes/mta.php');
 
 Pommo::init(array('sessionID' => $serial, 'keep' => TRUE, 'authLevel' => 0));

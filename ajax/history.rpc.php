@@ -21,7 +21,7 @@
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('../../../bootstrap.php');
+require ('../bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
 Pommo::init();
@@ -89,7 +89,7 @@ switch ($_REQUEST['call']) {
 			'altbody' => $mailing['altbody']
 		));
 
-		Pommo::redirect(Pommo::$_baseUrl.'admin/mailings/mailings_start.php');
+		Pommo::redirect(Pommo::$_baseUrl.'mailings_start.php');
 	break;
 	
 	case 'delete' :

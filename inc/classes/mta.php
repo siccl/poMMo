@@ -410,7 +410,7 @@ require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 		}
 		
 		// respwn
-		if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'admin/mailings/mailings_send4.php?'.
+		if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?'.
 			'code='.$this->_code.
 			'&serial='.$this->_serial.
 			'&id='.$this->_id))

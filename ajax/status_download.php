@@ -17,33 +17,41 @@
  * along with program; see the file docs/LICENSE. If not, write to the
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
- 
- /**********************************
-	INITIALIZATION METHODS
- *********************************/
-require ('../../../bootstrap.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
-Pommo::init();
+require('../bootstrap.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
 
+Pommo::init();
 $logger = & Pommo::$_logger;
 $dbo = & Pommo::$_dbo;
 
-if(isset($_REQUEST['mailings'])) {
-	if(is_array($_REQUEST['mailings']))
-		$_REQUEST['mailings'] = $_REQUEST['mailings'][0];
-	$mailing = current(Pommo_Mailing::get(array('id' => $_REQUEST['mailings'])));
-}
-else
-	$mailing = Pommo::$_session['state']['mailing'];
-
+$map = array(
+	'sent' => 1,
+	'unsent' => 0,
+	'error' => 2);
 	
-/**********************************
-	SETUP TEMPLATE, PAGE
- *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
+$nameMap = array (
+	0 => 'Unsent_Subscribers',
+	1 => 'Sent_Subscribers',
+	2 => 'Failed_Subscribers'
+);
 
-$smarty->assign($mailing);
-$smarty->display('inc/mailing.tpl');
-Pommo::kill();
-?>
+$i = (isset($map[$_GET['type']])) ? $map[$_GET['type']] : false;
+if ($i === false)
+	die();
+	
+$query = "
+	SELECT s.email 
+	FROM ".$dbo->table['subscribers']." s
+	JOIN ".$dbo->table['queue']." q ON (s.subscriber_id = q.subscriber_id)
+	WHERE q.status = %i";
+$query = $dbo->prepare($query,array($i));
+$emails = $dbo->getAll($query,'assoc','email');
+
+$o = '';
+foreach($emails as $e)
+	$o .= "$e\r\n";
+	
+$size_in_bytes = strlen($o);
+header("Content-disposition:  attachment; filename=".$nameMap[$i].".txt; size=$size_in_bytes");
+print $o;
+exit;  
