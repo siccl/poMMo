@@ -25,7 +25,7 @@ require_once(Pommo::$_baseDir. 'lib/phpmailer/class.phpmailer.php');
 //   -- NEEDS TO USE parent:: !!
 
 // create bMailer class (an extension of PHPMailer)
-class PommoMailer extends PHPMailer {
+class Pommo_Mailer extends PHPMailer {
 
 	var $_charset;
 	var $_personalize;
@@ -50,7 +50,7 @@ class PommoMailer extends PHPMailer {
 
 	// called like $pommo = new bMailer(fromname,fromemail,frombounce, exchanger)
 	//  If an argument is not supplied, resorts to default value (from setup/config.php).
-	function PommoMailer($fromname = NULL, $fromemail = NULL, $frombounce = NULL, $exchanger = NULL, $demonstration = NULL, $charset = NULL, $personalize = FALSE) {
+	function Pommo_Mailer($fromname = NULL, $fromemail = NULL, $frombounce = NULL, $exchanger = NULL, $demonstration = NULL, $charset = NULL, $personalize = FALSE) {
 		global $pommo;
 		$this->logger =& Pommo::$_logger;
 		

@@ -22,7 +22,7 @@
  
  // includes
 require_once(Pommo::$_baseDir. 'classes/Pommo_Mail_Ctl.php');
-require_once(Pommo::$_baseDir. 'inc/classes/mailer.php');
+require_once(Pommo::$_baseDir. 'classes/Pommo_Mailer.php');
 require_once(Pommo::$_baseDir. 'classes/Pommo_Throttler.php');
 require_once(Pommo::$_baseDir. 'classes/Pommo_Mailing.php');
 require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');

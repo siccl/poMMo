@@ -66,7 +66,7 @@ http://www.pommo.org/community/viewtopic.php?pid=5031#p5031
 	
 	  (API) Migrate to SwiftMailer
 	  		- User Swift's Multi-Relay support
-	  		- Rewrite PommoMailer() class (PR13 deprication!)
+	  		- Rewrite Pommo_Mailer() class (PR13 deprication!)
 	  
 	  (API) Enhance Subscriber Import
 	  		- Protection against Timeouts

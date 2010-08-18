@@ -110,7 +110,7 @@ if(!isset(Pommo::$_session['personalization'])) {
  *********************************/
 $html = ($mailing->_mailing['ishtml'] == 'on') ? TRUE : FALSE;
 
-$mailer = new PommoMailer($mailing->_mailing['fromname'],$mailing->_mailing['fromemail'],$mailing->_mailing['frombounce'], $config['list_exchanger'],NULL,$mailing->_mailing['charset'], Pommo::$_session['personalization']);
+$mailer = new Pommo_Mailer($mailing->_mailing['fromname'],$mailing->_mailing['fromemail'],$mailing->_mailing['frombounce'], $config['list_exchanger'],NULL,$mailing->_mailing['charset'], Pommo::$_session['personalization']);
 if (!$mailer->prepareMail($mailing->_mailing['subject'], $mailing->_mailing['body'], $html, $mailing->_mailing['altbody']))
 	$mailer->shutdown('*** ERROR *** prepareMail() returned errors.');
 	

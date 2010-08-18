@@ -74,8 +74,8 @@ class Pommo_Helper_Messages
 				
 				
 		
-			require_once(Pommo::$_baseDir.'inc/classes/mailer.php');
-			$mail = new PommoMailer();
+			require_once(Pommo::$_baseDir.'classes/Pommo_Mailer.php');
+			$mail = new Pommo_Mailer();
 		
 			// allow mail to be sent, even if demo mode is on
 			$mail->toggleDemoMode("off");
@@ -162,12 +162,12 @@ class Pommo_Helper_Messages
 		global $pommo;
 		$logger =& Pommo::$_logger;
 		
-		require_once(Pommo::$_baseDir.'inc/classes/mailer.php');
+		require_once(Pommo::$_baseDir.'classes/Pommo_Mailer.php');
 		
 		$subject = Pommo::_T('poMMo test message');
 		$body = sprintf(Pommo::_T("This message indicates that poMMo is able to use the %s exchanger."),$exchanger);
 		
-		$mail = new PommoMailer();
+		$mail = new Pommo_Mailer();
 	
 		// allow mail to be sent, even if demo mode is on
 		$mail->toggleDemoMode("off");
@@ -187,7 +187,7 @@ class Pommo_Helper_Messages
 	
 	function notify(&$notices,&$sub,$type,$comments=false) {
 		global $pommo;
-		require_once(Pommo::$_baseDir.'inc/classes/mailer.php');
+		require_once(Pommo::$_baseDir.'classes/Pommo_Mailer.php');
 		
 		$mails = Pommo_Helper::trimArray(explode(',',$notices['email']));
 		if(empty($mails[0]))
@@ -224,7 +224,7 @@ class Pommo_Helper_Messages
 				break;
 		}
 		
-		$mail = new PommoMailer();
+		$mail = new Pommo_Mailer();
 	
 		// allow mail to be sent, even if demo mode is on
 		$mail->toggleDemoMode("off");
