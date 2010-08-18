@@ -21,11 +21,11 @@
 require_once(Pommo::$_baseDir. 'classes/Pommo_Fields.php');
 require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 
-class Pommo_HelperPersonalize {
+class Pommo_Helper_Personalize {
 	
 	/*
 	 * COMPATIBILITY ISSUE WITH REGEX ON WINDOWS (IIS) -- DEPRICATING IN FAVOR OF
-	 * Pommo_HelperPersonalize::search()  and Pommo_HelperPersonalize::replace()
+	 * Pommo_Helper_Personalize::search()  and Pommo_Helper_Personalize::replace()
 	 * 
 	 * LEAVING IN SOURCE FOR REFERENCE....
 	 */

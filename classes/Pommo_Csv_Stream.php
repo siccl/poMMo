@@ -19,7 +19,7 @@
  */
 
 
-class PommoCSVStream{
+class Pommo_Csv_Stream{
    var $position; 
    var $varname; 
    function stream_open($path, $mode, $options, &$opened_path){ 

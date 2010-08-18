@@ -27,7 +27,7 @@ require_once(Pommo::$_baseDir. 'inc/classes/throttler.php');
 require_once(Pommo::$_baseDir. 'classes/Pommo_Mailing.php');
 require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 
- class PommoMTA {
+ class Pommo_Mta {
 
 	// Attempted number of mails to process per queue batch.
 	var $_queueSize;
@@ -70,7 +70,7 @@ require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 	// the throttle object
 	var $_throttler;	
 	
-	function PommoMTA($args = array()) {
+	function Pommo_Mta($args = array()) {
 		
 		$defaults = array (
 			'queueSize' => 100,

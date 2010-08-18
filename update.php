@@ -24,7 +24,7 @@
 require ('bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Validate.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
-require_once(Pommo::$_baseDir.'inc/helpers/pending.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Pending.php');
 
 Pommo::init(array('authLevel' => 0,'noSession' => true));
 $logger = & Pommo::$_logger;
@@ -47,7 +47,7 @@ if ($_REQUEST['code'] != Pommo_Subscribers::getActCode($subscriber))
 	Pommo::kill(Pommo::_T('Invalid activation code.'));
 	
 // check if we have pending request
-if (PommoPending::isPending($subscriber['id'])) {
+if (Pommo_Pending::isPending($subscriber['id'])) {
 	$input = urlencode(serialize(array('Email' => $_POST['Email'])));
 	Pommo::redirect('pending.php?input='.$input);
 }
@@ -77,7 +77,7 @@ if (!empty ($_POST['update']) && Pommo_Validate::subscriberData($_POST['d'])) {
 			$logger->addMsg(Pommo::_T('Email address already exists. Duplicates are not allowed.'));	
 		else {
 			$newsub['email'] = $_POST['newemail'];
-			$code = PommoPending::add($newsub, 'change');
+			$code = Pommo_Pending::add($newsub, 'change');
 			if(!$code)
 				die('Failed to Generate Pending Subscriber Code');
 			require_once(Pommo::$_baseDir . 'classes/Pommo_Helper_Messages.php');

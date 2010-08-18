@@ -94,8 +94,8 @@ if (empty($_REQUEST['continue'])) {
 	// clear the working directory template files
 	$smarty->display('upgrade.tpl');
 	
-	require_once(Pommo::$_baseDir.'inc/helpers/maintenance.php');
-	if(!Pommo_HelperMaintenance::delDir(Pommo::$_workDir.'/pommo/smarty'))
+	require_once(Pommo::$_baseDir.'classes/Pommo_Helper_Maintenance.php');
+	if(!Pommo_Helper_Maintenance::delDir(Pommo::$_workDir.'/pommo/smarty'))
 		$logger->addErr('Unable to Clear Working Directory (non fatal)');
 	
 	Pommo::kill();	

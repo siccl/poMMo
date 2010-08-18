@@ -23,7 +23,7 @@
 // include the pending prototype object 
 require_once(Pommo::$_baseDir. 'inc/classes/prototypes.php');
 
-class PommoPending {
+class Pommo_Pending {
 	// make a pending template
 	// accepts a pending template (assoc array)
 	// return a pending object (array)
@@ -96,7 +96,7 @@ class PommoPending {
 			WHERE pending_code='%s' LIMIT 1";
 		$query = $dbo->prepare($query,array($code));
 		while ($row = $dbo->getRows($query)) 
-			$o = PommoPending::makeDB($row);
+			$o = Pommo_Pending::makeDB($row);
 		
 		return (empty($o)) ? false : $o;
 	}
@@ -124,7 +124,7 @@ class PommoPending {
 			LIMIT 1";
 		$query = $dbo->prepare($query,array($email));
 		while ($row = $dbo->getRows($query))
-			$o = PommoPending::makeDB($row);
+			$o = Pommo_Pending::makeDB($row);
 			
 		return (empty($o)) ? false : $o;
 	}
@@ -145,7 +145,7 @@ class PommoPending {
 			WHERE subscriber_id=%i LIMIT 1";
 		$query = $dbo->prepare($query,array($id));
 		while ($row = $dbo->getRows($query)) 
-			$o = PommoPending::makeDB($row);
+			$o = Pommo_Pending::makeDB($row);
 		
 		return (empty($o)) ? false : $o;
 	}
@@ -208,7 +208,7 @@ class PommoPending {
 			case 'password':
 				break;
 			default:
-				$logger->addErr('Unknown type passed to PommoPending::add');
+				$logger->addErr('Unknown type passed to Pommo_Pending::add');
 				return false;
 		}
 		
@@ -220,10 +220,10 @@ class PommoPending {
 				$subscriber : array()
 			);
 			
-		$pending = PommoPending::make($p);
+		$pending = Pommo_Pending::make($p);
 		
-		if (!PommoPending::validate($pending)) {
-			$logger->addErr('PommoPending::add() failed validation');
+		if (!Pommo_Pending::validate($pending)) {
+			$logger->addErr('Pommo_Pending::add() failed validation');
 			return false;
 		}
 		
@@ -231,7 +231,7 @@ class PommoPending {
 			$pending['array'] = serialize($pending['array']);
 		
 		// check for pre-existing pending request
-		if (PommoPending::isPending($pending['subscriber_id']))
+		if (Pommo_Pending::isPending($pending['subscriber_id']))
 			return false;
 			
 		$query = "
@@ -272,7 +272,7 @@ class PommoPending {
 			WHERE pending_id=%i";
 		$query = $dbo->prepare($query,array($in['id']));
 		if (!$dbo->query($query)) {
-			$logger->addErr('PommoPending::cancel() -> Error removing pending entry.');
+			$logger->addErr('Pommo_Pending::cancel() -> Error removing pending entry.');
 			return false;
 		}
 		return true;
@@ -287,7 +287,7 @@ class PommoPending {
 		$logger =& Pommo::$_logger;
 		
 		if (!is_numeric($in['id']) || !is_numeric($in['subscriber_id'])) {
-			$logger->addErr('PommoPending::perform() -> invalid pending object sent.');
+			$logger->addErr('Pommo_Pending::perform() -> invalid pending object sent.');
 			return false;
 		}
 		
@@ -299,7 +299,7 @@ class PommoPending {
 					WHERE subscriber_id=%i";
 				$query = $dbo->prepare($query,array($in['subscriber_id']));
 				if (!$dbo->query($query)) {
-					$logger->addErr('PommoPending::perform() -> Error updating subscriber.');
+					$logger->addErr('Pommo_Pending::perform() -> Error updating subscriber.');
 					return false;
 				}
 				break;
@@ -308,7 +308,7 @@ class PommoPending {
 				$subscriber =& $in['array'];
 				
 				if (!Pommo_Subscribers::update($subscriber,'REPLACE_ACTIVE')) {
-					$logger->addErr('PommoPending::perform() -> Error updating subscriber.');
+					$logger->addErr('Pommo_Pending::perform() -> Error updating subscriber.');
 					return false;
 				}
 				break;
@@ -334,7 +334,7 @@ class PommoPending {
 			WHERE pending_id=%i";
 		$query = $dbo->prepare($query,array($in['id']));
 		if (!$dbo->query($query)) {
-			$logger->addErr('PommoPending::perform() -> Error removing pending entry.');
+			$logger->addErr('Pommo_Pending::perform() -> Error removing pending entry.');
 			return false;
 		}
 		return true;

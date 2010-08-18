@@ -24,7 +24,7 @@
 require ('../bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
-require_once(Pommo::$_baseDir.'inc/helpers/rules.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Rules.php');
 			
 Pommo::init();
 $logger = & Pommo::$_logger;
@@ -74,8 +74,8 @@ switch ($_REQUEST['call']) {
 			$firstVal = (empty($values)) ? false : array_shift($values);
 
 			$logic = ($logic) ? 
-				PommoRules::getEnglish(array($logic)) : 
-				PommoRules::getEnglish(end(PommoRules::getLegal($group,array($field))));
+				Pommo_Rules::getEnglish(array($logic)) : 
+				Pommo_Rules::getEnglish(end(Pommo_Rules::getLegal($group,array($field))));
 				
 			$smarty->assign('type', $type);
 			$smarty->assign('field',$field);
@@ -102,11 +102,11 @@ switch ($_REQUEST['call']) {
 		switch($_REQUEST['logic']) {
 			case 'is_in':
 			case 'not_in':
-				PommoRules::addGroupRule($state['group'], $_REQUEST['field'], $_REQUEST['logic']);
+				Pommo_Rules::addGroupRule($state['group'], $_REQUEST['field'], $_REQUEST['logic']);
 				break;
 			case 'true':
 			case 'false':
-				PommoRules::addBoolRule($state['group'], $_REQUEST['field'], $_REQUEST['logic']);
+				Pommo_Rules::addBoolRule($state['group'], $_REQUEST['field'], $_REQUEST['logic']);
 				break;
 			case 'is':
 			case 'not':
@@ -116,7 +116,7 @@ switch ($_REQUEST['call']) {
 				$values = array_unique($_REQUEST['match']);
 				$type = ($_REQUEST['type'] == 'or') ? 'or' : 'and';
 				
-				PommoRules::addFieldRule($state['group'], $_REQUEST['field'], $_REQUEST['logic'], $values, $type);
+				Pommo_Rules::addFieldRule($state['group'], $_REQUEST['field'], $_REQUEST['logic'], $values, $type);
 				break;
 		}
 		$json->add('callbackFunction','redirect');
@@ -135,11 +135,11 @@ switch ($_REQUEST['call']) {
 					$json->add('callbackFunction','resume');
 					$json->success(Pommo::_T('At least 1 "and" rule must exist before an "or" rule takes effect.'));
 				}
-				PommoRules::changeType($group['id'], $_REQUEST['fieldID'], $_REQUEST['logic'], $_REQUEST['type']);
+				Pommo_Rules::changeType($group['id'], $_REQUEST['fieldID'], $_REQUEST['logic'], $_REQUEST['type']);
 				break;
 				
 			case 'delete' :
-				PommoRules::deleteRule($group['id'], $_REQUEST['fieldID'], $_REQUEST['logic']);
+				Pommo_Rules::deleteRule($group['id'], $_REQUEST['fieldID'], $_REQUEST['logic']);
 				break;
 		}
 		$json->add('callbackFunction','redirect');

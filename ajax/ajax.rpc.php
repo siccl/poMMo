@@ -52,8 +52,8 @@ switch ($_REQUEST['call']) {
 	break;
 	
 	case 'getTemplateDescription' :
-		require_once(Pommo::$_baseDir.'inc/helpers/templates.php');
-		$template = Pommo_MailingTemplate::getDescriptions(array('id' => $_REQUEST['id']));
+		require_once(Pommo::$_baseDir.'classes/Pommo_Mailing_Template.php');
+		$template = Pommo_Mailing_Template::getDescriptions(array('id' => $_REQUEST['id']));
 		$msg = (empty($template[$_REQUEST['id']])) ? 'Unknown' : $template[$_REQUEST['id']];
 		die($msg);
 	

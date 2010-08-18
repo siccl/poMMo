@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/import.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Csv_Stream.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 

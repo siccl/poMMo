@@ -26,7 +26,7 @@ require ('bootstrap.php');
 require_once(Pommo::$_baseDir.'inc/classes/sql.gen.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
-require_once(Pommo::$_baseDir.'inc/helpers/rules.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Rules.php');
 
 Pommo::init();
 $logger = & Pommo::$_logger;
@@ -67,14 +67,14 @@ foreach($rules as $key => $a) {
 
 $smarty->assign('fields',$fields);
 
-$smarty->assign('legalFieldIDs', PommoRules::getLegal($group, $fields));
-$smarty->assign('legalGroups', PommoRules::getLegalGroups($group, $groups));
+$smarty->assign('legalFieldIDs', Pommo_Rules::getLegal($group, $fields));
+$smarty->assign('legalGroups', Pommo_Rules::getLegalGroups($group, $groups));
 
 
 
 $smarty->assign('group',$group);
 
-$smarty->assign('logicNames',PommoRules::getEnglish());
+$smarty->assign('logicNames',Pommo_Rules::getEnglish());
 
 
 

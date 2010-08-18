@@ -25,7 +25,7 @@
 	INITIALIZATION METHODS
 *********************************/
 require('bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/pending.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Pending.php');
 
 Pommo::init(array('authLevel' => 0, 'noSession' => true));
 $logger = & Pommo::$_logger;
@@ -44,7 +44,7 @@ if (empty($_GET['code'])) {
 }
 
 // lookup code
-$pending = PommoPending::get($_GET['code']);
+$pending = Pommo_Pending::get($_GET['code']);
 
 if (!$pending) {
 	$logger->addMsg(Pommo::_T('Invalid code! Make sure you copied it correctly from the email.'));
@@ -61,7 +61,7 @@ $config = Pommo_Api::configGet(array (
 $messages = unserialize($config['messages']);
 $notices = unserialize($config['notices']);
 
-if(PommoPending::perform($pending)) {
+if(Pommo_Pending::perform($pending)) {
 	
 	require_once(Pommo::$_baseDir . 'classes/Pommo_Helper_Messages.php');
 	

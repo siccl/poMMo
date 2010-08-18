@@ -31,7 +31,7 @@ require_once(Pommo::$_baseDir. 'inc/classes/prototypes.php');
 	 *  altbody			(str)		Text body
 	 */
 
-class Pommo_MailingTemplate {
+class Pommo_Mailing_Template {
 	
 	// make a mailing template
 	// accepts a mailing template (assoc array)
@@ -100,7 +100,7 @@ class Pommo_MailingTemplate {
 		$query = $dbo->prepare($query,array($p['name'],$p['id']));
 		
 		while ($row = $dbo->getRows($query)) {
-			$o[$row['template_id']] = Pommo_MailingTemplate::makeDB($row); }
+			$o[$row['template_id']] = Pommo_Mailing_Template::makeDB($row); }
 
 		return $o;
 	}
@@ -172,7 +172,7 @@ class Pommo_MailingTemplate {
 		global $pommo;
 		$dbo =& Pommo::$_dbo;
 		
-		if (!Pommo_MailingTemplate::validate($in)) 
+		if (!Pommo_Mailing_Template::validate($in)) 
 			return false;
 		
 		$query = "

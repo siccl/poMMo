@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/import.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Csv_Stream.php');
 
 Pommo::init();
 $logger	= &Pommo::$_logger;
@@ -58,7 +58,7 @@ if (isset($_POST['submit']))
 		
 		//	wrap $c as a file stream -- requires PHP 4.3.2
 		//  for early versions investigate using tmpfile() -- efficient?
-		if (!stream_wrapper_register('pommoCSV', 'PommoCSVStream'))
+		if (!stream_wrapper_register('pommoCSV', 'Pommo_Csv_Stream'))
 		{
 			Pommo::kill('Failed to register pommoCSV');
 		}

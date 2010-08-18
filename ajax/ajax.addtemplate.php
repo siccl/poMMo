@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/templates.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mailing_Template.php');
 
 Pommo::init();
 $logger = & Pommo::$_logger;
@@ -55,13 +55,13 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 	if (SmartyValidate :: is_valid($_POST)) {
 		// __ FORM IS VALID
 		
-		$t = Pommo_MailingTemplate::make(array(
+		$t = Pommo_Mailing_Template::make(array(
 			'name' => $_POST['name'],
 			'description' => $_POST['description'],
 			'body' => Pommo::$_session['state']['mailing']['body'],
 			'altbody' => Pommo::$_session['state']['mailing']['altbody']
 		));
-		$id = Pommo_MailingTemplate::add($t);
+		$id = Pommo_Mailing_Template::add($t);
 		
 		if ($id) {
 			$logger->addMsg(sprintf(Pommo::_T('Template %s saved.'),'<strong>'.$_POST['name'].'</strong>'));

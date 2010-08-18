@@ -91,7 +91,7 @@ http://www.pommo.org/community/viewtopic.php?pid=5031#p5031
  	  
  	  (API) multi-byte safe -- see function overloading for common functions to replace
 			- http://us3.php.net/manual/en/ref.mbstring.php
-	  (API) Rewrite admin reset password request!  -- get rid of PommoPending::getBySubID()!!
+	  (API) Rewrite admin reset password request!  -- get rid of Pommo_Pending::getBySubID()!!
 	  (API) Abstract form errors into a common routine... build a forms validation class [much repetitive code ++ possibility of duplicate translations ]]
 	  
 	  (feature) Add specific emails to a group

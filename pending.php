@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
 *********************************/
 require('bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/pending.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Pending.php');
 
 Pommo::init(array('authLevel' => 0, 'noSession' => true));
 $logger = & Pommo::$_logger;
@@ -38,8 +38,8 @@ $input = (isset($_GET['input'])) ?
 	unserialize($_GET['input']) : array('Email' => NULL);
 
 $pending = (isset($input['adminID'])) ? // check to see if we're resetting admin password
-	PommoPending::getBySubID(0) :
-	PommoPending::getByEmail($input['Email']);
+	Pommo_Pending::getBySubID(0) :
+	Pommo_Pending::getByEmail($input['Email']);
 if (!$pending) 	
 	Pommo::redirect('login.php');
 	
@@ -66,7 +66,7 @@ if (!empty ($_POST)) {
 		require_once(Pommo::$_baseDir . 'classes/Pommo_Helper_Messages.php');
 		Pommo_Helper_Messages::sendMessage(array('to' => $input['Email'], 'code' => $pending['code'], 'type' => $pending['type']));	
 	} elseif (isset($_POST['cancel'])) {
-		if (PommoPending::cancel($pending))
+		if (Pommo_Pending::cancel($pending))
 			$logger->addMsg(sprintf(Pommo::_T('Your %s has been cancelled.'),$msg));		
 	}
 	$smarty->assign('nodisplay',TRUE);

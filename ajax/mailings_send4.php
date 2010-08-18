@@ -24,7 +24,7 @@
 $serial = (empty($_GET['serial'])) ? time() : addslashes($_GET['serial']);
 
 require ('../bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/classes/mta.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mta.php');
 
 Pommo::init(array('sessionID' => $serial, 'keep' => TRUE, 'authLevel' => 0));
 $logger = & Pommo::$_logger;
@@ -77,7 +77,7 @@ Pommo::$_session['spawn'] = (isset(Pommo::$_session['spawn'])) ? Pommo::$_sessio
 $p['spawn'] = Pommo::$_session['spawn'];
 
 // initialize MTA
-$mailing = new PommoMTA($p);
+$mailing = new Pommo_Mta($p);
 $logger->addMsg(sprintf(Pommo::_T('Started Mailing MTA. Spawn #%s.'),$p['spawn']),3,TRUE);
 
 // poll mailing status
@@ -87,7 +87,7 @@ $mailing->poll();
 // check if message body contains personalizations
 // personalizations are cached in session
 
-require_once(Pommo::$_baseDir.'inc/helpers/personalize.php'); // require once here so that mailer can use
+require_once(Pommo::$_baseDir.'classes/Pommo_Helper_Personalize.php'); // require once here so that mailer can use
 if(!isset(Pommo::$_session['personalization'])) {
 	Pommo::$_session['personalization'] = FALSE;
 	$matches = array();
@@ -100,8 +100,8 @@ if(!isset(Pommo::$_session['personalization'])) {
 
 	// cache personalizations in session
 	if (Pommo::$_session['personalization']) {
-		Pommo::$_session['personalization_body'] = Pommo_HelperPersonalize::search($mailing->_mailing['body']);
-		Pommo::$_session['personalization_altbody'] = Pommo_HelperPersonalize::search($mailing->_mailing['altbody']);
+		Pommo::$_session['personalization_body'] = Pommo_Helper_Personalize::search($mailing->_mailing['body']);
+		Pommo::$_session['personalization_altbody'] = Pommo_Helper_Personalize::search($mailing->_mailing['altbody']);
 	}
 }
 

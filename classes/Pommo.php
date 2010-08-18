@@ -109,7 +109,7 @@ class Pommo
 			}
 			else
 			{
-				$regex = '@/(mailing|inc|setup|user|install|support(/tests|/util)?|'.
+				$regex = '@/(ajax|inc|setup|user|install|support(/tests|/util)?|'.
 						'admin(/subscribers|/user|/mailings|/setup)?'.
 						'(/ajax|/mailing|/config)?)$@i';
 				$baseUrl = preg_replace($regex, '',
@@ -154,8 +154,8 @@ class Pommo
 		if (self::$_language != 'en')
 		{
 			self::$_l10n = TRUE;
-			require_once(self::$_baseDir.'inc/helpers/l10n.php');
-			Pommo_HelperL10n::init(self::$_language, self::$_baseDir);
+			require_once(self::$_baseDir.'classes/Pommo_Helper_L10n');
+			Pommo_Helper_L10n::init(self::$_language, self::$_baseDir);
 		}
 		
 		//	make sure workDir is writable
@@ -313,8 +313,8 @@ class Pommo
 			else
 			{
 				self::$_l10n = TRUE;
-				require_once(self::$_baseDir.'inc/helpers/l10n.php');
-				Pommo_HelperL10n::init(self::$_session['slanguage'],
+				require_once(self::$_baseDir.'classes/Pommo_Helper_L10n');
+				Pommo_Helper_L10n::init(self::$_session['slanguage'],
 						self::$_baseDir);
 			}
 			self::$_slanguage = self::$_session['slanguage'];
@@ -361,15 +361,15 @@ class Pommo
 	 function _T($msg) {
 		global $pommo;
 		if(Pommo::$_escaping)
-			return (Pommo::$_l10n) ? htmlspecialchars(Pommo_HelperL10n::translate($msg)) : htmlspecialchars($msg);
-		return (Pommo::$_l10n) ? Pommo_HelperL10n::translate($msg) : $msg;
+			return (Pommo::$_l10n) ? htmlspecialchars(Pommo_Helper_L10n::translate($msg)) : htmlspecialchars($msg);
+		return (Pommo::$_l10n) ? Pommo_Helper_L10n::translate($msg) : $msg;
 	}
 
 	function _TP($msg, $plural, $count) { // for plurals
 		global $pommo;
 		if(Pommo::$_escaping)
-			return (Pommo::$_l10n) ? htmlspecialchars(Pommo_HelperL10n::translatePlural($msg, $plural, $count)) : htmlspecialchars($msg);
-		return (Pommo::$_l10n) ? Pommo_HelperL10n::translatePlural($msg, $plural, $count) : $msg;
+			return (Pommo::$_l10n) ? htmlspecialchars(Pommo_Helper_L10n::translatePlural($msg, $plural, $count)) : htmlspecialchars($msg);
+		return (Pommo::$_l10n) ? Pommo_Helper_L10n::translatePlural($msg, $plural, $count) : $msg;
 	}
 
 
@@ -467,8 +467,8 @@ class Pommo
 		// output debugging info if enabled (in config.php)
 		if (self::$_debug)
 		{
-			require_once(self::$_baseDir.'inc/helpers/debug.php');
-			$debug = new Pommo_HelperDebug();
+			require_once(self::$_baseDir.'classes/Pommo_Helper_Debug.php');
+			$debug = new Pommo_Helper_Debug();
 			$debug->bmDebug();
 		}
 		

@@ -18,7 +18,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-class Pommo_HelperL10n {
+class Pommo_Helper_L10n {
 	function init($language, $baseDir) {
 
 		if (!is_file($baseDir . 'language/' . $language . '/LC_MESSAGES/pommo.mo'))
@@ -34,12 +34,12 @@ class Pommo_HelperL10n {
 		}
 		
 		// set the locale
-		if (!Pommo_HelperL10n::_setLocale(LC_MESSAGES, $language, $baseDir)) {
+		if (!Pommo_Helper_L10n::_setLocale(LC_MESSAGES, $language, $baseDir)) {
 			
 			// *** SYSTEM LOCALE COULD NOT BE USED, USE EMULTATION ****
 			require_once($baseDir.'lib/gettext/gettext.php');
 			require_once($baseDir.'lib/gettext/gettext.inc');
-			if (!Pommo_HelperL10n::_setLocaleEmu(LC_MESSAGES, $language, $baseDir))
+			if (!Pommo_Helper_L10n::_setLocaleEmu(LC_MESSAGES, $language, $baseDir))
 				Pommo::kill('Error setting up language translation!');
 		}
 		else {
@@ -72,7 +72,7 @@ class Pommo_HelperL10n {
 	function _setlocale($category, $locale, $baseDir) {
 		
 		if (defined('_poMMo_gettext'))
-			return Pommo_HelperL10n::_setLocaleEmu($category, $locale, $baseDir);
+			return Pommo_Helper_L10n::_setLocaleEmu($category, $locale, $baseDir);
 		
 		// append _LC to locale
 		if (!strpos($locale,'_')) {

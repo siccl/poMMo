@@ -19,7 +19,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-class Pommo_HelperDebug {
+class Pommo_Helper_Debug {
 	function bmDebug() {
 		global $pommo;
 		echo "\n\n<br><br><b>BASIC DEBUG</b><hr><br>\n\n";

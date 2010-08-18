@@ -64,19 +64,19 @@ if(isset($_GET['mail_id']) && is_numeric($_GET['mail_id'])) {
 	if(isset($_GET['email']) && isset($_GET['code'])) {
 		$subscriber = current(Pommo_Subscribers::get(array('email' => $_GET['email'], 'status' => 1)));
 		if($_GET['code'] == Pommo_Subscribers::getActCode($subscriber)) {
-			require_once(Pommo::$_baseDir.'inc/helpers/personalize.php'); // require once here so that mailer can use
+			require_once(Pommo::$_baseDir.'classes/Pommo_Helper_Personalize.php'); // require once here so that mailer can use
 			
 			$matches = array();
 			preg_match('/\[\[[^\]]+]]/', $input['body'], $matches);
 			if (!empty($matches)) {
-				$pBody = Pommo_HelperPersonalize::search($input['body']);
-				$input['body'] = Pommo_HelperPersonalize::replace($input['body'], $subscriber, $pBody);
+				$pBody = Pommo_Helper_Personalize::search($input['body']);
+				$input['body'] = Pommo_Helper_Personalize::replace($input['body'], $subscriber, $pBody);
 				
 			}
 			preg_match('/\[\[[^\]]+]]/',  $input['altbody'], $matches);
 			if (!empty($matches)) {
-				$pAltBody = Pommo_HelperPersonalize::search($input['altbody']);
-				$input['altbody'] = Pommo_HelperPersonalize::replace($input['altbody'], $subscriber, $pAltBody);	
+				$pAltBody = Pommo_Helper_Personalize::search($input['altbody']);
+				$input['altbody'] = Pommo_Helper_Personalize::replace($input['altbody'], $subscriber, $pAltBody);	
 			}
 		}
 

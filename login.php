@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
 *********************************/
 require('bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/helpers/pending.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Pending.php');
 
 Pommo::init(array('authLevel' => 0, 'noSession' => true));
 $logger = & Pommo::$_logger;
@@ -60,7 +60,7 @@ if (!SmartyValidate :: is_registered_form() || empty($_POST)) {
 	if (SmartyValidate :: is_valid($_POST)) {
 		// __ FORM IS VALID __
 		if (Pommo_Helper::isDupe($_POST['Email'])) {
-			if (PommoPending::isEmailPending($_POST['Email'])) {
+			if (Pommo_Pending::isEmailPending($_POST['Email'])) {
 				$input = urlencode(serialize(array('Email' => $_POST['Email'])));
 				SmartyValidate :: disconnect();
 				Pommo::redirect('pending.php?input='.$input);

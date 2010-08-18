@@ -18,7 +18,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-class PommoRules {
+class Pommo_Rules {
 	
 	// returns the legal(logical) group selections for new filters 
 	// accepts a group object
@@ -161,7 +161,7 @@ class PommoRules {
 		$type = ($type == 'or')? 1 : 0;
 		
 		// remove previous filters
-		PommoRules::deleteRule($group, $field, $logic);
+		Pommo_Rules::deleteRule($group, $field, $logic);
 		
 		// get the field
 		require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
