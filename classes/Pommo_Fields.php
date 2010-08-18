@@ -19,7 +19,7 @@
  */
 
 // include the field prototype object 
-require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Type.php');
 
 /**
  * Field: A SubscriberField
@@ -41,7 +41,7 @@ class Pommo_Fields {
 	// accepts a field template (assoc array)
 	// return a field (array)
 	function & make($in = array()) {
-		$o = PommoType::field();
+		$o = Pommo_Type::field();
 		return Pommo_Api::getParams($o, $in);
 	}
 	
@@ -62,7 +62,7 @@ class Pommo_Fields {
 		if (!empty($row['field_array']))
 			$in['array'] = unserialize($row['field_array']);
 		
-		$o = Pommo_Api::getParams(PommoType::field(),$in);
+		$o = Pommo_Api::getParams(Pommo_Type::field(),$in);
 		return $o;
 	}
 	

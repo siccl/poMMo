@@ -125,9 +125,9 @@ switch ($_REQUEST['call']) {
 	break;
 	
 	case 'updateRule' :
-		require_once(Pommo::$_baseDir.'inc/classes/sql.gen.php');
+		require_once(Pommo::$_baseDir.'classes/Pommo_Sql.php');
 		$group =& current(Pommo_Groups::get(array('id' => $state['group'])));
-		$rules = PommoSQL::sortRules($group['rules']);
+		$rules = Pommo_Sql::sortRules($group['rules']);
 		
 		switch ($_REQUEST['request']) {
 			case 'update' :

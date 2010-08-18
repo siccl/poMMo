@@ -23,7 +23,7 @@
 	INITIALIZATION METHODS
 *********************************/
 require ('bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/classes/sql.gen.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Sql.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Rules.php');
@@ -54,9 +54,9 @@ $group =& $groups[$state['group']];
 if(empty($group))
 	Pommo::redirect('subscribers_groups.php');
 	
-$rules = PommoSQL::sortRules($group['rules']);
-$rules['and'] = PommoSQL::sortLogic($rules['and']);
-$rules['or'] = PommoSQL::sortLogic($rules['or']);
+$rules = Pommo_Sql::sortRules($group['rules']);
+$rules['and'] = Pommo_Sql::sortLogic($rules['and']);
+$rules['or'] = Pommo_Sql::sortLogic($rules['or']);
 
 foreach($rules as $key => $a) {
 	if ($key == 'include' || $key == 'exclude')

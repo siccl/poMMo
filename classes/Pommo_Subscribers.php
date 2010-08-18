@@ -19,7 +19,7 @@
  */
 
 // include the subscriber prototype object 
-require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Type.php');
 
 /**
  * Subscriber: A Subscriber
@@ -55,8 +55,8 @@ class Pommo_Subscribers
 	// return a subscriber object (array)
 	function & make($in = array(), $pending = FALSE) {
 		$o = ($pending) ?
-			PommoType::subscriberPending() :
-			PommoType::subscriber();
+			Pommo_Type::subscriberPending() :
+			Pommo_Type::subscriber();
 		return Pommo_Api::getParams($o, $in);
 	}
 	
@@ -83,8 +83,8 @@ class Pommo_Subscribers
 		}
 
 		$o = ($pending) ?
-			Pommo_Api::getParams(PommoType::subscriberPending(),$in) :
-			Pommo_Api::getParams(PommoType::subscriber(),$in);
+			Pommo_Api::getParams(Pommo_Type::subscriberPending(),$in) :
+			Pommo_Api::getParams(Pommo_Type::subscriber(),$in);
 		return $o;
 	}
 	
@@ -351,20 +351,20 @@ class Pommo_Subscribers
 	*/
 	function & getIDByAttr($f = array('subscriber_pending' => array(), 'subscriber_data' => array(), 'subscribers' => array())) {
 		$dbo = Pommo::$_dbo;
-		require_once(Pommo::$_baseDir.'inc/classes/sql.gen.php');
+		require_once(Pommo::$_baseDir.'classes/Pommo_Sql.php');
 		
 		$sql = array('where' => array(), 'join' => array());
 		
 		if (!empty($f['subscribers']))
-			$sql = array_merge_recursive($sql, PommoSQL::fromFilter($f['subscribers'],'s'));
+			$sql = array_merge_recursive($sql, Pommo_Sql::fromFilter($f['subscribers'],'s'));
 		
 		if (!empty($f['subscriber_data']))
-			$sql = array_merge_recursive($sql, PommoSQL::fromFilter($f['subscriber_data'],'d'));
+			$sql = array_merge_recursive($sql, Pommo_Sql::fromFilter($f['subscriber_data'],'d'));
 		
 		$p = null;
 		if (!empty($f['subscriber_pending'])) {
 			$p = 'p';
-			$sql = array_merge_recursive($sql, PommoSQL::fromFilter($f['subscriber_pending'],'p'));
+			$sql = array_merge_recursive($sql, Pommo_Sql::fromFilter($f['subscriber_pending'],'p'));
 		}
 		
 		$joins = implode(' ',$sql['join']);

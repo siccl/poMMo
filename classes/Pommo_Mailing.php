@@ -19,7 +19,7 @@
  */
  
 // include the mailing prototype object 
-require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Type.php');
 
 /**
  * Mailing: A poMMo Mailing
@@ -57,8 +57,8 @@ class Pommo_Mailing
 	// return a mailing object (array)
 	function & make($in = array(), $current = FALSE) {
 		$o = ($current) ?
-			PommoType::mailingCurrent() :
-			PommoType::mailing();
+			Pommo_Type::mailingCurrent() :
+			Pommo_Type::mailing();
 		return Pommo_Api::getParams($o, $in);
 	}
 	
@@ -95,8 +95,8 @@ class Pommo_Mailing
 		}
 
 		$o = ($row['status'] == 1) ?
-			Pommo_Api::getParams(PommoType::mailingCurrent(),$in) :
-			Pommo_Api::getParams(PommoType::mailing(),$in);
+			Pommo_Api::getParams(Pommo_Type::mailingCurrent(),$in) :
+			Pommo_Api::getParams(Pommo_Type::mailing(),$in);
 		return $o;
 	}
 	

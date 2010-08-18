@@ -19,7 +19,7 @@
  */
 
 // include the group prototype object 
-require_once(Pommo::$_baseDir.'inc/classes/prototypes.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Type.php');
 
 /**
  * Group: A Group of Subscribers
@@ -99,7 +99,7 @@ class Pommo_Groups {
 	// accepts a group template (assoc array)
 	// return a group object (array)
 	function & make($in = array()) {
-		$o = PommoType::group();
+		$o = Pommo_Type::group();
 		return Pommo_Api::getParams($o, $in);
 	}
 	
@@ -110,7 +110,7 @@ class Pommo_Groups {
 		$in = @array(
 		'id' => $row['group_id'],
 		'name' => $row['group_name']);
-		$o = PommoType::group();
+		$o = Pommo_Type::group();
 		return Pommo_Api::getParams($o,$in);
 	}
 	
@@ -208,14 +208,14 @@ class Pommo_Groups {
 	// returns an array of subscriber IDs
 	function & getMemberIDs($group, $status = 1, $filter = false) {
 		$dbo =& Pommo::$_dbo;
-		require_once(Pommo::$_baseDir. 'inc/classes/sql.gen.php');
+		require_once(Pommo::$_baseDir. 'classes/Pommo_Sql.php');
 		
 		if (empty($group['rules']) && $group['id'] != 0) {
 			$o = array();
 			return $o;
 		}
 		
-		$query = PommoSQL::groupSQL($group, false, $status, $filter);
+		$query = Pommo_Sql::groupSQL($group, false, $status, $filter);
 		return $dbo->getAll($query, 'assoc', 'subscriber_id');
 	}
 	
@@ -226,12 +226,12 @@ class Pommo_Groups {
 	// returns a tally (int)
 	function tally($group, $status = 1) {
 		$dbo =& Pommo::$_dbo;
-		require_once(Pommo::$_baseDir. 'inc/classes/sql.gen.php');
+		require_once(Pommo::$_baseDir. 'classes/Pommo_Sql.php');
 		
 		if (empty($group['rules']))
 			return 0;
 			
-		$query = PommoSQL::groupSQL($group, true, $status);
+		$query = Pommo_Sql::groupSQL($group, true, $status);
 		
 		return $dbo->query($query,0);
 	}

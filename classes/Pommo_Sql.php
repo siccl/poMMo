@@ -21,7 +21,7 @@
 // common SQL clauses
 // REWRITE ALL...
 
-class PommoSQL {
+class Pommo_Sql {
 	
 	
 	
@@ -45,7 +45,7 @@ class PommoSQL {
 		// parse column => logic => value from array
 		$filters = array();
 		foreach ($in as $col => $val) 
-			PommoSQL::getLogic($col,$val,$filters);
+			Pommo_Sql::getLogic($col,$val,$filters);
 		
 
 		// get where &/or joins
@@ -109,7 +109,7 @@ class PommoSQL {
 	function getLogic(&$col, &$val, &$filters) {
 		if (is_array($val)) {
 			foreach($val as $v)
-				PommoSQL::getLogic($col,$v,$filters);
+				Pommo_Sql::getLogic($col,$v,$filters);
 		}
 		else {
 			// extract logic ($matches[1]) + value ($matches[2]) 
@@ -274,11 +274,11 @@ class PommoSQL {
 			)
 			*/
 			
-		$rules = PommoSQL::sortRules($group['rules']);
-		$ands = PommoSQL::getSubQueries(PommoSQL::sortLogic($rules['and']));
+		$rules = Pommo_Sql::sortRules($group['rules']);
+		$ands = Pommo_Sql::getSubQueries(Pommo_Sql::sortLogic($rules['and']));
 		$ors = (empty($rules['or'])) ? 
 			array() : 
-			PommoSQL::getSubQueries(PommoSQL::sortLogic($rules['or']));
+			Pommo_Sql::getSubQueries(Pommo_Sql::sortLogic($rules['or']));
 		
 		$sql = ($tally) ?
 			'SELECT count(subscriber_id) ' :
@@ -309,7 +309,7 @@ class PommoSQL {
 		foreach($rules['exclude'] as $gid) {
 			if (!isset($groups[$gid])) {
 				$sql .= "\nAND subscriber_id NOT IN (\n";
-				$sql .= PommoSQL::groupSQL(current(Pommo_Groups::get(array('id' => $gid))));
+				$sql .= Pommo_Sql::groupSQL(current(Pommo_Groups::get(array('id' => $gid))));
 				$sql .= "\n)";
 			}
 			$q = TRUE;
@@ -318,7 +318,7 @@ class PommoSQL {
 		foreach($rules['include'] as $gid) {
 			if (!isset($groups[$gid])) {
 				$sql .= "\n".(($q) ? 'OR' : 'AND')." subscriber_id IN (\n";
-				$sql .= PommoSQL::groupSQL(current(Pommo_Groups::get(array('id' => $gid))));
+				$sql .= Pommo_Sql::groupSQL(current(Pommo_Groups::get(array('id' => $gid))));
 				$sql .= "\n)";
 			}
 			$q = TRUE;

@@ -19,7 +19,7 @@
  */
  
 // include the mailing prototype object 
-require_once(Pommo::$_baseDir. 'inc/classes/prototypes.php');
+require_once(Pommo::$_baseDir. 'classes/Pommo_Type.php');
 
 /**
 	 * Template: A Template for Mailings
@@ -37,7 +37,7 @@ class Pommo_Mailing_Template {
 	// accepts a mailing template (assoc array)
 	// return a template object (array)
 	function & make($in = array()) {
-		$o = PommoType::template();
+		$o = Pommo_Type::template();
 		return Pommo_Api::getParams($o, $in);
 	}
 	
@@ -52,7 +52,7 @@ class Pommo_Mailing_Template {
 		'body' => $row['body'],
 		'altbody' => $row['altbody']);
 		
-		$o = Pommo_Api::getParams(PommoType::template(),$in);
+		$o = Pommo_Api::getParams(Pommo_Type::template(),$in);
 		return $o;
 	}
 	

@@ -21,14 +21,14 @@
 // TODO -> homogenize/reduce the get methods -- make more efficient!
 
 // include the pending prototype object 
-require_once(Pommo::$_baseDir. 'inc/classes/prototypes.php');
+require_once(Pommo::$_baseDir. 'classes/Pommo_Type.php');
 
 class Pommo_Pending {
 	// make a pending template
 	// accepts a pending template (assoc array)
 	// return a pending object (array)
 	function & make($in = array()) {
-		$o = PommoType::pending();
+		$o = Pommo_Type::pending();
 		return Pommo_Api::getParams($o, $in);
 	}
 	
@@ -43,7 +43,7 @@ class Pommo_Pending {
 		'array' => unserialize($row['pending_array']),
 		'type' => $row['pending_type']);
 		
-		$o = PommoType::pending();
+		$o = Pommo_Type::pending();
 		return Pommo_Api::getParams($o,$in);
 	}
 	

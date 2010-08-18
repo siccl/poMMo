@@ -22,7 +22,7 @@
 // basic types used by poMMo -- they are generally fed a row from the database
 //  as an assosciatve array
 
-class PommoType {
+class Pommo_Type {
 	/**
 	 * Field: A SubscriberField
 	 * ==SQL Schema==
@@ -110,7 +110,7 @@ class PommoType {
 		);
 	}
 	function & subscriberPending() {
-		$o = PommoType::subscriber();
+		$o = Pommo_Type::subscriber();
 		$o['pending_code'] = $o['pending_array'] = $o['pending_type'] = null;
 		return $o;
 	}
@@ -176,7 +176,7 @@ class PommoType {
 	}
 	
 	function & mailingCurrent() {
-		$o = PommoType::mailing();
+		$o = Pommo_Type::mailing();
 		$o['touched'] = $o['current_id'] = $o['command'] = $o['serial'] = $o['code'] = $o['current_status'] = null;
 		return $o;
 	}
