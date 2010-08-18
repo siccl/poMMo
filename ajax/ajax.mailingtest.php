@@ -55,7 +55,7 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 
 	if (SmartyValidate :: is_valid($_POST) && !$current) {
 		// __ FORM IS VALID
-		require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');
+		require_once(Pommo::$_baseDir.'classes/Pommo_Mail_Ctl.php');
 		require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
 		require_once(Pommo::$_baseDir.'classes/Pommo_Validate.php');
 		
@@ -94,11 +94,11 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 			
 			// populate queue
 			$queue = array($key);
-			if(!PommoMailCtl::queueMake($queue))
+			if(!Pommo_Mail_Ctl::queueMake($queue))
 				$logger->addErr('Unable to Populate Queue');
 			
 			// spawn mailer
-			else if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?test=TRUE&code='.$code))
+			else if (!Pommo_Mail_Ctl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?test=TRUE&code='.$code))
 				$logger->addErr('Unable to spawn background mailer');
 			else 
 				$smarty->assign('sent',$_POST['email']);

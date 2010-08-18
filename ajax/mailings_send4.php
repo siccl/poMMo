@@ -149,7 +149,7 @@ if(empty(Pommo::$_session['throttler'][$tid]))
 			)
 		);
  
-$throttler =& new PommoThrottler(
+$throttler =& new Pommo_Throttler(
 	Pommo::$_session['throttler'][$tid]['base'], 
 	Pommo::$_session['throttler'][$tid]['domainHistory'], 
 	Pommo::$_session['throttler'][$tid]['sent'],

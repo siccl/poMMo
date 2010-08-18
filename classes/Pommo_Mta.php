@@ -21,9 +21,9 @@
  // poMMo MTA - poMMo's background mailer
  
  // includes
-require_once(Pommo::$_baseDir. 'inc/classes/mailctl.php');
+require_once(Pommo::$_baseDir. 'classes/Pommo_Mail_Ctl.php');
 require_once(Pommo::$_baseDir. 'inc/classes/mailer.php');
-require_once(Pommo::$_baseDir. 'inc/classes/throttler.php');
+require_once(Pommo::$_baseDir. 'classes/Pommo_Throttler.php');
 require_once(Pommo::$_baseDir. 'classes/Pommo_Mailing.php');
 require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 
@@ -121,7 +121,7 @@ require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 			$this->shutdown(Pommo::_T('Mailing Complete.'));
 			
 		if(empty($this->_mailing['serial']))
-			if (!PommoMailCtl::mark($this->_serial,$this->_id))
+			if (!Pommo_Mail_Ctl::mark($this->_serial,$this->_id))
 				$this->shutdown('Unable to serialize mailing (ID: '.$this->_id.' SERIAL: '.$this->_serial.')');
 			
 		if($this->_maxRunTime < 15)
@@ -188,7 +188,7 @@ require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 			break;
 			
 		case 'cancel':
-			PommoMailCtl::finish($this->_id, true);
+			Pommo_Mail_Ctl::finish($this->_id, true);
 			$this->shutdown(Pommo::_T('Mailing Cancelled.'), true);
 			break;
 				
@@ -381,7 +381,7 @@ require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 		}
 			
 		// add notices
-		PommoMailCtl::addNotices($this->_id);
+		Pommo_Mail_Ctl::addNotices($this->_id);
 		
 		// reset sent/failed
 		$this->_sent = $this->_failed = array();
@@ -398,19 +398,19 @@ require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 		$this->_mailer->SmtpClose();
 		
 		if ($this->_test) { // don't respawn if this is a test mailing
-			PommoMailCtl::finish($this->_id,TRUE,TRUE);
+			Pommo_Mail_Ctl::finish($this->_id,TRUE,TRUE);
 			Pommo_Subscribers::delete(current($this->_hash));
 			session_destroy();
 			exit();
 		}
 		
 		if($finish) {
-			PommoMailCtl::finish($this->_id);
+			Pommo_Mail_Ctl::finish($this->_id);
 			$this->shutdown(Pommo::_T('Mailing Complete.'));
 		}
 		
 		// respwn
-		if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?'.
+		if (!Pommo_Mail_Ctl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?'.
 			'code='.$this->_code.
 			'&serial='.$this->_serial.
 			'&id='.$this->_id))

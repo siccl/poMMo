@@ -22,7 +22,7 @@
 	INITIALIZATION METHODS
  *********************************/
 require ('../bootstrap.php');
-require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mail_Ctl.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
 Pommo::init();
@@ -51,7 +51,7 @@ switch ($_GET['cmd']) {
 			$json->fail();
 		
 		if($_GET['cmd'] == 'restart' || $_GET['cmd'] == 'cancel') 
-			PommoMailCtl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?id='.$mailing['id'].'&code='.$mailing['code']);
+			Pommo_Mail_Ctl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?id='.$mailing['id'].'&code='.$mailing['code']);
 		break;
 }
 $json->success();

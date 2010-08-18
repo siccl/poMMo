@@ -18,7 +18,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-class PommoMailCtl {
+class Pommo_Mail_Ctl {
  	
 	// populates the queue with subscribers
 	// accepts an array of subscriber IDs
@@ -151,7 +151,7 @@ class PommoMailCtl {
 		if ($test) { // remove if this was a test mailing
 			
 			// remove all notices
-			PommoMailCtl::delNotices($id,0);
+			Pommo_Mail_Ctl::delNotices($id,0);
 			
 			// remove mailing from DB
 			$query = "
@@ -163,7 +163,7 @@ class PommoMailCtl {
 		else {
 			
 			// shorten notices to last 50
-			PommoMailCtl::delNotices($id);
+			Pommo_Mail_Ctl::delNotices($id);
 			
 			// update mailing in DB
 			$query = "
@@ -205,7 +205,7 @@ class PommoMailCtl {
 		}
 		
 		// trim notices
-		PommoMailCtl::delNotices($id);
+		Pommo_Mail_Ctl::delNotices($id);
 	}
 	
 	// removes notices from a mailing

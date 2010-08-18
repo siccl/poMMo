@@ -31,7 +31,7 @@ Pommo::logErrors();
 
 // ignore user abort
 ignore_user_abort(true);
-require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mail_Ctl.php');
 
 $code = (empty($_GET['code'])) ? null : $_GET['code'];
 $spawn = (!isset($_GET['spawn'])) ? 0 : ($_GET['spawn'] + 1);
@@ -55,7 +55,7 @@ if($spawn > 0)
 sleep(1);
 
 // respawn test
-if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'mailing.test2.php?'.
+if (!Pommo_Mail_Ctl::spawn(Pommo::$_baseUrl.'mailing.test2.php?'.
 	'code='.$code.
 	'&spawn='.$spawn,true)) {
 

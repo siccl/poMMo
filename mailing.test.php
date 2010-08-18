@@ -25,7 +25,7 @@ define('_poMMo_support', TRUE);
 require ('bootstrap.php');
 Pommo::init();
 
-require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mail_Ctl.php');
 
 echo 'Please Wait...';
 ob_flush();
@@ -33,7 +33,7 @@ flush();
 
 $code = Pommo_Helper::makeCode();
 
-if(!PommoMailCtl::spawn(Pommo::$_baseUrl.'mailing.test2.php?code='.$code,true)) 
+if(!Pommo_Mail_Ctl::spawn(Pommo::$_baseUrl.'mailing.test2.php?code='.$code,true)) 
 	Pommo::kill('Initial Spawn Failed! You must correct this before poMMo can send mailings.');
 
 sleep(6);

@@ -23,7 +23,7 @@
  *********************************/
 require ('../bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
-require_once(Pommo::$_baseDir.'inc/classes/mailctl.php');
+require_once(Pommo::$_baseDir.'classes/Pommo_Mail_Ctl.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
 Pommo::init();
@@ -126,10 +126,10 @@ if (!empty ($_REQUEST['sendaway'])) {
 
 		$code = Pommo_Mailing::add($mailing);
 		
-		if(!PommoMailCtl::queueMake($memberIDs))
+		if(!Pommo_Mail_Ctl::queueMake($memberIDs))
 			$json->fail('Unable to populate queue');
 			
-		if (!PommoMailCtl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?code='.$code))
+		if (!Pommo_Mail_Ctl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?code='.$code))
 			$json->fail('Unable to spawn background mailer');
 			
 		// clear mailing composistion data from session

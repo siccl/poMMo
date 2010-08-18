@@ -22,7 +22,7 @@
 // TODO -> This class needs rewritting -- better/clearer methods!
 
 // NOTE: Due to lack of support for usleep in PHP < 5.0 on IIS/Windows, Throttling is limited to *seconds*
-class PommoThrottler {
+class Pommo_Throttler {
 
 	// THROTTLE VARIABLES, EXPLANATION
 	// -----------------------------------------------
@@ -162,7 +162,7 @@ class PommoThrottler {
 	// ------------------------------
 
 	// bThrottler() - simple initialization of class variables.
-	function PommoThrottler($p = array(), & $history, &$sent, &$sentBytes) { 
+	function Pommo_Throttler($p = array(), & $history, &$sent, &$sentBytes) { 
 		global $pommo;
 		
 		$this->logger =& Pommo::$_logger;
