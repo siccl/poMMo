@@ -154,7 +154,7 @@ class Pommo
 		if (self::$_language != 'en')
 		{
 			self::$_l10n = TRUE;
-			require_once(self::$_baseDir.'classes/Pommo_Helper_L10n');
+			require_once(self::$_baseDir.'classes/Pommo_Helper_L10n.php');
 			Pommo_Helper_L10n::init(self::$_language, self::$_baseDir);
 		}
 		
@@ -313,7 +313,7 @@ class Pommo
 			else
 			{
 				self::$_l10n = TRUE;
-				require_once(self::$_baseDir.'classes/Pommo_Helper_L10n');
+				require_once(self::$_baseDir.'classes/Pommo_Helper_L10n.php');
 				Pommo_Helper_L10n::init(self::$_session['slanguage'],
 						self::$_baseDir);
 			}
