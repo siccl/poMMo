@@ -5,7 +5,7 @@
 
 <div id="footer">
 
-<p>- {t escape="no" url='<a href="http://pommo.sourceforge.net/">poMMo</a>'}Page fueled by %1 mailing management software{/t} -</p>
+<p>- {t}Page fueled by poMMo mailing management software{/t} -</p>
 
 </div>
 <!-- end footer -->
