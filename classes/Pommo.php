@@ -18,9 +18,9 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-/** 
- * Common class. Holds Configuration values, authentication state, etc.. (revived from session)
-*/
+/*	Common class.
+ *	Holds Configuration values, authentication state, etc (revived from session)
+ */
 
 class Pommo
 {
@@ -342,91 +342,164 @@ class Pommo
 		}
 	}
 	
-	// reload base configuration from database
+	/*	reloadConfig
+	 *	Loads config base
+	 *
+	 *	@return	array	self::$_config
+	 */
 	function reloadConfig()
 	{
 		return self::$_config = Pommo_Api::configGetBase(TRUE);
 	}
 	
-	function toggleEscaping($toggle = TRUE) {
+	/*	toogleEscaping
+	 *	Changes the escaping status
+	 *
+	 *	@param	boolean	$toogle.- New escaping value
+	 *
+	 *	@return	boolean	$toogle
+	 */
+	function toggleEscaping($toggle = TRUE)
+	{
 		self::$_escaping = $toggle;
 		self::$_logger->toggleEscaping(self::$_escaping);
 		return $toggle;
 	}
 	
-	/**
-	 *  Translation (l10n) Function
+	 /*	_T
+	 *	Translation (l10n) Function
+	 *
+	 *	@param	string	$msg.- Message to translate
+	 *
+	 *	@return	string	Translated message
 	 */
-	 
-	 function _T($msg) {
-		global $pommo;
+	 function _T($msg)
+	 {
 		if(Pommo::$_escaping)
-			return (Pommo::$_l10n) ? htmlspecialchars(Pommo_Helper_L10n::translate($msg)) : htmlspecialchars($msg);
+		{
+			return (Pommo::$_l10n) ?
+					htmlspecialchars(Pommo_Helper_L10n::translate($msg)) :
+					htmlspecialchars($msg);
+		}
 		return (Pommo::$_l10n) ? Pommo_Helper_L10n::translate($msg) : $msg;
 	}
-
-	function _TP($msg, $plural, $count) { // for plurals
-		global $pommo;
+	
+	/*	_TP
+	 *	Takes care of plurals when translating
+	 *
+	 *	@param	string	$msg.- Message to translate
+	 *	@param	string	$plural
+	 *	@param	string	$count
+	 *
+	 *	@return	string	Translated message
+	 */
+	function _TP($msg, $plural, $count)
+	{
 		if(Pommo::$_escaping)
-			return (Pommo::$_l10n) ? htmlspecialchars(Pommo_Helper_L10n::translatePlural($msg, $plural, $count)) : htmlspecialchars($msg);
-		return (Pommo::$_l10n) ? Pommo_Helper_L10n::translatePlural($msg, $plural, $count) : $msg;
+		{
+			return (Pommo::$_l10n) ? htmlspecialchars(
+					Pommo_Helper_L10n::translatePlural($msg, $plural, $count)) :
+					htmlspecialchars($msg);
+		}
+		return (Pommo::$_l10n) ?
+				Pommo_Helper_L10n::translatePlural($msg, $plural, $count) : $msg;
 	}
 
-
-	/**
-	 *  _data Handler functions ==>
-	 *    (got rid of _data reference...)
-	 *    XXXX Pommo::$_data is a reference to $_SESSION['pommo']['data'], an array in the Session
-	 *    which holds any data we'd like to persist through pages. This array is cleared by default 
-	 *    unless explicity saved by passing the 'keep' argument to the Pommo::init() function.
+	/*	set
+	 *	Saves value in Pommo::$_session array
+	 *
+	 *	@param	mixed	$value.- Value to save
+	 *
+	 *	@return	mixed	Saved value
 	 */
-
-	function set($value) {
+	function set($value)
+	{
 		if (!is_array($value))
+		{
 			$value = array (
 				$value => TRUE
 			);
-		return (empty (self::$_session['data'])) ? 
-			self::$_session['data'] = $value : 
-			self::$_session['data'] = array_merge(self::$_session['data'], $value);
+		}
+		return (empty(self::$_session['data'])) ?
+				self::$_session['data'] = $value : 
+				self::$_session['data'] = array_merge(self::$_session['data'],
+				$value);
 	}
 
-	function get($name = FALSE) {
+	/*	get
+	 *	Gets value from Pommo::$_session array
+	 *
+	 *	@param	mixed	$name
+	 *
+	 *	@return	mixed	value
+	 */
+	function get($name = FALSE)
+	{
 		if ($name)
+		{
 			return (isset(self::$_session['data'][$name])) ? 
-				self::$_session['data'][$name] :
-				array();
+					self::$_session['data'][$name] :
+					array();
+		}
 		return self::$_session['data'];
 	}
 	
 
-	// redirect, require, kill base Functions
-	
-	function redirect($url, $msg = NULL, $kill = true) {
-	global $pommo;
-		// adds http & baseURL if they aren't already provided... allows code shortcuts ;)
-		//  if url DOES NOT start with '/', the section will automatically be appended
-		if (!preg_match('@^https?://@i', $url)) {
-			if (strpos($url, Pommo::$_baseUrl) === false) { 
-				if (substr($url, 0, 1) != '/') {
-					if (Pommo::$_section != 'user' && Pommo::$_section != 'admin') {
-						$url = Pommo::$_http . Pommo::$_baseUrl . 'admin/' . Pommo::$_section . '/' . $url;
-					} else {
-						$url = Pommo::$_http . Pommo::$_baseUrl . Pommo::$_section . '/' . $url;
+	/*	redirect
+	 *	Redirect to pommo page
+	 *
+	 *	@param	string	$url
+	 *	@param	string	$msg
+	 *	@param	boolean	$kill
+	 *
+	 *	@return
+	 */
+	function redirect($url, $msg = NULL, $kill = true)
+	{
+		// adds http & baseURL if they aren't already provided...
+		//	allows code shortcuts ;)
+		//  if url DOES NOT start with '/', the section will automatically be
+		//	appended
+		if (!preg_match('@^https?://@i', $url))
+		{
+			if (strpos($url, Pommo::$_baseUrl) === false)
+			{ 
+				if (substr($url, 0, 1) != '/')
+				{
+					if (Pommo::$_section != 'user' && Pommo::$_section != 'admin')
+					{
+						$url = Pommo::$_http.Pommo::$_baseUrl.'admin/'.
+								Pommo::$_section.'/'.$url;
 					}
-				} else {
-					$url = Pommo::$_http . Pommo::$_baseUrl . str_replace(Pommo::$_baseUrl,'',substr($url,1)); 
+					else
+					{
+						$url = Pommo::$_http.Pommo::$_baseUrl.Pommo::$_section.
+								'/'.$url;
+					}
 				}
-			} else {
-				$url = Pommo::$_http . $url;
+				else
+				{
+					$url = Pommo::$_http.Pommo::$_baseUrl.
+							str_replace(Pommo::$_baseUrl, '', substr($url, 1)); 
+				}
+			}
+			else
+			{
+				$url = Pommo::$_http.$url;
 			}
 		}
-		header('Location: ' . $url);
+		header('Location: '.$url);
 		if ($kill)
+		{
 			if ($msg)
+			{
 				Pommo::kill($msg);
+			}
 			else
+			{
 				Pommo::kill(Pommo::$_T('Redirecting, please wait...'));
+			}
+		}
 		return;
 	}
 	
@@ -512,7 +585,7 @@ class Pommo
 		// generate unique session name
 		$key = self::$_config['key'];
 		
-		if(empty($key))
+		if (empty($key))
 		{
 			$key = '123456';
 		}
@@ -530,23 +603,28 @@ class Pommo
 		self::$_session = &$_SESSION['pommo'.$key];
 	}
 	
-	// error log, E_ERROR trapping
-	//  CAN NOT BE CALLED STATICALLY!
-	function logErrors() {
-		
+	/*	logErrors
+	 *	error log, E_ERROR trapping
+	 *
+	 *	@return	void
+	 */
+	function logErrors()
+	{
 		// ignore call if verbosity maximum.
-		if(self::$_verbosity < 2)
+		if (self::$_verbosity < 2)
+		{
 			return;
+		}
 			
 		// error handling
 		error_reporting(E_ALL);
-		ini_set('display_errors',0);
-		ini_set('log_errors',1);
-		ini_set('log_errors_max_len',0);
-		ini_set('html_errors',0);
+		ini_set('display_errors', 0);
+		ini_set('log_errors', 1);
+		ini_set('log_errors_max_len', 0);
+		ini_set('html_errors', 0);
 		
 		// set log file
-		ini_set('error_log',self::$_workDir . '/ERROR_LOG');
+		ini_set('error_log', self::$_workDir.'/ERROR_LOG');
 	}
 }
 
