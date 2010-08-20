@@ -170,6 +170,7 @@ if (empty(Pommo::$_session['throttler'][$tid]))
 			'sentBytes' => floatval(0)
 			)
 		);
+}
 
 $throttler =& new Pommo_Throttler(
 	Pommo::$_session['throttler'][$tid]['base'], 
