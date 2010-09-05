@@ -27,8 +27,8 @@ require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Rules.php');
 			
 Pommo::init();
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
 /**********************************
 	JSON OUTPUT INITIALIZATION
@@ -37,13 +37,12 @@ require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
 $json = new Pommo_Json();
 
 // Remember the Page State
-$state =& Pommo_Api::stateInit('groups_edit');
+$state = Pommo_Api::stateInit('groups_edit');
 
 // EXAMINE CALL
-switch ($_REQUEST['call']) {
-
+switch ($_REQUEST['call'])
+{
 	case 'displayRule' :
-	
 		/**********************************
 			SETUP TEMPLATE, PAGE
 		 *********************************/
@@ -51,40 +50,50 @@ switch ($_REQUEST['call']) {
 		$smarty = new Pommo_Template();
 
 		$group = current(Pommo_Groups::get(array('id' => $state['group'])));
-		if(empty($group))
+		if (empty($group))
+		{
 			die('invalid input');
+		}
 	
-		if($_REQUEST['ruleType'] == 'field') {
-			$field = current(Pommo_Fields::get(array('id' => $_REQUEST['fieldID'])));
-			$logic = (isset($_REQUEST['logic']) && $_REQUEST['logic'] != "0") ? $_REQUEST['logic'] : false;
+		if ($_REQUEST['ruleType'] == 'field')
+		{
+			$field = current(Pommo_Fields::get(array(
+					'id' => $_REQUEST['fieldID'])));
+			$logic = (isset($_REQUEST['logic']) && $_REQUEST['logic'] != "0") ?
+					$_REQUEST['logic'] : false;
 			$type = ($_REQUEST['type'] == 'or') ? 'or' : 'and';
 			
 			$values = array();
 			
 			// check to see if we're editing [logic is passed *only* when edit button is clicked]
 			if ($logic)
-				foreach($group['rules'] as $rule) {
-					if($rule['logic'] == $logic && $rule['field_id'] == $_REQUEST['fieldID']) {
+			{
+				foreach ($group['rules'] as $rule)
+				{
+					if ($rule['logic'] == $logic && $rule['field_id'] ==
+							$_REQUEST['fieldID'])
+					{
 						$values[] = ($field['type'] == 'date') ? 
-							Pommo_Helper::timeFromStr($rule['value']) :
-							$rule['value'];
+								Pommo_Helper::timeFromStr($rule['value']) :
+								$rule['value'];
 					}
 				}
+			}
 
 			$firstVal = (empty($values)) ? false : array_shift($values);
 
 			$logic = ($logic) ? 
-				Pommo_Rules::getEnglish(array($logic)) : 
-				Pommo_Rules::getEnglish(end(Pommo_Rules::getLegal($group,array($field))));
-				
+					Pommo_Rules::getEnglish(array($logic)) : 
+					Pommo_Rules::getEnglish(end(
+							Pommo_Rules::getLegal($group,array($field))));
+							
 			$smarty->assign('type', $type);
 			$smarty->assign('field',$field);
 			$smarty->assign('logic',$logic);
 			$smarty->assign('values',$values);
 			$smarty->assign('firstVal',$firstVal);
 		
-			$smarty->display('ajax/rule.field.tpl');
-			Pommo::kill();
+			$smarty->display('admin/subscribers/ajax/rule.field.tpl');
 		}
 		elseif($_REQUEST['ruleType'] == 'group') {
 			$match = Pommo_Groups::getNames($_REQUEST['fieldID']);
@@ -159,5 +168,3 @@ switch ($_REQUEST['call']) {
 	break;
 }
 
-die();
-?>
