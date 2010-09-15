@@ -80,7 +80,6 @@ CREATE TABLE :::groups::: (
   PRIMARY KEY  (`group_id`)
 );
 
-
 -- MAILING_CURRENT
 
 CREATE TABLE :::mailing_current::: (
@@ -126,6 +125,21 @@ CREATE TABLE :::mailings::: (
   KEY `status` (`status`)
 );
 
+-- ATTACHMENT_FILES
+
+CREATE TABLE :::attachment_files::: (
+  `file_id` smallint(5) unsigned NOT NULL auto_increment,
+  `file_name` tinytext  NOT NULL,
+  PRIMARY KEY  (`file_id`)
+);
+
+-- MAILINGS_ATTACHMENTS
+
+CREATE TABLE :::mailings_attachments::: (
+  `mailing_id` int(10) unsigned NOT NULL,
+  `file_id` smallint(5) unsigned NOT NULL,
+  PRIMARY KEY  (`mailing_id`, `file_id`)
+);
 
 -- QUEUE
 

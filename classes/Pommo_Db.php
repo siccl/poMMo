@@ -63,7 +63,9 @@ class Pommo_Db
 			'subscribers' => '`'.$tablePrefix.'subscribers`',
 			'templates' => '`'.$tablePrefix.'templates`',
 			'queue' => '`'.$tablePrefix.'queue`',
-			'updates' => '`'.$tablePrefix.'updates`');		
+			'updates' => '`'.$tablePrefix.'updates`',
+			'attachment_files' => '`'.$tablePrefix.'attachment_files`',
+			'mailings_attachments' => '`'.$tablePrefix.'mailings_attachments`');
 
 		$this->_dieOnQuery = TRUE;
 		$this->_debug = FALSE;
