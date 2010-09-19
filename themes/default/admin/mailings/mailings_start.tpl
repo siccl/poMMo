@@ -1,5 +1,11 @@
 {capture name=head}{* used to inject content into the HTML <head> *}
 <link type="text/css" rel="stylesheet" href="{$url.theme.shared}css/default.mailings.css" />
+<link rel='stylesheet'  href="{$url.theme.shared}js/fileuploader/fileuploader.css"
+		type='text/css' />
+<script
+		type="text/javascript"
+		src="{$url.theme.shared}js/fileuploader/fileuploader.js">
+</script>
 
 {include file="inc/ui.form.tpl"}
 {include file="inc/ui.dialog.tpl"}

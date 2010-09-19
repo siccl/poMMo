@@ -4,7 +4,12 @@
 
 <div class="compose">
 	<h4>{t}HTML Message{/t}</h4>
-
+	<div id="file-uploader-demo1">		
+		<noscript>			
+			<p>Please enable JavaScript to use file uploader.</p>
+			<!-- or put a simple form for upload here -->
+		</noscript>         
+	</div>
 	<form id="compose" class="json mandatory" action="{$smarty.server.PHP_SELF}"
 			method="post">
 		<input type="hidden" name="compose" value="true" />
@@ -73,7 +78,20 @@
 		</li>
 	</ul>
 </form>
+{literal}
+<script type='text/javascript'>
+	function createUploader()
+	{            
+	    var uploader = new qq.FileUploader(
+	    {
+			element: document.getElementById('file-uploader-demo1'),
+	        action: 'process.php'
+	    });           
+	}
 
+	createUploader();
+</script>
+{/literal}
 <script type="text/javascript">
 	var onText = '{t escape=js}Disable WYSIWYG{/t}';
 	var offText = '{t escape=js}Enable WYSIWYG{/t}';
