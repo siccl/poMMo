@@ -1,15 +1,8 @@
 <div class="output">
 	{include file="inc/messages.tpl"}
 </div>
-
 <div class="compose">
 	<h4>{t}HTML Message{/t}</h4>
-	<div id="file-uploader-demo1">		
-		<noscript>			
-			<p>Please enable JavaScript to use file uploader.</p>
-			<!-- or put a simple form for upload here -->
-		</noscript>         
-	</div>
 	<form id="compose" class="json mandatory" action="{$smarty.server.PHP_SELF}"
 			method="post">
 		<input type="hidden" name="compose" value="true" />
@@ -31,7 +24,12 @@
 	<textarea name="body">{$body}</textarea>
 	<span class="notes">({t}Leave blank to send text only{/t})</span>
 </div>
-
+<div id="file-uploader-demo1">		
+	<noscript>			
+		<p>Please enable JavaScript to use file uploader.</p>
+		<!-- or put a simple form for upload here -->
+	</noscript>         
+</div>
 <ul class="inpage_menu">
 	<li>
 		<a href="#" id="e_toggle">
@@ -82,10 +80,21 @@
 <script type='text/javascript'>
 	function createUploader()
 	{            
-	    var uploader = new qq.FileUploader(
+		var uploader = new qq.FileUploader(
 	    {
 			element: document.getElementById('file-uploader-demo1'),
-	        action: 'process.php'
+	        action: 'ajax/process_upload.php',
+	        template: '<div class="qq-uploader">' + 
+                '<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' +
+                '<div class="qq-upload-button">Add attachment</div>' +
+                '<ul class="qq-upload-list"></ul>' + 
+            '</div>',
+      		onComplete: function(id, fileName, responseJSON)
+            {
+				attachment_id = responseJSON.attachment_id;
+				$('.qq-upload-list').append('<input type="hidden" name="attachment' +
+						attachment_id + '" value="' + attachment_id + '">');
+            }
 	    });           
 	}
 

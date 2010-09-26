@@ -133,9 +133,9 @@ if (!empty ($_REQUEST['sendaway'])) {
 			$json->fail('Unable to spawn background mailer');
 			
 		// clear mailing composistion data from session
-		Pommo_Api::stateReset(array('mailing'));
-		$json->add('callbackFunction','redirect');
-		$json->add('callbackParams',Pommo::$_baseUrl.'mailing_status.php');
+#		Pommo_Api::stateReset(array('mailing'));
+#		$json->add('callbackFunction','redirect');
+#		$json->add('callbackParams',Pommo::$_baseUrl.'mailing_status.php');
 		
 	}
 	else {

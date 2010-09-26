@@ -219,7 +219,8 @@ class Pommo_Mailing
 	// returns the database ID of the added mailing,
 	//  OR if the mailing is a current mailing (status == 1), returns
 	//  the security code of the mailing. FALSE if failed
-	function add(&$in) {
+	function add(&$in)
+	{
 		$dbo =& Pommo::$_dbo;
 		
 		// set the start time if not provided
