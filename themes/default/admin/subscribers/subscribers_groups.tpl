@@ -9,24 +9,18 @@
 </p>
 
 <form method="post" action="">
-
-{include file="inc/messages.tpl"}
-
-<fieldset>
-<legend>{t}New group{/t}</legend>
-
-<div>
-<label for="group_name">{t}Group name{/t}</label>
-<input type="text" title="{t}type new group name{/t}" name="group_name" id="group_name" maxlength="60" size="30" />
-</div>
-
-<div class="buttons">
-
-<input type="submit" value="{t}Add{/t}" />
-
-</div>
-
-</fieldset>
+	{include file="inc/messages.tpl"}
+	<fieldset>
+		<legend>{t}New group{/t}</legend>
+		<div>
+			<label for="group_name">{t}Group name{/t}</label>
+			<input type="text" title="{t}type new group name{/t}"
+			name="group_name" id="group_name" maxlength="60" size="30" />
+		</div>
+		<div class="buttons">
+			<input type="submit" value="{t}Add{/t}">
+		</div>
+	</fieldset>
 </form>
 
 

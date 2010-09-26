@@ -21,12 +21,12 @@
 /**********************************
 	INITIALIZATION METHODS
 *********************************/
-require ('bootstrap.php');
+require('bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
 
 Pommo::init();
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger	= &Pommo::$_logger;
+$dbo 	= &Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
@@ -37,14 +37,18 @@ $smarty->prepareForForm();
 
 
 // add group if requested
-if (!empty ($_POST['group_name'])) {
+if (!empty ($_POST['group_name']))
+{
 	if (Pommo_Groups::nameExists($_POST['group_name']))
+	{
 		$logger->addMsg(sprintf(Pommo::_T('Group name (%s) already exists'),$_POST['group_name']));
-	else {
+	}
+	else
+	{
 		$group = Pommo_Groups::make(array('name' => $_POST['group_name']));
 		$id = Pommo_Groups::add($group);
 		($id) ?
-			Pommo::redirect("groups_edit.php?group=$id") :
+			header('Location: '."groups_edit.php?group=$id") :
 			$logger->addMsg(Pommo::_T('Error with addition.'));
 	}
 }
@@ -81,4 +85,4 @@ $groups = Pommo_Groups::getNames();
 $smarty->assign('groups',$groups);
 $smarty->display('admin/subscribers/subscribers_groups.tpl');
 Pommo::kill();
-?>
+
