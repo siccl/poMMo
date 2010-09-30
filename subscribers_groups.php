@@ -48,7 +48,7 @@ if (!empty ($_POST['group_name']))
 		$group = Pommo_Groups::make(array('name' => $_POST['group_name']));
 		$id = Pommo_Groups::add($group);
 		($id) ?
-			header('Location: '."groups_edit.php?group=$id") :
+			Pommo::redirect("groups_edit.php?group=$id") :
 			$logger->addMsg(Pommo::_T('Error with addition.'));
 	}
 }

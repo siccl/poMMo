@@ -468,8 +468,7 @@ class Pommo
 				{
 					if (Pommo::$_section != 'user' && Pommo::$_section != 'admin')
 					{
-						$url = Pommo::$_http.Pommo::$_baseUrl.'admin/'.
-								Pommo::$_section.'/'.$url;
+						$url = Pommo::$_http.Pommo::$_baseUrl.$url;
 					}
 					else
 					{
