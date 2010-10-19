@@ -63,7 +63,6 @@ $state = Pommo_Api::stateInit('mailing',array(
 	'altbody' => ''
 ),
 $_POST);
-print_r($state);
 
 $state['charset'] = $state['list_charset'];
 

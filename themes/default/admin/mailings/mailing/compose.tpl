@@ -92,8 +92,9 @@
       		onComplete: function(id, fileName, responseJSON)
             {
 				attachment_id = responseJSON.attachment_id;
-				$('.qq-upload-list').append('<input type="hidden" name="attachment' +
-						attachment_id + '" value="' + attachment_id + '">');
+				$('.qq-upload-list').append('<input type="hidden" ' +
+						'name="attachment[]"' + ' class="attached_file" ' +
+						'value="' + attachment_id + '">');
             }
 	    });           
 	}
@@ -182,12 +183,26 @@
 	});
 	
 	
-	$('#compose').submit(function() {
-		// submit the bodies
-		var post = {
-			body: wysiwyg.getBody(),
-			altbody: $('textarea[@name=altbody]').val()
-		};
+	$('#compose').submit(function()
+	{
+		// submit the bodies and attachments
+		attachments = {};
+		i = 0;
+		$('#file-uploader-demo1 .attached_file').each(function()
+		{
+			theName = 'attachment[' + i + ']';
+			attachments[theName] = $(this).val();
+			i++;
+		});
+		
+		var post = $.extend
+		(
+			{
+				body: wysiwyg.getBody(),
+				altbody: $('textarea[@name=altbody]').val()
+			},
+			attachments
+		);
 		
 		poMMo.pause();
 		
