@@ -180,9 +180,9 @@ class Pommo_Api
 			}
 		}
 
-		foreach(array_keys($state) as $key)
+		foreach (array_keys($state) as $key)
 		{
-			if (array_key_exists($key,$source))
+			if (array_key_exists($key, $source))
 			{
 				$state[$key] = $source[$key];
 			}

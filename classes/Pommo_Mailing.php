@@ -55,7 +55,8 @@ class Pommo_Mailing
 	// accepts a mailing template (assoc array)
 	// accepts a flag (bool) to designate return of current mailing type
 	// return a mailing object (array)
-	function & make($in = array(), $current = FALSE) {
+	function make($in = array(), $current = FALSE)
+	{
 		$o = ($current) ?
 			Pommo_Type::mailingCurrent() :
 			Pommo_Type::mailing();
@@ -211,74 +212,101 @@ class Pommo_Mailing
 		
 		return $o;
 	}
-	
 
-	
-	// adds a mailing to the database
-	// accepts a mailing (array)
-	// returns the database ID of the added mailing,
-	//  OR if the mailing is a current mailing (status == 1), returns
-	//  the security code of the mailing. FALSE if failed
+	/*	add
+	 *	Adds a mailing to the database
+	 *
+	 *	@param array 	$in.- Mailing information
+	 *
+	 *	@return	mixed	returns the database ID of the added mailing,
+	 *  				OR if the mailing is a current mailing (status == 1),
+	 *					returns the security code of the mailing. FALSE if failed
+	 */
 	function add(&$in)
 	{
-		$dbo =& Pommo::$_dbo;
+		$dbo = Pommo::$_dbo;
 		
 		// set the start time if not provided
 		if (empty($in['start']))
+		{
 			$in['start'] = time();
+		}
 			
 		if (empty($in['sent']))
+		{
 			$in['sent'] = 0;
+		}
 
 		if (!Pommo_Mailing::validate($in))
+		{
 			return false;
+		}
 		
-		$query = "
-			INSERT INTO " . $dbo->table['mailings'] . "
-			SET
-			[fromname='%S',]
-			[fromemail='%S',]
-			[frombounce='%S',]
-			[subject='%S',]
-			[body='%S',]
-			[altbody='%S',]
-			[ishtml='%S',]
-			[mailgroup='%S',]
-			[subscriberCount=%I,]
-			[finished=FROM_UNIXTIME(%I),]
-			[sent=%I,]
-			[charset='%S',]
-			[status=%I,]
-			started=FROM_UNIXTIME(%i)";
-		$query = $dbo->prepare($query,@array(
-			$in['fromname'],
-			$in['fromemail'],
-			$in['frombounce'],
-			$in['subject'],
-			$in['body'],
-			$in['altbody'],
-			$in['ishtml'],
-			$in['group'],
-			$in['tally'],
-			$in['end'],
-			$in['sent'],
-			$in['charset'],
-			$in['status'],
-			$in['start']));
+		$query = "INSERT INTO ".$dbo->table['mailings']."
+				SET
+				[fromname='%S',]
+				[fromemail='%S',]
+				[frombounce='%S',]
+				[subject='%S',]
+				[body='%S',]
+				[altbody='%S',]
+				[ishtml='%S',]
+				[mailgroup='%S',]
+				[subscriberCount=%I,]
+				[finished=FROM_UNIXTIME(%I),]
+				[sent=%I,]
+				[charset='%S',]
+				[status=%I,]
+				started=FROM_UNIXTIME(%i)";
+		$query = $dbo->prepare($query, @array(
+				$in['fromname'],
+				$in['fromemail'],
+				$in['frombounce'],
+				$in['subject'],
+				$in['body'],
+				$in['altbody'],
+				$in['ishtml'],
+				$in['group'],
+				$in['tally'],
+				$in['end'],
+				$in['sent'],
+				$in['charset'],
+				$in['status'],
+				$in['start']));
 		
-		// fetch new subscriber's ID
+		// fetch new mailing_id
 		$id = $dbo->lastId($query);
 		
 		if (!$id)
+		{
 			return false;
+		}
+		
+		// Save the attachments
+		foreach ($in['attachments'] as $key => $attachment)
+		{
+			echo $attachment;
+			echo '-';
+			$query = "INSERT INTO ".$dbo->table['mailings_attachments']."
+					SET
+					[mailing_id='%I',]
+					[file_id='%I']";
+			$query = $dbo->prepare($query, @array(
+					$id,
+					$attachment
+			));
+			$dbo->query($query);
+		}
 		
 		// insert current if applicable
-		if (!empty($in['status']) && $in['status'] == 1) {
-			if(empty($in['code']))
+		if (!empty($in['status']) && $in['status'] == 1)
+		{
+			if (empty($in['code']))
+			{
 				$in['code'] = Pommo_Helper::makeCode();
+			}
 			
-			$query = "
-			INSERT INTO " . $dbo->table['mailing_current'] . "
+			$query = "INSERT INTO ".$dbo->table['mailing_current']."
 			SET
 			[command='%S',]
 			[serial=%I,]

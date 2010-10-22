@@ -23,7 +23,7 @@
  *********************************/
 require ('../bootstrap.php');
 Pommo::init();
-$dbo = & Pommo::$_dbo;
+$dbo = Pommo::$_dbo;
 
 /**********************************
 	JSON OUTPUT INITIALIZATION
@@ -43,6 +43,8 @@ switch ($_REQUEST['call']) {
 	case 'savebody' : 
 		Pommo::$_session['state']['mailing']['body'] = $_REQUEST['body'];
 		Pommo::$_session['state']['mailing']['altbody'] = $_REQUEST['altbody'];
+		Pommo::$_session['state']['mailing']['attachments'] =
+				$_REQUEST['attachment'];
 	break;
 	
 	case 'altbody' :

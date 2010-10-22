@@ -60,7 +60,8 @@ $state = Pommo_Api::stateInit('mailing',array(
 	'mailgroup' => 'all',
 	'subject' => '',
 	'body' => '',
-	'altbody' => ''
+	'altbody' => '',
+	'attachments' => ''
 ),
 $_POST);
 
@@ -69,7 +70,8 @@ $state['charset'] = $state['list_charset'];
 // validate composition
 $tempbody = trim($state['body']);
 $tempalt = trim($state['altbody']);
-if(empty($tempbody) && empty($tempalt) || empty($state['subject'])) {
+if (empty($tempbody) && empty($tempalt) || empty($state['subject']))
+{
 	$logger->addErr(Pommo::_T('Subject or Message cannot be empty!'));
 	$smarty->assign($state);
 	$smarty->display('admin/mailings/mailing/preview.tpl');
@@ -118,8 +120,7 @@ if (!empty ($_REQUEST['sendaway']))
 		{
 			$state['body'] = $state['altbody'];
 			$state['altbody'] = '';
-		} 
-		
+		}
 		$mailing = Pommo_Mailing::make(array(), TRUE);
 
 		$state['status'] = 1;
