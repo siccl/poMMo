@@ -285,8 +285,6 @@ class Pommo_Mailing
 		// Save the attachments
 		foreach ($in['attachments'] as $key => $attachment)
 		{
-			echo $attachment;
-			echo '-';
 			$query = "INSERT INTO ".$dbo->table['mailings_attachments']."
 					SET
 					[mailing_id='%I',]
