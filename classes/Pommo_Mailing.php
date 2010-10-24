@@ -67,7 +67,8 @@ class Pommo_Mailing
 	// accepts a mailing template (assoc array)  
 	// accepts a flag (bool) to designate return of current mailing type
 	// return a mailing object (array)	
-	function & makeDB(&$row) {
+	function makeDB(&$row)
+	{		
 		$in = @array(
 		'id' => $row['mailing_id'],
 		'fromname' => $row['fromname'],
@@ -83,7 +84,8 @@ class Pommo_Mailing
 		'end' => $row['finished'],
 		'sent' => $row['sent'],
 		'charset' => $row['charset'],
-		'status' => $row['status']);
+		'status' => $row['status'],
+		'attachments' => $row['file_name']);
 			
 		if ($row['status'] == 1) {
 			$o = @array(
@@ -175,7 +177,8 @@ class Pommo_Mailing
 	//   limit (int) limits # mailings returned
 	//   offset (int) the SQL offset to start at
 	// returns an array of mailings. Array key(s) correlates to mailing ID.
-	function & get($p = array()) {
+	function get($p = array())
+	{
 		$defaults = array('active' => false, 'noBody' => false, 'id' => null, 'code' => null, 'sort' => null, 'order' => null, 'limit' => null, 'offset' => null);
 		$p = Pommo_Api :: getParams($defaults, $p);
 		
@@ -188,15 +191,35 @@ class Pommo_Mailing
 		
 		$o = array();
 		
-		$select = "mailing_id, fromname, fromemail, frombounce, subject, ishtml, mailgroup, subscriberCount, started, finished, sent, charset, status, c.*";
-		if(!$p['noBody'])
+		$select = "m.mailing_id,
+				fromname,
+				fromemail,
+				frombounce,
+				subject,
+				ishtml,
+				mailgroup,
+				subscriberCount,
+				started,
+				finished,
+				sent,
+				charset,
+				status,
+				c.*,
+				a.file_name";
+
+		if (!$p['noBody'])
+		{
 			$select .= ", body, altbody";
-		
-		$query = "
-			SELECT $select
-			FROM 
-				" . $dbo->table['mailings']." m
-				LEFT JOIN " . $dbo->table['mailing_current']." c ON (m.mailing_id = c.current_id)
+		}
+
+		$query = "SELECT $select
+			FROM " . $dbo->table['mailings']." m
+			LEFT JOIN " . $dbo->table['mailing_current'].
+			" c ON (m.mailing_id = c.current_id)
+			LEFT JOIN " . $dbo->table['mailings_attachments'].
+			" ma ON (m.mailing_id = ma.mailing_id)
+			LEFT JOIN " . $dbo->table['attachment_files'].
+			" a ON (ma.file_id = a.file_id)
 			WHERE
 				1
 				[AND m.status=%I]
@@ -204,9 +227,14 @@ class Pommo_Mailing
 				[AND c.securityCode='%S'] 
 				[ORDER BY %S] [%S] 
 				[LIMIT %I, %I]";
-		$query = $dbo->prepare($query,array($p['active'],$p['id'],$p['code'], $p['sort'], $p['order'], $p['offset'], $p['limit']));
 		
-		while ($row = $dbo->getRows($query)) {
+		$query = $dbo->prepare($query,array($p['active'],$p['id'],$p['code'], $p['sort'], $p['order'], $p['offset'], $p['limit']));
+
+		$attachments = array();
+		while ($row = $dbo->getRows($query))
+		{
+			$attachments[$row['mailing_id']][] = $row['file_name'];
+			$row['file_name'] = $attachments[$row['mailing_id']];
 			$o[$row['mailing_id']] = Pommo_Mailing::makeDB($row);
 		}
 		

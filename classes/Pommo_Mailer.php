@@ -174,17 +174,25 @@ class Pommo_Mailer extends PHPMailer {
 		return true;
 	}
 
-	// Sets up the mail message. If message is HTML, indicate by setting 3rd argument to TRUE.
-	// TODO -> pass by reference??
-	function prepareMail($subject = NULL, $body = NULL, $HTML = FALSE, $altbody = NULL) {
-		
-		$this->_subject = $subject;
-		$this->_body = $body;
+	/*	prepareMail
+	 *	Sets up the mail message.
+	 *
+	 *	@param	string	$subject
+	 *	@param	string	$body
+	 *	@param	string	$HTML.- If message is HTML, this should be TRUE.
+	 *	@param	string	$altbody
+	 */
+	function prepareMail($subject = NULL, $body = NULL, $HTML = FALSE,
+			$altbody = NULL)
+	{	
+		$this->_subject	= $subject;
+		$this->_body 	= $body;
 		$this->_altbody = $altbody;
 
 		// ** Set PHPMailer class parameters
 
-		if ($this->_validated == FALSE) {
+		if ($this->_validated == FALSE)
+		{
 
 			// Validate mail parameters
 			if (!$this->validate()) {

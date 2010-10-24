@@ -135,7 +135,8 @@ if (!empty ($_REQUEST['sendaway']))
 			$json->fail('Unable to populate queue');
 		}
 			
-		if (!Pommo_Mail_Ctl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?code='.$code))
+		if (!Pommo_Mail_Ctl::spawn(
+				Pommo::$_baseUrl.'ajax/mailings_send4.php?code='.$code))
 		{
 			$json->fail('Unable to spawn background mailer');
 		}
