@@ -80,10 +80,7 @@ $p['spawn'] = Pommo::$_session['spawn'];
 
 // initialize MTA
 $mailing = new Pommo_Mta($p);
-ob_start();
-print_r($mailing);
-$var = ob_get_clean();
-//Pommo::debug($var);
+
 $logger->addMsg(sprintf(Pommo::_T('Started Mailing MTA. Spawn #%s.'),
 		$p['spawn']), 3, TRUE);
 
@@ -135,7 +132,8 @@ $mailer = new Pommo_Mailer($mailing->_mailing['fromname'],
 if (!$mailer->prepareMail($mailing->_mailing['subject'],
 		$mailing->_mailing['body'],
 		$html,
-		$mailing->_mailing['altbody']))
+		$mailing->_mailing['altbody'],
+		$mailing->_mailing['attachments']))
 {
 	$mailer->shutdown('*** ERROR *** prepareMail() returned errors.');
 }

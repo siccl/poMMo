@@ -115,10 +115,6 @@ class Pommo_Mta
 			'id' => (($this->_id) ? $this->_id : null));
 
 		$this->_mailing = current(Pommo_Mailing::get($p));
-		ob_start();
-		print_r($this->_mailing);
-		$var = ob_get_clean();
-		Pommo::debug($var);
 
 		if(!is_numeric($this->_mailing['id']))
 			$this->shutdown('Unable to initialize mailing.');

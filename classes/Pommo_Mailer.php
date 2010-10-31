@@ -37,6 +37,7 @@ class Pommo_Mailer extends PHPMailer {
 	var $_subject;
 	var $_body;
 	var $_altbody;
+	var $_attachments;
 
 	var $_exchanger; // sendmail,mail,smtp ... currently mail or sendmail are used TODO add smtp
 	var $_sentCount; // counter for mails sent sucessfully.
@@ -181,13 +182,15 @@ class Pommo_Mailer extends PHPMailer {
 	 *	@param	string	$body
 	 *	@param	string	$HTML.- If message is HTML, this should be TRUE.
 	 *	@param	string	$altbody
+	 *	@param	string	$attachments
 	 */
 	function prepareMail($subject = NULL, $body = NULL, $HTML = FALSE,
-			$altbody = NULL)
+			$altbody = NULL, $attachments = NULL)
 	{	
-		$this->_subject	= $subject;
-		$this->_body 	= $body;
-		$this->_altbody = $altbody;
+		$this->_subject		= $subject;
+		$this->_body 		= $body;
+		$this->_altbody 	= $altbody;
+		$this->_attachments = $attachments;
 
 		// ** Set PHPMailer class parameters
 
@@ -253,42 +256,69 @@ class Pommo_Mailer extends PHPMailer {
 		return TRUE;
 	}
 
-	// ** SEND MAIL FUNCTION --> pass an array of senders, or a single email address for single mode
-	function bmSendmail(& $to, $subscriber = FALSE) { // TODO rename function send in order to not confuse w/ PHPMailer's Send()?
-
-		if ($this->_validated == FALSE) {
-			$this->logger->addMsg("poMMo has not passed sanity checks. has prepareMail been called?");
+	// 	** SEND MAIL FUNCTION --> pass an array of senders, or a single email
+	//	address for single mode
+	// 	TODO rename function send in order to not confuse w/ PHPMailer's Send()?
+	function bmSendmail(&$to, $subscriber = FALSE)
+	{
+		if ($this->_validated == FALSE)
+		{
+			$this->logger->addMsg("poMMo has not passed sanity checks. has
+					prepareMail been called?");
 			return false;
 		}
-		// make sure $to is valid, or send errors...
-		elseif (empty ($to)) {
+		elseif (empty ($to)) // make sure $to is valid, or send errors...
+		{
 			$this->logger->addMsg("To email supplied to send() command is empty.");
 			return false;
 		}
 
 		$errors = array ();
 
-		if ($this->_demonstration == "off") { // If poMMo is not in set in demonstration mode, SEND MAILS...
+		// If poMMo is not in set in demonstration mode, SEND MAILS...
+		if ($this->_demonstration == "off")
+		{
 
 			// if $to is not an array (single email address has been supplied), simply send the mail.
-			if (!is_array($to)) {
+			if (!is_array($to))
+			{
 				$this->AddAddress($to);
 				
 				// check for personalization personaliztion and override message body
-				if ($this->_personalize) {
+				if ($this->_personalize)
+				{
 					global $pommo;
-					$this->Body = Pommo_Helper_Personalize::replace($this->_body, $subscriber, Pommo::$_session['personalization_body']);
+					$this->Body = Pommo_Helper_Personalize::replace(
+							$this->_body, $subscriber,
+							Pommo::$_session['personalization_body']);
 					if (!empty($this->_altbody))
-						$this->AltBody = Pommo_Helper_Personalize::replace($this->_altbody,$subscriber,Pommo::$_session['personalization_altbody']);
+					{
+						$this->AltBody = Pommo_Helper_Personalize::replace(
+								$this->_altbody, $subscriber,
+								Pommo::$_session['personalization_altbody']);
+					}
+				}
+
+				if ($this->_attachments)
+				{
+					$attachments = split(',', $this->_attachments);
+					foreach ($attachments as $key => $attach)
+					{
+						$this->AddAttachment('../attachments/'.$attach);
+					}
 				}
 
 				// send the mail. If unsucessful, add error message.
 				if (!$this->Send())
+				{
 					$errors[] = Pommo::_T("Sending failed: ") . $this->ErrorInfo;
+				}
 				
 				$this->ClearAddresses();
 
-			} else {
+			}
+			else
+			{
 				// MULTI MODE! -- antiquated.
 				// incorporate BCC+Enveloping in here if type is SMTP
 				// TODO Play w/ the size limiting of arrays sent here
