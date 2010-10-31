@@ -44,7 +44,8 @@ switch ($_REQUEST['call']) {
 		Pommo::$_session['state']['mailing']['body'] = $_REQUEST['body'];
 		Pommo::$_session['state']['mailing']['altbody'] = $_REQUEST['altbody'];
 		Pommo::$_session['state']['mailing']['attachments'] =
-				$_REQUEST['attachment'];
+				implode(',', $_REQUEST['attachment']);
+
 	break;
 	
 	case 'altbody' :

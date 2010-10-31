@@ -80,6 +80,10 @@ $p['spawn'] = Pommo::$_session['spawn'];
 
 // initialize MTA
 $mailing = new Pommo_Mta($p);
+ob_start();
+print_r($mailing);
+$var = ob_get_clean();
+//Pommo::debug($var);
 $logger->addMsg(sprintf(Pommo::_T('Started Mailing MTA. Spawn #%s.'),
 		$p['spawn']), 3, TRUE);
 

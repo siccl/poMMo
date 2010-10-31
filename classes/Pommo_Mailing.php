@@ -179,7 +179,9 @@ class Pommo_Mailing
 	// returns an array of mailings. Array key(s) correlates to mailing ID.
 	function get($p = array())
 	{
-		$defaults = array('active' => false, 'noBody' => false, 'id' => null, 'code' => null, 'sort' => null, 'order' => null, 'limit' => null, 'offset' => null);
+		$defaults = array('active' => false, 'noBody' => false, 'id' => null,
+				'code' => null, 'sort' => null, 'order' => null, 'limit' => null,
+				'offset' => null);
 		$p = Pommo_Api :: getParams($defaults, $p);
 		
 		$dbo =& Pommo::$_dbo;
@@ -205,7 +207,7 @@ class Pommo_Mailing
 				charset,
 				status,
 				c.*,
-				a.file_name";
+				GROUP_CONCAT(a.file_name) AS file_name";
 
 		if (!$p['noBody'])
 		{
@@ -224,17 +226,16 @@ class Pommo_Mailing
 				1
 				[AND m.status=%I]
 				[AND m.mailing_id IN(%C)]
-				[AND c.securityCode='%S'] 
+				[AND c.securityCode='%S']
+				GROUP BY mailing_id
 				[ORDER BY %S] [%S] 
 				[LIMIT %I, %I]";
-		
-		$query = $dbo->prepare($query,array($p['active'],$p['id'],$p['code'], $p['sort'], $p['order'], $p['offset'], $p['limit']));
 
-		$attachments = array();
+		$query = $dbo->prepare($query,array($p['active'],$p['id'],$p['code'],
+				$p['sort'], $p['order'], $p['offset'], $p['limit']));
+
 		while ($row = $dbo->getRows($query))
 		{
-			$attachments[$row['mailing_id']][] = $row['file_name'];
-			$row['file_name'] = $attachments[$row['mailing_id']];
 			$o[$row['mailing_id']] = Pommo_Mailing::makeDB($row);
 		}
 		
@@ -311,17 +312,21 @@ class Pommo_Mailing
 		}
 		
 		// Save the attachments
-		foreach ($in['attachments'] as $key => $attachment)
+		if ($in['attachments'])
 		{
-			$query = "INSERT INTO ".$dbo->table['mailings_attachments']."
-					SET
-					[mailing_id='%I',]
-					[file_id='%I']";
-			$query = $dbo->prepare($query, @array(
-					$id,
-					$attachment
-			));
-			$dbo->query($query);
+			$attach = explode(',', $in['attachments']);
+			foreach ($attach as $key => $attachment)
+			{
+				$query = "INSERT INTO ".$dbo->table['mailings_attachments']."
+						SET
+						[mailing_id='%I',]
+						[file_id='%I']";
+				$query = $dbo->prepare($query, @array(
+						$id,
+						$attachment
+				));
+				$dbo->query($query);
+			}
 		}
 		
 		// insert current if applicable
