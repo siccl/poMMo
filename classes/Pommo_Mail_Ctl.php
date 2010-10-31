@@ -57,16 +57,22 @@ class Pommo_Mail_Ctl {
 		return true;
 	}
 	
-	
-	// spawns a page in the background, used by mail processor.
-	function spawn($page, $log = false) {
-		global $pommo;
-		$logger =& Pommo::$_logger;
+	/*	spawn
+	 *	spawns a page in the background, used by mail processor.
+	 *
+	 *	@param	string	$page.- Page that will be called
+	 *	@param	boolean	$log
+	 *
+	 *	@return	boolean	true on success, false otherwise
+	 */
+	function spawn($page, $log = false)
+	{
+		$logger = Pommo::$_logger;
 
 		/* Convert illegal characters in url */
 		$page = str_replace(' ', '%20', $page);
 
-		$errno = '';
+		$errno	= '';
 		$errstr = '';
 
 		// NOTE: fsockopen() SSL Support requires PHP 4.3+ with OpenSSL compiled in
@@ -88,26 +94,36 @@ class Pommo_Mail_Ctl {
 
 		$spawnPage = $out;
 		
-		$logger->addMsg('Attempting to spawn '.(($ssl) ? 'https://' : 'http://').Pommo::$_hostname.':'.Pommo::$_hostport.$page,2,TRUE);
-		
-		$socket = fsockopen($ssl . Pommo::$_hostname, Pommo::$_hostport, $errno, $errstr, 25);
+		$logger->addMsg('Attempting to spawn '.(($ssl) ? 'https://' :
+				'http://').Pommo::$_hostname.':'.Pommo::$_hostport.$page, 2,
+				TRUE);
+
+		$socket = fsockopen($ssl.Pommo::$_hostname, Pommo::$_hostport, $errno,
+				$errstr, 25);
 
 		// LOG SPAWN ATTEMPTS TO FILE *TEMP, DEBUG*
-		if($log || Pommo::$_debug) {
-			if(is_file(Pommo::$_workDir . '/SPAWN_0'))
-				copy(Pommo::$_workDir . '/SPAWN_0',Pommo::$_workDir . '/SPAWN_1');
+		if ($log || Pommo::$_debug)
+		{
+			if (is_file(Pommo::$_workDir . '/SPAWN_0'))
+			{
+				copy(Pommo::$_workDir.'/SPAWN_0', Pommo::$_workDir.'/SPAWN_1');
+			}
 				
-			if ($handle = fopen(Pommo::$_workDir . '/SPAWN_0', 'w')) {
+			if ($handle = fopen(Pommo::$_workDir . '/SPAWN_0', 'w'))
+			{
 				fwrite($handle, $out);
 				fclose($handle);
 			}
 		}
 
-		if ($socket) {
+		if ($socket)
+		{
 			fwrite($socket, $out);
 			sleep(1);
 			fclose($socket); // spawned script must have ignore_user_abort, eh? ;)
-		} else {
+		}
+		else
+		{
 			$msg = time().' >>> Error Spawning Page! ** Errno : Errstr: ' . $errno . ' : ' . $errstr;
 			$logger->addMsg($msg,3,TRUE);
 			trigger_error($msg);

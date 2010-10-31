@@ -27,8 +27,8 @@ require_once(Pommo::$_baseDir. 'classes/Pommo_Throttler.php');
 require_once(Pommo::$_baseDir. 'classes/Pommo_Mailing.php');
 require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 
- class Pommo_Mta {
-
+class Pommo_Mta
+{
 	// Attempted number of mails to process per queue batch.
 	var $_queueSize;
 
@@ -70,8 +70,8 @@ require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 	// the throttle object
 	var $_throttler;	
 	
-	function Pommo_Mta($args = array()) {
-		
+	function Pommo_Mta($args = array())
+	{
 		$defaults = array (
 			'queueSize' => 100,
 			'maxRunTime' => 80,
@@ -80,16 +80,22 @@ require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 			'serial' => false,
 			'spawn' => 1
 		);
-		$p = Pommo_Api :: getParams($defaults, $args);
+		$p = Pommo_Api::getParams($defaults, $args);
 		
 		foreach($p as $k => $v)
+		{
 			$this->{'_'.$k} = $v;
+		}
 			
 		// protect against safe mode timeouts
 		if (ini_get('safe_mode'))
-			$this->_maxRunTime = ini_get('max_execution_time') - 10;
+		{
+			$this->_maxRunTime = ini_get('max_execution_time') - 10;	
+		}
 		else
+		{
 			set_time_limit(0);
+		}
 			
 		// protect against user (client) abort
 		ignore_user_abort(true);
@@ -107,12 +113,13 @@ require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 			'active' => true,
 			'code' => (($this->_skipSecurity) ? null : $this->_code),
 			'id' => (($this->_id) ? $this->_id : null));
-			
+
 		$this->_mailing = current(Pommo_Mailing::get($p));
+
 		if(!is_numeric($this->_mailing['id']))
 			$this->shutdown('Unable to initialize mailing.');
 		$this->_id = $this->_mailing['id'];
-		
+
 		// make sure the $_GET global holds the mailing id (used in personalizations, etc.)
 		$_GET['id'] = $this->_id;
 		

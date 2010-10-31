@@ -60,7 +60,8 @@ $state = Pommo_Api::stateInit('mailing',array(
 	'mailgroup' => 'all',
 	'subject' => '',
 	'body' => '',
-	'altbody' => ''
+	'altbody' => '',
+	'attachments' => ''
 ),
 $_POST);
 
@@ -69,7 +70,8 @@ $state['charset'] = $state['list_charset'];
 // validate composition
 $tempbody = trim($state['body']);
 $tempalt = trim($state['altbody']);
-if(empty($tempbody) && empty($tempalt) || empty($state['subject'])) {
+if (empty($tempbody) && empty($tempalt) || empty($state['subject']))
+{
 	$logger->addErr(Pommo::_T('Subject or Message cannot be empty!'));
 	$smarty->assign($state);
 	$smarty->display('admin/mailings/mailing/preview.tpl');
@@ -104,21 +106,23 @@ $state['ishtml'] = (empty($tempbody))? 'off' : 'on';
 
 
 // processs send request
-if (!empty ($_REQUEST['sendaway'])) {
+if (!empty ($_REQUEST['sendaway']))
+{
 	/**********************************
 		JSON OUTPUT INITIALIZATION
 	 *********************************/
 	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
 	$json = new Pommo_Json();
 	
-	if ($state['tally'] > 0) {
-		
-		if($state['ishtml'] == 'off') {
+	if ($state['tally'] > 0)
+	{
+		if ($state['ishtml'] == 'off')
+		{
 			$state['body'] = $state['altbody'];
 			$state['altbody'] = '';
-		} 
-		
+		}
 		$mailing = Pommo_Mailing::make(array(), TRUE);
+
 		$state['status'] = 1;
 		$state['current_status'] = 'stopped';
 		$state['command'] = 'restart';
@@ -126,11 +130,16 @@ if (!empty ($_REQUEST['sendaway'])) {
 
 		$code = Pommo_Mailing::add($mailing);
 		
-		if(!Pommo_Mail_Ctl::queueMake($memberIDs))
+		if (!Pommo_Mail_Ctl::queueMake($memberIDs))
+		{
 			$json->fail('Unable to populate queue');
+		}
 			
-		if (!Pommo_Mail_Ctl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?code='.$code))
+		if (!Pommo_Mail_Ctl::spawn(
+				Pommo::$_baseUrl.'ajax/mailings_send4.php?code='.$code))
+		{
 			$json->fail('Unable to spawn background mailer');
+		}
 			
 		// clear mailing composistion data from session
 		Pommo_Api::stateReset(array('mailing'));
@@ -138,10 +147,11 @@ if (!empty ($_REQUEST['sendaway'])) {
 		$json->add('callbackParams',Pommo::$_baseUrl.'mailing_status.php');
 		
 	}
-	else {
+	else
+	{
 		$json->fail(Pommo::_T('Cannot send a mailing to 0 subscribers!'));
 	}
-$json->serve();
+	$json->serve();
 }
 
 $smarty->assign($state);

@@ -171,7 +171,8 @@ class Pommo_Type {
 			'sent' => null,
 			'charset' => null,
 			'status' => null,
-			'notices' => array()
+			'notices' => array(),
+			'attachments' => array()
 		);
 	}
 	

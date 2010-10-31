@@ -468,8 +468,7 @@ class Pommo
 				{
 					if (Pommo::$_section != 'user' && Pommo::$_section != 'admin')
 					{
-						$url = Pommo::$_http.Pommo::$_baseUrl.
-								Pommo::$_section.'/'.$url;
+						$url = Pommo::$_http.Pommo::$_baseUrl.$url;
 					}
 					else
 					{
@@ -625,6 +624,14 @@ class Pommo
 		
 		// set log file
 		ini_set('error_log', self::$_workDir.'/ERROR_LOG');
+	}
+	
+	public static function debug($text)
+	{
+		$mysqli = new mysqli("localhost", "cerr_user", "asdfasdf", "pommo");
+		$mysqli->query("INSERT INTO adebug(content) VALUES('".
+				$mysqli->real_escape_string($text)."')");
+		$mysqli->close();
 	}
 }
 

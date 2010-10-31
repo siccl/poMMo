@@ -160,9 +160,9 @@ class Pommo_Api
 		{
 			Pommo::$_session['state'][$name] = &$defaults;
 		}
-		
+
 		$state = &Pommo::$_session['state'][$name];
-		
+
 		if (empty($defaults))
 		{
 			return $state;
@@ -180,14 +180,14 @@ class Pommo_Api
 			}
 		}
 
-		foreach(array_keys($state) as $key)
+		foreach (array_keys($state) as $key)
 		{
-			if (array_key_exists($key,$source))
+			if (array_key_exists($key, $source))
 			{
 				$state[$key] = $source[$key];
 			}
 		}
-		
+
 		// normalize the page state
 		if (count($state) > count($defaults))
 		{

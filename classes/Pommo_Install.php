@@ -58,7 +58,7 @@ class Pommo_Install
 				if (preg_match("/;\s*$/", $sql_line))
 				{
 					$matches = array();
-					preg_match('/:::(.+):::/',$query,$matches);
+					preg_match('/:::(.+):::/', $query, $matches);
 					if ($matches[1])
 					{
 						$query = preg_replace('/:::(.+):::/',
