@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: poMMo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-23 17:34-0400\n"
-"PO-Revision-Date: 2010-11-04 16:10+0100\n"
+"PO-Revision-Date: 2010-11-04 16:47+0100\n"
 "Last-Translator: Massimiliano Masserelli <negro@interim.it>\n"
 "Language-Team: Italian <negro@interim.it>\n"
 "Language: it\n"
@@ -4305,7 +4305,7 @@ msgstr "Sito web di poMMo"
 #: aardvark-development/classes/Pommo_Helper_Messages.php:168
 #, php-format
 msgid "This message indicates that poMMo is able to use the %s exchanger."
-msgstr ""
+msgstr "Questo messaggio significa che poMMo è in grado di utilizzare il motore %s."
 
 #
 # File: aardvark-development/classes/Pommo_Helper_Messages.php, line: 180
@@ -4362,21 +4362,21 @@ msgstr "%s è un campo obbligatorio."
 #: aardvark-development/classes/Pommo_Validate.php:115
 #, php-format
 msgid "Illegal input for field %s."
-msgstr ""
+msgstr "Valore illegale per il campo %s."
 
 #
 # File: aardvark-development/classes/Pommo_Validate.php, line: 132
 #: aardvark-development/classes/Pommo_Validate.php:132
 #, php-format
 msgid "Field (%s) must be a date ("
-msgstr ""
+msgstr "Il campo (%s) deve essere una data ("
 
 #
 # File: aardvark-development/classes/Pommo_Validate.php, line: 143
 #: aardvark-development/classes/Pommo_Validate.php:143
 #, php-format
 msgid "Field (%s) must be a number."
-msgstr ""
+msgstr "Il campo (%s) deve essere un numero."
 
 #
 # File: aardvark-development/classes/Pommo_Install.php, line: 49
@@ -4395,7 +4395,7 @@ msgstr "Accesso negato. Prova a %s log in %s per accessare la pagina..."
 # File: aardvark-development/inc/classes/db.php, line: 77
 #: aardvark-development/inc/classes/db.php:77
 msgid "Could not establish database connection."
-msgstr ""
+msgstr "Impossibile stabilire una connessione con il database server."
 
 #
 # File: aardvark-development/inc/classes/db.php, line: 77
@@ -4403,14 +4403,14 @@ msgstr ""
 #: aardvark-development/inc/classes/db.php:77
 #: aardvark-development/inc/classes/db.php:80
 msgid "Verify your settings in config.php"
-msgstr ""
+msgstr "Controllare le impostazioni in config.php"
 
 #
 # File: aardvark-development/inc/classes/db.php, line: 80
 #: aardvark-development/inc/classes/db.php:80
 #, php-format
 msgid "Connected to database server but could not select database (%s). Does it exist?"
-msgstr ""
+msgstr "Connessione al database server ok ma impossibile selezionare database (%s). Assicurarsi che esista."
 
 #
 # File: aardvark-development/inc/classes/mta.php, line: 121
@@ -4451,14 +4451,14 @@ msgstr "Mailing annullato."
 # File: aardvark-development/inc/classes/mta.php, line: 199
 #: aardvark-development/inc/classes/mta.php:199
 msgid "You must restart the mailing."
-msgstr ""
+msgstr "Occorre riavviare la spedizione."
 
 #
 # File: aardvark-development/inc/classes/mta.php, line: 419
 #: aardvark-development/inc/classes/mta.php:419
 #, php-format
 msgid "Runtime (%s seconds) reached, respawning."
-msgstr ""
+msgstr "Tempo massimo di esecuzione (%s secondi) raggiunto, esecuzione aggiornamento."
 
 #
 # File: aardvark-development/inc/classes/pommo.php, line: 126
@@ -4479,7 +4479,7 @@ msgstr "Impossibile scrivere sulla cartella di lavoro (%s). Assicurati che abbia
 #: aardvark-development/inc/classes/pommo.php:130
 #, php-format
 msgid "Working Directory (%s) cannot be created under PHP SAFE MODE. See Documentation, or disable SAFE MODE."
-msgstr ""
+msgstr "La cartella di lavoro (%s) non può essere creata mentro PHP SAFE MODE è attivo. Consultare la Documentazione o disabilitare PHP SAFE MODE."
 
 #
 # File: aardvark-development/inc/classes/pommo.php, line: 133
@@ -4539,7 +4539,7 @@ msgstr "La mail a %s non è stata inviata. Il modo dimostrazione è ATTIVO."
 # File: aardvark-development/user/update.php, line: 47
 #: aardvark-development/user/update.php:47
 msgid "Invalid activation code."
-msgstr ""
+msgstr "Codice di attivazione non valido."
 
 #
 # File: aardvark-development/user/update.php, line: 73
@@ -4565,7 +4565,7 @@ msgstr "Indirizzo email invalido"
 #: aardvark-development/admin/subscribers/ajax/manage.rpc.php:59
 #: aardvark-development/admin/subscribers/ajax/manage.rpc.php:155
 msgid "Email address already exists. Duplicates are not allowed."
-msgstr ""
+msgstr "L'indirizzo di posta elettronica esiste già. I duplicati non sono consentiti."
 
 #
 # File: aardvark-development/user/update.php, line: 94
@@ -4652,7 +4652,7 @@ msgstr "La tua %s è stata annullata."
 #: aardvark-development/user/pending.php:74
 #, php-format
 msgid "Your %s is still pending. To complete this request, please review the confirmation email sent to %s."
-msgstr ""
+msgstr "Il tuo %s è ancora in attesa. Per completare questa richiesta si prega cortesemente di verificare la mail di conferma inviata a %s."
 
 #
 # File: aardvark-development/user/confirm.php, line: 41
@@ -4670,7 +4670,7 @@ msgstr "Codice invalido! Accertati di averlo copiato correttamente dalla email."
 # File: aardvark-development/admin/setup/form_generate.php, line: 46
 #: aardvark-development/admin/setup/form_generate.php:46
 msgid "VIEW THE SOURCE TO COPY, PASTE, EDIT, AND SAVE THE FORM TO AN APPROPRIATE LOCATION ON YOUR WEBSITE"
-msgstr ""
+msgstr "VISUALIZZA IL SORGENTE PER COPIARE, INCOLLARE E SALVARE LA FORM NEL POSTO APPROPRIATO ALL'INTERNO DEL TUO SITO WEB"
 
 #
 # File: aardvark-development/admin/setup/ajax/fields.rpc.php, line: 57
@@ -4688,7 +4688,7 @@ msgstr "Filtro aggiornato"
 #: aardvark-development/admin/subscribers/subscribers_groups.php:48
 #: aardvark-development/admin/mailings/mailing/ajax.addtemplate.php:71
 msgid "Error with addition."
-msgstr ""
+msgstr "Errore durante l'inserimento."
 
 #
 # File: aardvark-development/admin/setup/ajax/fields.rpc.php, line: 88
@@ -4707,7 +4707,7 @@ msgstr "Cancellamento opzione %1$s affettera %2$s abbonati che hanno selezionato
 #: aardvark-development/admin/setup/setup_fields.php:78
 #: aardvark-development/admin/mailings/mailing/templates.php:58
 msgid "Error with deletion."
-msgstr ""
+msgstr "Errore durante la cancellazione."
 
 #
 # File: aardvark-development/admin/setup/ajax/field_edit.php, line: 55
@@ -4775,21 +4775,21 @@ msgstr "%s - Qualsiasi valore sarà accettato per i campi di testo. I campi test
 #: aardvark-development/admin/setup/ajax/field_edit.php:100
 #, php-format
 msgid "%s - Checkboxes can be toggled ON or OFF. They are useful for opt-ins and agreements."
-msgstr ""
+msgstr "%s - I campi di selezione possono essere spuntati o meno. Sono utili per opt-in ed accordi."
 
 #
 # File: aardvark-development/admin/setup/ajax/field_edit.php, line: 101
 #: aardvark-development/admin/setup/ajax/field_edit.php:101
 #, php-format
 msgid "%s - Only Numeric values will be accepted for number fields."
-msgstr ""
+msgstr "%s - I campi numerici possono accettare solamente valori numerici."
 
 #
 # File: aardvark-development/admin/setup/ajax/field_edit.php, line: 102
 #: aardvark-development/admin/setup/ajax/field_edit.php:102
 #, php-format
 msgid "%s - Only calendar values will be accepted for this field. A date selector (calendar popup) will appear next to the field to aid the subscriber in selecting a date."
-msgstr ""
+msgstr "%s - Per questo campo sono accettabili soltanto valori validi di calendario. Un selettore di date (calendario pop-up) apparirà a fianco del campo per aiutare gli utenti nella compilazione."
 
 #
 # File: aardvark-development/admin/setup/ajax/field_edit.php, line: 103
