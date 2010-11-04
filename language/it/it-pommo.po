@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: poMMo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-23 17:34-0400\n"
-"PO-Revision-Date: 2010-11-04 18:18+0100\n"
+"PO-Revision-Date: 2010-11-04 18:26+0100\n"
 "Last-Translator: Massimiliano Masserelli <negro@interim.it>\n"
 "Language-Team: Italian <negro@interim.it>\n"
 "Language: it\n"
@@ -3481,7 +3481,7 @@ msgstr "Gli invii possono essere personalizzati per ogni iscritto. Si possono in
 #. aardvark-development/themes/default/admin/mailings/mailing/ajax.personalize.tpl
 #: pommo_theme_lang.php:1812
 msgid "Personalizations allow you to write a message like \"Dear [[firstName|Loyal Subscriber]], Happy New Year! .... follow this link to unsubscribe or update your records; [[!unsubscribe]]\"."
-msgstr ""
+msgstr "Le personalizzazioni permettono di scrivere un messaggio come \" Caro [[firstName|Pregiato Iscritto]], Tanti auguri di BUON ANNO! ... segui questo link per cancellare l'iscrizione o modificare i tuoi dati: [[!unsubscribe]]\"."
 
 #
 # File: pommo_theme_lang.php, line: 1815
@@ -3490,7 +3490,7 @@ msgstr ""
 #: pommo_theme_lang.php:1815
 #: aardvark-development/admin/mailings/mailings_start.php:53
 msgid "Personalization"
-msgstr ""
+msgstr "Personalizzazione"
 
 #
 # File: pommo_theme_lang.php, line: 1818
@@ -3511,14 +3511,14 @@ msgstr "Tracciamento (ID)"
 #. aardvark-development/themes/default/admin/mailings/mailing/ajax.personalize.tpl
 #: pommo_theme_lang.php:1833
 msgid "Default (optional; used if no value exists)"
-msgstr ""
+msgstr "Valore predefinito (opzionale; usato se non esiste alcun valore)"
 
 #
 # File: pommo_theme_lang.php, line: 1839
 #. aardvark-development/themes/default/admin/mailings/mailing/ajax.personalize.tpl
 #: pommo_theme_lang.php:1839
 msgid "View on Web (public mailings must be enabled)"
-msgstr ""
+msgstr "Visualizza sul web (devono essere abilitati gli invii pubblici)"
 
 #
 # File: pommo_theme_lang.php, line: 1842
@@ -3736,7 +3736,7 @@ msgstr "Questa area ti permette di configurare poMMo e il suo modo d'agire. Modi
 #. aardvark-development/themes/default/admin/admin.tpl
 #: pommo_theme_lang.php:1974
 msgid "If you like poMMo, please consider a dontation to support its development"
-msgstr ""
+msgstr "Se ti piace poMMo, considera la possibilità di una donazione per supportare il suo sviluppo"
 
 #
 # File: pommo_theme_lang.php, line: 1977
@@ -4181,7 +4181,7 @@ msgstr "Errore durante la inviazione del mailing"
 #: aardvark-development/classes/Pommo_Helper_Messages.php:116
 #, php-format
 msgid "Welcome to our mailing list. You can always login to update your records or unsubscribe by visiting: %s"
-msgstr ""
+msgstr "Benvenuto nella nostra newsletter. In qualunque momento ti sarà possibile collegarti per modificare i tuoi dati o cancellare la tua iscrizione visitando: %s"
 
 #
 # File: aardvark-development/classes/Pommo_Helper_Messages.php, line: 117
@@ -4207,7 +4207,7 @@ msgstr "Arrivederci da %s"
 # File: aardvark-development/classes/Pommo_Helper_Messages.php, line: 125
 #: aardvark-development/classes/Pommo_Helper_Messages.php:125
 msgid "You have been unsubscribed and will not receive any more mailings from us. Feel free to come back anytime!"
-msgstr ""
+msgstr "La tua iscrizione è stata cancellata e non riceverai ulteriori messaggi da parte nostra. Torna a trovarci quando vuoi!"
 
 #
 # File: aardvark-development/classes/Pommo_Helper_Messages.php, line: 126
@@ -4251,7 +4251,7 @@ msgstr "Hai richiesto di modificare la tua password per %s."
 # File: aardvark-development/classes/Pommo_Helper_Messages.php, line: 138
 #: aardvark-development/classes/Pommo_Helper_Messages.php:138
 msgid "You may edit your information or unsubscribe by visiting the link below ->"
-msgstr ""
+msgstr "Puoi modificare le tue informazioni o cancellare la tua iscrizione visitando il link sottostante ->"
 
 #
 # File: aardvark-development/classes/Pommo_Helper_Messages.php, line: 139
@@ -4803,7 +4803,7 @@ msgstr "%s - Gli utenti saranno in grado di selezionare un valore dalle opzioni 
 #: aardvark-development/admin/setup/ajax/field_edit.php:104
 #, php-format
 msgid "%s -. If a subscriber enters a value for a comment field, it will be mailed to the admin notification email."
-msgstr ""
+msgstr "%s - se un iscritto specifica un valore per un campo commento, questo sarà trasmesso all'indirizzo di posta dell'amministratore."
 
 #
 # File: aardvark-development/admin/setup/config/ajax.throttle.php, line: 40
