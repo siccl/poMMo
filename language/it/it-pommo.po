@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: poMMo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-04 21:04+0100\n"
-"PO-Revision-Date: 2010-11-05 10:21+0100\n"
+"PO-Revision-Date: 2010-11-05 14:51+0100\n"
 "Last-Translator: Massimiliano Masserelli <negro@interim.it>\n"
 "Language-Team: Italian <negro@interim.it>\n"
 "Language: it\n"
@@ -1208,7 +1208,7 @@ msgstr "Il tuo indirizzo di posta elettronica:"
 #: language/smarty.c:656
 #: language/smarty.c:661
 msgid "Subscribe"
-msgstr "Abbonati"
+msgstr "Iscriviti"
 
 #
 # File: pommo_theme_lang.php, line: 1149
@@ -1493,7 +1493,7 @@ msgstr "%s è stato cancellato."
 #: subscribers_manage.php:37
 #: language/smarty.c:420
 msgid "Subscribers Page"
-msgstr "Pagina abbonati"
+msgstr "Pagina iscritti"
 
 #
 # File: aardvark-development/user/update.php, line: 47
@@ -1566,7 +1566,7 @@ msgstr "Invia mailing alla lista intera o a un gruppo di riceventi. Lo stato di 
 # File: pommo_theme_lang.php, line: 1965
 #: language/smarty.c:5
 msgid "Here you can list, add, delete, import, export, and update your subscribers. You can also create groups (subsets) of your subsribers from here."
-msgstr "Qui puoi listare, inserire, cancellare, importare, esportare e modificare gli abbonati e creare gruppi (subsets) dai loro dati."
+msgstr "Qui puoi listare, inserire, cancellare, importare, esportare e modificare gli iscritti. Puoi anche creare gruppi di iscritti basati sui dati da loro inseriti."
 
 #
 # File: pommo_theme_lang.php, line: 24
@@ -1582,7 +1582,7 @@ msgstr "Impostazioni"
 # File: pommo_theme_lang.php, line: 1971
 #: language/smarty.c:7
 msgid "This area allows you to configure poMMo. Set mailing list parameters, choose the information you'd like to collect from subscribers, and generate subscription forms from here."
-msgstr "Questa area ti permette di configurare poMMo e il suo modo d'agire. Modifica parametri delle mailing list, scegli informazioni che desideri raccogliere dai tuoi abbonati, e genera moduli d'abbonamento."
+msgstr "Questa area ti permette di configurare poMMo e il suo modo d'agire. Modifica parametri delle newsletter, scegli le informazioni che desideri raccogliere dai tuoi iscritti e genera moduli d'iscrizione."
 
 #
 # File: pommo_theme_lang.php, line: 1977
@@ -1813,7 +1813,7 @@ msgstr "Tracciamento (ID)"
 #: language/smarty.c:42
 #: language/smarty.c:588
 msgid "Registered"
-msgstr "Casella obbligatoria:"
+msgstr "Registrato"
 
 #
 # File: pommo_theme_lang.php, line: 1833
@@ -1827,7 +1827,7 @@ msgstr "Valore predefinito (opzionale; usato se non esiste alcun valore)"
 #: language/smarty.c:44
 #: language/smarty.c:64
 msgid "Unsubscribe or Update Records"
-msgstr "Modificazione abbonati"
+msgstr "Cancella iscrizione o aggiorna dati"
 
 #
 # File: pommo_theme_lang.php, line: 1839
@@ -1839,19 +1839,19 @@ msgstr "Visualizza sul web (devono essere abilitati gli invii pubblici)"
 # File: pommo_theme_lang.php, line: 1842
 #: language/smarty.c:46
 msgid "Subscriber ID"
-msgstr "Abbonati"
+msgstr "ID iscritto"
 
 #
 # File: pommo_theme_lang.php, line: 1845
 #: language/smarty.c:47
 msgid "Mailing ID"
-msgstr "Mailing"
+msgstr "ID invio"
 
 #
 # File: pommo_theme_lang.php, line: 1848
 #: language/smarty.c:48
 msgid "Insert"
-msgstr "Installazione"
+msgstr "Inserisci"
 
 #
 # File: pommo_theme_lang.php, line: 1602
@@ -1922,7 +1922,7 @@ msgstr "Lasciare vuoto per inviare solo HTML"
 # File: pommo_theme_lang.php, line: 1629
 #: language/smarty.c:61
 msgid "Disable WYSIWYG"
-msgstr "Usa editor WYSIWYG"
+msgstr "Modifica sorgente"
 
 #
 # File: pommo_theme_lang.php, line: 1635
@@ -1934,7 +1934,7 @@ msgstr "Consulta questo invio sul web"
 # File: pommo_theme_lang.php, line: 1641
 #: language/smarty.c:65
 msgid "Preview Mailing"
-msgstr "Previsione Mailing"
+msgstr "Anteprima invio"
 
 #
 # File: pommo_theme_lang.php, line: 717
@@ -1952,7 +1952,7 @@ msgstr "Previsione Mailing"
 #: language/smarty.c:346
 #: language/smarty.c:353
 msgid "Subject:"
-msgstr "Soggetto:"
+msgstr "Oggetto:"
 
 #
 # File: pommo_theme_lang.php, line: 1647
@@ -1976,7 +1976,7 @@ msgstr "Mittente:"
 # File: pommo_theme_lang.php, line: 1656
 #: language/smarty.c:70
 msgid "Bounces:"
-msgstr "Bounce/Indirizzo di ritorno:"
+msgstr "Indirizzo per gli errori:"
 
 #
 # File: pommo_theme_lang.php, line: 441
@@ -1992,7 +1992,7 @@ msgstr "Set di caratteri:"
 # File: pommo_theme_lang.php, line: 1662
 #: language/smarty.c:72
 msgid "Send Test"
-msgstr "Invia per test"
+msgstr "Invio di prova"
 
 #
 # File: pommo_theme_lang.php, line: 1668
@@ -2032,7 +2032,7 @@ msgstr "Invia mailing a:"
 # File: pommo_theme_lang.php, line: 1695
 #: language/smarty.c:83
 msgid "All subscribers"
-msgstr "Tutti gli abbonati"
+msgstr "Tutti gli iscritti"
 
 #: language/smarty.c:84
 msgid "(Select who should receive the mailing. Control click ( or command click on the Mac ) to select multiple groups. Note: If a subscriber is in more than one group they will only receive one email and NOT one for each group that they're in.)"
@@ -3132,13 +3132,13 @@ msgstr "(inviato in caso di iscrizione non andata a buon fine)"
 # File: pommo_theme_lang.php, line: 684
 #: language/smarty.c:309
 msgid "(sent upon subscriber update)"
-msgstr "Modificazione abbonati"
+msgstr "(inviato al momento dell'aggiornamento dei dati di un iscritto)"
 
 #
 # File: pommo_theme_lang.php, line: 696
 #: language/smarty.c:313
 msgid "(sent upon subscription attempt)"
-msgstr "(Attiva per validare email manualmente dopo il tentativo di soscrizione.)"
+msgstr "(inviato in caso di richiesta di iscrizione)"
 
 #
 # File: pommo_theme_lang.php, line: 702
@@ -3520,13 +3520,13 @@ msgstr "Amministra"
 # File: pommo_theme_lang.php, line: 1305
 #: language/smarty.c:422
 msgid "subscribers. See an overview of your current and pending subscribers. You can add, delete, and edit subscribers from here."
-msgstr "abbonati. Visualizza una lista degli abbonati correnti e quelli in corso che potrai aggiungere, cancellare e modificare."
+msgstr "iscritti. Visualizza una lista degli iscritti correnti e quelli in attesa di conferma. Da qui puoi aggiungere, cancellare e modificare gli iscritti."
 
 #
 # File: pommo_theme_lang.php, line: 1311
 #: language/smarty.c:424
 msgid "Subscribers. You can import large amounts of subscribers using files stored on your computer."
-msgstr "abbonati. Puoi importare un grande numero di dati tramite files salvati sul tuo computer."
+msgstr "Iscritti. Puoi importare un grande numero di iscritti tramite files salvati sul tuo computer."
 
 #
 # File: pommo_theme_lang.php, line: 21
@@ -3542,7 +3542,7 @@ msgstr "Gruppi"
 # File: pommo_theme_lang.php, line: 1317
 #: language/smarty.c:426
 msgid "Manage \"mailing groups\" from this area. Mailing groups allow you to mail subsets of your subscribers, rather than just the entire list."
-msgstr "Controlla i \"gruppi mailing\" su questa pagina. Gruppi ti consentiranno ad inviare email agli abbonati appartenenti ad un gruppo (al posto della lista intera)."
+msgstr "Amministra i \"gruppi di iscritti\" su questa pagina. I gruppi ti consentiranno di inviare messaggi solo ad una parte degli iscritti (invece che alla lista intera)."
 
 #
 # File: pommo_theme_lang.php, line: 1104
@@ -3566,7 +3566,7 @@ msgstr "il valore non può essere vuoto"
 # File: pommo_theme_lang.php, line: 1113
 #: language/smarty.c:430
 msgid "Match subscribers where"
-msgstr "Trova abbonati dai quali %s"
+msgstr "Trova iscritti dove"
 
 #
 # File: pommo_theme_lang.php, line: 1116
@@ -3736,13 +3736,13 @@ msgstr "Modifica gruppi"
 # File: pommo_theme_lang.php, line: 1377
 #: language/smarty.c:473
 msgid "To add subscribers to a group you must create matching rules. Subscribers are automatically added to a group if their %1subscriber field%2 values \"match\" a Group's rules. For example, if you collect \"AGE\" and \"COUNTRY\" as %1subscriber fields%2, you can match those who are 21+ and living in Japan by creating two rules; one which matches \"AGE\" to greater than 20, and another which matches \"Japan\" to \"COUNTRY\". Including or excluding members of other groups is possible."
-msgstr "I Gruppi sono costituiti da \"filtri\" che mettono in relazione valori caselle e altri gruppi. Per esempio, se raccogli informazioni su \"etï¿½\" e \"paese\", ï¿½ possibile estrarre abbonati maggiori a 21 anni dal Giappone creando due filtri, uno che paragona la casella \"etï¿½\" con il valore GREATER THAN 20, e un altro che paragona \"paese\" EQUAL TO \"Giappone\"."
+msgstr "Per aggiungere iscritti ad un gruppo è necessario creare delle regole di ricerca. Gli iscritti vengono automaticamente aggiunti ad un gruppo se i loro %1campi utente%2 verificano una regola di ricerca. Per esempio, se vengono raccolti \"ETA\" e \"PROVINCIA\" come %1campi utente%2, è possibile specificare quelli che hanno più di 21 anni  e vivono in provincia di Bologna creando due regole: la prima che verifica il campo \"ETA\" sia maggiore di 21 e la seconda che controlli che il campo \"PROVINCIA\" sia uguale a \"Bologna\". Esiste anche la possibiltà di includere od escludere membri di altri gruppi."
 
 #
 # File: pommo_theme_lang.php, line: 1380
 #: language/smarty.c:474
 msgid "Change Name"
-msgstr "Modifica password"
+msgstr "Cambia nome"
 
 #
 # File: pommo_theme_lang.php, line: 1383
@@ -3756,13 +3756,13 @@ msgstr "Nome del gruppo:"
 #: language/smarty.c:476
 #: language/smarty.c:537
 msgid "type new group name"
-msgstr "Digita il nome del gruppo"
+msgstr "inserire nuovo nome del gruppo"
 
 #
 # File: pommo_theme_lang.php, line: 1389
 #: language/smarty.c:477
 msgid "Rename"
-msgstr "Modifica nome"
+msgstr "Rinomina"
 
 #
 # File: pommo_theme_lang.php, line: 1392
@@ -3774,43 +3774,43 @@ msgstr "Inserisci filtro"
 # File: pommo_theme_lang.php, line: 1395
 #: language/smarty.c:479
 msgid "Select a %1 field %2 to filter"
-msgstr "Seleziona una %1 casella %2 per il filtro"
+msgstr "Selezionare un %1campo%2 da filtrare"
 
 #
 # File: pommo_theme_lang.php, line: 1398
 #: language/smarty.c:480
 msgid "Choose Subscriber Field"
-msgstr "Seleziona casella abbonati"
+msgstr "Scegliere campo utente"
 
 #
 # File: pommo_theme_lang.php, line: 1401
 #: language/smarty.c:481
 msgid "or, Select a %1 group %2 to include or exclude"
-msgstr "o, seleziona un %1 gruppo %2 per"
+msgstr "oppure, seleziona un %1 gruppo %2 da includere od escludere"
 
 #
 # File: pommo_theme_lang.php, line: 1404
 #: language/smarty.c:482
 msgid "Choose Group"
-msgstr "Scegliere Gruppo"
+msgstr "Scegliere gruppo"
 
 #
 # File: pommo_theme_lang.php, line: 1407
 #: language/smarty.c:483
 msgid "Group Rules"
-msgstr "Gruppi"
+msgstr "Regole per il gruppo"
 
 #
 # File: pommo_theme_lang.php, line: 1416
 #: language/smarty.c:486
 msgid "Field"
-msgstr "Caselle"
+msgstr "Campo"
 
 #
 # File: pommo_theme_lang.php, line: 1419
 #: language/smarty.c:487
 msgid "Logic"
-msgstr "Login"
+msgstr "Logica"
 
 #
 # File: pommo_theme_lang.php, line: 1422
@@ -3888,7 +3888,7 @@ msgstr "<strong>O</strong>, VERIFICA %1UNA QUALSIASI%2 DELLE SEGUENTI CONDIZIONI
 # File: pommo_theme_lang.php, line: 1476
 #: language/smarty.c:506
 msgid "<strong>AND</strong>, ADD OR SUBTRACT MEMBERS IN OTHER GROUPS"
-msgstr "<strong>E</strong>, AGGIUNGI E SOTTRAI MEMBRI IN ALTRI GRUPPI"
+msgstr "<strong>E</strong>, AGGIUNGI E SOTTRAI MEMBRI DI ALTRI GRUPPI"
 
 #
 # File: pommo_theme_lang.php, line: 1482
@@ -3930,7 +3930,7 @@ msgstr "Assegna campi"
 # File: pommo_theme_lang.php, line: 1506
 #: language/smarty.c:516
 msgid "Below is a preview of your CSV data. You can assign subscriber fields to columns. At the very least, you must assign an email address."
-msgstr "In basso si può vedere un'anteprima dei dati CSV. Si possono assegnare campi utente alle colonne. Come minimo assoluto, è necessario assegnare una colonna per gli indirizzi di posta."
+msgstr "Di seguito si può vedere un'anteprima dei dati CSV. Si possono assegnare campi utente alle colonne. Come minimo assoluto, è necessario assegnare una colonna per gli indirizzi di posta."
 
 #
 # File: pommo_theme_lang.php, line: 1512
@@ -3942,7 +3942,7 @@ msgstr "Ignora colonna"
 # File: pommo_theme_lang.php, line: 1530
 #: language/smarty.c:524
 msgid "You must assign an email column!"
-msgstr "È necessario assegnare una colonna per gli indirizzi di posta!"
+msgstr "È necessario assegnare una colonna contenente gli indirizzi di posta elettronica!"
 
 #
 # File: pommo_theme_lang.php, line: 1281
