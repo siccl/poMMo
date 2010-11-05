@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: poMMo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-04 21:04+0100\n"
-"PO-Revision-Date: 2010-11-05 14:51+0100\n"
+"PO-Revision-Date: 2010-11-05 15:28+0100\n"
 "Last-Translator: Massimiliano Masserelli <negro@interim.it>\n"
 "Language-Team: Italian <negro@interim.it>\n"
 "Language: it\n"
@@ -1353,7 +1353,7 @@ msgstr "Storia degli invii"
 #: language/smarty.c:15
 #: language/smarty.c:128
 msgid "Mailings Page"
-msgstr "Pagina mailing"
+msgstr "Pagina invii"
 
 #
 # File: aardvark-development/admin/mailings/mailing/ajax.mailingtest.php, line: 118
@@ -1443,7 +1443,7 @@ msgstr "Impostazioni SMTP"
 #: setup_configure.php:37
 #: language/smarty.c:256
 msgid "Test Exchanger"
-msgstr "Exchanger di test:"
+msgstr "Prova metodo di spedizione"
 
 #
 # File: aardvark-development/admin/setup/setup_fields.php, line: 68
@@ -1560,7 +1560,7 @@ msgstr "Invii"
 # File: pommo_theme_lang.php, line: 1959
 #: language/smarty.c:3
 msgid "Send mailings to the entire list or to a subset of subscribers. Mailing status and history can also be viewed from here."
-msgstr "Invia mailing alla lista intera o a un gruppo di riceventi. Lo stato di mailings in corso e mailings passati si trovano qui."
+msgstr "Invia messaggio alla lista intera o ad un gruppo diiscritti. Da qui si possono anche consultare lo storico degli invii e lo stato delle spedizioni."
 
 #
 # File: pommo_theme_lang.php, line: 1965
