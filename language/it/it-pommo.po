@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: poMMo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-04 21:04+0100\n"
-"PO-Revision-Date: 2010-11-04 22:00+0100\n"
+"PO-Revision-Date: 2010-11-05 10:21+0100\n"
 "Last-Translator: Massimiliano Masserelli <negro@interim.it>\n"
 "Language-Team: Italian <negro@interim.it>\n"
 "Language: it\n"
@@ -1288,7 +1288,7 @@ msgstr "Tentativo login fallito. Riprova."
 # File: aardvark-development/index.php, line: 102
 #: index.php:121
 msgid "Captcha did not match. Try again."
-msgstr "Testo Captcha non coincide. Riprova."
+msgstr "Il testo Captcha non coincide. Riprova."
 
 #
 # File: aardvark-development/install/install.php, line: 42
@@ -1300,7 +1300,7 @@ msgstr "poMMo è già installato."
 # File: aardvark-development/install/install.php, line: 67
 #: install.php:67
 msgid "Must be a valid email"
-msgstr "Digita un indirizzo email valido"
+msgstr "Deve essere un indirizzo valido"
 
 #
 # File: aardvark-development/install/install.php, line: 119
@@ -1312,25 +1312,25 @@ msgstr "Installazione completa! Login e modifica le impostazioni di poMMo."
 # File: aardvark-development/install/install.php, line: 120
 #: install.php:116
 msgid "Login Username: "
-msgstr "Username Login: "
+msgstr "Username di login: "
 
 #
 # File: aardvark-development/install/install.php, line: 121
 #: install.php:117
 msgid "Login Password: "
-msgstr "Password Login: "
+msgstr "Password di login: "
 
 #
 # File: aardvark-development/user/login.php, line: 38
 #: login.php:38
 msgid "subscriber logon"
-msgstr "Login abbonati"
+msgstr "Login iscritti"
 
 #
 # File: aardvark-development/user/login.php, line: 76
 #: login.php:76
 msgid "Email address not found! Please try again."
-msgstr "Questo indirizzo email non ï¿½ stato trovato nella banca dati. Riprova per favore."
+msgstr "Indirizzo di posta elettronica non trovato! Riprovare."
 
 #
 # File: aardvark-development/user/login.php, line: 77
@@ -1637,7 +1637,7 @@ msgstr "Invia"
 # File: pommo_theme_lang.php, line: 1926
 #: language/smarty.c:17
 msgid "Create and send a mailing."
-msgstr "Crea ed invia un mailing."
+msgstr "Crea ed invia un messaggio."
 
 #
 # File: pommo_theme_lang.php, line: 9
@@ -1651,7 +1651,7 @@ msgstr "Storico"
 # File: pommo_theme_lang.php, line: 1932
 #: language/smarty.c:19
 msgid "View mailings that have already been sent."
-msgstr "Vedi mailings che sono giï¿½ stati inviati."
+msgstr "Vedi messaggi che sono già stati inviati."
 
 #
 # File: pommo_theme_lang.php, line: 1572
@@ -1677,7 +1677,7 @@ msgstr "I modelli permettono di riutilizzare corpi del messaggio precostruiti. V
 #: language/smarty.c:658
 #: language/smarty.c:663
 msgid "Fields marked like %1 this %2 are required."
-msgstr "I campi marcati in %1questo%2 modo sono obbligatori"
+msgstr "I campi marcati in %1questo modo%2 sono obbligatori"
 
 #
 # File: pommo_theme_lang.php, line: 1770
@@ -1703,13 +1703,13 @@ msgstr "(al massimo 60 charatteri)"
 # File: pommo_theme_lang.php, line: 1776
 #: language/smarty.c:24
 msgid "Description:"
-msgstr "Abbonamento"
+msgstr "Descrizione:"
 
 #
 # File: pommo_theme_lang.php, line: 1779
 #: language/smarty.c:25
 msgid "(Brief Summary - 255 characters)"
-msgstr "(al massimo 60 charatteri)"
+msgstr "(Riassunto breve - 255 caratteri)"
 
 #
 # File: pommo_theme_lang.php, line: 1782
@@ -1733,7 +1733,7 @@ msgstr "Annulla"
 # File: pommo_theme_lang.php, line: 1788
 #: language/smarty.c:28
 msgid "Mailing sent to %1"
-msgstr "Mailing List"
+msgstr "Messaggi inviato a %1"
 
 #
 # File: pommo_theme_lang.php, line: 1791
@@ -2170,7 +2170,7 @@ msgstr "caricamento..."
 # File: pommo_theme_lang.php, line: 1575
 #: language/smarty.c:107
 msgid "You may %1load%2 or %1delete%2 templates from here."
-msgstr "Da qui è possibile %1caricare%2 o %1cancellare%2 i template."
+msgstr "Da qui è possibile %1caricare%2 o %1cancellare%2 i modelli."
 
 #
 # File: pommo_theme_lang.php, line: 1578
@@ -2238,19 +2238,19 @@ msgstr "Cancella"
 # File: pommo_theme_lang.php, line: 1854
 #: language/smarty.c:116
 msgid "Mailings take place in the background so feel free to close this page, visit other sites, or even turn off your computer. You can always return to this status page by visiting the Mailings section.  %1Throttle settings%2 can also be adjusted -- although you must pause and revive the mailing before changes take effect."
-msgstr "Il processo di inviazione sarï¿½ effettuato nel background. Puoi chiudere il browser window, visitare altri siti o fare lavori su poMMo. Impostazioni per il throttling possono essere aggiornati, perï¿½ ï¿½ necessario di fermare e riattivare il mailing cosicchï¿½ le nuove impostazioni terranno effetto."
+msgstr "Il processo di spedizio sarà avviato in background. Puoi chiudere questa pagina, visitare altri siti o anche spegnere il tuo computer. Potrai sempre consultare questa pagina di stato visitando la sezione Invii. È anche possibile definire le %1impostazioni di throttle%2 -- anche se occorrerà mettere in pausa e riavviare la spedizione perché queste modifiche possano avere effetto."
 
 #
 # File: pommo_theme_lang.php, line: 1857
 #: language/smarty.c:117
 msgid "Sending message to %1 subscribers."
-msgstr "Invia messaggio a %1 abbonati."
+msgstr "Invia messaggio a %1 iscritti."
 
 #
 # File: pommo_theme_lang.php, line: 1860
 #: language/smarty.c:118
 msgid "Mailing Status"
-msgstr "Mailing fermato (pause)"
+msgstr "Stato dell'invio"
 
 #
 # File: pommo_theme_lang.php, line: 1863
@@ -2262,7 +2262,7 @@ msgstr "Inizializzazione..."
 # File: pommo_theme_lang.php, line: 1866
 #: language/smarty.c:120
 msgid "Pause Mailing"
-msgstr "Ferma mailing (pause)"
+msgstr "Ferma invio"
 
 #
 # File: pommo_theme_lang.php, line: 1869
@@ -2272,7 +2272,7 @@ msgstr "Ferma mailing (pause)"
 #: language/smarty.c:122
 #: language/smarty.c:124
 msgid "Resume Mailing"
-msgstr "Riattiva mailing (resume)"
+msgstr "Riattiva invio"
 
 #
 # File: pommo_theme_lang.php, line: 1875
@@ -2280,31 +2280,31 @@ msgstr "Riattiva mailing (resume)"
 #: language/smarty.c:123
 #: language/smarty.c:125
 msgid "Cancel Mailing"
-msgstr "Cancella mailing"
+msgstr "Annulla invio"
 
 #
 # File: pommo_theme_lang.php, line: 1884
 #: language/smarty.c:126
 msgid "Mailing Finished"
-msgstr "Mailing concluso"
+msgstr "Invio concluso"
 
 #
 # File: pommo_theme_lang.php, line: 1893
 #: language/smarty.c:129
 msgid "Command Recieved. Please wait..."
-msgstr "Commando ricevuto... Aspetta per favore."
+msgstr "Comando ricevuto. Attendere..."
 
 #
 # File: pommo_theme_lang.php, line: 1896
 #: language/smarty.c:130
 msgid "%1 mails sent"
-msgstr "%1 mail inviate"
+msgstr "%1 messaggi inviati"
 
 #
 # File: pommo_theme_lang.php, line: 1899
 #: language/smarty.c:131
 msgid "Last 50 notices"
-msgstr "Cancella le ultime 50 notizie"
+msgstr "Ultimi 50 avvisi"
 
 #
 # File: pommo_theme_lang.php, line: 1203
@@ -2324,7 +2324,7 @@ msgstr "Mostra"
 # File: pommo_theme_lang.php, line: 1905
 #: language/smarty.c:133
 msgid "Sent Emails"
-msgstr "email"
+msgstr "Messaggi inviati"
 
 #
 # File: pommo_theme_lang.php, line: 1911
@@ -2336,7 +2336,7 @@ msgstr "Messaggi non inviati"
 # File: pommo_theme_lang.php, line: 1917
 #: language/smarty.c:137
 msgid "Failed Emails"
-msgstr "Dettagli filtro"
+msgstr "Messaggi in errore"
 
 #
 # File: pommo_theme_lang.php, line: 111
@@ -2430,7 +2430,7 @@ msgstr "Stato"
 #: language/smarty.c:591
 #: language/smarty.c:698
 msgid "No records returned."
-msgstr "Nessun record ottenuto."
+msgstr "Nessun record trovato."
 
 #
 # File: pommo_theme_lang.php, line: 1197
@@ -2458,7 +2458,7 @@ msgstr "Modelli"
 # File: pommo_theme_lang.php, line: 1947
 #: language/smarty.c:155
 msgid "Compose"
-msgstr "Importazione completa!"
+msgstr "Scrivi"
 
 #
 # File: pommo_theme_lang.php, line: 942
@@ -3018,19 +3018,19 @@ msgstr "(Indirizzo al quale verranno ritornate le email)"
 # File: pommo_theme_lang.php, line: 411
 #: language/smarty.c:267
 msgid "Demonstration Mode:"
-msgstr "Modo di dimostrazione:"
+msgstr "Modalità DEMO:"
 
 #
 # File: pommo_theme_lang.php, line: 420
 #: language/smarty.c:270
 msgid "(Toggle Demonstration Mode)"
-msgstr "(Attiva/disattiva il modo di dimostrazione)"
+msgstr "(Attiva/disattiva la modalità DEMO)"
 
 #
 # File: pommo_theme_lang.php, line: 423
 #: language/smarty.c:271
 msgid "Public Mailings"
-msgstr "Ferma mailing (pause)"
+msgstr "Invii pubblici"
 
 #
 # File: pommo_theme_lang.php, line: 432
@@ -3224,13 +3224,13 @@ msgstr "Conferma iscrizione"
 #: language/smarty.c:348
 #: language/smarty.c:355
 msgid "(Use %1[[url]]%2 for the confirm link at least once)"
-msgstr "(Usa [[url]] per il link di confermazione almeno una volta)"
+msgstr "(Usa almeno una volta %1[[url]]%2 per il link di conferma)"
 
 #
 # File: pommo_theme_lang.php, line: 789
 #: language/smarty.c:344
 msgid "Account Access"
-msgstr "Le tue informazioni"
+msgstr "Accesso all'account"
 
 #
 # File: pommo_theme_lang.php, line: 810
@@ -3362,7 +3362,7 @@ msgstr "Ritorna alla pagina impostazioni"
 # File: pommo_theme_lang.php, line: 981
 #: language/smarty.c:386
 msgid "You can change the login information, set website and mailing list parameters, end enable demonstration mode. If you enable demonstration mode, no emails will be sent from the system."
-msgstr "Usa questo sito per configurare poMMo. Puoi cambiare le informazioni per il login, specificare parametri website e mailing list, scegliere modo di dimostrazione (Questo modo non permette di inviare emails dal sistema)."
+msgstr "Puoi cambiare le informazioni per il login, specificare parametri per il sito web e la newsletter ed abilitare la modalità DEMO. Se si abilita la modalità DEMO nessun messaggio verrà spedito dal sistema."
 
 #
 # File: pommo_theme_lang.php, line: 984
@@ -3608,7 +3608,7 @@ msgstr "Benvenuto all'inserimento iscritti! Qui possono aggiungere iscritti uno 
 #: language/smarty.c:441
 #: language/smarty.c:444
 msgid "Add Subscriber"
-msgstr "Tutti gli abbonati"
+msgstr "Aggiungi iscritto"
 
 #
 # File: pommo_theme_lang.php, line: 1095
@@ -3870,7 +3870,7 @@ msgstr "O"
 #: language/smarty.c:505
 #: language/smarty.c:509
 msgid "No rules have been added"
-msgstr "Non ï¿½ stato assegnato un gruppo."
+msgstr "Nessuna regola è stata aggiunta"
 
 #
 # File: pommo_theme_lang.php, line: 1452
@@ -3894,7 +3894,7 @@ msgstr "<strong>E</strong>, AGGIUNGI E SOTTRAI MEMBRI IN ALTRI GRUPPI"
 # File: pommo_theme_lang.php, line: 1482
 #: language/smarty.c:508
 msgid "%1Add%2 members matching %3"
-msgstr "%1Aggiungere%2 iscritti che soddisfano la condizione %3"
+msgstr "%1Aggiungi%2 iscritti che soddisfano la condizione %3"
 
 #
 # File: pommo_theme_lang.php, line: 1491
@@ -3942,7 +3942,7 @@ msgstr "Ignora colonna"
 # File: pommo_theme_lang.php, line: 1530
 #: language/smarty.c:524
 msgid "You must assign an email column!"
-msgstr "È necessario assegnare una colonna per indirizzi di posta!"
+msgstr "È necessario assegnare una colonna per gli indirizzi di posta!"
 
 #
 # File: pommo_theme_lang.php, line: 1281
