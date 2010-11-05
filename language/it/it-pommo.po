@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: poMMo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-04 21:04+0100\n"
-"PO-Revision-Date: 2010-11-05 15:28+0100\n"
+"PO-Revision-Date: 2010-11-05 18:56+0100\n"
 "Last-Translator: Massimiliano Masserelli <negro@interim.it>\n"
 "Language-Team: Italian <negro@interim.it>\n"
 "Language: it\n"
@@ -355,7 +355,7 @@ msgstr "Gruppo rinominato"
 # File: aardvark-development/admin/mailings/ajax/history.list.php, line: 120
 #: ajax/history.list.php:120
 msgid "Complete"
-msgstr "Operazione completata"
+msgstr "Completato"
 
 #
 # File: pommo_theme_lang.php, line: 45
@@ -371,13 +371,13 @@ msgstr "Operazione completata"
 #: language/smarty.c:618
 #: language/smarty.c:621
 msgid "Processing"
-msgstr "Elaborazione in corso"
+msgstr "In corso"
 
 #
 # File: aardvark-development/admin/mailings/ajax/history.list.php, line: 124
 #: ajax/history.list.php:124
 msgid "Cancelled"
-msgstr "Elaborazione annullata"
+msgstr "Annullato"
 
 #
 # File: aardvark-development/admin/mailings/ajax/history.list.php, line: 135
@@ -1733,7 +1733,7 @@ msgstr "Annulla"
 # File: pommo_theme_lang.php, line: 1788
 #: language/smarty.c:28
 msgid "Mailing sent to %1"
-msgstr "Messaggi inviato a %1"
+msgstr "Messaggio inviato a %1"
 
 #
 # File: pommo_theme_lang.php, line: 1791
@@ -1769,7 +1769,7 @@ msgstr "email"
 #: language/smarty.c:73
 #: language/smarty.c:220
 msgid "Send Mailing"
-msgstr "Invia mailing"
+msgstr "Invia messaggio"
 
 #
 # File: pommo_theme_lang.php, line: 1803
@@ -1890,7 +1890,7 @@ msgstr "Lasciare vuoto per spedire solo testo"
 #: language/smarty.c:54
 #: language/smarty.c:62
 msgid "Enable WYSIWYG"
-msgstr "Abilita WYSIWYG"
+msgstr "Abilita editor grafico"
 
 #
 # File: pommo_theme_lang.php, line: 1611
@@ -1922,7 +1922,7 @@ msgstr "Lasciare vuoto per inviare solo HTML"
 # File: pommo_theme_lang.php, line: 1629
 #: language/smarty.c:61
 msgid "Disable WYSIWYG"
-msgstr "Modifica sorgente"
+msgstr "Disabilita editor grafico"
 
 #
 # File: pommo_theme_lang.php, line: 1635
@@ -2026,7 +2026,7 @@ msgstr "Clicca qui"
 # File: pommo_theme_lang.php, line: 1692
 #: language/smarty.c:82
 msgid "Send Mail To:"
-msgstr "Invia mailing a:"
+msgstr "Invia messaggio a:"
 
 #
 # File: pommo_theme_lang.php, line: 1695
@@ -2440,13 +2440,13 @@ msgstr "Nessun record trovato."
 #: language/smarty.c:566
 #: language/smarty.c:567
 msgid "Return to Subscribers Page"
-msgstr "Ritorna alla pagina impostazioni caselle"
+msgstr "Ritorna alla pagina iscritti"
 
 #
 # File: pommo_theme_lang.php, line: 1938
 #: language/smarty.c:152
 msgid "Return to Mailings Page"
-msgstr "Ritorna alla pagina impostazioni caselle"
+msgstr "Ritorna alla pagina invii"
 
 #
 # File: pommo_theme_lang.php, line: 1944
@@ -2808,7 +2808,7 @@ msgstr "(indirizzo a cui mandare il messaggio)"
 # File: pommo_theme_lang.php, line: 336
 #: language/smarty.c:221
 msgid "Global Rates"
-msgstr "Tassi globali"
+msgstr "Limiti globali"
 
 #
 # File: pommo_theme_lang.php, line: 339
@@ -2816,7 +2816,7 @@ msgstr "Tassi globali"
 #: language/smarty.c:222
 #: language/smarty.c:234
 msgid "Mail Rate"
-msgstr "Percentuale Mail"
+msgstr "Limite messaggi"
 
 #
 # File: pommo_theme_lang.php, line: 342
@@ -2852,13 +2852,13 @@ msgstr "Ripristina i valori predefiniti"
 # File: pommo_theme_lang.php, line: 363
 #: language/smarty.c:230
 msgid "Rates per Domain"
-msgstr "Percentuali per Dominio"
+msgstr "Limiti per Dominio"
 
 #
 # File: pommo_theme_lang.php, line: 366
 #: language/smarty.c:231
 msgid "You may also limit the amount of mail a single domain receives in a period. This is useful for larger mailings, and prevents the \"slamming\" of the domain (which can get your mails rejected). As example, you can choose to send no more than 1 mail every 20 seconds to a domain by setting the mails to 1 and the period interval to 20. Warning; this setting will significantly delay a mailing if many of your subscribers use the same domain (e.g. @yahoo.com)."
-msgstr "È anche possibile limitare la quantità di mail che un singolo dominio riceverà in un dato periodo. Questo può tornare utile per invii particolarmente consistenti, e previene lo \"slamming\" del dominio (che può causare un rifiuto a processare ulteriori mail). Per esempio, si può scegliere di non mandare più di 1 mail ogni 20 secondi ad un dominio impostando le mail ad 1 e l'intervallo a 20. Attenzione: questa impostazione rallenterà significativamente la consegna delle mail se molti degli iscritti usano lo stesso dominio (ad esempio @libero.it)."
+msgstr "modificÈ anche possibile limitare la quantità di messaggi che un singolo dominio riceverà in un dato periodo. Questo può tornare utile per invii particolarmente consistenti, e previene lo \"slamming\" del dominio (che può causare un rifiuto a processare ulteriori messaggi). Per esempio, si può scegliere di non mandare più di 1 messaggio ogni 20 secondi ad un dominio impostando il limite messaggi ad 1 e l'intervallo a 20. Attenzione: questa impostazione rallenterà significativamente la consegna delle mail se molti degli iscritti usano lo stesso dominio (ad esempio @libero.it)."
 
 #
 # File: pommo_theme_lang.php, line: 369
@@ -2878,7 +2878,7 @@ msgstr "%1 secondi"
 #: language/smarty.c:235
 #: language/smarty.c:237
 msgid "%1 per Period"
-msgstr "%1 per Intervallo"
+msgstr "%1 per intervallo"
 
 #
 # File: pommo_theme_lang.php, line: 390
