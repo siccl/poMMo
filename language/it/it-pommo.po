@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: poMMo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-04 21:04+0100\n"
-"PO-Revision-Date: 2010-11-05 18:56+0100\n"
+"PO-Revision-Date: 2010-11-06 10:10+0100\n"
 "Last-Translator: Massimiliano Masserelli <negro@interim.it>\n"
 "Language-Team: Italian <negro@interim.it>\n"
 "Language: it\n"
@@ -2534,7 +2534,7 @@ msgstr "Nome modulo:"
 # File: pommo_theme_lang.php, line: 237
 #: language/smarty.c:167
 msgid "Prompt for field on the Subscription Form. e.g. %1Type your city%2"
-msgstr "Richiedere il campo nella form di iscrizione. Ad esempio %1Inserisci la tua città%2"
+msgstr "Descrizione del campo per il modulo di iscrizione. Ad esempio %1Inserisci la tua città%2"
 
 #
 # File: pommo_theme_lang.php, line: 240
@@ -2546,7 +2546,7 @@ msgstr "Obbligatorio:"
 # File: pommo_theme_lang.php, line: 243
 #: language/smarty.c:169
 msgid "Toggle to require field on Subscription Form (user cannot leave blank if %1yes%2)"
-msgstr "Spunta per rendere obbligatorio questo campo nel modulo di iscrizione (gli utenti non possono lasciarlo vuoto se è %1yes%2)."
+msgstr "Spunta %1yes%2 per rendere obbligatorio questo campo nel modulo di iscrizione (gli utenti non possono lasciarlo vuoto se è %1yes%2)."
 
 #
 # File: pommo_theme_lang.php, line: 246
@@ -2558,7 +2558,7 @@ msgstr "Attivo:"
 # File: pommo_theme_lang.php, line: 249
 #: language/smarty.c:171
 msgid "Toggle display of field for Subscription Form"
-msgstr "Spunta per nascondere questo valore nel modulo d'iscrizione."
+msgstr "Spunta \"hide\" per nascondere questo valore nel modulo d'iscrizione."
 
 #
 # File: pommo_theme_lang.php, line: 252
@@ -2728,25 +2728,25 @@ msgstr "(Indirizzo IP o nome del server SMTP)"
 # File: pommo_theme_lang.php, line: 534
 #: language/smarty.c:204
 msgid "Port Number:"
-msgstr "Numero Port:"
+msgstr "Porta:"
 
 #
 # File: pommo_theme_lang.php, line: 537
 #: language/smarty.c:205
 msgid "(Port # of SMTP server [usually 25])"
-msgstr "(Port # del server SMTP [usualmente 25])"
+msgstr "(Numero della porta del server SMTP [di norma 25 o 587])"
 
 #
 # File: pommo_theme_lang.php, line: 540
 #: language/smarty.c:206
 msgid "SMTP Authentication:"
-msgstr "Autentificazione SMTP:"
+msgstr "Autenticazione SMTP:"
 
 #
 # File: pommo_theme_lang.php, line: 543
 #: language/smarty.c:207
 msgid "(Toggle SMTP Authentication [usually off])"
-msgstr "(Attiva/disattiva autentificazione SMTP [usualmente off])"
+msgstr "(Attiva/disattiva autenticazione SMTP [normalmente off])"
 
 #
 # File: pommo_theme_lang.php, line: 546
@@ -3380,7 +3380,7 @@ msgstr "Generale"
 # File: pommo_theme_lang.php, line: 858
 #: language/smarty.c:391
 msgid "Fields Page"
-msgstr "Impostazione caselle"
+msgstr "Impostazione campi"
 
 #
 # File: pommo_theme_lang.php, line: 861
@@ -3394,25 +3394,25 @@ msgstr "I campi per gli iscritti permettono di raccogliere informazioni sui memb
 #: language/smarty.c:393
 #: language/smarty.c:612
 msgid "Fields"
-msgstr "Caselle"
+msgstr "Campi"
 
 #
 # File: pommo_theme_lang.php, line: 867
 #: language/smarty.c:394
 msgid "New field name:"
-msgstr "digita il nuovo nome della casella"
+msgstr "Nuovo nome del campo"
 
 #
 # File: pommo_theme_lang.php, line: 870
 #: language/smarty.c:395
 msgid "type new field name"
-msgstr "digita il nuovo nome della casella"
+msgstr "inserisci il nuovo nome del campo"
 
 #
 # File: pommo_theme_lang.php, line: 873
 #: language/smarty.c:396
 msgid "Field type:"
-msgstr "Nome della casella"
+msgstr "Tipo di campo:"
 
 #
 # File: pommo_theme_lang.php, line: 897
@@ -3424,7 +3424,7 @@ msgstr "Ordinamento dei campi"
 # File: pommo_theme_lang.php, line: 900
 #: language/smarty.c:405
 msgid "Change the ordering of fields on the subscription form by dragging and dropping the order icon"
-msgstr "Cambia l'ordine delle caselle nel modulo d'iscrizione trascinando l'icona che indica l'ordinamento."
+msgstr "Cambia l'ordine dei campi nel modulo d'iscrizione trascinando l'icona che indica l'ordinamento."
 
 #
 # File: pommo_theme_lang.php, line: 903
@@ -3836,7 +3836,7 @@ msgstr "regole \"E\""
 # File: pommo_theme_lang.php, line: 1431
 #: language/smarty.c:491
 msgid "MATCH %1ALL%2 OF THE FOLLOWING"
-msgstr "VERIFICA %1TUTTI% I SEGUENTI"
+msgstr "VERIFICA %1TUTTE%2 LE SEGUENTI CONDIZIONI"
 
 #
 # File: pommo_theme_lang.php, line: 1440
@@ -3960,7 +3960,7 @@ msgstr "Avviso: gli iscritti importati saranno marcati per l'aggiornamento delle
 # File: pommo_theme_lang.php, line: 1152
 #: language/smarty.c:534
 msgid "Subscriber Groups allow you to mail subsets of subscribers instead of the entire list. Groups are defined by customizable matching rules, and members are automatically assigned based on their %1subscriber field%2 values."
-msgstr "I Gruppi di iscritti permettono di inviare a sottoinsieme degli iscritti piuttosto che all'intera lista. I Gruppi sono definiti da regole di verifica personalizzabili; i membri sono automaticamente assegnati in base ai valori dei %1campi utente%2."
+msgstr "I gruppi di iscritti permettono di inviare a sottoinsiemi degli iscritti invece che all'intera lista. I gruppi sono definiti da regole di verifica personalizzabili: i membri sono automaticamente assegnati al gruppo in base ai valori dei %1campi utente%2 da loro inseriti."
 
 #
 # File: pommo_theme_lang.php, line: 1155
