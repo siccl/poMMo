@@ -102,7 +102,7 @@ switch ($_REQUEST['call'])
 			$smarty->assign('match_name',$match[$key]);
 			$smarty->assign('match_id',$key);
 			
-			$smarty->display('ajax/rule.group.tpl');
+			$smarty->display('admin/subscribers/ajax/rule.group.tpl');
 			Pommo::kill();
 		}
 	break;
