@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: poMMo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-04 21:04+0100\n"
-"PO-Revision-Date: 2010-11-06 10:10+0100\n"
+"PO-Revision-Date: 2010-11-07 13:11+0100\n"
 "Last-Translator: Massimiliano Masserelli <negro@interim.it>\n"
 "Language-Team: Italian <negro@interim.it>\n"
 "Language: it\n"
@@ -413,7 +413,7 @@ msgstr "Inserire un numero."
 #: ajax/mailings_send4.php:84
 #, php-format
 msgid "Started Mailing MTA. Spawn #%s."
-msgstr "Avviato l'MTA per l'invio. Lanciato #%s."
+msgstr "Avviato l'MTA per l'invio. Processo #%s."
 
 #
 # File: aardvark-development/admin/subscribers/ajax/manage.rpc.php, line: 44
@@ -602,7 +602,7 @@ msgstr "Un invio è attualmente in corso. Consulta la pagina %sStato%s per verif
 # File: aardvark-development/admin/mailings/mailing/preview.php, line: 73
 #: ajax/preview.php:75
 msgid "Subject or Message cannot be empty!"
-msgstr "L'oggetto del messaggio non può essere vuoto!"
+msgstr "L'oggetto od il messaggio non possono essere vuoti!"
 
 #
 # File: aardvark-development/admin/mailings/mailing/preview.php, line: 125
@@ -3084,19 +3084,19 @@ msgstr "È possibile inviare una notifica agli amministratori circa le modifiche
 # File: pommo_theme_lang.php, line: 639
 #: language/smarty.c:294
 msgid "Notification email(s):"
-msgstr "Clicca per *inviare* un altro email di confermazione"
+msgstr "Indirizzi per le notifiche:"
 
 #
 # File: pommo_theme_lang.php, line: 642
 #: language/smarty.c:295
 msgid "(Notifications will be sent to the above address(es). Multiple addresses can be entered -- seperate with a comma.)"
-msgstr "(Le notifiche saranno inviati agli indirizzi di cui sopra. Si possono inserire più indirizzi separandoli con una virgola)"
+msgstr "(Le notifiche saranno inviate agli indirizzi di cui sopra. Si possono inserire più indirizzi separandoli con una virgola)"
 
 #
 # File: pommo_theme_lang.php, line: 645
 #: language/smarty.c:296
 msgid "Subject Prefix:"
-msgstr "Soggetto:"
+msgstr "Prefisso per l'oggetto:"
 
 #
 # File: pommo_theme_lang.php, line: 648
@@ -3400,13 +3400,13 @@ msgstr "Campi"
 # File: pommo_theme_lang.php, line: 867
 #: language/smarty.c:394
 msgid "New field name:"
-msgstr "Nuovo nome del campo"
+msgstr "Nome del nuovo campo:"
 
 #
 # File: pommo_theme_lang.php, line: 870
 #: language/smarty.c:395
 msgid "type new field name"
-msgstr "inserisci il nuovo nome del campo"
+msgstr "inserisci il nome del campo da aggiungere"
 
 #
 # File: pommo_theme_lang.php, line: 873
@@ -4517,7 +4517,7 @@ msgstr "%1Aggiorna le tue informazioni%2"
 # File: pommo_theme_lang.php, line: 75
 #: language/smarty.c:707
 msgid "Subscriber Update"
-msgstr "Aggiornamento iscritti"
+msgstr "Aggiornamento dati iscrizione"
 
 #
 # File: pommo_theme_lang.php, line: 78
