@@ -69,7 +69,7 @@ class qqUploadedFileForm {
 class qqFileUploader {
     private $allowedExtensions = array();
     private $sizeLimit = 10485760;
-    private $file;
+    public $file;
 
     function __construct(array $allowedExtensions = array(), $sizeLimit = 10485760){
         $allowedExtensions = array_map("strtolower", $allowedExtensions);
@@ -142,6 +142,7 @@ $sizeLimit = 6 * 1024 * 1024;
 
 $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 $result = $uploader->handleUpload('../attachments/');
+$fName = $uploader->file->getName();
 
 //	Save attachment on pommo database
 if ($result['success'])
@@ -150,7 +151,7 @@ if ($result['success'])
 			SET
 			[file_name="%S"]';
 	$query = $dbo->prepare($query,
-			@array($_GET['qqfile']));
+			@array($fName));
 	$id = $dbo->lastId($query);
 	$result['attachment_id'] = $id;
 }
