@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: poMMo\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-04 21:04+0100\n"
-"PO-Revision-Date: 2010-11-07 13:11+0100\n"
+"PO-Revision-Date: 2010-11-09 09:41+0100\n"
 "Last-Translator: Massimiliano Masserelli <negro@interim.it>\n"
 "Language-Team: Italian <negro@interim.it>\n"
 "Language: it\n"
@@ -4126,7 +4126,7 @@ msgstr "Modifica iscritti selezionati"
 # File: pommo_theme_lang.php, line: 1266
 #: language/smarty.c:589
 msgid "Updated"
-msgstr "Modificati"
+msgstr "Modificato"
 
 #
 # File: aardvark-development/classes/Pommo_Install.php, line: 49
