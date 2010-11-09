@@ -64,6 +64,18 @@
 </select>
 <span class="notes">{t}(Select Character Set of Mailings){/t}</span>
 
+<div>
+	<label for="track">
+		<span>{t}Track when people open this mailing:{/t}</span>
+	</label>
+	<select name="track">
+		<option value='0'>{t}No{/t}</option>
+		<option value='1' {if '1' == $track} selected="selected"{/if}>
+			{t}Yes{/t}
+		</option>
+	</select>
+</div>
+
 <div class="buttons">
 
 <input type="submit" id="submit" name="submit" value="{t}Continue{/t}" />

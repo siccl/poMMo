@@ -26,8 +26,8 @@ require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
 
 Pommo::init();
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
@@ -62,7 +62,8 @@ $state = Pommo_Api::stateInit('mailing',
 			'mailgroup' => 'all',
 			'subject' => '',
 			'body' => '',
-			'altbody' => ''
+			'altbody' => '',
+			'track' => ''
 		),
 		$_POST);
 

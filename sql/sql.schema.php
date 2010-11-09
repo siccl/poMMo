@@ -121,6 +121,7 @@ CREATE TABLE :::mailings::: (
   `sent` int(10) unsigned NOT NULL default '0',
   `charset` varchar(15) NOT NULL default 'UTF-8',
   `status` tinyint(1) NOT NULL default '1' COMMENT '0: finished, 1: processing, 2: cancelled',
+  `track` tinyint(1) NULL,
   PRIMARY KEY  (`mailing_id`),
   KEY `status` (`status`)
 );
