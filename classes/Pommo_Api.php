@@ -154,7 +154,7 @@ class Pommo_Api
 	 *
 	 *	@return	array	$state.- Current state
 	 */
-	function stateInit($name = 'default', $defaults = array (), $source = array())
+	function &stateInit($name = 'default', $defaults = array (), $source = array())
 	{
 		if (empty(Pommo::$_session['state'][$name]))
 		{
