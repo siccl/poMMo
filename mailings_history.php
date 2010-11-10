@@ -90,4 +90,4 @@ $smarty->assign('mailings', $mailings);
 
 $smarty->display('admin/mailings/mailings_history.tpl');
 Pommo::kill();
-?>
+
