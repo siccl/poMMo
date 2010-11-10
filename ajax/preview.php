@@ -27,8 +27,8 @@ require_once(Pommo::$_baseDir.'classes/Pommo_Mail_Ctl.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
 
 Pommo::init();
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
@@ -38,7 +38,11 @@ $smarty = new Pommo_Template();
 $smarty->prepareForForm();
 
 if (Pommo_Mailing::isCurrent())
-	Pommo::kill(sprintf(Pommo::_T('A Mailing is currently processing. Visit the %sStatus%s page to check its progress.'),'<a href="mailing_status.php">','</a>'));
+{
+	Pommo::kill(sprintf(Pommo::_T('A Mailing is currently processing. Visit the
+			%sStatus%s page to check its progress.'),
+			'<a href="mailing_status.php">','</a>'));
+}
 
 // TODO -- fix stateInit so we don't NEED to supply the defaults that have already been defined
 
@@ -61,6 +65,7 @@ $state = Pommo_Api::stateInit('mailing',array(
 	'subject' => '',
 	'body' => '',
 	'altbody' => '',
+	'track' => '',
 	'attachments' => ''
 ),
 $_POST);

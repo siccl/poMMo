@@ -25,8 +25,8 @@ require ('../bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Mailing_Template.php');
 
 Pommo::init();
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE

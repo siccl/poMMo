@@ -73,7 +73,8 @@ $state = Pommo_Api::stateInit('mailing',array(
 	'mailgroup' => 'all',
 	'subject' => '',
 	'body' => '',
-	'altbody' => ''
+	'altbody' => '',
+	'track' => ''
 ),
 $_POST);
 

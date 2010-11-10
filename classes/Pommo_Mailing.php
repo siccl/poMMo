@@ -77,6 +77,7 @@ class Pommo_Mailing
 		'subject' => $row['subject'],
 		'body' => $row['body'],
 		'altbody' => $row['altbody'],
+		'track' => $row['track'],
 		'ishtml' => $row['ishtml'],
 		'group' => $row['mailgroup'],
 		'tally' => $row['subscriberCount'],
@@ -286,6 +287,7 @@ class Pommo_Mailing
 				[sent=%I,]
 				[charset='%S',]
 				[status=%I,]
+				[track=%I,]
 				started=FROM_UNIXTIME(%i)";
 		$query = $dbo->prepare($query, @array(
 				$in['fromname'],
@@ -301,6 +303,7 @@ class Pommo_Mailing
 				$in['sent'],
 				$in['charset'],
 				$in['status'],
+				$in['track'],
 				$in['start']));
 		
 		// fetch new mailing_id

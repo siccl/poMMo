@@ -154,7 +154,8 @@ class Pommo_Type {
 	 *  current_status	(enum)		'started', 'stopped' (default)
 	 */
 	 
-	function mailing() {
+	function mailing()
+	{
 		return array(
 			'id' => null,
 			'fromname' => null,
@@ -163,6 +164,7 @@ class Pommo_Type {
 			'subject' => null,
 			'body' => null,
 			'altbody' => null,
+			'track' => null,
 			'ishtml' => null,
 			'group' => null,
 			'tally' => null,
@@ -176,9 +178,11 @@ class Pommo_Type {
 		);
 	}
 	
-	function & mailingCurrent() {
+	function &mailingCurrent()
+	{
 		$o = Pommo_Type::mailing();
-		$o['touched'] = $o['current_id'] = $o['command'] = $o['serial'] = $o['code'] = $o['current_status'] = null;
+		$o['touched'] = $o['current_id'] = $o['command'] = $o['serial']
+				= $o['code'] = $o['current_status'] = null;
 		return $o;
 	}
 	
