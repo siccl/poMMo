@@ -228,3 +228,12 @@ CREATE TABLE :::scratch::: (
 )
 COMMENT = 'General Purpose Table for caches, counts, etc.';
 
+--	MAILINGS HITS
+
+CREATE TABLE :::mailings_hits::: (
+  `subscriber_id` int(10) unsigned NOT NULL,
+  `mailing_id` int(10) unsigned NOT NULL,
+  `hit_date` date NOT NULL,
+  PRIMARY KEY  (`subscriber_id`, `mailing_id`)
+);
+

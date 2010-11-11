@@ -39,12 +39,17 @@ class Pommo_Db
 	var $_safeSQL; // holds Monte's SafeSQL Class , referenced via prepare()
 	var $_results; // array holding unique results (for use with executing queries within loops & not overwriting the loops conditional resultset)
 
-	function Pommo_Db($username = NULL, $password = NULL, $database = NULL, $hostname = NULL, $tablePrefix = NULL) {
-
+	function Pommo_Db($username = NULL, $password = NULL, $database = NULL,
+			$hostname = NULL, $tablePrefix = NULL)
+	{
 		// turn off magic quotes runtime
 		if (get_magic_quotes_runtime())
+		{
 			if (!set_magic_quotes_runtime(0))
+			{
 				Pommo::kill('Could not turn off PHP\'s magic_quotes_runtime');
+			}
+		}
 				
 		$this->_prefix = $tablePrefix;
 		$this->_database = $database;
@@ -65,6 +70,7 @@ class Pommo_Db
 			'queue' => '`'.$tablePrefix.'queue`',
 			'updates' => '`'.$tablePrefix.'updates`',
 			'attachment_files' => '`'.$tablePrefix.'attachment_files`',
+			'mailings_hits' => '`'.$tablePrefix.'mailings_hits`',
 			'mailings_attachments' => '`'.$tablePrefix.'mailings_attachments`');
 
 		$this->_dieOnQuery = TRUE;
