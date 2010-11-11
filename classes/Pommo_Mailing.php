@@ -272,6 +272,14 @@ class Pommo_Mailing
 			return false;
 		}
 		
+		//	Add image to track views
+		if (1 == $in['track'])
+		{
+			$in['body'] .= '<img src="http://'.$_SERVER['SERVER_NAME'].
+					Pommo::$_baseUrl.'track_view.php?'.
+					'mailing=[mailing_id]&subscriber=[subscriber_id]">';
+		}
+		
 		$query = "INSERT INTO ".$dbo->table['mailings']."
 				SET
 				[fromname='%S',]
