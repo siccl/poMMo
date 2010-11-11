@@ -479,5 +479,38 @@ class Pommo_Mailing
 		$query = $dbo->prepare($query,array($id));
 		return $dbo->query($query,0);
 	}
+	
+	/*	saveHit
+	 *	Saves a mailing view in the database
+	 *
+	 *	@param	int		$mailing.- Mailing id
+	 *	@param	int		$subscriber.- Subscriber id
+	 *
+	 *	@return	boolean	True on success, false on failure
+	 */
+	function saveHit($mailing, $subscriber)
+	{
+		$dbo = Pommo::$_dbo;
+
+		$query = 'SELECT mailing_id
+				FROM '.$dbo->table['mailings_hits'].'
+				WHERE mailing_id = %i && subscriber_id = %i';
+		$query = $dbo->prepare($query, array($mailing, $subscriber));
+		
+		if ($dbo->query($query))
+		{
+	 		if (!mysql_fetch_assoc($dbo->_result))
+	 		{
+	 			//	There is no record from this mailing and user, so we
+	 			//	create one
+	 			$query = 'INSERT INTO '.$dbo->table['mailings_hits'].'(
+	 					mailing_id, subscriber_id, hit_date)
+	 					VALUES(%i, %i, NOW())';
+				$query = $dbo->prepare($query, array($mailing, $subscriber));
+		
+				return $dbo->query($query);
+	 		}
+	 	}
+	}
 }
-?>
+
