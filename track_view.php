@@ -22,14 +22,13 @@
 	INITIALIZATION METHODS
  *********************************/
 require('bootstrap.php');
-Pommo::init();
 
 require_once ("classes/Pommo_Mailing.php");
 
-Pommo_Mailing::saveHit(1, 1);
+Pommo_Mailing::saveHit($_GET['mailing'], $_GET['subscriber']);
 
 header('Content-type: image/png');
 
 echo gzinflate(base64_decode('6wzwc+flkuJiYGDg9fRwCQLSjCDMwQQkJ5QH3wNSb'
 		.'CVBfsEMYJC3jH0ikOLxdHEMqZiTnJCQAOSxMDB+E7cIBcl7uvq5rHNKaAIA'));
-	
+

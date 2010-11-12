@@ -1,0 +1,4 @@
+RewriteEngine On
+
+RewriteRule ^track-([0-9]+)-([0-9]+).png$ track_view.php?mailing=$1&subscriber=$2
+

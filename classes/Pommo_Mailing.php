@@ -276,8 +276,8 @@ class Pommo_Mailing
 		if (1 == $in['track'])
 		{
 			$in['body'] .= '<img src="http://'.$_SERVER['SERVER_NAME'].
-					Pommo::$_baseUrl.'track_view.php?'.
-					'mailing=[mailing_id]&subscriber=[subscriber_id]">';
+					Pommo::$_baseUrl.'track-[[!mailing_id]]-[[!subscriber_id]]'.
+					'.png">';
 		}
 		
 		$query = "INSERT INTO ".$dbo->table['mailings']."

@@ -256,9 +256,16 @@ class Pommo_Mailer extends PHPMailer {
 		return TRUE;
 	}
 
-	// 	** SEND MAIL FUNCTION --> pass an array of senders, or a single email
-	//	address for single mode
-	// 	TODO rename function send in order to not confuse w/ PHPMailer's Send()?
+	/*	bmSendmail
+	 *	** SEND MAIL FUNCTION --> pass an array of senders, or a single email
+	 *	address for single mode
+	 *	TODO rename function send in order to not confuse w/ PHPMailer's Send()?
+	 *
+	 *	@param	mixed	$to.- E-mail address or array with addresses
+	 *	@param	boolean	$subscriber
+	 *
+	 *	@return	boolean	True on success
+	 */
 	function bmSendmail(&$to, $subscriber = FALSE)
 	{
 		if ($this->_validated == FALSE)
@@ -287,7 +294,6 @@ class Pommo_Mailer extends PHPMailer {
 				// check for personalization personaliztion and override message body
 				if ($this->_personalize)
 				{
-					global $pommo;
 					$this->Body = Pommo_Helper_Personalize::replace(
 							$this->_body, $subscriber,
 							Pommo::$_session['personalization_body']);
@@ -323,13 +329,18 @@ class Pommo_Mailer extends PHPMailer {
 				// incorporate BCC+Enveloping in here if type is SMTP
 				// TODO Play w/ the size limiting of arrays sent here
 			}
-		} else {
-			$this->logger->addMsg(sprintf(Pommo::_T("Mail to: %s not sent. Demonstration mode is active."),(is_array($to)) ? implode(',', $to) : $to));
+		}
+		else
+		{
+			$this->logger->addMsg(sprintf(Pommo::_T(
+					"Mail to: %s not sent. Demonstration mode is active."),
+					(is_array($to)) ? implode(',', $to) : $to));
 			return true;
 		}
 
 		// if message(s) exist, return false. (Sending failed w/ error messages)
-		if (!empty ($errors)) {
+		if (!empty ($errors))
+		{
 			$this->logger->addMsg($errors);
 			return false;
 		}
