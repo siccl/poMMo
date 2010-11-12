@@ -49,6 +49,12 @@ if(!empty($_REQUEST['page']) && (
 		)
 	))
 		$state['limit'] = $_REQUEST['rows'];
+
+//	Set the total number of pages
+$tally = Pommo_Mailing::tally();
+$state['pages'] = (is_numeric($tally) && $tally > 0) ?
+	ceil($tally/$state['limit']) :
+	0;
 		
 // Get and Remember the requested page
 if(!empty($_REQUEST['page']) && (
@@ -141,7 +147,7 @@ foreach($mailings as $o) {
 $json->add(array(
 		'page' => $state['page'],
 		'total' => $state['pages'],
-		'records' => Pommo_Mailing::tally(),
+		'records' => $tally,
 		'rows' => $records
 	)
 );
