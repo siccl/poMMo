@@ -86,7 +86,9 @@ class Pommo_Mailing
 		'sent' => $row['sent'],
 		'charset' => $row['charset'],
 		'status' => $row['status'],
-		'attachments' => $row['file_name']);
+		'attachments' => $row['file_name'],
+		'track' => $row['track'],
+		'hits' => $row['hits']);
 			
 		if ($row['status'] == 1) {
 			$o = @array(
@@ -183,6 +185,13 @@ class Pommo_Mailing
 		$defaults = array('active' => false, 'noBody' => false, 'id' => null,
 				'code' => null, 'sort' => null, 'order' => null, 'limit' => null,
 				'offset' => null);
+
+		if ($p['forHistory'])
+		{
+			$forHistory = 1;
+			unset($p['forHistory']);
+		}
+
 		$p = Pommo_Api :: getParams($defaults, $p);
 		
 		$dbo =& Pommo::$_dbo;
@@ -193,6 +202,22 @@ class Pommo_Mailing
 			$p['offset'] = 0;
 		
 		$o = array();
+		
+		//	We modify the query if the mailings are for the history section
+		if (1 == $forHistory)
+		{
+			$field = "COUNT(h.subscriber_id) AS hits";
+			$join = "LEFT JOIN " . $dbo->table['mailings_hits'].
+			" h ON (h.mailing_id = m.mailing_id)";
+		}
+		else
+		{
+			$field = "GROUP_CONCAT(a.file_name) AS file_name";
+			$join = "LEFT JOIN " . $dbo->table['mailings_attachments'].
+			" ma ON (m.mailing_id = ma.mailing_id)
+			LEFT JOIN " . $dbo->table['attachment_files'].
+			" a ON (ma.file_id = a.file_id)";
+		}
 		
 		$select = "m.mailing_id,
 				fromname,
@@ -207,8 +232,8 @@ class Pommo_Mailing
 				sent,
 				charset,
 				status,
-				c.*,
-				GROUP_CONCAT(a.file_name) AS file_name";
+				track,
+				".$field;
 
 		if (!$p['noBody'])
 		{
@@ -218,12 +243,8 @@ class Pommo_Mailing
 		$query = "SELECT $select
 			FROM " . $dbo->table['mailings']." m
 			LEFT JOIN " . $dbo->table['mailing_current'].
-			" c ON (m.mailing_id = c.current_id)
-			LEFT JOIN " . $dbo->table['mailings_attachments'].
-			" ma ON (m.mailing_id = ma.mailing_id)
-			LEFT JOIN " . $dbo->table['attachment_files'].
-			" a ON (ma.file_id = a.file_id)
-			WHERE
+			" c ON (m.mailing_id = c.current_id) ".$join.
+			" WHERE
 				1
 				[AND m.status=%I]
 				[AND m.mailing_id IN(%C)]

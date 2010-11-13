@@ -104,22 +104,30 @@ $mailings = Pommo_Mailing::get(array(
 	'sort' => $state['sort'],
 	'order' => $state['order'],
 	'limit' => $state['limit'],
-	'offset' => $start));
-
+	'offset' => $start,
+	'forHistory' => true));
 
 /**********************************
 	OUTPUT FORMATTING
 *********************************/
 
 $records = array();
-foreach($mailings as $o) {
+foreach($mailings as $o)
+{
+	//	If the mailing is not beeing tracked show "not tracked" instead of 0
+	if (0 == $o['track'])
+	{
+		$o['hits'] = "Not tracked";
+	}
+
 	$row = array(
 		'id' => $o['id'],
 		'subject' => $o['subject'],
 		'group' => $o['group'].' ('.$o['tally'].')',
 		'sent' => $o['sent'],
 		'start' => $o['start'],
-		'end' => $o['end']
+		'end' => $o['end'],
+		'hits' => $o['hits']
 	);
 	
 	if($o['status'] == 0)

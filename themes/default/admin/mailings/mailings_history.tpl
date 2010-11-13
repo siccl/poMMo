@@ -36,17 +36,19 @@ $().ready(function() {ldelim}
 		'{t escape=js}Sent{/t}',
 		'{t escape=js}Started{/t}',
 		'{t escape=js}Finished{/t}',
-		'{t escape=js}Status{/t}'
+		'{t escape=js}Status{/t}',
+		'{t escape=js}Hits{/t}',
 	],
 	{literal}
 	colModel: [
 		{name: 'id', index: 'id', hidden: true, width: 1},
-		{name: 'subject', width: 150},
+		{name: 'subject', width: 110},
 		{name: 'group', width: 120},
 		{name: 'sent', width: 40},
 		{name: 'start', width: 130},
-		{name: 'end', width: 130},
-		{name: 'status', width: 70}
+		{name: 'end', width: 100},
+		{name: 'status', width: 70},
+		{name: 'hits', width: 70}
 	],
 	url: 'ajax/history.list.php'
 	};

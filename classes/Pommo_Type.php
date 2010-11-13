@@ -174,7 +174,9 @@ class Pommo_Type {
 			'charset' => null,
 			'status' => null,
 			'notices' => array(),
-			'attachments' => array()
+			'attachments' => array(),
+			'track' => null,
+			'hits' => null
 		);
 	}
 	
