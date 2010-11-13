@@ -42,7 +42,7 @@ $smarty->assign('returnStr', Pommo::_T('Mailings Page'));
  * order	- Order Type (ascending - ASC /descending - DESC)
  */
 // Initialize page state with default values overriden by those held in $_REQUEST
-$state = Pommo_Api::stateInit('mailings_history',array(
+$state =& Pommo_Api::stateInit('mailings_history',array(
 	'limit' => 10,
 	'sort' => 'end',
 	'order' => 'desc',
@@ -89,4 +89,5 @@ $smarty->assign('tally',$tally);
 $smarty->assign('mailings', $mailings);
 
 $smarty->display('admin/mailings/mailings_history.tpl');
+Pommo::kill();
 
