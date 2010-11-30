@@ -5,7 +5,7 @@ Server:
 
     * PHP version 4.3.2 or greater
           o Apache Timeout directive or IIS CGI timeout should be 100+ seconds (both default to 300)
-          o For i18n (other languages) PHP should have gettext support
+          o For i18n (other languages) PHP should have gettext support and the languages used need to be installed as locals (check with: locales -a).
     * MySQL Server 4.1 or higher (or 3.23 for Legacy poMMo)
 
 
