@@ -113,11 +113,6 @@ $state['ishtml'] = (empty($tempbody))? 'off' : 'on';
 // processs send request
 if (!empty ($_REQUEST['sendaway']))
 {
-	if (1 == get_magic_quotes_gpc())
-	{
-		$state['body'] = stripslashes($state['body']);
-	}
-
 	/**********************************
 		JSON OUTPUT INITIALIZATION
 	 *********************************/
