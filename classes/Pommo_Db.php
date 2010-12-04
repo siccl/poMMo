@@ -25,7 +25,7 @@
  * BRICE'S DATABSE CLASS 
  **********************/
 
-// Database Connection Class - holds the link, processes queiries, produces repots, etc.
+// Database Connection Class - holds the link, processes queries, produces reports, etc.
 class Pommo_Db
 {
 	var $_link;
@@ -54,24 +54,25 @@ class Pommo_Db
 		$this->_prefix = $tablePrefix;
 		$this->_database = $database;
 		$this->table = array (
+			'attachment_files' => '`'.$tablePrefix.'attachment_files`',
 			'config' => '`'.$tablePrefix.'config`',
 			'fields' => '`'.$tablePrefix.'fields`',
 			'group_rules' => '`'.$tablePrefix.'group_rules`',
 			'groups' => '`'.$tablePrefix.'groups`',
-			'mailing_notices' => '`'.$tablePrefix.'mailing_notices`',
 			'mailing_current' => '`'.$tablePrefix.'mailing_current`',
+			'mailing_notices' => '`'.$tablePrefix.'mailing_notices`',
 			'mailings' => '`'.$tablePrefix.'mailings`',
+			'mailings_attachments' => '`'.$tablePrefix.'mailings_attachments`',
+			'mailings_hits' => '`'.$tablePrefix.'mailings_hits`',
+			'queue' => '`'.$tablePrefix.'queue`',
 			'scratch' => '`'.$tablePrefix.'scratch`',
 			'subscriber_data' => '`'.$tablePrefix.'subscriber_data`',
 			'subscriber_pending' => '`'.$tablePrefix.'subscriber_pending`',
-			'subscriber_update' => '`'.$tablePrefix.'subscriber_update`', // PHASE OUT (PR15)
+			'subscriber_update' => '`'.$tablePrefix.'subscriber_update`',
 			'subscribers' => '`'.$tablePrefix.'subscribers`',
 			'templates' => '`'.$tablePrefix.'templates`',
-			'queue' => '`'.$tablePrefix.'queue`',
 			'updates' => '`'.$tablePrefix.'updates`',
-			'attachment_files' => '`'.$tablePrefix.'attachment_files`',
-			'mailings_hits' => '`'.$tablePrefix.'mailings_hits`',
-			'mailings_attachments' => '`'.$tablePrefix.'mailings_attachments`');
+			'users' => '`'.$tablePrefix.'users`');
 
 		$this->_dieOnQuery = TRUE;
 		$this->_debug = FALSE;
