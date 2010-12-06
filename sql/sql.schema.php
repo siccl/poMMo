@@ -240,7 +240,7 @@ CREATE TABLE :::mailings_hits::: (
 -- USERS
 
 CREATE TABLE :::users::: (
-  `user_id` int(10) unsigned NOT NULL,
+  `username` char(50) NOT NULL,
   `password` char(40) NOT NULL,
-  PRIMARY KEY  (`user_id`)
+  PRIMARY KEY  (`username`)
 );
