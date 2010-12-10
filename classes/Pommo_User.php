@@ -41,15 +41,23 @@ class Pommo_User
 	 */
 	function save($username, $password)
 	{
-		$dbo = Pommo::$_dbo;
+		try
+		{
+			$dbo = Pommo::$_dbo;
+			$dbo->_dieOnQuery = false;
 
-		$query = 'INSERT INTO '.$dbo->table['users'].'
-				SET username = "%s", password = SHA1("%s")';
-		if (!$dbo->query($dbo->prepare($query, array($username, $password))))
+			$query = 'INSERT INTO '.$dbo->table['users'].'
+					SET username = "%s", password = SHA1("%s")';
+			if (!$dbo->query($dbo->prepare($query, array($username, $password))))
+			{
+				return false;
+			}
+			return true;
+		}
+		catch(Exception $e)
 		{
 			return false;
 		}
-		return true;
 	}
 }
 
