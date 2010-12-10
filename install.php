@@ -70,31 +70,36 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 	// ___ USER HAS SENT FORM ___
 	SmartyValidate :: connect($smarty);
 
-	if (SmartyValidate :: is_valid($_POST)) {
+	if (SmartyValidate :: is_valid($_POST))
+	{
 		// __ FORM IS VALID
-		if (isset ($_POST['installerooni'])) {
-
-			
+		if (isset ($_POST['installerooni']))
+		{			
 			// drop existing poMMo tables
-			foreach (array_keys($dbo->table) as $key) {
+			foreach (array_keys($dbo->table) as $key)
+			{
 				$table = $dbo->table[$key];
 				$sql = 'DROP TABLE IF EXISTS ' . $table;
 				$dbo->query($sql);
 			}
 			
 			if (isset ($_REQUEST['debugInstall']))
+			{
 				$dbo->debug(TRUE);
+			}
 
 			$install = Pommo_Install::parseSQL();
 
-			if ($install) {
-				// installation of DB went OK, set configuration values to user supplied ones
-
+			if ($install)
+			{
+				// installation of DB went OK, set configuration values to user
+				// supplied ones
 				$pass = $_POST['admin_password'];
 
 				// install configuration
-				$_POST['admin_password'] = md5($_POST['admin_password']);
-				Pommo_Api::configUpdate($_POST);
+				require_once(Pommo::$_baseDir.'classes/Pommo_User.php');
+				$user = new Pommo_User();
+				$user->save('admin', $_POST['admin_password']);
 				
 				// generate key to uniquely identify this installation
 				$key = Pommo_Helper::makeCode(6);
