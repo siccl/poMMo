@@ -50,13 +50,9 @@ elseif (isset($_POST['submit'])
 		&& !empty($_POST['username'])
 		&& !empty($_POST['password']))
 {
-	$auth = Pommo_Api::configGet(array (
-		'admin_username',
-		'admin_password'
-	));
-	
-	if ($_POST['username'] == $auth['admin_username']
-			&& md5($_POST['password']) == $auth['admin_password'])
+	require_once Pommo::$_baseDir.'classes/Pommo_User.php';
+	$user = new Pommo_user();
+	if ($user->login($_POST['username'], $_POST['password']))
 	{
 		// don't perform maintenance if accessing support area
 		if(!isset($_GET['referer'])

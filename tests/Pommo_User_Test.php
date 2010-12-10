@@ -17,11 +17,28 @@ class Pommo_User_Test extends PHPUnit_Framework_TestCase
 		$user = new Pommo_User();
 		
 		$saved = $user->save('admin', 'password');
-		PHPUnit_Framework_Assert::assertTrue($saved, 'Testing user save');
+		PHPUnit_Framework_Assert::assertTrue($saved, 'Test user save');
 		
-		$saved = $user->save('admin', 'password');	
+		$saved = $user->save('admin', 'password');
 		PHPUnit_Framework_Assert::assertFalse($saved,
-				'Testing not saving duplicate');
-	}	
+				'Test not saving duplicate');
+		
+		$saved = $user->save('', '');
+		PHPUnit_Framework_Assert::assertFalse($saved,
+				'Test dont allow empty data');
+	}
+	
+	/**
+     * @depends testsave
+     */
+	public function testlogin()
+	{
+		$user = new Pommo_User();
+
+		$saved 	= $user->save('admin', 'password');
+		$logged	= $user->login('admin', 'password');
+		
+		PHPUnit_Framework_Assert::assertTrue($logged, 'Test loggin user');
+	}
 }
 

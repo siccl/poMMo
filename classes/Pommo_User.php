@@ -43,6 +43,11 @@ class Pommo_User
 	{
 		try
 		{
+			if (!$username || !$password)
+			{
+				throw new Exception();
+			}
+
 			$dbo = Pommo::$_dbo;
 			$dbo->_dieOnQuery = false;
 
@@ -50,9 +55,40 @@ class Pommo_User
 					SET username = "%s", password = SHA1("%s")';
 			if (!$dbo->query($dbo->prepare($query, array($username, $password))))
 			{
-				return false;
+				throw new Exception();
 			}
 			return true;
+		}
+		catch(Exception $e)
+		{
+			return false;
+		}
+	}
+	
+	/*	login
+	 *	Checks if a user-password combination exists in the database
+	 *
+	 *	@param	string	$username
+	 *	@param	string	$password
+	 *
+	 *	@return	boolean	True if the user was found, false otherwise
+	 */
+	function login($username, $password)
+	{
+		try
+		{
+			$dbo = Pommo::$_dbo;
+			$dbo->_dieOnQuery = false;
+
+			$query = 'SELECT username
+					FROM '.$dbo->table['users'].'
+					WHERE username = "%s" && password = SHA1("%s")';
+			$query = $dbo->prepare($query, array($username, $password));
+			if ($row = $dbo->getRows($query))
+			{
+				return true;
+			}
+			throw new Exception();
 		}
 		catch(Exception $e)
 		{
