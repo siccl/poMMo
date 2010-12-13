@@ -9,6 +9,92 @@
 
 <div class="output alert">{if $output}{$output}{/if}</div>
 
+<script type="text/javascript">
+$().ready(function()
+{ldelim}	
+
+	var p =
+	{ldelim}	
+		colNames:
+		[
+			'{t escape=js}User{/t}'
+		],
+		{literal}
+		colModel:
+		[
+			{name: 'username', width: 350}
+		],
+		url: 'ajax/users.list.php',
+		rowList: [10,25,50]
+	};
+
+	poMMo.grid = PommoGrid.init('#grid',p);
+});
+</script>
+
+<script type="text/javascript">
+$(function()
+{
+	// Setup Modal Dialogs
+	PommoDialog.init();
+
+	$('a.modal').click(function()
+	{
+		var rows = poMMo.grid.getRowIDs();
+		if(rows)
+		{
+			// check for confirmation
+			if($(this).hasClass('confirm') && !poMMo.confirm())
+			{
+				return false;
+			}
+				
+			// serialize the data
+			var data = $.param({'mailings[]': rows});
+			
+			// rewrite the HREF of the clicked element
+			var oldHREF = this.href;
+			this.href += (this.href.match(/\?/) ? "&" : "?") + data
+			
+			// trigger the modal dialog, or visit the URL
+			if($(this).hasClass('visit'))
+			{
+				window.location = this.href;
+			}
+			else
+			{
+				$('#wait').jqmShow(this);
+			}
+			
+			// restore the original HREF
+			this.href = oldHREF;
+			
+			poMMo.grid.reset();
+		}
+		return false;
+	});
+});
+
+poMMo.callback.deleteMailing = function(p) {
+	poMMo.grid.delRow(p.ids);
+	$('#dialog').jqmHide();  		
+}
+
+</script>
+{/literal}
+
+<table id="grid" class="scroll" cellpadding="0" cellspacing="0"></table>
+<div id="gridPager" class="scroll" style="text-align:center;"></div>
+
+<ul class="inpage_menu">
+	<li>
+		<a href="ajax/history.rpc.php?call=delete" class="modal confirm">
+			<img src="{$url.theme.shared}images/icons/delete.png"/>
+			{t}Delete{/t}
+		</a>
+	</li>
+</ul>
+
 <div>
 <label for="admin_username"><strong class="required">{t}Administrator Username:{/t}</strong>{fv message="admin_username"}</label>
 <input type="text" name="admin_username" value="{$admin_username|escape}" />

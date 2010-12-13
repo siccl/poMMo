@@ -32,6 +32,8 @@ $dbo = & Pommo::$_dbo;
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
 $smarty = new Pommo_Template();
 
+$state['limit'] = 10;
+$smarty->assign('state',$state);
 $smarty->assign('throttleTitle',Pommo::_T('Throttle Settings'));
 $smarty->assign('smtpTitle',Pommo::_T('SMTP Settings'));
 $smarty->assign('testTitle',Pommo::_T('Test Exchanger'));

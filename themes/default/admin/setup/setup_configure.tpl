@@ -3,6 +3,7 @@
 {include file="inc/ui.dialog.tpl"}
 {include file="inc/ui.tabs.tpl"}
 {include file="inc/ui.slider.tpl"}
+{include file="inc/ui.grid.tpl"}
 {/capture}
 
 {include file="inc/admin.header.tpl" sidebar='off'}

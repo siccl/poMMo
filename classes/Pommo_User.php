@@ -23,6 +23,9 @@
  */
 class Pommo_User
 {
+	public $pages;
+	public $records;
+
 	/*	__construct
 	 *
 	 *	@return	void
@@ -89,6 +92,70 @@ class Pommo_User
 				return true;
 			}
 			throw new Exception();
+		}
+		catch(Exception $e)
+		{
+			return false;
+		}
+	}
+	
+	/*	getList
+	 *	Returns array with users in DB
+	 *
+	 *	@param	array	$data = array(
+	 *					'limit' => 'Records per page,
+	 *					'order' => 'ASC or DESC',
+	 *					'page' => 'Page to return
+	 *					)
+	 *
+	 *	@return	boolean	True if the user was found, false otherwise
+	 */
+	function getList($data)
+	{
+		try
+		{
+			$this->pages = 0;
+
+			if (50 < $data['limit'] && 0 >= $data['limit'])
+			{
+				$data['limit'] = 10;
+			}
+
+			if (!in_array($data['order'], array('ASC', 'DESC')))
+			{
+				$data['order'] = 'ASC';
+			}
+			
+			if (!$data['page'])
+			{
+				$data['page'] = 1;
+			}
+			
+			$dbo = Pommo::$_dbo;
+			$dbo->_dieOnQuery = false;
+
+			//	Calculate total number of pages
+			$query = 'SELECT COUNT(username) AS total
+					FROM '.$dbo->table['users'];
+			$records = (int)$dbo->query($query, 0);
+			$this->records = $records;
+			$this->pages = ceil($records / $data['limit']);
+			
+			if ($data['page'] > $this->pages)
+			{
+				$data['page'] = $this->pages;
+			}
+			
+			$skip = (int)($data['limit'] * ($data['page'] - 1));
+			
+			//	Get the users
+			$query = 'SELECT username
+					FROM '.$dbo->table['users']
+					.' ORDER BY username '.$data['order']
+					.' LIMIT '.$skip.', %i';
+			$query = $dbo->prepare($query, array($data['limit']));
+			$users = $dbo->getAll($query);
+			return $users;
 		}
 		catch(Exception $e)
 		{
