@@ -70,5 +70,25 @@ class Pommo_User_Test extends PHPUnit_Framework_TestCase
 		PHPUnit_Framework_Assert::assertEquals(3, $user->pages);
 		PHPUnit_Framework_Assert::assertEquals('admin07', $results[0]['username']);
 	}
+	
+	/**
+     * @depends testsave
+     */
+	public function testdelete()
+	{
+		$user = new Pommo_User();
+
+		$user->save('admin', 'password');
+		$deleted = $user->delete('admin');
+		
+		PHPUnit_Framework_Assert::assertTrue($deleted, 'Test delete user');
+		
+		$user->save('admin', 'password');
+		$user->save('admin2', 'password');
+		$deleted = $user->delete(array('admin', 'admin2'));
+		
+		PHPUnit_Framework_Assert::assertTrue($deleted,
+				'Test delete multiple users');
+	}
 }
 

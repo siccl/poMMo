@@ -70,6 +70,7 @@ $().ready(function(){
 {include file="inc/dialog.tpl" id="throttleWindow" title=$throttleTitle tall=true}
 {include file="inc/dialog.tpl" id="smtpWindow" title=$smtpTitle tall=true}
 {include file="inc/dialog.tpl" id="testWindow" title=$testTitle}
+{include file="inc/dialog.tpl" id=dialog wide=true tall=true}
 {/capture}
 
 {include file="inc/admin.footer.tpl"}

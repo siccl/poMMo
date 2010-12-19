@@ -93,13 +93,23 @@ switch ($_REQUEST['call']) {
 	break;
 	
 	case 'delete' :
-		echo 5;
-		/*$deleted = Pommo_Mailing::delete($mailingIDS);
+		$currentUser = Pommo::$_auth->_username;
+
+		//	We dont want to delete the current user
+		$key = array_search($currentUser, $_GET['users']);
+		if ($key !== false)
+		{
+			unset($_GET['users'][$key]);
+		}
+
+		require_once Pommo::$_baseDir.'classes/Pommo_User.php';
+		$pu = new Pommo_User();
+		$deleted = $pu->delete($_GET['users']);
 		$logger->addMsg(Pommo::_T('Please Wait').'...');
 		
-		$params = $json->encode(array('ids' => $mailingIDS));
-		$smarty->assign('callbackFunction','deleteMailing');
-		$smarty->assign('callbackParams',$params);*/
+		$params = $json->encode(array('users' => $_GET['users']));
+		$smarty->assign('callbackFunction','deleteUser');
+		$smarty->assign('callbackParams',$params);
 	break;
 	
 	default:
@@ -108,4 +118,4 @@ switch ($_REQUEST['call']) {
 }
 
 $smarty->display('admin/rpc.tpl');
-?>
+

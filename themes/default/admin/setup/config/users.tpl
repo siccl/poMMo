@@ -50,7 +50,7 @@ $(function()
 			}
 				
 			// serialize the data
-			var data = $.param({'mailings[]': rows});
+			var data = $.param({'users[]': rows});
 			
 			// rewrite the HREF of the clicked element
 			var oldHREF = this.href;
@@ -63,7 +63,7 @@ $(function()
 			}
 			else
 			{
-				$('#wait').jqmShow(this);
+				$('#dialog').jqmShow(this);
 			}
 			
 			// restore the original HREF
@@ -75,9 +75,10 @@ $(function()
 	});
 });
 
-poMMo.callback.deleteMailing = function(p) {
-	poMMo.grid.delRow(p.ids);
-	$('#dialog').jqmHide();  		
+poMMo.callback.deleteUser = function(p)
+{
+	poMMo.grid.delRow(p.users);
+	$('#dialog').jqmHide();
 }
 
 </script>
@@ -88,7 +89,7 @@ poMMo.callback.deleteMailing = function(p) {
 
 <ul class="inpage_menu">
 	<li>
-		<a href="ajax/history.rpc.php?call=delete" class="modal confirm">
+		<a href="ajax/users.rpc.php?call=delete" class="modal confirm">
 			<img src="{$url.theme.shared}images/icons/delete.png"/>
 			{t}Delete{/t}
 		</a>
@@ -122,3 +123,4 @@ poMMo.callback.deleteMailing = function(p) {
 <input type="submit" value="{t}Update{/t}" />
 <img src="{$url.theme.shared}images/loader.gif" alt="loading..." class="hidden" name="loading" />
 </form>
+

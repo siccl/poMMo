@@ -162,5 +162,42 @@ class Pommo_User
 			return false;
 		}
 	}
+	
+	/*	delete
+	 *	Deletes users from DB
+	 *
+	 *	@param	mixed	$users.- String with username or array with usernames
+	 *
+	 *	@return	boolean	True on success, false otherwise
+	 */
+	public function delete($users)
+	{
+		try
+		{
+			if (!is_array($users))
+			{
+				$users = array($users);
+			}
+
+			$dbo = Pommo::$_dbo;
+			$dbo->_dieOnQuery = false;
+
+			$return = true;
+			foreach ($users as $user)
+			{
+				$query = 'DELETE FROM '.$dbo->table['users'].'
+						WHERE username = "%s"';
+				if (!$dbo->query($dbo->prepare($query, array($user))))
+				{
+					$return = false;
+				}
+			}
+			return $return;
+		}
+		catch(Exception $e)
+		{
+			return false;
+		}
+	}
 }
 

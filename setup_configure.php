@@ -40,4 +40,4 @@ $smarty->assign('testTitle',Pommo::_T('Test Exchanger'));
 
 $smarty->display('admin/setup/setup_configure.tpl');
 Pommo::kill();
-?>
+
