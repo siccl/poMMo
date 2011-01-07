@@ -8,7 +8,12 @@
 {include file="inc/admin.header.tpl" sidebar='off'}
 
 <ul class="inpage_menu">
-<li><a href="ajax/subscriber_add.php" title="{t}Add Subscribers{/t}" class="addTrigger">{t}Add Subscribers{/t}</a></li>
+	<li>
+		<a href="ajax/subscriber_add.php" title="{t}Add Subscribers{/t}"
+				class="addTrigger">
+			{t}Add Subscribers{/t}
+		</a>
+	</li>
 
 <li><a href="ajax/subscriber_del.php?status={$state.status}" title="{t}Remove Subscribers{/t}" class="delTrigger">{t}Remove Subscribers{/t}</a></li>
 
@@ -133,15 +138,16 @@ $().ready(function() {ldelim}
 
 {literal}
 <script type="text/javascript">
-$().ready(function() {
-	
+$(function()
+{
 	// Setup Modal Dialogs
 	PommoDialog.init();
 	$('#add').jqmAddTrigger('a.addTrigger');
 	$('#del').jqmAddTrigger('a.delTrigger');
 	$('#exp').jqmAddTrigger('a.expTrigger');
 	
-	$('a.editTrigger').click(function(){
+	$('a.editTrigger').click(function()
+	{
 		// prevent edit window from appearing if no row is selected
 		if(poMMo.grid.getRowID())
 			$('#edit').jqmShow(this);
@@ -149,11 +155,13 @@ $().ready(function() {
 	});
 	
 	
-	$('#orderForm select').change(function() {
+	$('#orderForm select').change(function()
+	{
 		$('#orderForm')[0].submit();
 	});
 	
-	$('legend.click').click(function(){ 
+	$('legend.click').click(function()
+	{ 
 		$(this).siblings('ul').slideToggle(); 
 	});
 	

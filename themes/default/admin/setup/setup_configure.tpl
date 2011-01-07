@@ -67,6 +67,7 @@ $().ready(function(){
 {/literal}
 
 {capture name=dialogs}
+{include file="inc/dialog.tpl" id="addUser" wide='true' tall='true'}
 {include file="inc/dialog.tpl" id="throttleWindow" title=$throttleTitle tall=true}
 {include file="inc/dialog.tpl" id="smtpWindow" title=$smtpTitle tall=true}
 {include file="inc/dialog.tpl" id="testWindow" title=$testTitle}

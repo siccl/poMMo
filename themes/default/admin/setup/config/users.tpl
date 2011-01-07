@@ -37,6 +37,8 @@ $(function()
 {
 	// Setup Modal Dialogs
 	PommoDialog.init();
+	
+	$('#addUser').jqmAddTrigger('a.addUser');
 
 	$('a.modal').click(function()
 	{
@@ -89,7 +91,7 @@ poMMo.callback.deleteUser = function(p)
 
 <ul class="inpage_menu">
 	<li>
-		<a href="#">
+		<a href="ajax/user_add.php" class='addUser'>
 			{t}New{/t}
 		</a>
 	</li>
