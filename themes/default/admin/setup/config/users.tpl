@@ -89,6 +89,16 @@ poMMo.callback.deleteUser = function(p)
 
 <ul class="inpage_menu">
 	<li>
+		<a href="#">
+			{t}New{/t}
+		</a>
+	</li>
+	<li>
+		<a href="#">
+			{t}Update{/t}
+		</a>
+	</li>
+	<li>
 		<a href="ajax/users.rpc.php?call=delete" class="modal confirm">
 			<img src="{$url.theme.shared}images/icons/delete.png"/>
 			{t}Delete{/t}
