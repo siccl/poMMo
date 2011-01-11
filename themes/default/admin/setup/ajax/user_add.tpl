@@ -1,5 +1,7 @@
-<form action="#" method="post">
-	<div class="output alert"></div>
+<form action="#" method="post" id='addUserForm'>
+	<div class="output alert">
+		Hola mundo
+	</div>
 
 	<fieldset>
 		<legend>{t}Add User{/t}</legend>
@@ -9,24 +11,27 @@
 				<strong class="required">{t}User:{/t}</strong>
 			</label>
 			<input type="text" size="32" maxlength="60"
-					name="user" />
+					name="user" class='vfield' />
 		</div>
 		<div>
 			<label for="password">
 				<strong class="required">{t}Password:{/t}</strong>
 			</label>
-			<input type="text" size="32" maxlength="60" name="password" />
+			<input type="text" size="32" maxlength="60" name="password"
+					class='vfield'/>
 		</div>
 		<div>
 			<label for="password2">
 				<strong class="required">{t}Password:{/t}</strong>
 			</label>
-			<input type="text" size="32" maxlength="60" name="password2" />
+			<input type="text" size="32" maxlength="60" name="password2"
+					class='vfield' />
 		</div>
 	</fieldset>
 
 	<div class="buttons">
-		<input type="submit" value="{t}Add User{/t}" />
+		<input id='addUserSubmit' disabled='disabled' type="submit"
+				value="{t}Add User{/t}" style='opacity: 0.5;' />
 		<input type="reset" value="{t}Reset{/t}" />
 	</div>
 
@@ -39,6 +44,40 @@
 <script type="text/javascript">
 $(function()
 {
+	$('.vfield', '#addUserForm').keyup(function()
+	{
+		//	Validate to activate submit button
+		user 		= $('[name=user]').val();
+		password	= $('[name=password]').val();
+		password2	= $('[name=password2]').val();
+		
+		if (5 > user.length)
+		{
+			$('#addUserSubmit').attr('disabled', 'disabled').css('opacity', '0.5');
+			return false;
+		}
+		
+		if (5 > password.length)
+		{
+			$('#addUserSubmit').attr('disabled', 'disabled').css('opacity', '0.5');
+			return false;
+		}
+		
+		if (password != password2)
+		{
+			$('#addUserSubmit').attr('disabled', 'disabled').css('opacity', '0.5');
+			return false;
+		}
+		
+		$('#addUserSubmit').removeAttr('disabled').css('opacity', '1');
+		return true;
+	});
+	
+	$('#addUserSubmit').click(function()
+	{		
+		return false;
+	});
+
 	poMMo.callback.addSubscriber = function(json)
 	{
 		// refresh the page if no grid exists, else add new subscriber to grid
@@ -51,19 +90,6 @@ $(function()
         	poMMo.grid.addRow(json.key,json);
         }
 	};
-	
-	$('input[@name="force"]').click(function()
-	{
-		if(this.checked)
-		{
-			$(this).jqvDisable();
-		}
-		else
-		{
-			$(this).jqvEnable();
-		}
-	});
-
 });
 </script>
 {/literal}
