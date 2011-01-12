@@ -112,6 +112,16 @@ switch ($_REQUEST['call']) {
 		$smarty->assign('callbackParams',$params);
 	break;
 	
+	case 'add':
+		require_once Pommo::$_baseDir.'classes/Pommo_User.php';
+		$pu = new Pommo_User();
+		if ($pu->save($_POST['user'], $_POST['password']))
+		{
+			echo $_POST['user'];
+			return;
+		}
+		break;
+	
 	default:
 		$logger->AddErr('invalid call');
 	break;

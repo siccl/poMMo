@@ -1,7 +1,4 @@
 <form action="#" method="post" id='addUserForm'>
-	<div class="output alert">
-		Hola mundo
-	</div>
 
 	<fieldset>
 		<legend>{t}Add User{/t}</legend>
@@ -17,14 +14,14 @@
 			<label for="password">
 				<strong class="required">{t}Password:{/t}</strong>
 			</label>
-			<input type="text" size="32" maxlength="60" name="password"
+			<input type="password" size="32" maxlength="60" name="password"
 					class='vfield'/>
 		</div>
 		<div>
 			<label for="password2">
 				<strong class="required">{t}Password:{/t}</strong>
 			</label>
-			<input type="text" size="32" maxlength="60" name="password2"
+			<input type="password" size="32" maxlength="60" name="password2"
 					class='vfield' />
 		</div>
 	</fieldset>
@@ -74,11 +71,25 @@ $(function()
 	});
 	
 	$('#addUserSubmit').click(function()
-	{		
+	{
+		$.ajax({
+			'type':	'POST',
+			'url':	'ajax/users.rpc.php',
+			'data':
+			{
+				'call':		'add',
+				'user':		user,
+				'password':	password
+			},
+			'success': function(data)
+			{
+				poMMo.callback.addUser(data);
+			}
+		});
 		return false;
 	});
 
-	poMMo.callback.addSubscriber = function(json)
+	poMMo.callback.addUser = function(user)
 	{
 		// refresh the page if no grid exists, else add new subscriber to grid
 		if($('#grid').size() == 0)
@@ -87,7 +98,8 @@ $(function()
 		}
         else
         {
-        	poMMo.grid.addRow(json.key,json);
+        	poMMo.grid.addRow(user, { 'username':user });
+        	$('#addUser').jqmHide();
         }
 	};
 });
