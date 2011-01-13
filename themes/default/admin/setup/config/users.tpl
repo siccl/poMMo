@@ -104,24 +104,6 @@ poMMo.callback.deleteUser = function(p)
 </ul>
 
 <div>
-<label for="admin_username"><strong class="required">{t}Administrator Username:{/t}</strong>{fv message="admin_username"}</label>
-<input type="text" name="admin_username" value="{$admin_username|escape}" />
-<span class="notes">{t}(you will use this to login){/t}</span>
-</div>
-
-<div>
-<label for="admin_password">{t}Administrator Password:{/t}</label>
-<input type="password" name="admin_password" value="{$admin_password|escape}" />
-<span class="notes">{t}(you will use this to login){/t}</span>
-</div>
-
-<div>
-<label for="admin_password2">{t}Verify Password:{/t}{fv message="admin_password"}</label>
-<input type="password" name="admin_password2" value="{$admin_password2|escape}" />
-<span class="notes">{t}(enter password again){/t}</span>
-</div>
-
-<div>
 <label for="admin_email"><strong class="required">{t}Administrator Email:{/t}</strong>{fv message="admin_email"}</label>
 <input type="text" name="admin_email" value="{$admin_email|escape}" />
 <span class="notes">{t}(email address of administrator){/t}</span>

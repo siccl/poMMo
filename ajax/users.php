@@ -57,7 +57,9 @@ if (!SmartyValidate :: is_registered_form('users') || empty ($_POST)) {
 	));
 	$dbVals['admin_email'] = Pommo::$_config['admin_email'];
 	$smarty->assign($dbVals);
-} else {
+}
+else
+{
 	// ___ USER HAS SENT FORM ___
 	
 	/**********************************
@@ -66,16 +68,9 @@ if (!SmartyValidate :: is_registered_form('users') || empty ($_POST)) {
 	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
 	$json = new Pommo_Json();
 
-	if (SmartyValidate :: is_valid($_POST, 'users')) {
-		// __ FORM IS VALID
-		
-		// convert password to MD5 if given...
-		if (!empty ($_POST['admin_password']))
-			$_POST['admin_password'] = md5($_POST['admin_password']);
-
+	if (isset($_POST['admin_email']))
+	{
 		Pommo_Api::configUpdate($_POST);
-		
-		unset($_POST['admin_password'],$_POST['admin_password2']);
 		
 		Pommo::reloadConfig();
 		
