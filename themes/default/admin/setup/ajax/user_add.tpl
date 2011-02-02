@@ -2,6 +2,10 @@
 
 	<fieldset>
 		<legend>{t}Add User{/t}</legend>
+		
+		<div class="output alert">
+			User and password must me at least 5 characters
+		</div>
 
 		<div>
 			<label for="user">
