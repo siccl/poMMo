@@ -4,7 +4,7 @@
 		<legend>{t}Add User{/t}</legend>
 		
 		<div class="output alert">
-			User and password must me at least 5 characters
+			{t}User and password must be at least 5 characters{/t}
 		</div>
 
 		<div>
