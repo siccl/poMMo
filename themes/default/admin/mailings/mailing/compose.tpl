@@ -1,14 +1,16 @@
 <div class="output">
 	{include file="inc/messages.tpl"}
 </div>
+
+<form id="compose" class="json mandatory" action="{$smarty.server.PHP_SELF}"
+		method="post">
+	<input type="hidden" name="compose" value="true" />
+
 <div class="compose">
 	<h4>{t}HTML Message{/t}</h4>
-	<form id="compose" class="json mandatory" action="{$smarty.server.PHP_SELF}"
-			method="post">
-		<input type="hidden" name="compose" value="true" />
 		<ul class="inpage_menu">
 			<li>
-				<a href="#" id="e_altbody">
+				<a href="#" class="e_altbody">
 					<img src="{$url.theme.shared}images/icons/reload.png" alt="icon"
 							border="0" align="absmiddle" />
 					{t}Copy text from HTML Message{/t}
@@ -19,7 +21,6 @@
 						value="{t}Continue{/t}" />
 			</li>
 		</ul>
-	</form>
 
 	<textarea name="body">{$body}</textarea>
 	<span class="notes">({t}Leave blank to send text only{/t})</span>
@@ -59,12 +60,9 @@
 	<span class="notes">({t}Leave blank to send HTML only{/t})</span>
 </div>
 
-<form id="compose" class="json mandatory" action="{$smarty.server.PHP_SELF}"
-		method="post">
-	<input type="hidden" name="compose" value="true" />
 	<ul class="inpage_menu">
 		<li>
-			<a href="#" id="e_altbody">
+			<a href="#" class="e_altbody">
 				<img src="{$url.theme.shared}images/icons/reload.png" alt="icon"
 						border="0" align="absmiddle" />
 				{t}Copy text from HTML Message{/t}
@@ -166,7 +164,7 @@
 	});
 	
 	
-	$('#e_altbody').click(function() {
+	$('.e_altbody').click(function() {
 		
 		var post = {
 			body: wysiwyg.getBody()
