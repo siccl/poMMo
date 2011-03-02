@@ -80,7 +80,7 @@ class Pommo_Mail_Ctl {
 
 		$out = "GET $page HTTP/1.1\r\n";
 		$out .= "Host: " . Pommo::$_hostname . "\r\n";
-		
+
 		//$out .= 'User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.2.1) Gecko/20021204\r\n';
 		//$out .= "Keep-Alive: 300\r\n";
 		//$out .= "Connection: keep-alive\r\n";

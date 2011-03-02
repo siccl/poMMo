@@ -116,8 +116,10 @@ class Pommo_Mta
 
 		$this->_mailing = current(Pommo_Mailing::get($p));
 
-		if(!is_numeric($this->_mailing['id']))
+		if (!is_numeric($this->_mailing['id']))
+		{
 			$this->shutdown('Unable to initialize mailing.');
+		}
 		$this->_id = $this->_mailing['id'];
 
 		// make sure the $_GET global holds the mailing id (used in personalizations, etc.)

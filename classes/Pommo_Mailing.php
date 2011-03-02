@@ -220,6 +220,11 @@ class Pommo_Mailing
 		}
 		
 		$select = "m.mailing_id,
+				c.command,
+				c.serial,
+				c.securityCode,
+				c.current_status,
+				c.touched,
 				fromname,
 				fromemail,
 				frombounce,

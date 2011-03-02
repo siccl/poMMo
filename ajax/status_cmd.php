@@ -38,21 +38,26 @@ $json = new Pommo_Json();
 
 $mailing = current(Pommo_Mailing::get(array('active' => TRUE)));
 
-switch ($_GET['cmd']) {
+switch ($_GET['cmd'])
+{
 	case 'cancel' : // cancel a mailing
 	case 'restart' : // restart mailing
 	case 'stop' :  // pause mailing
-		$query = "
-			UPDATE ".$dbo->table['mailing_current']."
+		$query = "UPDATE ".$dbo->table['mailing_current']."
 			SET command='".$_GET['cmd']."'
 			WHERE current_id=%i";
 		$query = $dbo->prepare($query,array($mailing['id']));
 		if (!$dbo->query($query))
+		{
 			$json->fail();
+		}
 		
-		if($_GET['cmd'] == 'restart' || $_GET['cmd'] == 'cancel') 
-			Pommo_Mail_Ctl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?id='.$mailing['id'].'&code='.$mailing['code']);
+		if ($_GET['cmd'] == 'restart' || $_GET['cmd'] == 'cancel')
+		{
+			Pommo_Mail_Ctl::spawn(Pommo::$_baseUrl.'ajax/mailings_send4.php?id='
+					.$mailing['id'].'&code='.$mailing['code']);
+		}
 		break;
 }
 $json->success();
-?>
+
