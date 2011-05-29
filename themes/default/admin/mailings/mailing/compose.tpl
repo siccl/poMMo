@@ -25,13 +25,13 @@
 	<textarea name="body">{$body}</textarea>
 	<span class="notes">({t}Leave blank to send text only{/t})</span>
 </div>
-<div id="file-uploader-demo1">		
+<div id="file-uploader-demo1" style='float: left; margin-left: 30px'>
 	<noscript>			
 		<p>Please enable JavaScript to use file uploader.</p>
 		<!-- or put a simple form for upload here -->
 	</noscript>         
 </div>
-<ul class="inpage_menu">
+<ul class="inpage_menu" style='float: left'>
 	<li>
 		<a href="#" id="e_toggle">
 			<img src="{$url.theme.shared}images/icons/viewhtml.png" alt="icon"
@@ -53,7 +53,7 @@
 		</a>
 	</li>
 </ul>
-
+<div style='clear:both'></div>
 <div class="compose">
 	<h4>{t}Text Version{/t}</h4>
 	<textarea name="altbody">{$altbody}</textarea>
