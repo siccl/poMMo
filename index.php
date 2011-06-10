@@ -30,7 +30,7 @@ $logger = Pommo::$_logger;
 	SETUP TEMPLATE, PAGE
  *********************************/
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
+$view = new Pommo_Template();
 
 //	log the user out if requested
 if (isset($_GET['logout']))
@@ -82,7 +82,7 @@ elseif (!empty ($_POST['resetPassword']))
 		// generate captcha
 		$captcha = substr(md5(rand()), 0, 4);
 
-		$smarty->assign('captcha', $captcha);
+		$view->assign('captcha', $captcha);
 	}
 	elseif ($_POST['captcha'] == $_POST['realdeal'])
 	{
@@ -108,7 +108,7 @@ elseif (!empty ($_POST['resetPassword']))
 				array('to' => Pommo::$_config['admin_email'],
 				'code' => $code, 'type' => 'password'));
 		
-		$smarty->assign('captcha',FALSE);
+		$view->assign('captcha',FALSE);
 		
 	}
 	else
@@ -187,18 +187,18 @@ elseif (!Pommo::$_hasConfigFile && $_POST['configure'])
 if (Pommo::$_hasConfigFile)
 {
 	//	referer (used to return user to requested page upon login success)
-	$smarty->assign('referer',
+	$view->assign('referer',
 			(isset($_REQUEST['referer']) ?
 			$_REQUEST['referer'] : Pommo::$_baseUrl.'admin.php'));
 
-	$smarty->display('index.tpl');
+	$view->display('index.tpl');
 }
 else
 {
-	$smarty->assign('messages', $configErrors);
-	$smarty->assign('dbhost', $_POST['dbhost']);
-	$smarty->assign('dbname', $_POST['dbname']);
-	$smarty->assign('dbuser', $_POST['dbuser']);
-	$smarty->display('configure.tpl');
+	$view->assign('messages', $configErrors);
+	$view->assign('dbhost', $_POST['dbhost']);
+	$view->assign('dbname', $_POST['dbname']);
+	$view->assign('dbuser', $_POST['dbuser']);
+	$view->display('configure');
 }
 

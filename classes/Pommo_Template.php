@@ -17,11 +17,8 @@
  * along with program; see the file docs/LICENSE. If not, write to the
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-// include smarty template class
-require_once(Pommo::$_baseDir.'lib/smarty/Smarty.class.php');
 
-// wrapper class around smarty
-class Pommo_Template extends Smarty
+class Pommo_Template
 {
 
 	var $_pommoTheme;
@@ -72,21 +69,35 @@ class Pommo_Template extends Smarty
 		$this->assign('title', '. ..poMMo.. .');
 
 		// assign section (used for sidebar template)
-		$this->assign('section', Pommo::$_section);
-			
-		}
+		$this->assign('section', Pommo::$_section);		
+	}
+
+	/*
+	 *	assign
+	 *	Saves value so it is available to the view
+	 *
+	 *	@param	string	$name.- Name of the variable
+	 *	@param	mixed	$value.- Value of the variable
+	 *
+	 *	@return	void
+	 */
+	public function assign($name, $value)
+	{
+		$this->$name = $value;
+	}
 
 	/*	display
 	 *	falls back to "default" theme if theme file not found
 	 *	also assigns any poMMo errors or messages
 	 *
-	 *	@param	string	$resource_name.- Template to load
-	 *	@param	
+	 *	@param	string	$resource_name.- Template to load, without extension
 	 *
 	 *	@return	boolean	True on success
 	 */
 	function display($resource_name)
 	{
+		$resource_name .= '.php';
+
 		// attempt to load the theme's requested template
 		if (!is_file($this->template_dir.'/'.$resource_name))
 		{
@@ -103,6 +114,10 @@ class Pommo_Template extends Smarty
 				$this->template_dir = $this->_themeDir . 'default';
 			}
 		}
+		else
+		{
+			$resource_name = $this->template_dir.'/'.$resource_name;
+		}
 		if (Pommo::$_logger->isMsg())
 		{
 			$this->assign('messages', Pommo::$_logger->getMsg());
@@ -112,9 +127,9 @@ class Pommo_Template extends Smarty
 			$this->assign('errors', Pommo::$_logger->getErr());
 		}
 
-		return parent::display($resource_name);
+		include $resource_name;
 	}
-	
+
 	function prepareForForm() {
 
 		$this->plugins_dir[] = Pommo::$_baseDir . 'lib/smarty-plugins/validate';
