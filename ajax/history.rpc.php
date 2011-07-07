@@ -56,8 +56,7 @@ switch ($_REQUEST['call']) {
 		}
 	break;
 	
-	case 'reload' :
-	
+	case 'reload' :	
 		require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
 
 		$mailing = current(Pommo_Mailing::get(array('id' => $_REQUEST['mailings'])));
@@ -93,13 +92,12 @@ switch ($_REQUEST['call']) {
 	break;
 	
 	case 'delete' :
-		echo 5;
-		/*$deleted = Pommo_Mailing::delete($mailingIDS);
+                $deleted = Pommo_Mailing::delete($mailingIDS);
 		$logger->addMsg(Pommo::_T('Please Wait').'...');
 		
 		$params = $json->encode(array('ids' => $mailingIDS));
 		$smarty->assign('callbackFunction','deleteMailing');
-		$smarty->assign('callbackParams',$params);*/
+		$smarty->assign('callbackParams',$params);
 	break;
 	
 	default:
