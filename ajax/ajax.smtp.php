@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  * 
@@ -17,10 +18,9 @@
  * along with program; see the file docs/LICENSE. If not, write to the
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-
-/**********************************
-	INITIALIZATION METHODS
- *********************************/
+/* * ********************************
+  INITIALIZATION METHODS
+ * ******************************* */
 require ('../bootstrap.php');
 Pommo::init();
 $logger = & Pommo::$_logger;
@@ -30,102 +30,103 @@ require_once(Pommo::$_baseDir . 'lib/phpmailer/class.phpmailer.php');
 require_once(Pommo::$_baseDir . 'lib/phpmailer/class.smtp.php');
 
 
-/**********************************
-	SETUP TEMPLATE, PAGE
- *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+/* * ********************************
+  SETUP TEMPLATE, PAGE
+ * ******************************* */
+require_once(Pommo::$_baseDir . 'classes/Pommo_Template.php');
 $smarty = new Pommo_Template();
 $smarty->prepareForForm();
 $smarty->assign('returnStr', Pommo::_T('Configure'));
 
 // Read user requested changes	
-if (!empty ($_POST['addSmtpServer'])) {
-	$server = array (
-		'host' => 'mail.localhost',
-		'port' => '25',
-		'auth' => 'off',
-		'user' => '',
-		'pass' => ''
-	);
-	$input['smtp_' . key($_POST['addSmtpServer'])] = serialize($server);
-	Pommo_Api::configUpdate($input, TRUE);
-	$update = true;
-}
-elseif (!empty ($_POST['updateSmtpServer'])) {
-	$key = key($_POST['updateSmtpServer']);
-	$server = array (
-		'host' => $_POST['host'][$key], 'port' => $_POST['port'][$key], 'auth' => $_POST['auth'][$key], 'user' => $_POST['user'][$key], 'pass' => $_POST['pass'][$key]);
-	$input['smtp_' . $key] = serialize($server);
-	Pommo_Api::configUpdate( $input, TRUE);
-	$update = true;
-}
-elseif (!empty ($_POST['deleteSmtpServer'])) {
-	$input['smtp_' . key($_POST['deleteSmtpServer'])] = '';
-	Pommo_Api::configUpdate( $input, TRUE);
-	$update = true;
-}
-elseif (!empty ($_POST['throttle_SMTP'])) {
-	$input['throttle_SMTP'] = $_POST['throttle_SMTP'];
-	Pommo_Api::configUpdate( $input);
-	$update = true;
+if (!empty($_POST['addSmtpServer'])) {
+    $server = array(
+        'host' => 'mail.localhost',
+        'port' => '25',
+        'auth' => 'off',
+        'user' => '',
+        'pass' => ''
+    );
+    $input['smtp_' . key($_POST['addSmtpServer'])] = serialize($server);
+    Pommo_Api::configUpdate($input, TRUE);
+    $update = true;
+} elseif (!empty($_POST['updateSmtpServer'])) {
+    $key = key($_POST['updateSmtpServer']);
+    $server = array(
+        'host' => $_POST['host'][$key], 'port' => $_POST['port'][$key], 'auth' => $_POST['auth'][$key], 'user' => $_POST['user'][$key], 'pass' => $_POST['pass'][$key]);
+    $input['smtp_' . $key] = serialize($server);
+    Pommo_Api::configUpdate($input, TRUE);
+    $update = true;
+} elseif (!empty($_POST['deleteSmtpServer'])) {
+    $input['smtp_' . key($_POST['deleteSmtpServer'])] = '';
+    Pommo_Api::configUpdate($input, TRUE);
+    $update = true;
+} elseif (!empty($_POST['throttle_SMTP'])) {
+    $input['throttle_SMTP'] = $_POST['throttle_SMTP'];
+    Pommo_Api::configUpdate($input);
+    $update = true;
 }
 
-if(isset($update))
-	$smarty->assign('output',($update)?Pommo::_T('Configuration Updated.'):Pommo::_T('Please review and correct errors with your submission.'));
+if (isset($update))
+    $smarty->assign('output', ($update) ? Pommo::_T('Configuration Updated.') : Pommo::_T('Please review and correct errors with your submission.'));
 
 // Get the SMTP settings from DB
-$smtpConfig = Pommo_Api::configGet(array (
-	'smtp_1',
-	'smtp_2',
-	'smtp_3',
-	'smtp_4',
-	'throttle_SMTP'
-));
+$smtpConfig = Pommo_Api::configGet(array(
+            'smtp_1',
+            'smtp_2',
+            'smtp_3',
+            'smtp_4',
+            'throttle_SMTP'
+        ));
 
 $smtp[1] = unserialize($smtpConfig['smtp_1']);
 $smtp[2] = unserialize($smtpConfig['smtp_2']);
 $smtp[3] = unserialize($smtpConfig['smtp_3']);
 $smtp[4] = unserialize($smtpConfig['smtp_4']);
 
-if (empty ($smtp[1]))
-	$smtp[1] = array (
-		'host' => 'mail.localhost',
-		'port' => '25',
-		'auth' => 'off',
-		'user' => '',
-		'pass' => ''
-	);
+if (empty($smtp[1]))
+    $smtp[1] = array(
+        'host' => 'mail.localhost',
+        'port' => '25',
+        'auth' => 'off',
+        'user' => '',
+        'pass' => ''
+    );
 
 // Test the servers
 $addServer = FALSE;
-$smtpStatus = array ();
+$smtpStatus = array();
 for ($i = 1; $i < 5; $i++) {
 
-	if (empty ($smtp[$i])) {
-		if (!$addServer)
-			$addServer = $i;
-		continue;
-	}
+    if (empty($smtp[$i])) {
+        if (!$addServer)
+            $addServer = $i;
+        continue;
+    }
 
-	$test[$i] = new PHPMailer();
+    $test[$i] = new PHPMailer();
 
-	$test[$i]->Host = (empty ($smtp[$i]['host'])) ? null : $smtp[$i]['host'];
-	$test[$i]->Port = (empty ($smtp[$i]['port'])) ? null : $smtp[$i]['port'];
-	if (!empty ($smtp[$i]['auth']) && $smtp[$i]['auth'] == 'on') {
-		$test[$i]->SMTPAuth = TRUE;
-		$test[$i]->Username = (empty ($smtp[$i]['user'])) ? null : $smtp[$i]['user'];
-		$test[$i]->Password = (empty ($smtp[$i]['pass'])) ? null : $smtp[$i]['pass'];
-	}
-	if (@ $test[$i]->SmtpConnect()) {
-		$smtpStatus[$i] = TRUE;
-		$test[$i]->SmtpClose();
-	} else {
-		$smtpStatus[$i] = FALSE;
-	}
+    $test[$i]->Host = (empty($smtp[$i]['host'])) ? null : $smtp[$i]['host'];
+    $test[$i]->Port = (empty($smtp[$i]['port'])) ? null : $smtp[$i]['port'];
+    if (!empty($smtp[$i]['auth']) && $smtp[$i]['auth'] == 'on') {
+        $test[$i]->SMTPAuth = TRUE;
+        $test[$i]->Username = (empty($smtp[$i]['user'])) ? null : $smtp[$i]['user'];
+        $test[$i]->Password = (empty($smtp[$i]['pass'])) ? null : $smtp[$i]['pass'];
+    }
+    try {
+        if (@ $test[$i]->SmtpConnect()) {
+            $smtpStatus[$i] = TRUE;
+            $test[$i]->SmtpClose();
+        } else {
+            $smtpStatus[$i] = FALSE;
+        }
+    } catch (phpmailerException $e) {
+        $smtpStatus[$i] = FALSE;
+    }
 }
 
-$smarty->assign('addServer',$addServer);
-$smarty->assign('smtpStatus',$smtpStatus);
+$smarty->assign('addServer', $addServer);
+$smarty->assign('smtpStatus', $smtpStatus);
 $smarty->assign('smtp', $smtp);
 $smarty->assign('throttle_SMTP', $smtpConfig['throttle_SMTP']);
 
