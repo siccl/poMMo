@@ -51,12 +51,6 @@ if (Pommo::$_config['revision'] < 26) {
 	Pommo::kill();
 }
 
-if (Pommo::$_config['revision'] < 50) {
-	$logger->addErr('Upgrade path unavailable. Cannot upgrade from Aardvark PR16 or below!');
-	$smarty->display('upgrade.tpl');
-	Pommo::kill();
-}
-
 // Check to make sure poMMo is not already up to date.
 if (Pommo::$_config['revision'] == Pommo::$_revision && !isset ($_REQUEST['forceUpgrade']) && !isset ($_REQUEST['continue'])) {
 	$logger->addErr(sprintf(Pommo::_T('poMMo appears to be up to date. If you want to force an upgrade, %s click here %s'), '<a href="' . $_SERVER['PHP_SELF'] . '?forceUpgrade=TRUE">', '</a>'));
