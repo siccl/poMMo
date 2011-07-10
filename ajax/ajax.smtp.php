@@ -116,12 +116,17 @@ for ($i = 1; $i < 5; $i++) {
 		$test[$i]->Username = (empty ($smtp[$i]['user'])) ? null : $smtp[$i]['user'];
 		$test[$i]->Password = (empty ($smtp[$i]['pass'])) ? null : $smtp[$i]['pass'];
 	}
-	if (@ $test[$i]->SmtpConnect()) {
-		$smtpStatus[$i] = TRUE;
-		$test[$i]->SmtpClose();
-	} else {
-		$smtpStatus[$i] = FALSE;
-	}
+        
+    try {
+        if (@ $test[$i]->SmtpConnect()) {
+            $smtpStatus[$i] = TRUE;
+            $test[$i]->SmtpClose();
+        } else {
+            $smtpStatus[$i] = FALSE;
+        }
+    } catch (phpmailerException $e) {
+        $smtpStatus[$i] = FALSE;
+    }
 }
 
 $smarty->assign('addServer',$addServer);
