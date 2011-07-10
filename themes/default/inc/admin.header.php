@@ -13,7 +13,7 @@
 </script>
 
 <link type="text/css" rel="stylesheet" 
-      href="<?php echo $this->url['theme']['shared']?>/css/default.admin.css" />
+      href="<?php echo $this->url['theme']['shared']?>css/default.admin.css" />
 
 <head>	
 </head>
