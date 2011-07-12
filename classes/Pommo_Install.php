@@ -20,7 +20,61 @@
 
 class Pommo_Install
 {
- 	
+	public static $errors;
+
+	/**
+	 *	validateInstallationData
+	 *	Validates data necessary for installation
+	 *
+	 *	@param	array	$data.- Data to be validated
+	 *
+	 *	@return	boolean	True on success, false otherwise
+	 */
+	public static function validateInstallationData($data)
+	{
+		require_once(Pommo::$_baseDir.'classes/Pommo_Validate.php');
+
+		self::$errors = array();
+
+		$emptyMessage = _('Cannot be empty.');
+
+		if (empty($data['list_name']))
+		{
+			self::$errors['list_name'] = $emptyMessage;
+		}
+
+		if (empty($data['site_name']))
+		{
+			self::$errors['site_name'] = $emptyMessage;
+		}
+
+		if (!Pommo_Validate::validateUrl($data['site_url']))
+		{
+			self::$errors['site_url'] = _('Must be a valid URL');
+		}
+
+		if (empty($data['admin_password']))
+		{
+			self::$errors['admin_password'] = $emptyMessage;
+		}
+
+		if ($data['admin_password'] != $data['admin_password2'])
+		{
+			self::$errors['admin_password2'] = _('Passwords must match.');
+		}
+
+		if (!Pommo_Validate::validateEmail($data['admin_email']))
+		{
+			self::$errors['admin_email'] = _('Must be a valid email');
+		}
+
+		if (empty(self::$errors))
+		{
+			return true;
+		}
+		return false;
+	}
+
  	/*	parseSQL
  	 *	parses a SQL file (usually generated via mysqldump)
  	 *	text like ':::table:::' will be replaced with $dbo->table['table'];
