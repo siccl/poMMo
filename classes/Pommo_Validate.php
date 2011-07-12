@@ -153,5 +153,104 @@ class Pommo_Validate
 			
 		return $valid;
 	}
+
+	/*	validateEmail
+	 *	Validates an E-mail address
+	 *
+	 *	@param	string	$email.- E-mail to validate
+	 *
+     * 	@return	boolean	True if valid, false otherwise
+     */
+	public static function validateEmail($email)
+	{
+		$regex = '/^[_A-z0-9-]+((\.|\+)[_A-z0-9-]+)*@[A-z0-9-]+(\.[A-z0-9-]+)*'.
+				'(\.[A-z]{2,4})$/';
+		
+		if (!preg_match($regex, $email))
+		{
+        	return false;
+    	}
+    	else
+    	{
+        	return true;
+    	}
+	}
+	
+	/*	validateDateTime
+	 *	Validates a datetime value
+	 *
+	 *	@param	string	$date.- Date to validate expected in yyyy-mm-dd hh:mm:ss
+	 *
+     * 	@return	boolean	True if valid, false otherwise
+     */
+	public static function validateDateTime($date)
+	{
+		list($date, $time) = explode(' ', $date);
+		
+		if (!self::validateDate($date) || !self::validateTime($time))
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	
+	/*	validateDate
+	 *	Validates a date value
+	 *
+	 *	@param	string	$date.- Date to validate expected in yyyy-mm-dd
+	 *
+     * 	@return	boolean	True if valid, false otherwise
+     */
+	public static function validateDate($date)
+	{
+		list($year, $month, $day) = explode('-', $date);
+		
+		return @checkdate($month, $day, $year);
+	}
+	
+	/*	validateTime
+	 *	Validates a time value for mysql
+	 *
+	 *	@param	string	$time.- Time to validate expected in hh:mm:ss
+	 *
+     * 	@return	boolean	True if valid, false otherwise
+     */
+	public static function validateTime($time)
+	{
+		list($hour, $minute, $second) = explode(':', $time);
+		
+		$hour = (int)$hour;
+		if (0 > $hour || 24 < $hour)
+		{
+			return false;
+		}
+		
+		$minute = (int)$minute;
+		if (0 > $minute || 59 < $minute)
+		{
+			return false;
+		}
+		
+		$second = (int)$second;
+		if (0 > $second || 59 < $second)
+		{
+			return false;
+		}
+		
+		return true;
+	}
+
+	/*	validateUrl
+	 *	Validates an URL. This validation is part of smarty_validate plugin.
+	 *
+	 *	@param	string	$url.- URL to validate
+	 *
+     * 	@return	boolean	True if valid, false otherwise
+     */
+	public static function validateUrl($url)
+	{
+		return preg_match('!^http(s)?://[\w-]+\.[\w-]+(\S+)?$!i', $url);
+	}
  }
 

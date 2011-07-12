@@ -25,52 +25,33 @@ require('bootstrap.php');
 require_once(Pommo::$_baseDir.'classes/Pommo_Install.php');
 Pommo::init(array('authLevel' => 0, 'install' => TRUE));
 
-session_start(); // required by smartyValidate. TODO -> move to prepareForForm() ??
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+session_start();
+$logger = Pommo::$_logger;
+$dbo = Pommo::$_dbo;
 $dbo->dieOnQuery(FALSE);
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
-$smarty->prepareForForm();
+$view = new Pommo_Template();
+$view->prepareForForm();
 
 // Check to make sure poMMo is not already installed.
 if (Pommo_Install::verify()) {
 	$logger->addErr(Pommo::_T('poMMo is already installed.'));
-	$smarty->assign('installed', TRUE);
-	$smarty->display('install.tpl');
+	$view->assign('installed', TRUE);
+	$view->display('install');
 	Pommo::kill();
 }
 
 if (isset ($_REQUEST['disableDebug']))
 	unset ($_REQUEST['debugInstall']);
-elseif (isset ($_REQUEST['debugInstall'])) $smarty->assign('debug', TRUE);
+elseif (isset ($_REQUEST['debugInstall'])) $view->assign('debug', TRUE);
 
-if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
-	// ___ USER HAS NOT SENT FORM ___
-	SmartyValidate :: connect($smarty, true);
-	
-	SmartyValidate :: register_validator('list_name', 'list_name', 'notEmpty', false, false, 'trim');
-	SmartyValidate :: register_validator('site_name', 'site_name', 'notEmpty', false, false, 'trim');
-	SmartyValidate :: register_validator('site_url', 'site_url', 'isURL');
-	SmartyValidate :: register_validator('admin_password', 'admin_password', 'notEmpty', false, false, 'trim');
-	SmartyValidate :: register_validator('admin_password2', 'admin_password:admin_password2', 'isEqual');
-	SmartyValidate :: register_validator('admin_email', 'admin_email', 'isEmail');
-
-	$formError = array ();
-	$formError['list_name'] = $formError['site_name'] = $formError['admin_password'] = Pommo::_T('Cannot be empty.');
-	$formError['admin_password2'] = Pommo::_T('Passwords must match.');
-	$formError['site_url'] = Pommo::_T('Must be a valid URL');
-	$formError['admin_email'] = Pommo::_T('Must be a valid email');
-	$smarty->assign('formError', $formError);
-} else {
-	// ___ USER HAS SENT FORM ___
-	SmartyValidate :: connect($smarty);
-
-	if (SmartyValidate :: is_valid($_POST))
+if (!empty ($_POST))
+{
+	if (Pommo_Install::validateInstallationData($_POST))
 	{
 		// __ FORM IS VALID
 		if (isset ($_POST['installerooni']))
@@ -121,14 +102,17 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 				$logger->addMsg(Pommo::_T('Login Username: ') . 'admin');
 				$logger->addMsg(Pommo::_T('Login Password: ') . $pass);
 				
-				$smarty->assign('installed', TRUE);
-			} else {
+				$view->assign('installed', TRUE);
+			}
+			else
+			{
 				// INSTALL FAILED
 
 				$dbo->debug(FALSE);
 
 				// drop existing poMMo tables
-				foreach (array_keys($dbo->table) as $key) {
+				foreach (array_keys($dbo->table) as $key)
+				{
 					$table = $dbo->table[$key];
 					$sql = 'DROP TABLE IF EXISTS ' . $table;
 					$dbo->query($sql);
@@ -137,12 +121,15 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 				$logger->addErr('Installation failed! Enable debbuging to expose the problem.');
 			}
 		}
-	} else {
+	}
+	else
+	{
 		// __ FORM NOT VALID
+		$view->assign('formError', Pommo_Install::$errors);
 		$logger->addMsg(Pommo::_T('Please review and correct errors with your submission.'));
 	}
 }
-$smarty->assign($_POST);
-$smarty->display('install.tpl');
+$view->assign($_POST);
+$view->display('install');
 Pommo::kill();
 

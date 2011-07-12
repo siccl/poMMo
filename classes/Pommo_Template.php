@@ -76,14 +76,25 @@ class Pommo_Template
 	 *	assign
 	 *	Saves value so it is available to the view
 	 *
-	 *	@param	string	$name.- Name of the variable
+	 *	@param	string	$name.- Name of the variable. It can also be an array,
+	 *					in which case its keys will become the attributes
 	 *	@param	mixed	$value.- Value of the variable
 	 *
 	 *	@return	void
 	 */
-	public function assign($name, $value)
+	public function assign($name, $value = null)
 	{
-		$this->$name = $value;
+		if (!$value && is_array($name))
+		{
+			foreach ($name as $k => $v)
+			{
+				$this->$k = $v;
+			}
+		}
+		else
+		{
+			$this->$name = $value;
+		}
 	}
 
 	/*	display
@@ -177,6 +188,18 @@ class Pommo_Template
 		
 		return $o;
 	}
+
+	/**
+	 *	escape
+	 *	Escapes a string to make is xss safe
+	 *
+	 *	@param	string	$string.- String to escape
+	 *
+	 *	@param	string	Escaped string
+	 */
+	public function escape($string)
+	{
+		return htmlentities($string);
+	}
 }
 
-?>
