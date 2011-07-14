@@ -39,9 +39,9 @@ INSERT INTO :::config::: VALUES ('throttle_BPS', '0', '', 'off', 'on');
 INSERT INTO :::config::: VALUES ('throttle_MPS', '3', '', 'off', 'on');
 INSERT INTO :::config::: VALUES ('throttle_SMTP', 'individual', '', 'off', 'on');
 INSERT INTO :::config::: VALUES ('public_history', 'off', 'Public Mailing History', 'off', 'on');
-INSERT INTO :::config::: VALUES ('version', 'Aardvark PR16.1', 'poMMo Version', 'on', 'off');
+INSERT INTO :::config::: VALUES ('version', 'Pommo Soonick PR0.1', 'poMMo Version', 'on', 'off');
 INSERT INTO :::config::: VALUES ('key', '123456', 'Unique Identifier', 'on', 'off');
-INSERT INTO :::config::: VALUES ('revision', '42', 'Internal Revision', 'on', 'off');
+INSERT INTO :::config::: VALUES ('revision', '50', 'Internal Revision', 'on', 'off');
 
 -- DEMOGRAPHICS
 
@@ -182,7 +182,7 @@ CREATE TABLE :::subscriber_pending::: (
 CREATE TABLE :::subscribers::: (
   `subscriber_id` int(10) unsigned NOT NULL auto_increment,
   `email` char(60) NOT NULL default '',
-  `time_touched` timestamp(14) NOT NULL,
+  `time_touched` timestamp NOT NULL,
   `time_registered` datetime NOT NULL,
   `flag` tinyint(1) NOT NULL default '0' COMMENT '0: NULL, 1-8: REMOVE, 9: UPDATE',
   `ip` int unsigned NULL default NULL COMMENT 'Stored with INET_ATON(), Fetched with INET_NTOA()',
