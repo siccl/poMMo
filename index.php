@@ -191,7 +191,7 @@ if (Pommo::$_hasConfigFile)
 			(isset($_REQUEST['referer']) ?
 			$_REQUEST['referer'] : Pommo::$_baseUrl.'admin.php'));
 
-	$view->display('index.tpl');
+	$view->display('index');
 }
 else
 {
