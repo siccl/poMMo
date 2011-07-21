@@ -308,7 +308,6 @@ wysiwyg
 ./themes/default:
 configure.php
 index.php                       DONE
-index.tpl                       TO REMOVE
 install.php
 LICENSE
 message.php                     DONE TO TEST
