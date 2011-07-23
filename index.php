@@ -32,6 +32,22 @@ $logger = Pommo::$_logger;
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
 $view = new Pommo_Template();
 
+/*********************************  
+  CHECK WE HAVE REQUIRED MODULES
+ *********************************/
+
+require (Pommo::$_baseDir.'classes/Pommo_Php_Extensions.php');
+$modules = new moduleCheck();
+
+//Php-mysql
+if(!$modules->isLoaded('mysql')) 
+{ 
+    $fatal_error[] = "Php mysql module is not installed.";
+    $view->assign('errors', $fatal_error);
+    $view->display('message');
+    exit();
+}
+
 //	log the user out if requested
 if (isset($_GET['logout']))
 {
@@ -122,16 +138,16 @@ elseif (!Pommo::$_hasConfigFile && $_POST['configure'])
 	//	Try to connect to database with data entered from the user.
 	//	I am not using /inc/classes/db.php because it kills the proccess when
 	//	connection is not possible
-	//	TODO: db.php shouldnt kill the process
-	$link = @mysql_connect($_POST['dbhost'],
-			$_POST['dbuser'],
-			$_POST['dbpass']);
-			
-	if (!$link)
+	//	TODO: db.php shouldnt kill the process	
+        $link = @mysql_connect($_POST['dbhost'],
+                		$_POST['dbuser'],
+                        	$_POST['dbpass']);
+    
+        if (!$link)
 	{
 		//	Could not connect
 		$configErrors[]	= 'Could not connect to host. Check your settings
-				and try again.';
+				and try again.';               
 	}
 	else
 	{

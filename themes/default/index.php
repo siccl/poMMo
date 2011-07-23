@@ -1,6 +1,6 @@
 <?php
 
-$this->sidebar = false;
+$this->sidebar = 'off';
 include 'inc/configure.header.php';
 include 'inc/messages.php';
 
