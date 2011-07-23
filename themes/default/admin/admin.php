@@ -1,4 +1,9 @@
-<?php include($this->template_dir.'/inc/admin.header.php'); ?>
+<?php 
+    
+include($this->template_dir.'/inc/admin.header.php'); 
+$this->sidebar = true;
+
+?>
 
 <h2><?php echo _('Admin Menu')?></h2>
 

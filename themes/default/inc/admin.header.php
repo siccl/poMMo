@@ -38,7 +38,7 @@
 </ul>
 
 <?php 
-    if ($this->sidebar != 'off')
+    if ($this->sidebar !== false)
     {
         include($this->template_dir.'/inc/admin.sidebar.php');
         echo('<div id="content">');

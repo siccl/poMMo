@@ -28,8 +28,8 @@
 	<?php
 		if (false !== $this->sidebar)
 		{
-		?>
-			{include file="inc/admin.sidebar.tpl"}
+			include 'admin.sidebar.php';
+                ?>
 			<div id="content">
 		<?php
 		}

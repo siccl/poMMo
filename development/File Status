@@ -1,9 +1,9 @@
 .:
 activate.php
 admin_mailings.php
-admin.php                           DONE
-admin_setup.php                     DONE
-admin_subscribers.php               DONE
+admin.php                                                   DONE
+admin_setup.php                                             DONE
+admin_subscribers.php                                       DONE
 bootstrap.php
 config.sample.php
 config.simple.sample.php
@@ -22,8 +22,8 @@ groups_edit.php
 import_csv2.php
 import_csv.php
 import_txt.php
-index.php                           DONE
-install.php                         DONE
+index.php                                                   DONE
+install.php                                                 DONE
 login.php
 mailing.kill.php
 mailing.runtime2.php
@@ -123,6 +123,7 @@ Pommo_Mailing_Template.php
 Pommo_Mta.php
 Pommo_Pending.php
 Pommo.php
+Pommo_Php_Extensions.php                NEW FILE
 Pommo_Rules.php
 Pommo_Sql.php
 Pommo_Subscribers.php
@@ -300,18 +301,14 @@ sql.templates.php
 Pommo_User_Test.php
 
 ./themes:
-default
-index.php
-shared
-wysiwyg
+index.php                                              NO CHANGES NEEDED
 
 ./themes/default:
-configure.php
-index.php                       DONE
+configure.php                                          DONE
+index.php                                              DONE
 install.php
 LICENSE
-message.php                     DONE TO TEST
-message.tpl                     TO REMOVE
+message.php                                            DONE
 upgrade.tpl
 
 ./themes/default/admin:
@@ -383,11 +380,10 @@ subscriber_edit.tpl
 subscriber_export.tpl
 
 ./themes/default/inc:
-admin.footer.php
-admin.header.php
-admin.sidebar.php
-config
-configure.header.php
+admin.footer.php                                                DONE
+admin.header.php                                                DONE
+admin.sidebar.php                                               DONE
+configure.header.php                                            DONE
 dialog.tpl
 mailing.tpl
 messages.php
