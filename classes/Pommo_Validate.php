@@ -1,4 +1,5 @@
 <?php
+
 /**
  *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  *  released originally under GPLV2
@@ -29,6 +30,7 @@ class Pommo_Validate
     private $data = array();
     private $dataPasswordMatch = array();
     private $errors = array();
+    private $currentValidationError = '';
 
     /**
      * 	setPost
@@ -55,12 +57,12 @@ class Pommo_Validate
      *
      * 	@param	string	$name - Name of the input type (ie ID='name')
      *          string  $type - Type to check. Valid Values 
-     *                          email
+     *                          Email
      *                          date
-     *                          datetime
-     *                          date
-     *                          url
-     *                          other (ie if you just want an empty check)
+     *                          dateTime
+     *                          Time
+     *                          Url
+     *                          Other (ie if you just want an empty check)
      *          boolean $isemptyAllowed - Is input allowed to be empty
      *
      *  @return	void
@@ -112,44 +114,14 @@ class Pommo_Validate
                 $this->errors[$name] = $emptyMessage;
             } else
             {
-                //Check against its type
-                if ($type == 'email') #
+                $functionName = 'validate'.$type;
+                $value = $this->postToValidate[$name];
+                if ($type != 'Other')
                 {
-                    if (!self::validateEmail($this->postToValidate[$name]))
+                    $result = $this->{$functionName}($value);
+                    if (!$result)
                     {
-                        $this->errors[$name] = _('Must be a valid email');
-                    }
-                }
-
-                if ($type == 'date')
-                {
-                    if (!self::validateDate($this->postToValidate[$name]))
-                    {
-                        $this->errors[$name] = _('Must be a valid date');
-                    }
-                }
-
-                if ($type == 'datetime')
-                {
-                    if (!self::validateDateTime($this->postToValidate[$name]))
-                    {
-                        $this->errors[$name] = _('Must be a valid datetime');
-                    }
-                }
-
-                if ($type == 'time')
-                {
-                    if (!self::validateDate($this->postToValidate[$name]))
-                    {
-                        $this->errors[$name] = _('Must be a valid time');
-                    }
-                }
-
-                if ($type == 'url')
-                {
-                    if (!self::validateUrl($this->postToValidate[$name]))
-                    {
-                        $this->errors[$name] = _('Must be a valid URL');
+                        $this->errors[$name] = $this->currentValidationError;
                     }
                 }
             }
@@ -240,7 +212,7 @@ class Pommo_Validate
             'skipReq' => false);
         $p = Pommo_Api::getParams($defaults, $p);
 
-        require_once(Pommo::$_baseDir . 'classes/Pommo_Fields.php');
+        require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
         $logger = Pommo::$_logger;
 
         $fields = Pommo_Fields::get(array('active' => $p['active']));
@@ -332,7 +304,7 @@ class Pommo_Validate
                             break;
                         }
                         if ($p['log'])
-                            $logger->addErr(sprintf(Pommo::_T('Field (%s) must be a date (' . Pommo_Helper::timeGetFormat() . ').'), $field['prompt']));
+                            $logger->addErr(sprintf(Pommo::_T('Field (%s) must be a date ('.Pommo_Helper::timeGetFormat().').'), $field['prompt']));
                         $valid = false;
                     }
                     break;
@@ -366,18 +338,17 @@ class Pommo_Validate
      *
      * 	@return	boolean	True if valid, false otherwise
      */
-    public static function validateEmail($email)
+    private function validateEmail($email)
     {
-        $regex = '/^[_A-z0-9-]+((\.|\+)[_A-z0-9-]+)*@[A-z0-9-]+(\.[A-z0-9-]+)*' .
+        $regex = '/^[_A-z0-9-]+((\.|\+)[_A-z0-9-]+)*@[A-z0-9-]+(\.[A-z0-9-]+)*'.
                 '(\.[A-z]{2,4})$/';
 
         if (!preg_match($regex, $email))
         {
+            $this->currentValidationError = _('Must be a valid email');
             return false;
-        } else
-        {
-            return true;
         }
+        return true;
     }
 
     /**
@@ -388,12 +359,13 @@ class Pommo_Validate
      *
      * 	@return	boolean	True if valid, false otherwise
      */
-    public static function validateDateTime($date)
+    private function validateDateTime($date)
     {
         list($date, $time) = explode(' ', $date);
 
         if (!self::validateDate($date) || !self::validateTime($time))
         {
+            $this->currentValidationError = _('Must be a valid datetime');
             return false;
         }
 
@@ -408,11 +380,16 @@ class Pommo_Validate
      *
      * 	@return	boolean	True if valid, false otherwise
      */
-    public static function validateDate($date)
+    private function validateDate($date)
     {
         list($year, $month, $day) = explode('-', $date);
-
-        return @checkdate($month, $day, $year);
+        $isValid = @checkdate($month, $day, $year);
+        if (!$isValid)
+        {
+            $this->currentValidationError = _('Must be a valid date');
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -423,28 +400,34 @@ class Pommo_Validate
      *
      * 	@return	boolean	True if valid, false otherwise
      */
-    public static function validateTime($time)
+    private function validateTime($time)
     {
         list($hour, $minute, $second) = explode(':', $time);
+        $isValid = true;
 
-        $hour = (int) $hour;
+        $hour = (int)$hour;
         if (0 > $hour || 24 < $hour)
         {
-            return false;
+            $isValid = false;
         }
 
-        $minute = (int) $minute;
+        $minute = (int)$minute;
         if (0 > $minute || 59 < $minute)
         {
-            return false;
+            $isValid = false;
         }
 
-        $second = (int) $second;
+        $second = (int)$second;
         if (0 > $second || 59 < $second)
         {
-            return false;
+            $isValid = false;
         }
 
+        if (!$isValid)
+        {
+            $this->currentValidationError = _('Must be a valid time');
+            return false;
+        }
         return true;
     }
 
@@ -456,9 +439,16 @@ class Pommo_Validate
      *
      * 	@return	boolean	True if valid, false otherwise
      */
-    public static function validateUrl($url)
+    private function validateUrl($url)
     {
-        return preg_match('!^http(s)?://[\w-]+\.[\w-]+(\S+)?$!i', $url);
+        $isValid = preg_match('!^http(s)?://[\w-]+\.[\w-]+(\S+)?$!i', $url);
+        if (!$isValid)
+        {
+            $this->currentValidationError = _('Must be a valid URL');
+            return false;
+        }
+        return true;
     }
+
 }
 
