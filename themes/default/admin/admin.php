@@ -1,7 +1,6 @@
 <?php 
-    
-include($this->template_dir.'/inc/admin.header.php'); 
-$this->sidebar = true;
+
+include($this->template_dir.'/inc/admin.header.php');
 
 ?>
 
