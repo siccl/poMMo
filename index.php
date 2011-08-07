@@ -41,7 +41,7 @@ $view = new Pommo_Template();
   CHECK WE HAVE REQUIRED MODULES
  *********************************/
 
-require (Pommo::$_baseDir.'classes/Pommo_Php_Extensions.php');
+require (Pommo::$_baseDir.'lib/Module_Check.php');
 $modules = new moduleCheck();
 
 //Php-mysql
