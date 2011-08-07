@@ -2,16 +2,15 @@
 <link type="text/css" rel="stylesheet" href="<?php echo($this->url['theme']['shared']); ?>css/jqgrid.css" />
 
 <script type="text/javascript">
-var PommoGrid = {ldelim}
+var PommoGrid = {
 	grid: null,
-	defaults: {ldelim}
-		loadtext: "{t escape=js}Processing{/t}...",
-		recordtext: "{if empty($state.search)}{t escape=js}Record(s){/t}{else}{t escape=js}Match(es){/t}{/if}",
-		imgpath: "{$url.theme.shared}/images/grid",
-		sortorder: '{$state.order}',
-		sortname: '{$state.sort}',
-		rowNum: {$state.limit},
-		{literal}
+	defaults: { 
+		loadtext: "<?php echo _('Processing...'); ?>",
+		recordtext: "<?php if ($this->state['search']=="") {echo _('Record(s)');} else {echo _('Match(es)'); }; ?>",
+                imgpath: "<?php echo($this->url['theme']['shared'].'images/grid'); ?>",
+		sortorder: '<?php echo($this->state['order']); ?>',
+		sortname:  '<?php  echo($this->state['sort']); ?>',
+		rowNum: <?php echo($this->state['limit']) ?>,
 		colNames: [],
 		colModel: [],
 		rowList: [10,50,150,300,500,1000],
@@ -69,4 +68,3 @@ var PommoGrid = {ldelim}
 	}
 }
 </script>
-{/literal}

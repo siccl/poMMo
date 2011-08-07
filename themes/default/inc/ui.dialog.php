@@ -1,7 +1,5 @@
-<script type="text/javascript" src="{$url.theme.shared}js/jq/jqModal.js"></script>
-<link type="text/css" rel="stylesheet" href="{$url.theme.shared}css/ui.dialog.css" />
-
-{literal}
+<script type="text/javascript" src="<?php echo($this->url['theme']['shared']); ?>js/jq/jqModal.js"></script>
+<link type="text/css" rel="stylesheet" href="<?php echo($this->url['theme']['shared']); ?>css/ui.dialog.css" />
 <script type="text/javascript">
 
 PommoDialog = {
@@ -48,17 +46,13 @@ $().ready(function() {
 
 });
 </script>
-{/literal}
 
-{capture name=footer}
-<div class="imgCache">
-	<img src="{$url.theme.shared}images/loader.gif" />
-	<img src="{$url.theme.shared}images/dialog/close.gif" />
-	<img src="{$url.theme.shared}images/dialog/close_hover.gif" />
-	<img src="{$url.theme.shared}images/dialog/sprite.gif" />
-	<img src="{$url.theme.shared}images/dialog/bl.gif" />
-	<img src="{$url.theme.shared}images/dialog/br.gif" />
-	<img src="{$url.theme.shared}images/dialog/bc.gif" />
-</div>
-{include file="inc/dialog.tpl" id=wait wait=true}
-{/capture}
+<?php
+//Switch on caching of images in the footer
+$dialogImageCache = true;
+
+//Call the dialog
+$wait=true;
+$id="wait";
+include $this->template_dir.'/inc/dialog.php';
+?>

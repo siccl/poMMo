@@ -1,6 +1,5 @@
-<script type="text/javascript" src="{$url.theme.shared}js/jq/ui.mouse.js"></script>
-<script type="text/javascript" src="{$url.theme.shared}js/jq/ui.sortable.js"></script>
-{literal}
+<script type="text/javascript" src="<?php echo($this->url['theme']['shared']); ?>js/jq/ui.mouse.js"></script>
+<script type="text/javascript" src="<?php echo($this->url['theme']['shared']); ?>js/jq/ui.sortable.js"></script>
 <script type="text/javascript">
 
 PommoSort = {
@@ -36,4 +35,3 @@ PommoSort = {
 	sortBox: null
 };
 </script>
-{/literal}

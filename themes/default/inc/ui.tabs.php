@@ -1,6 +1,5 @@
-<script type="text/javascript" src="{$url.theme.shared}js/jq/ui.tabs.js"></script>
-<link type="text/css" rel="stylesheet" href="{$url.theme.shared}css/ui.tabs.css" />
-
+<script type="text/javascript" src="<?php echo($this->url['theme']['shared']); ?>js/jq/ui.tabs.js"></script>
+<link type="text/css" rel="stylesheet" href="<?php echo($this->url['theme']['shared']); ?>css/ui.tabs.css" />
 
 <script type="text/javascript">
 /* TabWizzard JS (c) 2007 Brice Burgess, <bhb@iceburg.net>
@@ -8,14 +7,13 @@
 	
 	// forms with class "mandatory" are force submitted and verified before changing tabs.
 	
-var PommoTabs = {ldelim}
+var PommoTabs = {
 	tabs: null,
 	clicked: false,
 	mandatoryForm: false,
 	force: false,
-	defaults: {ldelim}
-		spinner: "{t escape=js}Processing{/t}...",
-		{literal}
+	defaults: {
+		spinner: "<?php echo _('Processing'); ?>...",
 		ajaxOptions: { async: false }, // make synchronous requests when loading tabs
 		click: function(clicked,hide,show) { return PommoTabs.click(clicked,hide,show); },
 		load: function(clicked,content) { return PommoTabs.load(content); }
@@ -51,4 +49,3 @@ var PommoTabs = {ldelim}
 	}
 }
 </script>
-{/literal}
