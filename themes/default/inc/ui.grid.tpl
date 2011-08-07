@@ -1,5 +1,5 @@
-<script type="text/javascript" src="{$url.theme.shared}js/jq/grid.js"></script>
-<link type="text/css" rel="stylesheet" href="{$url.theme.shared}css/jqgrid.css" />
+<script type="text/javascript" src="<?php echo($this->url['theme']['shared']); ?>js/jq/grid.js"></script>
+<link type="text/css" rel="stylesheet" href="<?php echo($this->url['theme']['shared']); ?>css/jqgrid.css" />
 
 <script type="text/javascript">
 var PommoGrid = {ldelim}
