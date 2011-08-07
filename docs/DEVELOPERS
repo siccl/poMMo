@@ -48,7 +48,9 @@ pommo/docs/
 
 pommo/classes/
 		"API Directory" 
-		This directory contains poMMo's base API.
+		This directory contains poMMo's base API. Files in this directory must
+		start with the "Pommo_" prefix to indicate that they are part of poMMo's
+		core. Classes are named after the name of the file.
 		Pommo_Db.php = database class
 		Pommo_Api.php = base api functions
 		Pommo_Install.php = install api
