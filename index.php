@@ -108,7 +108,6 @@ elseif (!empty ($_POST['resetPassword']))
 	elseif ($_POST['captcha'] == $_POST['realdeal'])
 	{
 		// user inputted captcha matched. Reset password
-		
 		require_once(Pommo::$_baseDir.'classes/Pommo_Pending.php');
 		require_once(Pommo::$_baseDir.'classes/Pommo_Helper_Messages.php');
 
@@ -118,8 +117,8 @@ elseif (!empty ($_POST['resetPassword']))
 		{
 			$input = urlencode(serialize(array('adminID' => TRUE,
 					'Email' => Pommo::$_config['admin_email'])));
-			Pommo::redirect(Pommo::$_http . Pommo::$_baseUrl .
-					'pending.php?input='.$input);
+			Pommo::redirect(Pommo::$_http . Pommo::$_baseUrl
+					.'pending.php?input='.$input);
 		}
 
 		// create a password change request, send confirmation mail
@@ -128,9 +127,8 @@ elseif (!empty ($_POST['resetPassword']))
 		Pommo_Helper_Messages::sendMessage(
 				array('to' => Pommo::$_config['admin_email'],
 				'code' => $code, 'type' => 'password'));
-		
+
 		$view->assign('captcha',FALSE);
-		
 	}
 	else
 	{
@@ -143,16 +141,13 @@ elseif (!Pommo::$_hasConfigFile && $_POST['configure'])
 	//	Try to connect to database with data entered from the user.
 	//	I am not using /inc/classes/db.php because it kills the proccess when
 	//	connection is not possible
-	//	TODO: db.php shouldnt kill the process	
-        $link = @mysql_connect($_POST['dbhost'],
-                		$_POST['dbuser'],
-                        	$_POST['dbpass']);
-    
-        if (!$link)
+	//	TODO: db.php shouldnt kill the process
+	$link = @mysql_connect($_POST['dbhost'], $_POST['dbuser'], $_POST['dbpass']);
+	if (!$link)
 	{
 		//	Could not connect
 		$configErrors[]	= 'Could not connect to host. Check your settings
-				and try again.';               
+				and try again.';
 	}
 	else
 	{
@@ -167,7 +162,7 @@ elseif (!Pommo::$_hasConfigFile && $_POST['configure'])
 			}
 		}
 	}
-	
+
 	//	If there were no errors then try to create the file
 	if (!$configErrors)
 	{
