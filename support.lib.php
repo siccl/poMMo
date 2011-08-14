@@ -36,5 +36,5 @@ require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
 $smarty = new Pommo_Template();
 
 
-$smarty->display('support/support.lib.tpl');
+$smarty->display('support/support.lib');
 

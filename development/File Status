@@ -45,7 +45,7 @@ subscribers_groups.php
 subscribers_import.php
 subscribers_manage.php
 support.lib.php
-support.php
+support.php																	DONE
 track_view.php
 update.php
 upgrade.php
@@ -407,7 +407,7 @@ subscribe.tpl
 
 ./themes/default/support:
 support.lib.tpl
-support.tpl
+support.php																	DONE
 
 ./themes/default/user:
 activate.tpl

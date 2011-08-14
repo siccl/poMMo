@@ -1,5 +1,6 @@
-<script type="text/javascript" src="<?php echo($this->url['theme']['shared']); ?>js/jq/jqModal.js"></script>
-<link type="text/css" rel="stylesheet" href="<?php echo($this->url['theme']['shared']); ?>css/ui.dialog.css" />
+<script type="text/javascript" src="<?php echo $this->url['theme']['shared']; ?>js/jq/jqModal.js"></script>
+<link type="text/css" rel="stylesheet" href="<?php echo $this->url['theme']['shared']; ?>css/ui.dialog.css" />
+
 <script type="text/javascript">
 
 PommoDialog = {
@@ -48,11 +49,23 @@ $().ready(function() {
 </script>
 
 <?php
-//Switch on caching of images in the footer
-$dialogImageCache = true;
-
-//Call the dialog
-$wait=true;
-$id="wait";
-include $this->template_dir.'/inc/dialog.php';
+ob_start();
 ?>
+<div class="imgCache">
+	<img src="<?php echo $this->url['theme']['shared']; ?>images/loader.gif" />
+	<img src="<?php echo $this->url['theme']['shared']; ?>images/dialog/close.gif" />
+	<img src="<?php echo $this->url['theme']['shared']; ?>images/dialog/close_hover.gif" />
+	<img src="<?php echo $this->url['theme']['shared']; ?>images/dialog/sprite.gif" />
+	<img src="<?php echo $this->url['theme']['shared']; ?>images/dialog/bl.gif" />
+	<img src="<?php echo $this->url['theme']['shared']; ?>images/dialog/br.gif" />
+	<img src="<?php echo $this->url['theme']['shared']; ?>images/dialog/bc.gif" />
+</div>
+<?php
+
+$this->dialogId = 'wait';
+$this->dialogWait = true;
+include $this->template_dir.'/inc/dialog.php';
+
+$this->capturedFooter = ob_get_clean();
+?>
+
