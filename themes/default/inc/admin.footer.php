@@ -12,13 +12,13 @@ if ($dialogImageCache)
 {
 ?>
     <div class="imgCache">
-        <img src="{$url.theme.shared}images/loader.gif" />
-        <img src="{$url.theme.shared}images/dialog/close.gif" />
-        <img src="{$url.theme.shared}images/dialog/close_hover.gif" />
-        <img src="{$url.theme.shared}images/dialog/sprite.gif" />
-        <img src="{$url.theme.shared}images/dialog/bl.gif" />
-        <img src="{$url.theme.shared}images/dialog/br.gif" />
-        <img src="{$url.theme.shared}images/dialog/bc.gif" />
+        <img src="<?php echo $this->url['theme']['shared'] ?>images/loader.gif" />
+        <img src="<?php echo $this->url['theme']['shared'] ?>images/dialog/close.gif" />
+        <img src="<?php echo $this->url['theme']['shared'] ?>images/dialog/close_hover.gif" />
+        <img src="<?php echo $this->url['theme']['shared'] ?>images/dialog/sprite.gif" />
+        <img src="<?php echo $this->url['theme']['shared'] ?>images/dialog/bl.gif" />
+        <img src="<?php echo $this->url['theme']['shared'] ?>images/dialog/br.gif" />
+        <img src="<?php echo $this->url['theme']['shared'] ?>images/dialog/bc.gif" />
     </div>
 <?php 
 }; 
