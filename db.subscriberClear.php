@@ -23,38 +23,45 @@
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-define('_poMMo_support', TRUE);
-require ('bootstrap.php');
+define ('_poMMo_support', TRUE);
+require 'bootstrap.php';
 Pommo::init();
 
-$dbo =& Pommo::$_dbo;
+$dbo = Pommo::$_dbo;
 
-$a = array(
+$a = array (
 	'subscribers' => $dbo->table['subscribers'],
 	'subscriber_data' => $dbo->table['subscriber_data']
 );
 
-foreach($a as $id => $table) {
-	if($id == 'config' || $id == 'updates' || $id == 'group_criteria')
+foreach ($a as $id => $table)
+{
+	if ($id == 'config' || $id == 'updates' || $id == 'group_criteria')
+	{
 		continue;
+	}
+	
+	$query = 'DELETE FROM '.$table;
+	if (!$dbo->query($query))
+	{
+		die ('ERROR deleting '.$id);
+	}
 		
-	$query = "DELETE FROM ".$table;
-	if(!$dbo->query($query))
-		die('ERROR deleting '.$id); 
-		
-	$query = "ALTER TABLE ".$table." AUTO_INCREMENT = 1";
-	if(!$dbo->query($query))
-		die('ERROR setting AUTO_INCREMENT on '.$id); 
+	$query = 'ALTER TABLE '.$table.' AUTO_INCREMENT = 1';
+	if (!$dbo->query($query))
+	{
+		die ('ERROR setting AUTO_INCREMENT on '.$id); 
+	}
 }
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
 $smarty = new Pommo_Template();
 
 $message[] = 'Subscribers Reset.';
 $smarty->assign('messages', $message);
-$smarty->display('support/support.lib.tpl');
+$smarty->display('support/support.lib');
 Pommo::kill();
 
