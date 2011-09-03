@@ -53,6 +53,14 @@ if(!$modules->isLoaded('mysql'))
     exit();
 }
 
+//Check write permission to the cache directory
+if (!is_writable (dirname(__FILE__).'/cache')) {
+    $fatal_error[] = "The cache directory needs to be writable";
+    $view->assign('errors', $fatal_error);
+    $view->display('message');
+    exit(); 
+}
+
 //	log the user out if requested
 if (isset($_GET['logout']))
 {
