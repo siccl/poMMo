@@ -1,0 +1,110 @@
+<?php
+ob_start();
+include $this->template_dir.'/inc/ui.form.php';
+include $this->template_dir.'/inc/ui.dialog.php';
+include $this->template_dir.'/inc/ui.tabs.php';
+include $this->template_dir.'/inc/ui.slider.php';
+include $this->template_dir.'/inc/ui.grid.php';
+$this->capturedHeader = ob_get_clean();
+$this->sidebar = false;
+include $this->template_dir.'/inc/admin.header.php';
+?>
+
+<ul class="inpage_menu">
+    <li><a href="admin_setup.php" title="<?php echo _('Return to Setup Page'); ?>">
+            <?php echo _('Return to Setup Page'); ?></a></li>
+</ul>
+
+<h2><?php echo _('Configure'); ?></h2>
+
+<p><img src="<?php echo($this->url['theme']['shared']); ?>images/icons/settings.png" alt="settings icon"
+        class="navimage right" />
+        <?php echo _('You can change the login information, set website and mailing list parameters, end enable demonstration mode. If you enable demonstration mode, no emails will be sent from the system.'); ?>
+</p>
+
+<?php include $this->template_dir.'/inc/messages.php'; ?>
+
+<br class="clear">
+
+<div id="tabs">
+    <ul>
+        <li><a href="ajax/users.php"><span><?php echo _('Users'); ?></span></a></li>
+        <li><a href="ajax/general.php"><span><?php echo _('General'); ?></span></a></li>
+        <li><a href="ajax/mailings.php"><span><?php echo _('Mailings'); ?></span></a></li>
+        <li><a href="ajax/messages.php"><span><?php echo _('Messages'); ?></span></a></li>
+    </ul>
+</div>
+
+<br class="clear">
+<br class="clear">&nbsp;
+
+<script type="text/javascript">
+    $().ready(function(){ 
+
+        PommoDialog.init();
+	
+        poMMo.tabs = PommoTabs.init('#tabs');
+        // override changeTab function
+        PommoTabs.change = function() { return true; };
+	
+        <?php
+        $selectedTab = $_GET['tab'];
+        if (!is_Null($selectedTab))
+        {
+            echo('var hash = "#'.strtolower($selectedTab).'";');
+        } else
+        {
+            echo('var hash = location.hash.toLowerCase();');
+        }
+        ?>
+                
+        switch(hash) {
+        case '#users': $('#tabs li a:eq(0)').click();
+        break;
+        case '#general': $('#tabs li a:eq(1)').click();
+        break;
+        case '#mailings': $('#tabs li a:eq(2)').click();
+        break;
+        case '#messages': $('#tabs li a:eq(3)').click();
+        break;
+        }
+    });
+</script>
+
+<?php
+ob_start();
+//Add User Dialog
+$id = 'addUser';
+$wide = 'true';
+$tall = 'true';
+include $this->template_dir.'/inc/dialog.php';
+
+//Throttle Dialog
+$id = 'throttleWindow';
+$title = $this->throttleTitle;
+$tall = 'true';
+include $this->template_dir.'/inc/dialog.php';
+
+//Smtp Dialog
+$id = 'smtpWindow';
+$title = $this->smtpTitle;
+$tall = 'true';
+include $this->template_dir.'/inc/dialog.php';
+
+//Test Dialog
+$id = 'testWindow';
+$title = $this->testTitle;
+include $this->template_dir.'/inc/dialog.php';
+
+//Dialog
+$id = 'dialog';
+$wide = 'true';
+$tall = 'true';
+include $this->template_dir.'/inc/dialog.php';
+
+//Now write them out
+$this->capturedDialogs = ob_get_clean();
+
+//Lastly add the footer
+include $this->template_dir.'/inc/admin.footer.php';
+?>

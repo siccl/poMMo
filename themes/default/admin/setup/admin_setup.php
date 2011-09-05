@@ -5,7 +5,7 @@
 <div id="boxMenu">
 
 <div class="advanced">
-    <a href="<?php echo $this->url['theme']['shared'] ?>setup_configure.php">
+    <a href="setup_configure.php">
         <img src="<?php echo($this->url['theme']['shared']); ?>images/icons/settings.png" alt="settings icon" 
              class="navimage" />
         <?php echo _('Configure') ?>
