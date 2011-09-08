@@ -1,29 +1,29 @@
 <form action="#" method="post" id='addUserForm'>
 
 	<fieldset>
-		<legend>{t}Add User{/t}</legend>
+		<legend><?php echo _('Add User'); ?></legend>
 		
 		<div class="output alert">
-			{t}User and password must be at least 5 characters{/t}
+			<?php echo _('User and password must be at least 5 characters'); ?>
 		</div>
 
 		<div>
 			<label for="user">
-				<strong class="required">{t}User:{/t}</strong>
+				<strong class="required"><?php echo _('User:'); ?></strong>
 			</label>
 			<input type="text" size="32" maxlength="60"
 					name="user" class='vfield' />
 		</div>
 		<div>
 			<label for="password">
-				<strong class="required">{t}Password:{/t}</strong>
+				<strong class="required"><?php echo _('Password:'); ?></strong>
 			</label>
 			<input type="password" size="32" maxlength="60" name="password"
 					class='vfield'/>
 		</div>
 		<div>
 			<label for="password2">
-				<strong class="required">{t}Password:{/t}</strong>
+				<strong class="required"><?php echo _('Password:'); ?></strong>
 			</label>
 			<input type="password" size="32" maxlength="60" name="password2"
 					class='vfield' />
@@ -32,16 +32,17 @@
 
 	<div class="buttons">
 		<input id='addUserSubmit' disabled='disabled' type="submit"
-				value="{t}Add User{/t}" style='opacity: 0.5;' />
-		<input type="reset" value="{t}Reset{/t}" />
+				value="<?php echo _('Add User'); ?>" style='opacity: 0.5;' />
+		<input type="reset" value="<?php echo _('Reset'); ?>" />
 	</div>
 
-	<p>{t escape=no 1="<span class=\"required\">" 2="</span>"}Fields marked like
-			%1 this %2 are required.{/t}</p>
-
+	<p>
+        <?php
+        echo sprintf(_('Fields marked like %sthis%s are required.'),
+            '<span class="required">', '</span>');
+        ?>        
 </form>
 
-{literal}
 <script type="text/javascript">
 $(function()
 {
@@ -108,4 +109,3 @@ $(function()
 	};
 });
 </script>
-{/literal}
