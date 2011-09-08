@@ -73,33 +73,34 @@ include $this->template_dir.'/inc/admin.header.php';
 
 <?php
 ob_start();
+
 //Add User Dialog
-$id = 'addUser';
-$wide = 'true';
-$tall = 'true';
+$this->dialogId = 'addUser';
+$this->dialogWide = true;
+$this->dialogTall = true;
 include $this->template_dir.'/inc/dialog.php';
 
 //Throttle Dialog
-$id = 'throttleWindow';
-$title = $this->throttleTitle;
-$tall = 'true';
+$this->dialogId = 'throttleWindow';
+$this->dialogTitle = $this->throttleTitle;
+$this->dialogTall = 'true';
 include $this->template_dir.'/inc/dialog.php';
 
 //Smtp Dialog
-$id = 'smtpWindow';
-$title = $this->smtpTitle;
-$tall = 'true';
-include $this->template_dir.'/inc/dialog.php';
+$this->dialogId = 'smtpWindow';
+$this->dialogTitle = $this->smtpTitle;
+$this->dialogTall = 'true';
+//include $this->template_dir.'/inc/dialog.php';
 
 //Test Dialog
-$id = 'testWindow';
-$title = $this->testTitle;
+$this->dialogId = 'testWindow';
+$this->dialogTitle = $this->testTitle;
 include $this->template_dir.'/inc/dialog.php';
 
 //Dialog
-$id = 'dialog';
-$wide = 'true';
-$tall = 'true';
+$this->dialogId = 'dialog';
+$this->dialogWide = 'true';
+$this->dialogTall = 'true';
 include $this->template_dir.'/inc/dialog.php';
 
 //Now write them out

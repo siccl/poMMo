@@ -64,7 +64,8 @@ if ($this->dialogShort)
 		</div>
 	</div>
 	<?php
-		if (!$this->dialogWait)
+        //If it is not a wait dialog we add the close X to it.
+		if (!$this->dialogWait || isset($this->dialogWait))
 		{
 		?>
 		<input type="image" src="<?php echo $this->url['theme']['shared'];
