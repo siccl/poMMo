@@ -6,8 +6,12 @@
 		</p>
 	</div> <!-- end footer -->
 	<?php
-		echo $this->capturedFooter;
-		echo $this->capturedDialogs;
-	?>
+		echo('<!-- Captured footer -->');
+        echo $this->capturedFooter;
+        echo('<!-- END Captured footer -->');
+		echo('<!-- Captured Dialogs -->');
+        echo $this->capturedDialogs;
+		echo('<!-- END Captured Dialogs -->');
+        ?>
 </body>
 </html>
