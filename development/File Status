@@ -340,16 +340,14 @@ templates.tpl
 
 ./themes/default/admin/setup:
 admin_setup.php
-ajax
-config
 form_embed.tpl
-setup_configure.tpl
+setup_configure.php                                                         DONE
 setup_fields.tpl
 setup_form.tpl
 
 ./themes/default/admin/setup/ajax:
 field_edit.tpl
-user_add.tpl
+user_add.php                                                                DONE
 
 ./themes/default/admin/setup/config:
 ajax.smtp.tpl
@@ -357,8 +355,8 @@ ajax.testexchanger.tpl
 ajax.throttle.tpl
 general.tpl
 mailings.tpl
-messages.tpl
-users.tpl
+messages.php                                                                DONE
+users.php                                                                   DONE
 
 ./themes/default/admin/subscribers:
 admin_subscribers.tpl
@@ -379,20 +377,20 @@ subscriber_edit.tpl
 subscriber_export.tpl
 
 ./themes/default/inc:
-admin.footer.php                                                DONE
-admin.header.php                                                DONE
-admin.sidebar.php                                               DONE
-configure.header.php                                            DONE
-dialog.tpl
+admin.footer.php                                                            DONE
+admin.header.php                                                            DONE
+admin.sidebar.php                                                           DONE
+configure.header.php                                                        DONE
+dialog.php                                                                  DONE
 mailing.tpl
-messages.php
+messages.php                                                                DONE
 ui.cssTable.tpl
-ui.dialog.tpl
-ui.form.tpl
-ui.grid.tpl
-ui.slider.tpl
-ui.sort.tpl
-ui.tabs.tpl
+ui.dialog.php                                                               DONE
+ui.form.php                                                                 DONE
+ui.grid.php                                                                 DONE
+ui.slider.php                                                               DONE
+ui.sort.php                                                                 DONE
+ui.tabs.php                                                                 DONE
 user.footer.tpl
 user.header.tpl
 
@@ -406,8 +404,8 @@ form.update.tpl
 subscribe.tpl
 
 ./themes/default/support:
-support.lib.tpl
-support.php																	DONE
+support.lib.php  "There are some links in this section that still need atention"                                                       
+support.php                                                                 DONE								DONE
 
 ./themes/default/user:
 activate.tpl
