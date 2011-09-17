@@ -1,0 +1,4 @@
+config.php
+cache/pommo/*
+cache/ERROR_LOG
+cache/maintenance.php
