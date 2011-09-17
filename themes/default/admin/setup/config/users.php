@@ -1,25 +1,16 @@
-{* Field Validation - see docs/template.txt documentation *}
-{fv form='users'}
-{fv prepend='<span class="error">' append='</span>'}
-{fv validate="admin_username"}
-{fv validate="admin_password2"}
-{fv validate="admin_email"}
+<form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" class="json">
 
-<form action="{$smarty.server.PHP_SELF}" method="post" class="json">
-
-<div class="output alert">{if $output}{$output}{/if}</div>
+<div class="output alert"><?php if ($output) {echo($output);} ?></div>
 
 <script type="text/javascript">
 $().ready(function()
-{ldelim}	
-
+{	
 	var p =
-	{ldelim}	
+	{	
 		colNames:
 		[
-			'{t escape=js}User{/t}'
+			'<?php echo _('User'); ?>'
 		],
-		{literal}
 		colModel:
 		[
 			{name: 'username', width: 350}
@@ -84,7 +75,6 @@ poMMo.callback.deleteUser = function(p)
 }
 
 </script>
-{/literal}
 
 <table id="grid" class="scroll" cellpadding="0" cellspacing="0"></table>
 <div id="gridPager" class="scroll" style="text-align:center;"></div>
@@ -92,24 +82,26 @@ poMMo.callback.deleteUser = function(p)
 <ul class="inpage_menu">
 	<li>
 		<a href="ajax/user_add.php" class='addUser'>
-			{t}New{/t}
+			<?php echo _('New'); ?>
 		</a>
 	</li>
 	<li>
 		<a href="ajax/users.rpc.php?call=delete" class="modal confirm">
-			<img src="{$url.theme.shared}images/icons/delete.png"/>
-			{t}Delete{/t}
+			<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/delete.png"/>
+			<?php echo _('Delete'); ?>
 		</a>
 	</li>
 </ul>
 
 <div>
-<label for="admin_email"><strong class="required">{t}Administrator Email:{/t}</strong>{fv message="admin_email"}</label>
-<input type="text" name="admin_email" value="{$admin_email|escape}" />
-<span class="notes">{t}(email address of administrator){/t}</span>
+    <label for="admin_email"><strong class="required"><?php echo _('Administrator Email:'); ?></strong></label>
+    <input type="text" name="admin_email" value="<?php echo $this->admin_email; ?>" />
+    <span class="notes"><?php echo _('(email address of administrator)'); ?></span>
 </div>
 
-<input type="submit" value="{t}Update{/t}" />
-<img src="{$url.theme.shared}images/loader.gif" alt="loading..." class="hidden" name="loading" />
+<input type="submit" value="<?php echo _('Update'); ?>" />
+
+<img src="<?php echo $this->url['theme']['shared']; ?>images/loader.gif" alt="loading..." class="hidden" name="loading" />
+
 </form>
 
