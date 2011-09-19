@@ -135,8 +135,11 @@ class Pommo
 				$regex = '@/(ajax|inc|setup|user|install|support(/tests|/util)?|'.
 						'admin(/subscribers|/user|/mailings|/setup)?'.
 						'(/ajax|/mailing|/config)?)$@i';
-				$baseUrl = preg_replace($regex, '',
-						dirname($_SERVER['PHP_SELF']));
+
+				// This is to fix backslashes on windows systems
+				$dirname = str_replace('\\', '/',  dirname($_SERVER['PHP_SELF']));
+
+				$baseUrl = preg_replace($regex, '', $dirname);
 				self::$_baseUrl = ($baseUrl == '/') ? $baseUrl : $baseUrl.'/';
 			}
 		}
