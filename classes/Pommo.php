@@ -522,7 +522,7 @@ class Pommo
 			}
 			else
 			{
-				Pommo::kill(Pommo::$_T('Redirecting, please wait...'));
+				Pommo::kill(Pommo::_T('Redirecting, please wait...'));
 			}
 		}
 		return;
