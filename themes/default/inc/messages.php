@@ -23,7 +23,7 @@ if ($this->errors)
 	<?php
 		if ($this->fatalMsg)
 		{
-			echo '<img src="'.$this->$url['theme']['shared']
+			echo '<img src="'.$this->url['theme']['shared']
 					.'images/icons/alert.png" alt="fatal error icon" />';
 		}
 	?>
