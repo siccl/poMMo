@@ -56,20 +56,23 @@ class Pommo_Validate
      * 	Adds Data to the array to be checked
      *
      * 	@param	string	$name - Name of the input type (ie ID='name')
-     *          string  $type - Type to check. Valid Values 
+     *	@param	string  $type - Type to check. Valid Values 
      *                          Email
      *                          date
      *                          dateTime
      *                          Time
      *                          Url
+     *							matchRegex
      *                          Other (ie if you just want an empty check)
-     *          boolean $isemptyAllowed - Is input allowed to be empty
+     *	@param	boolean $isemptyAllowed - Is input allowed to be empty
+     *	@param	string	$regex - if matchRegex was choosen in $type, then this
+     *					is the regex that is going to be checked
      *
      *  @return	void
      */
-    public function addData($name, $type, $isEmptyAllowed)
+    public function addData($name, $type, $isEmptyAllowed, $regex = null)
     {
-        $array = array($name, $type, $isEmptyAllowed);
+        $array = array($name, $type, $isEmptyAllowed, $regex);
         $this->data[] = $array;
     }
 
@@ -97,13 +100,13 @@ class Pommo_Validate
      */
     public function checkData()
     {
+    	$this->errors = null;
         $emptyMessage = _('Cannot be empty.');
         $passMatchMessage = _('Passwords must match.');
 
         //Check the data fields
-        foreach ($this->data as $i => $value)
+        foreach ($this->data as $array)
         {
-            $array = $this->data[$i];
             $name = $array[0];
             $type = $array[1];
             $isEmptyAllowed = $array[2];
@@ -112,13 +115,21 @@ class Pommo_Validate
             if (empty($this->postToValidate[$name]) && !$isEmptyAllowed)
             {
                 $this->errors[$name] = $emptyMessage;
-            } else
+            }
+            else
             {
                 $functionName = 'validate'.$type;
                 $value = $this->postToValidate[$name];
                 if ($type != 'Other')
                 {
-                    $result = $this->{$functionName}($value);
+                	if ('matchRegex' == $type)
+                	{
+                		$result = $this->{$functionName}($array[3], $value);
+                	}
+                	else
+                	{
+                		$result = $this->{$functionName}($value);
+					}
                     if (!$result)
                     {
                         $this->errors[$name] = $this->currentValidationError;
@@ -450,5 +461,24 @@ class Pommo_Validate
         return true;
     }
 
+	/**
+     *  validatematchRegex
+     * 	Validates that a string matches a regex
+     *
+     * 	@param	string	$regex.- Regex to match
+     *	@param	string	$string.- String to validate
+     *
+     * 	@return	boolean	True if valid, false otherwise
+     */
+    private function validatematchRegex($regex, $string)
+    {
+        $isValid = preg_match($regex, $string);
+        if (!$isValid)
+        {
+            $this->currentValidationError = _('Value is not valid');
+            return false;
+        }
+        return true;
+    }
 }
 

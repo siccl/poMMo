@@ -149,7 +149,7 @@ include $this->template_dir.'/inc/admin.header.php';
 <?php
 if ($this->added)
 {
-	echo '<a href="ajax/field_edit.php?field_id='.$this->key.'" id="added"
+	echo '<a href="ajax/field_edit.php?field_id='.$this->added.'" id="added"
 			class="hidden"></a>';
 }
 ?>
@@ -165,9 +165,10 @@ $().ready(function(){
 	
 	// trigger editing of recently added field
 	var a = $('#added')[0];
-	if(a) 
+	if (a)
+	{
 		$('#dialog').jqmShow(a);
-	
+	}
 });
 
 poMMo.callback.updateField = function(f) {

@@ -100,5 +100,5 @@ if (!empty($fields))
 {
 	$view->assign('fields', $fields);
 }
-	
+
 $view->display('admin/setup/setup_fields');

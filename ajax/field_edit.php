@@ -1,73 +1,79 @@
 <?php
 /**
- * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  released originally under GPLV2
  * 
- * This file is part of poMMo (http://www.pommo.org)
+ *  This file is part of poMMo.
+ *
+ *  poMMo is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  poMMo is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
- * by the Free Software Foundation; either version 2, or any later version.
- * 
- * poMMo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty
- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
- * the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with program; see the file docs/LICENSE. If not, write to the
- * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *  This fork is from https://github.com/soonick/poMMo
+ *  Please see docs/contribs for Contributors
+ *
  */
 
 /**********************************
 	INITIALIZATION METHODS
 *********************************/
-require ('../bootstrap.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
+require '../bootstrap.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Fields.php';
 
 Pommo::init(array('keep' => TRUE));
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
-
+$logger = Pommo::$_logger;
+$dbo = Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
-$smarty->prepareForForm();
+require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
+$view = new Pommo_Template();
+$view->prepareForForm();
 
 // validate field ID
 $field = current(Pommo_Fields::get(array('id' => $_REQUEST['field_id'])));
 if ($field['id'] != $_REQUEST['field_id'])
+{
 	die('bad field ID');
-	
+}
 
-if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
-	// ___ USER HAS NOT SENT FORM ___
-	SmartyValidate :: connect($smarty, true);
-	
-	SmartyValidate :: register_validator('field_name', 'field_name', 'notEmpty', false, false, 'trim');
-	SmartyValidate :: register_validator('field_prompt', 'field_prompt', 'notEmpty', false, false, 'trim');
-	SmartyValidate :: register_validator('field_required','field_required:!^(on|off)$!','isRegExp');   
-	SmartyValidate :: register_validator('field_active','field_active:!^(on|off)$!','isRegExp'); 
-	
+if (empty($_POST))
+{	
 	$vMsg = array ();
 	$vMsg['field_name'] = $vMsg['field_prompt'] = Pommo::_T('Cannot be empty.');
-	$smarty->assign('vMsg', $vMsg);
-
-} else {
+	$view->assign('vMsg', $vMsg);
+}
+else
+{
 	// ___ USER HAS SENT FORM ___
-	
-	
+
 	/**********************************
 		JSON OUTPUT INITIALIZATION
 	 *********************************/
-	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+	require_once Pommo::$_baseDir.'classes/Pommo_Json.php';
 	$json = new Pommo_Json();
-	
-	SmartyValidate :: connect($smarty);
 
-	if (SmartyValidate :: is_valid($_POST)) {
+	// ___ USER HAS NOT SENT FORM ___
+	require_once Pommo::$_baseDir.'classes/Pommo_Validate.php';
+	$validator = new Pommo_Validate();
+    $validator->setPost($_POST);
+    $validator->addData('field_name', 'Other', false);
+    $validator->addData('field_prompt', 'Other', false);
+    $validator->addData('field_required', 'matchRegex', false, '!^(on|off)$!');
+    $validator->addData('field_active', 'matchRegex', false, '!^(on|off)$!');
+
+	if ($result = $validator->checkData())
+	{
 		// __ FORM IS VALID
 
 		// TODO -> Which below logic is better? the computed diff, or send all fields for update?
@@ -82,16 +88,27 @@ if (!SmartyValidate :: is_registered_form() || empty ($_POST)) {
 		// let MySQL do the difference processing
 		$update = Pommo_Fields::makeDB($_POST);
 		if (!Pommo_Fields::update($update))
+		{
 			$json->fail('error updating field');
-			
+		}
+	
 		$json->add('callbackFunction','updateField');
 		$json->add('callbackParams',$update);
 		$json->success(Pommo::_T('Settings updated.'));
-
-	} else {
+	}
+	else
+	{
 		// __ FORM NOT VALID
-		
-		$json->add('fieldErrors',$smarty->getInvalidFields());
+		$fieldErrors = array();
+		$errors = $validator->getErrors();
+		foreach ($errors as $key => $val)
+		{
+			$fieldErrors[] = array (
+				'field' => $key,
+				'message' => $val
+			);
+		}
+		$json->add('fieldErrors', $fieldErrors);
 		$json->fail(Pommo::_T('Please review and correct errors with your submission.'));
 	}
 }
@@ -105,25 +122,25 @@ $f_comm = sprintf(Pommo::_T('%s -. If a subscriber enters a value for a comment 
 
 switch ($field['type']) {
 		case 'text' :
-			$smarty->assign('intro', $f_text);
+			$view->assign('intro', $f_text);
 			break;
 		case 'checkbox' :
-			$smarty->assign('intro', $f_check);
+			$view->assign('intro', $f_check);
 			break;
 		case 'number' :
-			$smarty->assign('intro', $f_num);
+			$view->assign('intro', $f_num);
 			break;
 		case 'date' :
-			$smarty->assign('intro', $f_date);
+			$view->assign('intro', $f_date);
 			break;
 		case 'multiple' :
-			$smarty->assign('intro', $f_mult);
+			$view->assign('intro', $f_mult);
 			break;
 		case 'comment' :
-			$smarty->assign('intro', $f_comm);
+			$view->assign('intro', $f_comm);
 			break;
 	}
 
-$smarty->assign('field', $field);
-$smarty->display('admin/setup/ajax/field_edit.tpl');
+$view->assign('field', $field);
+$view->display('admin/setup/ajax/field_edit');
 Pommo::kill();

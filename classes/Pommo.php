@@ -552,10 +552,10 @@ class Pommo
 			{
 				$logger = self::$_logger;
 				$logger->addErr($msg);
-				require_once(self::$_baseDir.'classes/Pommo_Template.php');
-				$smarty = new Pommo_Template();
-				$smarty->assign('fatalMsg', TRUE);
-				$smarty->display('message.tpl');
+				require_once self::$_baseDir.'classes/Pommo_Template.php';
+				$view = new Pommo_Template();
+				$view->assign('fatalMsg', TRUE);
+				$view->display('message');
 			}
 		}
 		
