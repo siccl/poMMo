@@ -86,13 +86,13 @@ include $this->template_dir.'/inc/admin.header.php';
 			?>
 			<div class="r<?php echo $row; ?> sortable" id="id<?php echo $key; ?>">
 				<span>
-					<?php echo $this->field['id']; ?>
+					<?php echo $field['id']; ?>
 				</span>
 
 				<span>
 					<a href="<?php echo $_SERVER['PHP_SELF']; ?>?field_id=<?php
 							echo $key; ?>&delete=TRUE&field_name=<?php
-							echo $this->field['name']; ?>">
+							echo $field['name']; ?>">
 						<img alt="delete icon"
 								src="<?php echo $this->url['theme']['shared'];
 								?>images/icons/delete.png" />
@@ -114,19 +114,19 @@ include $this->template_dir.'/inc/admin.header.php';
 
 				<span class="name
 				<?php
-					if ('on' == $this->field['active'])
+					if ('on' == $field['active'])
 					{
 						echo 'green';
 					}
 				?>">
 					<?php
-						if ('on' == $this->field['required'])
+						if ('on' == $field['required'])
 						{
-							echo '<strong>'.$this->field['name'].'</strong>';
+							echo '<strong>'.$field['name'].'</strong>';
 						}
 						else
 						{
-							echo $this->field['name'];
+							echo $field['name'];
 						}
 					?>
 				</span>
