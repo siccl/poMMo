@@ -180,12 +180,12 @@
 					foreach ($this->field['array'] as $option)
 					{
 						echo '<option ';
-						if ($this->option == $this->field['normally'])
+						if ($option == $this->field['normally'])
 						{
 							echo 'selected="selected"';
 						}
 						echo '>';
-						echo $this->option;
+						echo $option;
 						echo '</option>';
 					}
 				}
