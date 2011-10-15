@@ -38,7 +38,7 @@ pending.php
 process.php
 README
 setup_configure.php                                                         DONE
-setup_fields.php
+setup_fields.php															DONE
 setup_form.php
 subscribe.php
 subscribers_groups.php
@@ -59,8 +59,8 @@ ajax.smtp.php
 ajax.testexchanger.php
 ajax.throttle.php
 compose.php
-field_edit.php
-fields.rpc.php
+field_edit.php																DONE
+fields.rpc.php																DONE
 general.php
 group.rpc.php
 history.list.php
@@ -342,11 +342,11 @@ templates.tpl
 admin_setup.php
 form_embed.tpl
 setup_configure.php                                                         DONE
-setup_fields.tpl
+setup_fields.php															DONE
 setup_form.tpl
 
 ./themes/default/admin/setup/ajax:
-field_edit.tpl
+field_edit.php																DONE
 user_add.php                                                                DONE
 
 ./themes/default/admin/setup/config:
