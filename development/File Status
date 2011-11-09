@@ -40,7 +40,7 @@ README
 setup_configure.php                                                         DONE
 setup_fields.php															DONE
 setup_form.php																DONE
-subscribe.php
+subscribe.php																DONE
 subscribers_groups.php
 subscribers_import.php
 subscribers_manage.php
@@ -399,9 +399,9 @@ example.conf
 
 ./themes/default/subscribe:
 form.mini.tpl
-form.subscribe.tpl
+form.subscribe.php															DONE
 form.update.tpl
-subscribe.tpl
+subscribe.php																DONE
 
 ./themes/default/support:
 support.lib.php  "There are some links in this section that still need atention"                                                       
@@ -437,7 +437,7 @@ ui.tabs.css
 ./themes/shared/datepicker:
 calendar.png
 datepicker.css
-datepicker.tpl
+datepicker.php																DONE
 
 ./themes/shared/images:
 backgrounds

@@ -151,27 +151,38 @@ class Pommo_Template
 	}
 
 	// Loads field data into template, as well as _POST (or a saved subscribeForm). 
-	function prepareForSubscribeForm() {
-		$dbo =& Pommo::$_dbo;
-		require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
+	function prepareForSubscribeForm()
+	{
+		$dbo = Pommo::$_dbo;
+		require_once Pommo::$_baseDir.'classes/Pommo_Fields.php';
 
 		// Get array of fields. Key is ID, value is an array of the demo's info
-		$fields = Pommo_Fields::get(array('active' => TRUE,'byName' => FALSE));
+		$fields = Pommo_Fields::get(array ('active' => true,'byName' => false));
+
 		if (!empty ($fields))
+		{
 			$this->assign('fields', $fields);
-			
-		foreach ($fields as $field) {
-			if ($field['type'] == 'date')
-			$this->assign('datePicker', TRUE);
 		}
-			
+
+		foreach ($fields as $field)
+		{
+			if ($field['type'] == 'date')
+			{
+				$this->assign('datePicker', true);
+			}
+		}
+
 		// process.php appends serialized values to _GET['input']
 		// TODO --> look into this behavior... necessary?
-		if (isset ($_GET['input'])) 
+		if (isset ($_GET['input']))
+		{
 			$this->assign(unserialize($_GET['input']));
-		elseif (isset($_GET['Email'])) 
+		}
+		elseif (isset($_GET['Email']))
+		{
 			$this->assign(array('Email' => $_GET['Email']));
-		
+		}
+
 		$this->assign($_POST);
 	}
 	
