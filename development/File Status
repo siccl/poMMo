@@ -11,12 +11,12 @@ confirm.php
 db.clear.php
 db.sample.php
 db.subscriberClear.php
-embed.form.php
-embed.miniform.php
+embed.form.php																DONE
+embed.miniform.php															DONE
 favicon.ico
 file.clearWork.php
 folderslist
-form_embed.php
+form_embed.php																DONE
 form_generate.php
 groups_edit.php
 import_csv2.php
@@ -340,7 +340,7 @@ templates.tpl
 
 ./themes/default/admin/setup:
 admin_setup.php
-form_embed.tpl
+form_embed.php																DONE
 setup_configure.php                                                         DONE
 setup_fields.php															DONE
 setup_form.php																DONE
@@ -398,7 +398,7 @@ user.header.tpl
 example.conf
 
 ./themes/default/subscribe:
-form.mini.tpl
+form.mini.php																DONE
 form.subscribe.php															DONE
 form.update.tpl
 subscribe.php																DONE

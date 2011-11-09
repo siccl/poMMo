@@ -1,5 +1,7 @@
-<script type="text/javascript" src="<?php echo $this->url['theme']['shared']; ?>js/jq/jqModal.js"></script>
-<link type="text/css" rel="stylesheet" href="<?php echo $this->url['theme']['shared']; ?>css/ui.dialog.css" />
+<script type="text/javascript" src="<?php echo $this->url['theme']['shared'];
+		?>js/jq/jqModal.js"></script>
+<link href="<?php echo $this->url['theme']['shared']; ?>css/ui.dialog.css"
+		type="text/css" rel="stylesheet"/>
 
 <script type="text/javascript">
 
@@ -67,5 +69,3 @@ $this->dialogWait = true;
 include $this->template_dir.'/inc/dialog.php';
 
 $this->capturedFooter = ob_get_clean();
-?>
-
