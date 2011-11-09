@@ -39,7 +39,7 @@ process.php
 README
 setup_configure.php                                                         DONE
 setup_fields.php															DONE
-setup_form.php
+setup_form.php																DONE
 subscribe.php
 subscribers_groups.php
 subscribers_import.php
@@ -343,7 +343,7 @@ admin_setup.php
 form_embed.tpl
 setup_configure.php                                                         DONE
 setup_fields.php															DONE
-setup_form.tpl
+setup_form.php																DONE
 
 ./themes/default/admin/setup/ajax:
 field_edit.php																DONE
