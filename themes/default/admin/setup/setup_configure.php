@@ -5,7 +5,7 @@ include $this->template_dir.'/inc/ui.dialog.php';
 include $this->template_dir.'/inc/ui.tabs.php';
 include $this->template_dir.'/inc/ui.slider.php';
 include $this->template_dir.'/inc/ui.grid.php';
-$this->capturedHeader = ob_get_clean();
+$this->capturedHead = ob_get_clean();
 $this->sidebar = false;
 include $this->template_dir.'/inc/admin.header.php';
 ?>
@@ -108,4 +108,3 @@ $this->capturedDialogs = ob_get_clean();
 
 //Lastly add the footer
 include $this->template_dir.'/inc/admin.footer.php';
-?>

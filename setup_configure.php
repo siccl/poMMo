@@ -26,15 +26,15 @@
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('bootstrap.php');
+require 'bootstrap.php';
 Pommo::init();
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo = Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
 $view = new Pommo_Template();
 
 $state['limit'] = 10;
@@ -44,5 +44,3 @@ $view->assign('smtpTitle',Pommo::_T('SMTP Settings'));
 $view->assign('testTitle',Pommo::_T('Test Exchanger'));
 
 $view->display('admin/setup/setup_configure');
-Pommo::kill();
-

@@ -26,7 +26,7 @@
  /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('../bootstrap.php');
+require '../bootstrap.php';
 
 Pommo::init();
 $logger = Pommo::$_logger;
@@ -35,8 +35,7 @@ $dbo 	= Pommo::$_dbo;
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
 $view = new Pommo_Template();
 
 $view->display('admin/setup/ajax/user_add');
-
