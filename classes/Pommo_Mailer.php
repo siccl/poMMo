@@ -285,12 +285,11 @@ class Pommo_Mailer extends PHPMailer {
 		// If poMMo is not in set in demonstration mode, SEND MAILS...
 		if ($this->_demonstration == "off")
 		{
-
 			// if $to is not an array (single email address has been supplied), simply send the mail.
 			if (!is_array($to))
 			{
 				$this->AddAddress($to);
-				
+
 				// check for personalization personaliztion and override message body
 				if ($this->_personalize)
 				{
@@ -347,4 +346,3 @@ class Pommo_Mailer extends PHPMailer {
 		return true;
 	}
 }
-?>

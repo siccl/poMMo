@@ -91,7 +91,7 @@
 		<label for="list_exchanger">
 			<strong class="required">
 				<?php echo _('Mail Exchanger:'); ?>
-			</strong>{fv message="list_exchanger"}
+			</strong>
 		</label>
 		<select name="list_exchanger">
 			<option value="sendmail"
