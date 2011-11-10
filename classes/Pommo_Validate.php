@@ -112,9 +112,12 @@ class Pommo_Validate
             $isEmptyAllowed = $array[2];
 
             //Check if empty and allowed to be empty
-            if (empty($this->postToValidate[$name]) && !$isEmptyAllowed)
+            if (empty($this->postToValidate[$name]))
             {
-                $this->errors[$name] = $emptyMessage;
+				if (!$isEmptyAllowed)
+				{
+					$this->errors[$name] = $emptyMessage;
+				}
             }
             else
             {
