@@ -90,7 +90,7 @@ include $this->template_dir.'/inc/dialog.php';
 $this->dialogId = 'smtpWindow';
 $this->dialogTitle = $this->smtpTitle;
 $this->dialogTall = 'true';
-//include $this->template_dir.'/inc/dialog.php';
+include $this->template_dir.'/inc/dialog.php';
 
 //Test Dialog
 $this->dialogId = 'testWindow';
