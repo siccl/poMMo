@@ -57,7 +57,7 @@ ajax.personalize.php
 ajax.rpc.php
 ajax.smtp.php
 ajax.testexchanger.php
-ajax.throttle.php
+ajax.throttle.php															DONE
 compose.php
 field_edit.php																DONE
 fields.rpc.php																DONE
@@ -67,7 +67,7 @@ history.list.php
 history.rpc.php
 mailing.list.php
 mailing_preview.php
-mailings.php
+mailings.php																DONE
 mailings_send4.php
 manage.list.php
 manage.rpc.php
@@ -352,9 +352,9 @@ user_add.php                                                                DONE
 ./themes/default/admin/setup/config:
 ajax.smtp.tpl
 ajax.testexchanger.tpl
-ajax.throttle.tpl
+ajax.throttle.php															DONE
 general.tpl
-mailings.tpl
+mailings.php																DONE
 messages.php                                                                DONE
 users.php                                                                   DONE
 
