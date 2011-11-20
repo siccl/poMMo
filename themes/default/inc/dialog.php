@@ -55,8 +55,8 @@ if ($this->dialogShort)
 						<img src="<?php echo $this->url['theme']['shared'];
 								?>images/loader.gif"
 								alt="Loading Icon" title="Please Wait" border="0" />
-						{t}Please Wait{/t}...
 						<?php
+							echo _('Please Wait').'...';
 						}
 					?>
 				</div>

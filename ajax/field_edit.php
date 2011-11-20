@@ -63,7 +63,6 @@ else
 	require_once Pommo::$_baseDir.'classes/Pommo_Json.php';
 	$json = new Pommo_Json();
 
-	// ___ USER HAS NOT SENT FORM ___
 	require_once Pommo::$_baseDir.'classes/Pommo_Validate.php';
 	$validator = new Pommo_Validate();
     $validator->setPost($_POST);
