@@ -359,7 +359,7 @@ messages.php                                                                DONE
 users.php                                                                   DONE
 
 ./themes/default/admin/subscribers:
-admin_subscribers.tpl
+admin_subscribers.php														DONE
 ajax
 groups_edit.tpl
 import_csv.tpl
