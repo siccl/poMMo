@@ -1,41 +1,45 @@
 <?php
 /**
- * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  released originally under GPLV2
  * 
- * This file is part of poMMo (http://www.pommo.org)
+ *  This file is part of poMMo.
+ *
+ *  poMMo is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  poMMo is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
- * by the Free Software Foundation; either version 2, or any later version.
- * 
- * poMMo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty
- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
- * the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with program; see the file docs/LICENSE. If not, write to the
- * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *  This fork is from https://github.com/soonick/poMMo
+ *  Please see docs/contribs for Contributors
+ *
  */
- 
+
  /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('bootstrap.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
+require 'bootstrap.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Groups.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Fields.php';
 
 Pommo::init();
 $logger	= Pommo::$_logger;
 $dbo 	= Pommo::$_dbo;
-	
+
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
-$smarty->assign('returnStr', Pommo::_T('Subscribers Page'));
-
+require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
+$view = new Pommo_Template();
+$view->assign('returnStr', _('Subscribers Page'));
 
 /** SET PAGE STATE
  * limit	- The Maximum # of subscribers to show per page
@@ -58,23 +62,22 @@ $state =& Pommo_API::stateInit('subscribers_manage',array(
 	'search' => false),
 	$_REQUEST);
 
-
 /**********************************
 	VALIDATION ROUTINES
 *********************************/
-	
+
 if (!is_numeric($state['limit'])
 		|| $state['limit'] < 1
 		|| $state['limit'] > 1000)
 {
 	$state['limit'] = 150;
 }
-	
-if($state['order'] != 'asc' && $state['order'] != 'desc')
+
+if ($state['order'] != 'asc' && $state['order'] != 'desc')
 {
 	$state['order'] = 'asc';
 }
-	
+
 if (!is_numeric($state['sort'])
 		&& $state['sort'] != 'email'
 		&& $state['sort'] != 'ip'
@@ -94,7 +97,7 @@ if (!is_numeric($state['group']) && $state['group'] != 'all')
 	$state['group'] = 'all';
 }
 
-if(isset($_REQUEST['searchClear']))
+if (isset($_REQUEST['searchClear']))
 {
 	$state['search'] = false;
 }
@@ -114,7 +117,6 @@ elseif(isset($_REQUEST['searchField'])
 		);
 }
 
-
 /**********************************
 	DISPLAY METHODS
 *********************************/
@@ -123,16 +125,13 @@ elseif(isset($_REQUEST['searchField'])
 $group = new Pommo_Groups($state['group'], $state['status'], $state['search']);
 
 // Calculate and Remember number of pages for this group/status combo
-$state['pages'] = (is_numeric($group->_tally) && $group->_tally > 0) ?
-	ceil($group->_tally/$state['limit']) :
-	0;
-	
-$smarty->assign('state',$state);
-$smarty->assign('tally',$group->_tally);
-$smarty->assign('groups',Pommo_Groups::get());
-$smarty->assign('fields',Pommo_Fields::get());
+$state['pages'] = (is_numeric($group->_tally) && $group->_tally > 0)
+		? ceil($group->_tally/$state['limit']) : 0;
 
-$smarty->display('admin/subscribers/subscribers_manage.tpl');
-Pommo::kill();
-?>
+$view->assign('state', $state);
+$view->assign('tally', $group->_tally);
+$view->assign('groups', Pommo_Groups::get());
+$view->assign('fields', Pommo_Fields::get());
+
+$view->display('admin/subscribers/subscribers_manage');
 
