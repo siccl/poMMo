@@ -79,7 +79,7 @@ status_cmd.php
 status_download.php
 status_poll.php
 subscriber_add.php															DONE
-subscriber_del.php
+subscriber_del.php															DONE
 subscriber_edit.php
 subscriber_export.php
 templates.php
@@ -372,7 +372,7 @@ subscribers_manage.php														DONE
 rule.field.tpl
 rule.group.tpl
 subscriber_add.php															DONE
-subscriber_del.tpl
+subscriber_del.php															DONE
 subscriber_edit.tpl
 subscriber_export.tpl
 
