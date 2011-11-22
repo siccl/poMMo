@@ -43,7 +43,7 @@ setup_form.php																DONE
 subscribe.php																DONE
 subscribers_groups.php
 subscribers_import.php
-subscribers_manage.php
+subscribers_manage.php														DONE
 support.lib.php
 support.php																	DONE
 track_view.php
@@ -78,7 +78,7 @@ setup.php
 status_cmd.php
 status_download.php
 status_poll.php
-subscriber_add.php
+subscriber_add.php															DONE
 subscriber_del.php
 subscriber_edit.php
 subscriber_export.php
@@ -366,12 +366,12 @@ import_csv.tpl
 import_txt.tpl
 subscribers_groups.tpl
 subscribers_import.tpl
-subscribers_manage.tpl
+subscribers_manage.php														DONE
 
 ./themes/default/admin/subscribers/ajax:
 rule.field.tpl
 rule.group.tpl
-subscriber_add.tpl
+subscriber_add.php															DONE
 subscriber_del.tpl
 subscriber_edit.tpl
 subscriber_export.tpl

@@ -205,12 +205,12 @@ if ($this->tally > 0)
 
 	<a href="ajax/subscriber_del.php?status=<?php echo $this->state['status']; ?>"
 			class="delTrigger">
-		<img src="{$url.theme.shared}images/icons/delete.png"
+		<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/delete.png"
 				alt="<?php echo _('Delete'); ?>" />
 		<?php echo _('Delete Checked Subscribers'); ?>
 	</a>
 	<a href="ajax/subscriber_edit.php" class="editTrigger">
-		<img src="{$url.theme.shared}images/icons/edit.png"
+		<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/edit.png"
 				alt="<?php echo _('Edit'); ?>" />
 		<?php echo _('Edit Checked'); ?>
 	</a>
