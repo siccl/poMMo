@@ -1,43 +1,47 @@
 <?php
 /**
- * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  released originally under GPLV2
  * 
- * This file is part of poMMo (http://www.pommo.org)
+ *  This file is part of poMMo.
+ *
+ *  poMMo is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  poMMo is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
- * by the Free Software Foundation; either version 2, or any later version.
- * 
- * poMMo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty
- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
- * the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with program; see the file docs/LICENSE. If not, write to the
- * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *  This fork is from https://github.com/soonick/poMMo
+ *  Please see docs/contribs for Contributors
+ *
  */
 
 /**********************************
 	INITIALIZATION METHODS
 *********************************/
-require ('bootstrap.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Csv_Stream.php');
+require 'bootstrap.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Csv_Stream.php';
 
 Pommo::init();
-$logger	= &Pommo::$_logger;
-$dbo 	= &Pommo::$_dbo;
+$logger	= Pommo::$_logger;
+$dbo 	= Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
-
+require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
+$view = new Pommo_Template();
 
 // Maximum File Size (in MB) 
 $max_file_size = 2;
-$smarty->assign('maxSize', $max_file_size * 1024 * 1024);
+$view->assign('maxSize', $max_file_size * 1024 * 1024);
 
 // Filename (in $_FILES array)
 $fname = 'csvfile';
@@ -47,7 +51,7 @@ if (isset($_POST['submit']))
 	// POST exists -- set pointer to content
 	$fp		= false;
 	$box 	= false;
-	
+
 	if (!empty($_FILES[$fname]['tmp_name']))
 	{
 		$fp = &fopen($_FILES[$fname]['tmp_name'], 'r');
@@ -132,18 +136,18 @@ if (isset($_POST['submit']))
 					}
 				}
 			}
-			
+
 			//	Removes from the array E-mails that are already on the database
 			$includeUnsubscribed = isset($_REQUEST['excludeUnsubscribed']) ?
 					false : true;
 			$dupes = &Pommo_Helper::isDupe($a, $includeUnsubscribed);
-			
+
 			if (!$dupes)
 			{
 				$dupes = array();
 			}
 			$emails = array_diff($a, $dupes);
-			
+
 			//	Saves emails in session and redirects to confirmation page
 			Pommo::set(array(
 				'emails' => $emails,
@@ -153,6 +157,5 @@ if (isset($_POST['submit']))
 	}
 }
 
-$smarty->display('admin/subscribers/subscribers_import.tpl');
-Pommo::kill();
+$view->display('admin/subscribers/subscribers_import');
 
