@@ -1,44 +1,47 @@
 <?php
 /**
- * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  released originally under GPLV2
  * 
- * This file is part of poMMo (http://www.pommo.org)
+ *  This file is part of poMMo.
+ *
+ *  poMMo is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  poMMo is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
- * by the Free Software Foundation; either version 2, or any later version.
- * 
- * poMMo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty
- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
- * the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with program; see the file docs/LICENSE. If not, write to the
- * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *  This fork is from https://github.com/soonick/poMMo
+ *  Please see docs/contribs for Contributors
+ *
  */
-
 
 /**********************************
 	INITIALIZATION METHODS
 *********************************/
-require ('bootstrap.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Sql.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Rules.php');
+require 'bootstrap.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Sql.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Groups.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Fields.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Rules.php';
 
 Pommo::init();
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo = Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
-$smarty->assign('returnStr', Pommo::_T('Groups Page'));
-
+require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
+$view = new Pommo_Template();
+$view->assign('returnStr', _('Groups Page'));
 
 // Initialize page state with default values overriden by those held in $_REQUEST
 $state =& Pommo_Api::stateInit('groups_edit',array(
@@ -65,27 +68,25 @@ foreach($rules as $key => $a) {
 }
 
 
-$smarty->assign('fields',$fields);
+$view->assign('fields',$fields);
 
-$smarty->assign('legalFieldIDs', Pommo_Rules::getLegal($group, $fields));
-$smarty->assign('legalGroups', Pommo_Rules::getLegalGroups($group, $groups));
-
-
-
-$smarty->assign('group',$group);
-
-$smarty->assign('logicNames',Pommo_Rules::getEnglish());
+$view->assign('legalFieldIDs', Pommo_Rules::getLegal($group, $fields));
+$view->assign('legalGroups', Pommo_Rules::getLegalGroups($group, $groups));
 
 
 
-$smarty->assign('rules', $rules);
-$smarty->assign('tally', Pommo_Groups::tally($group));
-$smarty->assign('ruleCount', count($rules['and'])+count($rules['or'])+count($rules['include'])+count($rules['exclude']));
+$view->assign('group',$group);
 
-$smarty->assign('getURL',$_SERVER['PHP_SELF'].'?group_id='.$group['id']);
-$smarty->assign('t_include',Pommo::_T('INCLUDE'));
+$view->assign('logicNames',Pommo_Rules::getEnglish());
 
-$smarty->display('admin/subscribers/groups_edit.tpl');
-Pommo::kill();
 
-?>
+
+$view->assign('rules', $rules);
+$view->assign('tally', Pommo_Groups::tally($group));
+$view->assign('ruleCount', count($rules['and'])+count($rules['or'])+count($rules['include'])+count($rules['exclude']));
+
+$view->assign('getURL',$_SERVER['PHP_SELF'].'?group_id='.$group['id']);
+$view->assign('t_include',Pommo::_T('INCLUDE'));
+
+$view->display('admin/subscribers/groups_edit');
+
