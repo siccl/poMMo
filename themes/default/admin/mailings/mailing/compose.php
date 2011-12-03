@@ -1,80 +1,88 @@
 <div class="output">
-	{include file="inc/messages.tpl"}
+<?php
+	include $this->template_dir.'/inc/messages.php';
+?>
 </div>
 
-<form id="compose" class="json mandatory" action="{$smarty.server.PHP_SELF}"
+<form id="compose" class="json mandatory" action="<?php echo $_SERVER['PHP_SELF']; ?>"
 		method="post">
 	<input type="hidden" name="compose" value="true" />
 
-<div class="compose">
-	<h4>{t}HTML Message{/t}</h4>
-		<ul class="inpage_menu">
-			<li>
-				<a href="#" class="e_altbody">
-					<img src="{$url.theme.shared}images/icons/reload.png" alt="icon"
-							border="0" align="absmiddle" />
-					{t}Copy text from HTML Message{/t}
-				</a>
-			</li>
-			<li>
-				<input type="submit" id="submit" name="submit"
-						value="{t}Continue{/t}" />
-			</li>
-		</ul>
+	<div class="compose">
+		<h4><?php echo _('HTML Message'); ?></h4>
+			<ul class="inpage_menu">
+				<li>
+					<a href="#" class="e_altbody">
+						<img src="<?php echo $this->url['theme']['shared'];
+								?>images/icons/reload.png" alt="icon"
+								border="0" align="absmiddle" />
+						<?php echo _('Copy text from HTML Message'); ?>
+					</a>
+				</li>
+				<li>
+					<input type="submit" id="submit" name="submit"
+							value="<?php echo _('Continue'); ?>" />
+				</li>
+			</ul>
 
-	<textarea name="body">{$body}</textarea>
-	<span class="notes">({t}Leave blank to send text only{/t})</span>
-</div>
-<div id="file-uploader-demo1" style='float: left; margin-left: 30px'>
-	<noscript>			
-		<p>Please enable JavaScript to use file uploader.</p>
-		<!-- or put a simple form for upload here -->
-	</noscript>         
-</div>
-<ul class="inpage_menu" style='float: left'>
-	<li>
-		<a href="#" id="e_toggle">
-			<img src="{$url.theme.shared}images/icons/viewhtml.png" alt="icon"
-					border="0" align="absmiddle" /><span id="toggleText">
-			{t}Enable WYSIWYG{/t}</span>
-		</a>
-	</li>
-	<li>
-		<a href="ajax/ajax.personalize.php" id="e_personalize">
-			<img src="{$url.theme.shared}images/icons/subscribers_tiny.png"
-					alt="icon" border="0" align="absmiddle" />
-			{t}Add Personalization{/t}
-		</a>
-	</li>
-	<li>
-		<a href="ajax/ajax.addtemplate.php" id="e_template">
-			<img src="{$url.theme.shared}images/icons/edit.png" alt="icon"
-					border="0" align="absmiddle" /> {t}Save as Template{/t}
-		</a>
-	</li>
-</ul>
-<div style='clear:both'></div>
-<div class="compose">
-	<h4>{t}Text Version{/t}</h4>
-	<textarea name="altbody">{$altbody}</textarea>
-	<span class="notes">({t}Leave blank to send HTML only{/t})</span>
-</div>
+		<textarea name="body"><?php echo $this->body; ?></textarea>
+		<span class="notes">(<?php echo _('Leave blank to send text only'); ?>)</span>
+	</div>
+
+	<div id="file-uploader-demo1" style='float: left; margin-left: 30px'>
+		<noscript>			
+			<p><?php echo _('Please enable JavaScript to use file uploader.'); ?></p>
+			<!-- or put a simple form for upload here -->
+		</noscript>         
+	</div>
+
+	<ul class="inpage_menu" style='float: left'>
+		<li>
+			<a href="#" id="e_toggle">
+				<img src="<?php echo $this->url['theme']['shared'];
+						?>images/icons/viewhtml.png" alt="icon"
+						border="0" align="absmiddle" /><span id="toggleText">
+				<?php echo _('Enable WYSIWYG'); ?></span>
+			</a>
+		</li>
+		<li>
+			<a href="ajax/ajax.personalize.php" id="e_personalize">
+				<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/subscribers_tiny.png"
+						alt="icon" border="0" align="absmiddle" />
+				<?php echo _('Add Personalization'); ?>
+			</a>
+		</li>
+		<li>
+			<a href="ajax/ajax.addtemplate.php" id="e_template">
+				<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/edit.png" alt="icon"
+						border="0" align="absmiddle" /> <?php echo _('Save as Template'); ?>
+			</a>
+		</li>
+	</ul>
+
+	<div style='clear:both'></div>
+
+	<div class="compose">
+		<h4><?php echo _('Text Version'); ?></h4>
+		<textarea name="altbody"><?php echo $this->altbody; ?></textarea>
+		<span class="notes">(<?php echo _('Leave blank to send HTML only'); ?>)</span>
+	</div>
 
 	<ul class="inpage_menu">
 		<li>
 			<a href="#" class="e_altbody">
-				<img src="{$url.theme.shared}images/icons/reload.png" alt="icon"
+				<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/reload.png" alt="icon"
 						border="0" align="absmiddle" />
-				{t}Copy text from HTML Message{/t}
+				<?php echo _('Copy text from HTML Message'); ?>
 			</a>
 		</li>
 		<li>
 			<input type="submit" id="submit" name="submit"
-					value="{t}Continue{/t}" />
+					value="<?php echo _('Continue'); ?>" />
 		</li>
 	</ul>
 </form>
-{literal}
+
 <script type='text/javascript'>
 	function createUploader()
 	{            
@@ -99,28 +107,31 @@
 
 	createUploader();
 </script>
-{/literal}
-<script type="text/javascript">
-	var onText = '{t escape=js}Disable WYSIWYG{/t}';
-	var offText = '{t escape=js}Enable WYSIWYG{/t}';
 
-	$().ready(function() {ldelim}
-	
-	wysiwyg.init({ldelim}
-		language: '{$lang}',
-		baseURL: '{$url.theme.shared}../wysiwyg/',
-		t_weblink: '{t escape=js}View this Mailing on the Web{/t}',
-		t_unsubscribe: '{t escape=js}Unsubscribe or Update Records{/t}',
+<script type="text/javascript">
+var onText = '<?php echo _('Disable WYSIWYG'); ?>';
+var offText = '<?php echo _('Enable WYSIWYG'); ?>';
+
+$().ready(function()
+{
+	wysiwyg.init({
+		language: '<?php echo $this->lang; ?>',
+		baseURL: '<?php echo $this->url['theme']['shared']; ?>../wysiwyg/',
+		t_weblink: '<?php echo _('View this Mailing on the Web'); ?>',
+		t_unsubscribe: '<?php echo _('Unsubscribe or Update Records'); ?>',
 		textarea: $('textarea[@name=body]')
-	{rdelim});
-	
-	{if $wysiwyg == 'on'}
-		// Enable the WYSIWYG
-		wysiwyg.enable();
-		$('#toggleText').html(onText);
-	{/if}
-	
-	{literal}
+	});
+
+	<?php
+		if ('on' == $this->wysiwyg)
+		{
+		?>
+			// Enable the WYSIWYG
+			wysiwyg.enable();
+			$('#toggleText').html(onText);
+		<?php
+		}
+	?>
 	
 	// Command Buttons (toggle HTML, add personalization, save template, generate altbody)
 	$('#e_toggle').click(function()
@@ -212,4 +223,4 @@
 });
 
 </script>
-{/literal}
+
