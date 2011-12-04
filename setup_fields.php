@@ -82,7 +82,7 @@ if (!empty ($_GET['delete']))
 				'nourl' => $_SERVER['PHP_SELF'] . '?field_id=' . $_GET['field_id'],
 				'yesurl' => $_SERVER['PHP_SELF'] . '?field_id=' . $_GET['field_id'] . '&delete=TRUE&dVal-force=TRUE',
 				'msg' => sprintf(Pommo::_T('Currently, %1$s subscribers have a non empty value for %2$s. All Subscriber data relating to this field will be lost.'), '<b>' . count($affected) . '</b>','<b>' . $field['name'] . '</b>')));
-			$view->display('admin/confirm.tpl');
+			$view->display('admin/confirm');
 			Pommo::kill();
 		}
 		else
