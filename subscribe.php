@@ -41,3 +41,4 @@ $view = new Pommo_Template();
 $view->prepareForSubscribeForm();
 
 $view->display('subscribe/subscribe');
+

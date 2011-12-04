@@ -1,28 +1,40 @@
-{include file="inc/user.header.tpl"}
+<?php
 
-<h2>{t}Subscriber Login{/t}</h2>
+include $this->template_dir.'/inc/user.header.php';
 
-<p>{t}In order to check your subscription status, update your information, or unsubscribe, you must enter your email address in the field below.{/t}</p>
+?>
 
-{include file="inc/messages.tpl"}
+<h2><?php echo _('Subscriber Login'); ?></h2>
+
+<p><?php echo _('In order to check your subscription status, update your
+		information, or unsubscribe, you must enter your email address in the
+		field below.'); ?></p>
+
+<?php
+
+include $this->template_dir.'/inc/messages.php';
+
+?>
 
 <form method="post" action="">
-<fieldset>
-<legend>{t}Login{/t}</legend>
+	<fieldset>
+		<legend><?php echo _('Login'); ?></legend>
 
-<div>
-<label for="email"><strong class="required">{t}Your Email:{/t}</strong> <span class="error">{validate id="email" message=$formError.email}</span></label>
-<input type="text"name="Email" id="email" value="{$Email|escape}" size="32" maxlength="60" />
-</div>
+		<div>
+			<label for="email">
+				<strong class="required"><?php echo _('Your Email:'); ?></strong>
+			</label>
+			<input type="text" name="Email" id="email" size="32" maxlength="60"
+					value="<?php echo htmlentities($this->Email); ?>" />
+		</div>
+	</fieldset>
 
-</fieldset>
-
-<div class="buttons">
-
-<input type="submit" value="{t}Login{/t}" />
-
-</div>
-
+	<div class="buttons">
+		<input type="submit" value="<?php echo _('Login'); ?>" />
+	</div>
 </form>
 
-{include file="inc/user.footer.tpl"}
+<?php
+
+include $this->template_dir.'/inc/user.footer.php';
+

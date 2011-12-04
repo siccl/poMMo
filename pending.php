@@ -32,7 +32,7 @@ $dbo = & Pommo::$_dbo;
 	SETUP TEMPLATE, PAGE
  *********************************/
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
+$view = new Pommo_Template();
 
 $input = (isset($_GET['input'])) ?
 	unserialize($_GET['input']) : array('Email' => NULL);
@@ -40,6 +40,7 @@ $input = (isset($_GET['input'])) ?
 $pending = (isset($input['adminID'])) ? // check to see if we're resetting admin password
 	Pommo_Pending::getBySubID(0) :
 	Pommo_Pending::getByEmail($input['Email']);
+
 if (!$pending) 	
 	Pommo::redirect('login.php');
 	
@@ -69,10 +70,9 @@ if (!empty ($_POST)) {
 		if (Pommo_Pending::cancel($pending))
 			$logger->addMsg(sprintf(Pommo::_T('Your %s has been cancelled.'),$msg));		
 	}
-	$smarty->assign('nodisplay',TRUE);
+	$view->assign('nodisplay',TRUE);
 } else {
 	$logger->addMsg(sprintf(Pommo::_T('Your %s is still pending. To complete this request, please review the confirmation email sent to %s.'), $msg, $input['Email']));
 }
-$smarty->display('user/pending.tpl');
-Pommo::kill();
-?>
+$view->display('user/pending');
+

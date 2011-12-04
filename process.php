@@ -1,39 +1,44 @@
 <?php
 /**
- * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  released originally under GPLV2
  * 
- * This file is part of poMMo (http://www.pommo.org)
+ *  This file is part of poMMo.
+ *
+ *  poMMo is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  poMMo is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
- * by the Free Software Foundation; either version 2, or any later version.
- * 
- * poMMo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty
- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
- * the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with program; see the file docs/LICENSE. If not, write to the
- * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *  This fork is from https://github.com/soonick/poMMo
+ *  Please see docs/contribs for Contributors
+ *
  */
 
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('bootstrap.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Validate.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Subscribers.php');
+require 'bootstrap.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Validate.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Subscribers.php';
 
 Pommo::init(array('authLevel' => 0,'noSession' => true));
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo = Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
+require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
+$view = new Pommo_Template();
 
 // attempt to detect if referer was set 
 //  TODO; enable HTTP_REFERER after stripping out ?input= tags. These will continually repeat
@@ -41,7 +46,7 @@ $smarty = new Pommo_Template();
 $referer = (!empty($_POST['bmReferer'])) ? $_POST['bmReferer'] : Pommo::$_http.Pommo::$_baseUrl.'subscribe.php';
 
 // append stored input
-$smarty->assign('referer',$referer.'?input='.urlencode(serialize($_POST)));
+$view->assign('referer',$referer.'?input='.urlencode(serialize($_POST)));
 
 /**********************************
 	VALIDATE INPUT
@@ -65,14 +70,14 @@ if (!Pommo_Helper::isEmail($subscriber['email']))
 // ** check if email already exists in DB ("duplicates are bad..")
 if (Pommo_Helper::isDupe($subscriber['email'])) {
 	$logger->addErr(Pommo::_T('Email address already exists. Duplicates are not allowed.'));
-	$smarty->assign('dupe', TRUE);
+	$view->assign('dupe', TRUE);
 }
 
 // check if errors exist with data, if so print results and die.
 if ($logger->isErr() || !Pommo_Validate::subscriberData($subscriber['data'], array(
 	'active' => FALSE))) {
-	$smarty->assign('back', TRUE);
-	$smarty->display('user/process.tpl');
+	$view->assign('back', TRUE);
+	$view->display('user/process');
 	Pommo::kill();
 }
 
@@ -101,7 +106,7 @@ if ($config['list_confirm'] == 'on') { // email confirmation required.
 	$id = Pommo_Subscribers::add($subscriber);
 	if (!$id) {
 		$logger->addErr('Error adding subscriber! Please contact the administrator.');
-		$smarty->assign('back', TRUE);
+		$view->assign('back', TRUE);
 	}
 	else {
 		
@@ -117,7 +122,7 @@ if ($config['list_confirm'] == 'on') { // email confirmation required.
 				Pommo::redirect($config['site_confirm']);
 		}
 		else {
-			$smarty->assign('back', TRUE);
+			$view->assign('back', TRUE);
 			// delete the subscriber
 			Pommo_Subscribers::delete($id);
 		}
@@ -126,7 +131,7 @@ if ($config['list_confirm'] == 'on') { // email confirmation required.
 else { // no email confirmation required
 	if (!Pommo_Subscribers::add($subscriber)) {
 		$logger->addErr('Error adding subscriber! Please contact the administrator.');
-		$smarty->assign('back', TRUE);
+		$view->assign('back', TRUE);
 	}
 	else {
 		
@@ -143,7 +148,5 @@ else { // no email confirmation required
 	}
 	
 }
-$smarty->display('user/process.tpl');
-Pommo::kill();
+$view->display('user/process');
 
-?>

@@ -40,7 +40,7 @@
 						{
 							echo '<strong class="required">';
 						}
-						echo $field['prompt'];
+						echo $field['name'];
 						if ('on' == $field['required'])
 						{
 							echo '</strong>';
