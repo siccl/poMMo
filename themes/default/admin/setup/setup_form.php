@@ -16,7 +16,7 @@ include $this->template_dir.'/inc/admin.header.php';
 	</a>
 	- <?php echo _('Preview the default subscription form. Its look and feel can
 			be adjusted through the theme template
-			([theme]/user/subscribe.tpl).'); ?>
+			([theme]/user/subscribe.php).'); ?>
 </div>
 
 <div>
