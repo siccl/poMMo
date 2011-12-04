@@ -106,7 +106,7 @@ include $this->template_dir.'/inc/admin.header.php';
 
 var pommo = {
 	status: null,
-	poll: function(get){get = get || '';  $.getJSON("ajax/status_poll.php?id={/literal}<?php echo $this->mailing['id']; ?>{literal}&"+get,pommo.process)},
+	poll: function(get){get = get || '';  $.getJSON("ajax/status_poll.php?id=<?php echo $this->mailing['id']; ?>&"+get,pommo.process)},
 	process: function(mailing) {
 		$('#status').html(mailing.statusText);
 		
