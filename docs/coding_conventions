@@ -39,9 +39,9 @@ Constants.
 Indenting and Line Length
 --------------------------------------------------------------------------------
 
-- Indent using tabs, not spaces.
-- Right margin should be set at column 80 and should not be exceeded by more than 4 characters.
-- If lines are split to fit the 80 characters limit then the new lines should be indented to two tab keys from the position the line started.
+- Indent using tabs, not spaces. Set tab length to 4 spaces.
+- Line length shouldn't exceed 85 characters.
+- If lines are split to fit the 85 characters limit then the new lines should be indented to two tab keys from the position the line started.
 
 
 Control Structures
@@ -101,8 +101,17 @@ Example doc block comment
 	 *	@return	boolean	True on success, false otherwise
 	 */
 
+
 PHP Code Tags
 --------------------------------------------------------------------------------
 
 Always use <?php ?> to delimit PHP code, not the <? ?> shorthand.
 
+
+PHP Language constructs
+--------------------------------------------------------------------------------
+
+Avoid using parenthesis when using language constructs. Some examples:
+	use include 'file.php'; instead of include ('file.php');
+	use require 'file.php'; instead of require ('file.php');
+	use return true; instead of return (true);
