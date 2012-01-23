@@ -281,7 +281,7 @@ msgstr "%1 Zaktualizowana twoich rekordów %2"
 #. aardvark-development/themes/default/user/login.tpl
 # File: pommo_theme_lang.php, line: 117
 msgid "Subscriber Login"
-msgstr "Logowanie subskrbenta"
+msgstr "Logowanie subskrybenta"
 #
 #. aardvark-development/themes/default/user/login.tpl
 # File: pommo_theme_lang.php, line: 120
