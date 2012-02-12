@@ -62,10 +62,10 @@ if (!Pommo_Install::parseSQL(false, $file))
 	SETUP TEMPLATE, PAGE
  *********************************/
 require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
-$smarty = new Pommo_Template();
+$view = new Pommo_Template();
 
 $message[] = 'Database Reset. Sample Data Loaded.';
-$smarty->assign('messages', $message);
-$smarty->display('support/support.lib');
+$view->assign('messages', $message);
+$view->display('support/support.lib');
 Pommo::kill();
 

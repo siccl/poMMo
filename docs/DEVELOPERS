@@ -58,7 +58,7 @@ pommo/classes/
 		Pommo_Mail_Ctl.php = mailing controller API
 		Pommo_Mailer.php = mailing class (extends PHPMailer)
 		Pommo.php = *** pommo class and basic API *** loaded by bootstrap.php
-		Pommo_Template.php = view controller (extends SMARTY)
+		Pommo_Template.php = view controller
 		Pommo_Throttler.php = mail throttle class
 		Pommo_Sql.php = SQL generator -- generates grouping SQL statements
 		Pommo_Helper.php = common API helpers. Loaded during bootstrap process.
@@ -77,7 +77,7 @@ pommo/classes/
 
 pommo/lib/
 		"3rd Party Directory"
-		Holds third-party contributions and utilizations -- e.g. Smarty, PHP Gettext, SafeSQL
+		Holds third-party contributions and utilizations -- e.g. PHP Gettext, SafeSQL
 
 
 pommo/sql/

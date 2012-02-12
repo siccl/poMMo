@@ -54,10 +54,10 @@ foreach ($dbo->table as $id => $table)
 	SETUP TEMPLATE, PAGE
  *********************************/
 require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
-$smarty = new Pommo_Template();
+$view = new Pommo_Template();
 
 $message[] = 'Database Reset.';
-$smarty->assign('messages', $message);
-$smarty->display('support/support');
+$view->assign('messages', $message);
+$view->display('support/support');
 Pommo::kill();
 

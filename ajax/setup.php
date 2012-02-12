@@ -72,7 +72,6 @@ $state = Pommo_Api::stateInit('mailing',
 		),
 		$_POST);
 
-// SmartyValidate Custom Validation Function
 function check_charset($value, $empty, & $params, & $formvars) {
 	$validCharsets = array (
 		'UTF-8',

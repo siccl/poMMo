@@ -35,11 +35,11 @@ $dbo = & Pommo::$_dbo;
 	SETUP TEMPLATE, PAGE
  *********************************/
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
+$view = new Pommo_Template();
 
 if (empty($_GET['code'])) {
 	$logger->addMsg(Pommo::_T('No code given.'));
-	$smarty->display('user/confirm');
+	$view->display('user/confirm');
 	Pommo::kill();
 }
 
@@ -48,7 +48,7 @@ $pending = Pommo_Pending::get($_GET['code']);
 
 if (!$pending) {
 	$logger->addMsg(Pommo::_T('Invalid code! Make sure you copied it correctly from the email.'));
-	$smarty->display('user/confirm');
+	$view->display('user/confirm');
 	Pommo::kill();
 }
 
@@ -98,5 +98,5 @@ if(Pommo_Pending::perform($pending)) {
 			break;
 	}
 }
-$smarty->display('user/confirm');
+$view->display('user/confirm');
 
