@@ -3481,8 +3481,8 @@ msgstr "Modulo di iscrizione predefinito"
 #
 # File: pommo_theme_lang.php, line: 321
 #: language/smarty.c:415
-msgid "Preview the default subscription form. Its look and feel can be adjusted through the theme template ([theme]/user/subscribe.tpl)."
-msgstr "Anteprima del modulo d'iscrizione predefinito. Il suo aspetto può essere modificato tramite i modelli di tema ([theme]/user/subscribe.tpl)."
+msgid "Preview the default subscription form. Its look and feel can be adjusted through the theme template ([theme]/user/subscribe.php)."
+msgstr "Anteprima del modulo d'iscrizione predefinito. Il suo aspetto può essere modificato tramite i modelli di tema ([theme]/user/subscribe.php)."
 
 #
 # File: pommo_theme_lang.php, line: 324

@@ -28,7 +28,7 @@ pommo/admin/
 		This directory contains all the pages available to the poMMo administrator. Since poMMo is built around a MVC framework, the "view" (or page content) for each page is found in the pommo/themes/ directory. The themes structure correlates exactly to that of pommo/user or pommo/admin, so that;
 
 		"pommo/admin/mailings/admin_mailings.php" will call;
-		"pommo/themes/default/admin/mailings/admin_mailings.tpl" for its view if the "default" theme is selected.
+		"pommo/themes/default/admin/mailings/admin_mailings.php" for its view if the "default" theme is selected.
 
 
 pommo/admin/*/ajax/

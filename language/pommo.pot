@@ -1998,7 +1998,7 @@ msgid "Default Subscription Form"
 msgstr ""
 
 #: language/smarty.c:415
-msgid "Preview the default subscription form. Its look and feel can be adjusted through the theme template ([theme]/user/subscribe.tpl)."
+msgid "Preview the default subscription form. Its look and feel can be adjusted through the theme template ([theme]/user/subscribe.php)."
 msgstr ""
 
 #: language/smarty.c:416
