@@ -33,7 +33,7 @@ Pommo::init(array('authLevel' => 0, 'noSession' => true));
 $logger = Pommo::$_logger;
 $dbo = Pommo::$_dbo;
 
-session_start(); // required by smartyValidate. TODO -> move to prepareForForm() ??
+session_start(); // required by smartyValidate. TODO -> verify if needed
 
 /**********************************
 	SETUP TEMPLATE, PAGE
@@ -41,8 +41,6 @@ session_start(); // required by smartyValidate. TODO -> move to prepareForForm()
 require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
 $view = new Pommo_Template();
 $view->assign('title', Pommo::$_config['site_name'] . ' - ' . Pommo::_T('subscriber logon'));
-
-$view->prepareForForm();
 
 if (empty($_POST)) {
 	// ___ USER HAS NOT SENT FORM ___

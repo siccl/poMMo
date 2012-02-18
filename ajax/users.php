@@ -26,18 +26,17 @@
 /**********************************
   INITIALIZATION METHODS
 *********************************/
-require ('../bootstrap.php');
+require '../bootstrap.php';
 Pommo::init();
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo = Pommo::$_dbo;
 
 
 /**********************************
   SETUP TEMPLATE, PAGE
 *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
+require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
 $view = new Pommo_Template();
-$view->prepareForForm();
 
 if (empty($_POST))
 {
@@ -52,13 +51,13 @@ if (empty($_POST))
 else
 {
     // ___ USER HAS SENT FORM ___
-    require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+    require_once Pommo::$_baseDir.'classes/Pommo_Json.php';
     $json = new Pommo_Json();
 
     if (isset($_POST['admin_email']))
     {
         //Do inline validation
-        require_once(Pommo::$_baseDir.'classes/Pommo_Validate.php');
+        require_once Pommo::$_baseDir.'classes/Pommo_Validate.php';
         $errors = array();
         $validator = new Pommo_Validate();
         $validator->setPost($_POST);
@@ -82,4 +81,4 @@ else
 
 $view->assign($_POST);
 $view->display('admin/setup/config/users');
-Pommo::kill();
+

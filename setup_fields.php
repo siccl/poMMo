@@ -38,7 +38,6 @@ $dbo = Pommo::$_dbo;
  *********************************/
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
 $view = new Pommo_Template();
-$view->prepareForForm();
 
 // add field if requested, redirect to its edit page on success
 if (!empty ($_POST['field_name']))

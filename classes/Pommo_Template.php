@@ -141,15 +141,6 @@ class Pommo_Template
 		include $resource_name;
 	}
 
-	function prepareForForm() {
-
-		$this->plugins_dir[] = Pommo::$_baseDir . 'lib/smarty-plugins/validate';
-		require_once(Pommo::$_baseDir.'lib/class.smartyvalidate.php');
-		require_once(Pommo::$_baseDir.
-				'lib/smarty-plugins/validate/function.validate.php');
-		$this->assign('vErr',array());
-	}
-
 	// Loads field data into template, as well as _POST (or a saved subscribeForm). 
 	function prepareForSubscribeForm()
 	{

@@ -40,7 +40,6 @@ $dbo->dieOnQuery(FALSE);
  ************************************/
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
 $view = new Pommo_Template();
-$view->prepareForForm();
 
 // Check to make sure poMMo is not already installed.
 if (Pommo_Install::verify())

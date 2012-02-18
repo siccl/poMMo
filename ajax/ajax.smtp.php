@@ -39,7 +39,6 @@ require_once Pommo::$_baseDir . 'lib/phpmailer/class.smtp.php';
  *********************************/
 require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
 $view = new Pommo_Template();
-$view->prepareForForm();
 $view->assign('returnStr', _('Configure'));
 
 // Read user requested changes	

@@ -40,7 +40,6 @@ $dbo 	= Pommo::$_dbo;
  *********************************/
 require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
 $view = new Pommo_Template();
-$view->prepareForForm();
 
 if (Pommo_Mailing::isCurrent())
 {

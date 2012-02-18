@@ -38,7 +38,6 @@ $dbo = Pommo::$_dbo;
  *********************************/
 require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
 $view = new Pommo_Template();
-$view->prepareForForm();
 
 // validate field ID
 $field = current(Pommo_Fields::get(array('id' => $_REQUEST['field_id'])));
