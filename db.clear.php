@@ -19,41 +19,45 @@
  */
  
 // Clears the entire database, resets auto increment values
- 
+
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-define('_poMMo_support', TRUE);
-require ('bootstrap.php');
+define ('_poMMo_support', TRUE);
+require 'bootstrap.php';
 Pommo::init();
 	
-$dbo =& Pommo::$_dbo;
+$dbo = Pommo::$_dbo;
 
-foreach($dbo->table as $id => $table)
+foreach ($dbo->table as $id => $table)
 {
 	if ($id == 'config' || $id == 'updates' || $id == 'group_criteria'
 			|| $id == 'templates' || $id == 'subscriber_update')
 	{
 		continue;
 	}
-		
+
 	$query = 'DELETE FROM '.$table;
+	if (!$dbo->query($query))
+	{
+		die('ERROR deleting '.$id);
+	}
+
+	$query = 'ALTER TABLE '.$table.' AUTO_INCREMENT = 1';
 	if(!$dbo->query($query))
-		die('ERROR deleting '.$id); 
-		
-	$query = "ALTER TABLE ".$table." AUTO_INCREMENT = 1";
-	if(!$dbo->query($query))
-		die('ERROR setting AUTO_INCREMENT on '.$id); 
+	{
+		die('ERROR setting AUTO_INCREMENT on '.$id);
+	}
 }
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
+require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
+$view = new Pommo_Template();
 
 $message[] = 'Database Reset.';
-$smarty->assign('messages', $message);
-$smarty->display('support/support.lib.tpl');
+$view->assign('messages', $message);
+$view->display('support/support');
 Pommo::kill();
 

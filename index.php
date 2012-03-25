@@ -1,21 +1,26 @@
 <?php
 /**
- * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  released originally under GPLV2
  * 
- * This file is part of poMMo (http://www.pommo.org)
+ *  This file is part of poMMo.
+ *
+ *  poMMo is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  poMMo is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
- * by the Free Software Foundation; either version 2, or any later version.
- * 
- * poMMo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty
- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
- * the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with program; see the file docs/LICENSE. If not, write to the
- * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *  This fork is from https://github.com/soonick/poMMo
+ *  Please see docs/contribs for Contributors
+ *
  */
 
 /**********************************
@@ -30,7 +35,31 @@ $logger = Pommo::$_logger;
 	SETUP TEMPLATE, PAGE
  *********************************/
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
+$view = new Pommo_Template();
+
+/*********************************  
+  CHECK WE HAVE REQUIRED MODULES
+ *********************************/
+
+require (Pommo::$_baseDir.'lib/Module_Check.php');
+$modules = new moduleCheck();
+
+//Php-mysql
+if(!$modules->isLoaded('mysql')) 
+{ 
+    $fatal_error[] = "Php mysql module is not installed.";
+    $view->assign('errors', $fatal_error);
+    $view->display('message');
+    exit();
+}
+
+//Check write permission to the cache directory
+if (!is_writable (dirname(__FILE__).'/cache')) {
+    $fatal_error[] = "The cache directory needs to be writable";
+    $view->assign('errors', $fatal_error);
+    $view->display('message');
+    exit(); 
+}
 
 //	log the user out if requested
 if (isset($_GET['logout']))
@@ -82,12 +111,11 @@ elseif (!empty ($_POST['resetPassword']))
 		// generate captcha
 		$captcha = substr(md5(rand()), 0, 4);
 
-		$smarty->assign('captcha', $captcha);
+		$view->assign('captcha', $captcha);
 	}
 	elseif ($_POST['captcha'] == $_POST['realdeal'])
 	{
 		// user inputted captcha matched. Reset password
-		
 		require_once(Pommo::$_baseDir.'classes/Pommo_Pending.php');
 		require_once(Pommo::$_baseDir.'classes/Pommo_Helper_Messages.php');
 
@@ -97,8 +125,8 @@ elseif (!empty ($_POST['resetPassword']))
 		{
 			$input = urlencode(serialize(array('adminID' => TRUE,
 					'Email' => Pommo::$_config['admin_email'])));
-			Pommo::redirect(Pommo::$_http . Pommo::$_baseUrl .
-					'pending.php?input='.$input);
+			Pommo::redirect(Pommo::$_http . Pommo::$_baseUrl
+					.'pending.php?input='.$input);
 		}
 
 		// create a password change request, send confirmation mail
@@ -107,9 +135,8 @@ elseif (!empty ($_POST['resetPassword']))
 		Pommo_Helper_Messages::sendMessage(
 				array('to' => Pommo::$_config['admin_email'],
 				'code' => $code, 'type' => 'password'));
-		
-		$smarty->assign('captcha',FALSE);
-		
+
+		$view->assign('captcha',FALSE);
 	}
 	else
 	{
@@ -123,10 +150,7 @@ elseif (!Pommo::$_hasConfigFile && $_POST['configure'])
 	//	I am not using /inc/classes/db.php because it kills the proccess when
 	//	connection is not possible
 	//	TODO: db.php shouldnt kill the process
-	$link = @mysql_connect($_POST['dbhost'],
-			$_POST['dbuser'],
-			$_POST['dbpass']);
-			
+	$link = @mysql_connect($_POST['dbhost'], $_POST['dbuser'], $_POST['dbpass']);
 	if (!$link)
 	{
 		//	Could not connect
@@ -146,7 +170,7 @@ elseif (!Pommo::$_hasConfigFile && $_POST['configure'])
 			}
 		}
 	}
-	
+
 	//	If there were no errors then try to create the file
 	if (!$configErrors)
 	{
@@ -187,18 +211,18 @@ elseif (!Pommo::$_hasConfigFile && $_POST['configure'])
 if (Pommo::$_hasConfigFile)
 {
 	//	referer (used to return user to requested page upon login success)
-	$smarty->assign('referer',
+	$view->assign('referer',
 			(isset($_REQUEST['referer']) ?
 			$_REQUEST['referer'] : Pommo::$_baseUrl.'admin.php'));
 
-	$smarty->display('index.tpl');
+	$view->display('index');
 }
 else
 {
-	$smarty->assign('messages', $configErrors);
-	$smarty->assign('dbhost', $_POST['dbhost']);
-	$smarty->assign('dbname', $_POST['dbname']);
-	$smarty->assign('dbuser', $_POST['dbuser']);
-	$smarty->display('configure.tpl');
+	$view->assign('messages', $configErrors);
+	$view->assign('dbhost', $_POST['dbhost']);
+	$view->assign('dbname', $_POST['dbname']);
+	$view->assign('dbuser', $_POST['dbuser']);
+	$view->display('configure');
 }
 

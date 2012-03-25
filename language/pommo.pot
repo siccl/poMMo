@@ -78,9 +78,7 @@ msgstr ""
 #, php-format
 msgid "%sDemonstration Mode%s is on -- no Emails will actually be sent. This is good for testing settings."
 msgstr ""
-
-#: ajax/ajax.smtp.php:39 language/smarty.c:158 language/smarty.c:385
-#: language/smarty.c:592 language/smarty.c:611
+#: ajax/ajax.smtp.php:39
 msgid "Configure"
 msgstr ""
 
@@ -106,8 +104,7 @@ msgstr ""
 #, php-format
 msgid "%s - Any value will be accepted for text fields. They are useful for collecting names, addresses, etc."
 msgstr ""
-
-#: ajax/field_edit.php:99 language/smarty.c:397
+#: ajax/field_edit.php:99
 msgid "Text"
 msgstr ""
 
@@ -115,8 +112,7 @@ msgstr ""
 #, php-format
 msgid "%s - Checkboxes can be toggled ON or OFF. They are useful for opt-ins and agreements."
 msgstr ""
-
-#: ajax/field_edit.php:100 language/smarty.c:399
+#: ajax/field_edit.php:100
 msgid "Checkbox"
 msgstr ""
 
@@ -124,8 +120,7 @@ msgstr ""
 #, php-format
 msgid "%s - Only Numeric values will be accepted for number fields."
 msgstr ""
-
-#: ajax/field_edit.php:101 language/smarty.c:398
+#: ajax/field_edit.php:101
 msgid "Number"
 msgstr ""
 
@@ -133,8 +128,7 @@ msgstr ""
 #, php-format
 msgid "%s - Only calendar values will be accepted for this field. A date selector (calendar popup) will appear next to the field to aid the subscriber in selecting a date."
 msgstr ""
-
-#: ajax/field_edit.php:102 language/smarty.c:401
+#: ajax/field_edit.php:102
 msgid "Date"
 msgstr ""
 
@@ -142,8 +136,7 @@ msgstr ""
 #, php-format
 msgid "%s - Subscribers will be able to select a value from the options you provide below. Multiple choice fields have reliable values for organizing, and are useful for collecting Country, Interests, etc."
 msgstr ""
-
-#: ajax/field_edit.php:103 language/smarty.c:400
+#: ajax/field_edit.php:103
 msgid "Multiple Choice"
 msgstr ""
 
@@ -151,8 +144,7 @@ msgstr ""
 #, php-format
 msgid "%s -. If a subscriber enters a value for a comment field, it will be mailed to the admin notification email."
 msgstr ""
-
-#: ajax/field_edit.php:104 language/smarty.c:402
+#: ajax/field_edit.php:104
 msgid "Comment"
 msgstr ""
 
@@ -164,9 +156,7 @@ msgstr ""
 #, php-format
 msgid "Deleting option %1$s will affect %2$s subscribers who have selected this choice. They will be flagged as needing to update their records."
 msgstr ""
-
-#: ajax/fields.rpc.php:89 language/smarty.c:529 language/smarty.c:599
-#: language/smarty.c:616
+#: ajax/fields.rpc.php:89
 msgid "Are you sure?"
 msgstr ""
 
@@ -191,8 +181,7 @@ msgstr ""
 msgid "Complete"
 msgstr ""
 
-#: ajax/history.list.php:122 ajax/status_poll.php:65 language/smarty.c:523
-#: language/smarty.c:532 language/smarty.c:618 language/smarty.c:621
+#: ajax/history.list.php:122 ajax/status_poll.php:65
 msgid "Processing"
 msgstr ""
 
@@ -208,8 +197,7 @@ msgstr ""
 #, php-format
 msgid "Displaying notices for mailing %s"
 msgstr ""
-
-#: ajax/history.rpc.php:97 language/smarty.c:13 language/smarty.c:617
+#: ajax/history.rpc.php:97
 msgid "Please Wait"
 msgstr ""
 
@@ -292,24 +280,19 @@ msgstr ""
 msgid "[poMMo Notice]"
 msgstr ""
 
-#: ajax/messages.php:224 language/smarty.c:317 language/smarty.c:669
-#: language/smarty.c:670
+#: ajax/messages.php:224
 msgid "Subscription"
 msgstr ""
 
-#: ajax/messages.php:225 language/smarty.c:327
+#: ajax/messages.php:225
 msgid "Unsubscription"
 msgstr ""
 
-#: ajax/messages.php:226 language/smarty.c:572
+#: ajax/messages.php:226
 msgid "Pending"
 msgstr ""
 
-#: ajax/messages.php:227 language/smarty.c:179 language/smarty.c:228
-#: language/smarty.c:238 language/smarty.c:260 language/smarty.c:291
-#: language/smarty.c:314 language/smarty.c:325 language/smarty.c:335
-#: language/smarty.c:342 language/smarty.c:349 language/smarty.c:356
-#: language/smarty.c:366 language/smarty.c:432
+#: ajax/messages.php:227
 msgid "Update"
 msgstr ""
 
@@ -341,28 +324,20 @@ msgstr ""
 #: ajax/status_poll.php:67
 msgid "Frozen"
 msgstr ""
-
-#: ajax/status_poll.php:68 language/smarty.c:148
+#: ajax/status_poll.php:68
 msgid "Finished"
 msgstr ""
-
-#: ajax/subscriber_export.php:53 language/smarty.c:40 language/smarty.c:318
-#: language/smarty.c:328 language/smarty.c:338 language/smarty.c:345
-#: language/smarty.c:352 language/smarty.c:519
+#: ajax/subscriber_export.php:53
 msgid "Email"
 msgstr ""
-
-#: ajax/subscriber_export.php:55 language/smarty.c:467 language/smarty.c:520
+#: ajax/subscriber_export.php:55
 msgid "Date Registered"
 msgstr ""
-
-#: ajax/subscriber_export.php:57 language/smarty.c:41 language/smarty.c:469
-#: language/smarty.c:521 language/smarty.c:580 language/smarty.c:590
+#: ajax/subscriber_export.php:57
 msgid "IP Address"
 msgstr ""
 
 #: ajax/subscriber_export.php:90 ajax/subscriber_export.php:110
-#: language/smarty.c:4 language/smarty.c:551 language/smarty.c:606
 msgid "Subscribers"
 msgstr ""
 
@@ -425,7 +400,7 @@ msgstr ""
 msgid "Connected to database server but could not select database (%s). Does it exist?"
 msgstr ""
 
-#: classes/Pommo_Groups.php:55 language/smarty.c:574
+#: classes/Pommo_Groups.php:55
 msgid "All Subscribers"
 msgstr ""
 
@@ -687,17 +662,13 @@ msgstr ""
 #: form_generate.php:46
 msgid "VIEW THE SOURCE TO COPY, PASTE, EDIT, AND SAVE THE FORM TO AN APPROPRIATE LOCATION ON YOUR WEBSITE"
 msgstr ""
-
-#: form_generate.php:62 language/smarty.c:655 language/smarty.c:659
-#: language/smarty.c:664 language/smarty.c:692
+#: form_generate.php:62
 msgid "Your Email:"
 msgstr ""
-
-#: form_generate.php:126 language/smarty.c:656 language/smarty.c:661
+#: form_generate.php:126
 msgid "Subscribe"
 msgstr ""
-
-#: groups_edit.php:40 language/smarty.c:533
+#: groups_edit.php:40
 msgid "Groups Page"
 msgstr ""
 
@@ -706,8 +677,6 @@ msgid "INCLUDE"
 msgstr ""
 
 #: import_csv.php:38 import_csv2.php:90 import_txt.php:64
-#: language/smarty.c:423 language/smarty.c:522 language/smarty.c:526
-#: language/smarty.c:547 language/smarty.c:559 language/smarty.c:608
 msgid "Import"
 msgstr ""
 
@@ -725,7 +694,7 @@ msgstr ""
 msgid "Complete!"
 msgstr ""
 
-#: import_csv2.php:90 import_txt.php:64 language/smarty.c:127
+#: import_csv2.php:90 import_txt.php:64
 msgid "Return to"
 msgstr ""
 
@@ -773,8 +742,7 @@ msgstr ""
 #: mailings.php:42
 msgid "Mailing History"
 msgstr ""
-
-#: mailings_history.php:36 language/smarty.c:15 language/smarty.c:128
+#: mailings_history.php:36
 msgid "Mailings Page"
 msgstr ""
 
@@ -784,8 +752,7 @@ msgid ""
 "%sDemonstration Mode%s is on -- no Emails\n"
 "\t\t\twill actually be sent. This is good for testing settings."
 msgstr ""
-
-#: mailings_start.php:63 language/smarty.c:37
+#: mailings_start.php:63
 msgid "Personalization"
 msgstr ""
 
@@ -830,8 +797,7 @@ msgstr ""
 #: setup_configure.php:36
 msgid "SMTP Settings"
 msgstr ""
-
-#: setup_configure.php:37 language/smarty.c:256
+#: setup_configure.php:37
 msgid "Test Exchanger"
 msgstr ""
 
@@ -862,8 +828,7 @@ msgstr ""
 #, php-format
 msgid "%s deleted."
 msgstr ""
-
-#: subscribers_manage.php:37 language/smarty.c:420
+#: subscribers_manage.php:37
 msgid "Subscribers Page"
 msgstr ""
 
@@ -898,1855 +863,1370 @@ msgstr ""
 msgid "Upgrade Failed!"
 msgstr ""
 
-#: language/smarty.c:1
 msgid "Admin Menu"
 msgstr ""
 
-#: language/smarty.c:2 language/smarty.c:389 language/smarty.c:603
 msgid "Mailings"
 msgstr ""
 
-#: language/smarty.c:3
 msgid "Send mailings to the entire list or to a subset of subscribers. Mailing status and history can also be viewed from here."
 msgstr ""
 
-#: language/smarty.c:5
 msgid "Here you can list, add, delete, import, export, and update your subscribers. You can also create groups (subsets) of your subsribers from here."
 msgstr ""
 
-#: language/smarty.c:6 language/smarty.c:153 language/smarty.c:610
 msgid "Setup"
 msgstr ""
 
-#: language/smarty.c:7
 msgid "This area allows you to configure poMMo. Set mailing list parameters, choose the information you'd like to collect from subscribers, and generate subscription forms from here."
 msgstr ""
 
-#: language/smarty.c:8
 msgid "Confirm your action."
 msgstr ""
 
-#: language/smarty.c:9 language/smarty.c:531
 msgid "No"
 msgstr ""
 
-#: language/smarty.c:10
 msgid "please return"
 msgstr ""
 
-#: language/smarty.c:11 language/smarty.c:530
 msgid "Yes"
 msgstr ""
 
-#: language/smarty.c:12
 msgid "I confirm"
 msgstr ""
 
-#: language/smarty.c:14
 msgid "Confirm"
 msgstr ""
 
-#: language/smarty.c:16 language/smarty.c:604
 msgid "Send"
 msgstr ""
 
-#: language/smarty.c:17
 msgid "Create and send a mailing."
 msgstr ""
 
-#: language/smarty.c:18 language/smarty.c:605
 msgid "History"
 msgstr ""
 
-#: language/smarty.c:19
 msgid "View mailings that have already been sent."
 msgstr ""
 
-#: language/smarty.c:20 language/smarty.c:106
 msgid "Templates allow you to re-use your crafted message bodies. The HTML and text version is remembered."
 msgstr ""
 
-#: language/smarty.c:21 language/smarty.c:79 language/smarty.c:411
-#: language/smarty.c:446 language/smarty.c:457 language/smarty.c:658
-#: language/smarty.c:663
 msgid "Fields marked like %1 this %2 are required."
 msgstr ""
 
-#: language/smarty.c:22
 msgid "Name:"
 msgstr ""
 
-#: language/smarty.c:23 language/smarty.c:81 language/smarty.c:86
-#: language/smarty.c:88 language/smarty.c:90
 msgid "(maximum of 60 characters)"
 msgstr ""
 
-#: language/smarty.c:24
 msgid "Description:"
 msgstr ""
 
-#: language/smarty.c:25
 msgid "(Brief Summary - 255 characters)"
 msgstr ""
 
-#: language/smarty.c:26
 msgid "Save"
 msgstr ""
 
-#: language/smarty.c:27 language/smarty.c:49 language/smarty.c:434
-#: language/smarty.c:439
 msgid "Cancel"
 msgstr ""
 
-#: language/smarty.c:28
 msgid "Mailing sent to %1"
 msgstr ""
 
-#: language/smarty.c:29
 msgid "Verify the appeareance of a mailing by sending a message to yourself."
 msgstr ""
 
-#: language/smarty.c:30 language/smarty.c:217
 msgid "Recipient"
 msgstr ""
 
-#: language/smarty.c:31 language/smarty.c:218 language/smarty.c:442
-#: language/smarty.c:454
 msgid "Email:"
 msgstr ""
 
-#: language/smarty.c:32 language/smarty.c:73 language/smarty.c:220
 msgid "Send Mailing"
 msgstr ""
 
-#: language/smarty.c:33
 msgid "If your mailing includes personalizations, you can %1optionally%2 supply test values"
 msgstr ""
 
-#: language/smarty.c:34
 msgid "Personalizations"
 msgstr ""
 
-#: language/smarty.c:35
 msgid "Mailings may be personalized per subscriber. You can inject %1subscriber field%2 values, clickable links, and tracking information."
 msgstr ""
 
-#: language/smarty.c:36
 msgid "Personalizations allow you to write a message like \"Dear [[firstName|Loyal Subscriber]], Happy New Year! .... follow this link to unsubscribe or update your records; [[!unsubscribe]]\"."
 msgstr ""
 
-#: language/smarty.c:38
 msgid "Link (URL)"
 msgstr ""
 
-#: language/smarty.c:39
 msgid "Tracking (ID)"
 msgstr ""
 
-#: language/smarty.c:42 language/smarty.c:588
 msgid "Registered"
 msgstr ""
 
-#: language/smarty.c:43
 msgid "Default (optional; used if no value exists)"
 msgstr ""
 
-#: language/smarty.c:44 language/smarty.c:64
 msgid "Unsubscribe or Update Records"
 msgstr ""
 
-#: language/smarty.c:45
 msgid "View on Web (public mailings must be enabled)"
 msgstr ""
 
-#: language/smarty.c:46
 msgid "Subscriber ID"
 msgstr ""
 
-#: language/smarty.c:47
 msgid "Mailing ID"
 msgstr ""
 
-#: language/smarty.c:48
 msgid "Insert"
 msgstr ""
 
-#: language/smarty.c:50 language/smarty.c:75
 msgid "HTML Message"
 msgstr ""
 
-#: language/smarty.c:51 language/smarty.c:59
 msgid "Copy text from HTML Message"
 msgstr ""
 
-#: language/smarty.c:52 language/smarty.c:60 language/smarty.c:103
-#: language/smarty.c:597
 msgid "Continue"
 msgstr ""
 
-#: language/smarty.c:53
 msgid "Leave blank to send text only"
 msgstr ""
 
-#: language/smarty.c:54 language/smarty.c:62
 msgid "Enable WYSIWYG"
 msgstr ""
 
-#: language/smarty.c:55
 msgid "Add Personalization"
 msgstr ""
 
-#: language/smarty.c:56
 msgid "Save as Template"
 msgstr ""
 
-#: language/smarty.c:57 language/smarty.c:78
 msgid "Text Version"
 msgstr ""
 
-#: language/smarty.c:58
 msgid "Leave blank to send HTML only"
 msgstr ""
 
-#: language/smarty.c:61
 msgid "Disable WYSIWYG"
 msgstr ""
 
-#: language/smarty.c:63
 msgid "View this Mailing on the Web"
 msgstr ""
 
-#: language/smarty.c:65
 msgid "Preview Mailing"
 msgstr ""
 
-#: language/smarty.c:66 language/smarty.c:80 language/smarty.c:320
-#: language/smarty.c:330 language/smarty.c:339 language/smarty.c:346
-#: language/smarty.c:353
 msgid "Subject:"
 msgstr ""
 
-#: language/smarty.c:67
 msgid "To:"
 msgstr ""
 
-#: language/smarty.c:68
 msgid "recipients"
 msgstr ""
 
-#: language/smarty.c:69
 msgid "From:"
 msgstr ""
 
-#: language/smarty.c:70
 msgid "Bounces:"
 msgstr ""
 
-#: language/smarty.c:71 language/smarty.c:91 language/smarty.c:277
 msgid "Character Set:"
 msgstr ""
 
-#: language/smarty.c:72
 msgid "Send Test"
 msgstr ""
 
-#: language/smarty.c:74
 msgid "Message"
 msgstr ""
 
-#: language/smarty.c:76
 msgid "Preview Message"
 msgstr ""
 
-#: language/smarty.c:77 language/smarty.c:651 language/smarty.c:653
-#: language/smarty.c:678 language/smarty.c:680 language/smarty.c:682
 msgid "Click Here"
 msgstr ""
 
-#: language/smarty.c:82
 msgid "Send Mail To:"
 msgstr ""
 
-#: language/smarty.c:83
 msgid "All subscribers"
 msgstr ""
 
-#: language/smarty.c:84
 msgid "(Select who should receive the mailing. Control click ( or command click on the Mac ) to select multiple groups. Note: If a subscriber is in more than one group they will only receive one email and NOT one for each group that they're in.)"
 msgstr ""
 
-#: language/smarty.c:85 language/smarty.c:261
 msgid "From Name:"
 msgstr ""
 
-#: language/smarty.c:87 language/smarty.c:263
 msgid "From Email:"
 msgstr ""
 
-#: language/smarty.c:89
 msgid "Return:"
 msgstr ""
 
-#: language/smarty.c:92 language/smarty.c:278
 msgid "UTF-8 (recommended)"
 msgstr ""
 
-#: language/smarty.c:93 language/smarty.c:279
 msgid "Western (ISO-8859-1)"
 msgstr ""
 
-#: language/smarty.c:94 language/smarty.c:280
 msgid "Western (ISO-8859-15)"
 msgstr ""
 
-#: language/smarty.c:95 language/smarty.c:281
 msgid "Central/Eastern European (ISO-8859-2)"
 msgstr ""
 
-#: language/smarty.c:96 language/smarty.c:282
 msgid "Greek (ISO-8859-7)"
 msgstr ""
 
-#: language/smarty.c:97 language/smarty.c:283
 msgid "Japanese (ISO-2022-JP)"
 msgstr ""
 
-#: language/smarty.c:98 language/smarty.c:284
 msgid "Japanese (EUC-JP)"
 msgstr ""
 
-#: language/smarty.c:99 language/smarty.c:285
 msgid "cyrillic (Windows-1251)"
 msgstr ""
 
-#: language/smarty.c:100 language/smarty.c:286
 msgid "cyrillic (KOI8-R)"
 msgstr ""
 
-#: language/smarty.c:101 language/smarty.c:287
 msgid "Simplified Chinese (GB2312)"
 msgstr ""
 
-#: language/smarty.c:102
 msgid "(Select Character Set of Mailings)"
 msgstr ""
 
-#: language/smarty.c:104 language/smarty.c:105 language/smarty.c:180
-#: language/smarty.c:181 language/smarty.c:186 language/smarty.c:187
-#: language/smarty.c:191 language/smarty.c:192
 msgid "loading..."
 msgstr ""
 
-#: language/smarty.c:107
 msgid "You may %1load%2 or %1delete%2 templates from here."
 msgstr ""
 
-#: language/smarty.c:108
 msgid "Template"
 msgstr ""
 
-#: language/smarty.c:109
 msgid "choose template"
 msgstr ""
 
-#: language/smarty.c:110
 msgid "Description"
 msgstr ""
 
-#: language/smarty.c:111 language/smarty.c:115
 msgid "No template selected"
 msgstr ""
 
-#: language/smarty.c:112
 msgid "Skip"
 msgstr ""
 
-#: language/smarty.c:113
 msgid "Load"
 msgstr ""
 
-#: language/smarty.c:114 language/smarty.c:190 language/smarty.c:407
-#: language/smarty.c:484 language/smarty.c:492 language/smarty.c:500
-#: language/smarty.c:507 language/smarty.c:510 language/smarty.c:540
-#: language/smarty.c:584
 msgid "Delete"
 msgstr ""
 
-#: language/smarty.c:116
 msgid "Mailings take place in the background so feel free to close this page, visit other sites, or even turn off your computer. You can always return to this status page by visiting the Mailings section.  %1Throttle settings%2 can also be adjusted -- although you must pause and revive the mailing before changes take effect."
 msgstr ""
 
-#: language/smarty.c:117
 msgid "Sending message to %1 subscribers."
 msgstr ""
 
-#: language/smarty.c:118
 msgid "Mailing Status"
 msgstr ""
 
-#: language/smarty.c:119
 msgid "Initializing..."
 msgstr ""
 
-#: language/smarty.c:120
 msgid "Pause Mailing"
 msgstr ""
 
-#: language/smarty.c:121 language/smarty.c:122 language/smarty.c:124
 msgid "Resume Mailing"
 msgstr ""
 
-#: language/smarty.c:123 language/smarty.c:125
 msgid "Cancel Mailing"
 msgstr ""
 
-#: language/smarty.c:126
 msgid "Mailing Finished"
 msgstr ""
 
-#: language/smarty.c:129
 msgid "Command Recieved. Please wait..."
 msgstr ""
 
-#: language/smarty.c:130
 msgid "%1 mails sent"
 msgstr ""
 
-#: language/smarty.c:131
 msgid "Last 50 notices"
 msgstr ""
 
-#: language/smarty.c:132 language/smarty.c:134 language/smarty.c:136
-#: language/smarty.c:568 language/smarty.c:569
 msgid "View"
 msgstr ""
 
-#: language/smarty.c:133
 msgid "Sent Emails"
 msgstr ""
 
-#: language/smarty.c:135
 msgid "Unsent Emails"
 msgstr ""
 
-#: language/smarty.c:137
 msgid "Failed Emails"
 msgstr ""
 
-#: language/smarty.c:138 language/smarty.c:471 language/smarty.c:513
-#: language/smarty.c:688 language/smarty.c:700 language/smarty.c:705
 msgid "Return to %1"
 msgstr ""
 
-#: language/smarty.c:139 language/smarty.c:694
 msgid "Mailings History"
 msgstr ""
 
-#: language/smarty.c:140 language/smarty.c:695
 msgid "View Mailing"
 msgstr ""
 
-#: language/smarty.c:141
 msgid "View Last Notices"
 msgstr ""
 
-#: language/smarty.c:142
 msgid "Reload Checked Mailing"
 msgstr ""
 
-#: language/smarty.c:143
 msgid "Delete Checked Mailings"
 msgstr ""
 
-#: language/smarty.c:144 language/smarty.c:696
 msgid "Subject"
 msgstr ""
 
-#: language/smarty.c:145
 msgid "Group (count)"
 msgstr ""
 
-#: language/smarty.c:146 language/smarty.c:697
 msgid "Sent"
 msgstr ""
 
-#: language/smarty.c:147
 msgid "Started"
 msgstr ""
 
-#: language/smarty.c:149
 msgid "Status"
 msgstr ""
 
-#: language/smarty.c:150 language/smarty.c:591 language/smarty.c:698
 msgid "No records returned."
 msgstr ""
 
-#: language/smarty.c:151 language/smarty.c:566 language/smarty.c:567
 msgid "Return to Subscribers Page"
 msgstr ""
 
-#: language/smarty.c:152
 msgid "Return to Mailings Page"
 msgstr ""
 
-#: language/smarty.c:154
 msgid "Templates"
 msgstr ""
 
-#: language/smarty.c:155
 msgid "Compose"
 msgstr ""
 
-#: language/smarty.c:156 language/smarty.c:373 language/smarty.c:377
-#: language/smarty.c:380 language/smarty.c:382
 msgid "Preview"
 msgstr ""
 
-#: language/smarty.c:157
 msgid "Setup Page"
 msgstr ""
 
-#: language/smarty.c:159
 msgid "Set your mailing list name, its default behavior, and the administrator's information."
 msgstr ""
 
-#: language/smarty.c:160
 msgid "Subscriber Fields"
 msgstr ""
 
-#: language/smarty.c:161
 msgid "Choose the information you'd like to collect from your subscribers."
 msgstr ""
 
-#: language/smarty.c:162 language/smarty.c:381
 msgid "Subscription Form"
 msgstr ""
 
-#: language/smarty.c:163
 msgid "Preview and Generate the subscription form for your website."
 msgstr ""
 
-#: language/smarty.c:164
 msgid "Short Name:"
 msgstr ""
 
-#: language/smarty.c:165
 msgid "Identifying name. NOT displayed on Subscription Form or seen by users."
 msgstr ""
 
-#: language/smarty.c:166
 msgid "Form Name:"
 msgstr ""
 
-#: language/smarty.c:167
 msgid "Prompt for field on the Subscription Form. e.g. %1Type your city%2"
 msgstr ""
 
-#: language/smarty.c:168
 msgid "Required:"
 msgstr ""
 
-#: language/smarty.c:169
 msgid "Toggle to require field on Subscription Form (user cannot leave blank if %1yes%2)"
 msgstr ""
 
-#: language/smarty.c:170
 msgid "Active:"
 msgstr ""
 
-#: language/smarty.c:171
 msgid "Toggle display of field for Subscription Form"
 msgstr ""
 
-#: language/smarty.c:172 language/smarty.c:174 language/smarty.c:176
 msgid "Default:"
 msgstr ""
 
-#: language/smarty.c:173 language/smarty.c:175 language/smarty.c:178
 msgid "If provided, this value will appear pre-filled on the subscription form"
 msgstr ""
 
-#: language/smarty.c:177
 msgid "Select default choice"
 msgstr ""
 
-#: language/smarty.c:182
 msgid "Multiple Choices"
 msgstr ""
 
-#: language/smarty.c:183
 msgid "Add Option(s)"
 msgstr ""
 
-#: language/smarty.c:184
 msgid "type option(s)"
 msgstr ""
 
-#: language/smarty.c:185 language/smarty.c:403 language/smarty.c:433
-#: language/smarty.c:438 language/smarty.c:538
 msgid "Add"
 msgstr ""
 
-#: language/smarty.c:188
 msgid "Enter a multiple choice option. You can add more than one choice at a time by separating each with a comma."
 msgstr ""
 
-#: language/smarty.c:189
 msgid "Delete Option(s)"
 msgstr ""
 
-#: language/smarty.c:193
 msgid "SMTP Throttling"
 msgstr ""
 
-#: language/smarty.c:194
 msgid "Throttle Sharing"
 msgstr ""
 
-#: language/smarty.c:195 language/smarty.c:252 language/smarty.c:269
-#: language/smarty.c:273 language/smarty.c:300 language/smarty.c:304
-#: language/smarty.c:308 language/smarty.c:312
 msgid "off"
 msgstr ""
 
-#: language/smarty.c:196 language/smarty.c:251 language/smarty.c:268
-#: language/smarty.c:272 language/smarty.c:299 language/smarty.c:303
-#: language/smarty.c:307 language/smarty.c:311
 msgid "on"
 msgstr ""
 
-#: language/smarty.c:197
 msgid "(ON; the throttler will be global. OFF; independent throttler per relay.)"
 msgstr ""
 
-#: language/smarty.c:198
 msgid "SMTP #%1"
 msgstr ""
 
-#: language/smarty.c:199
 msgid "SMTP Status:"
 msgstr ""
 
-#: language/smarty.c:200
 msgid "Connected to SMTP server"
 msgstr ""
 
-#: language/smarty.c:201
 msgid "Unable to connect to SMTP server"
 msgstr ""
 
-#: language/smarty.c:202
 msgid "SMTP Host:"
 msgstr ""
 
-#: language/smarty.c:203
 msgid "(IP Address or Name of SMTP server)"
 msgstr ""
 
-#: language/smarty.c:204
 msgid "Port Number:"
 msgstr ""
 
-#: language/smarty.c:205
 msgid "(Port # of SMTP server [usually 25])"
 msgstr ""
 
-#: language/smarty.c:206
 msgid "SMTP Authentication:"
 msgstr ""
 
-#: language/smarty.c:207
 msgid "(Toggle SMTP Authentication [usually off])"
 msgstr ""
 
-#: language/smarty.c:208
 msgid "SMTP Username:"
 msgstr ""
 
-#: language/smarty.c:209 language/smarty.c:211
 msgid "(optional)"
 msgstr ""
 
-#: language/smarty.c:210
 msgid "SMTP Password:"
 msgstr ""
 
-#: language/smarty.c:212
 msgid "Update Relay #%1"
 msgstr ""
 
-#: language/smarty.c:213
 msgid "This is your default relay"
 msgstr ""
 
-#: language/smarty.c:214
 msgid "Remove Relay #%1"
 msgstr ""
 
-#: language/smarty.c:215
 msgid "Add Another Relay"
 msgstr ""
 
-#: language/smarty.c:216
 msgid "A test message will be sent to the supplied recipient. If you receive it, poMMo can use the %1 exchanger. Remember to check your SPAM folder too."
 msgstr ""
 
-#: language/smarty.c:219
 msgid "(address to send test message to)"
 msgstr ""
 
-#: language/smarty.c:221
 msgid "Global Rates"
 msgstr ""
 
-#: language/smarty.c:222 language/smarty.c:234
 msgid "Mail Rate"
 msgstr ""
 
-#: language/smarty.c:223 language/smarty.c:226
 msgid "%1 per Second"
 msgstr ""
 
-#: language/smarty.c:224 language/smarty.c:227
 msgid "%1 per Hour"
 msgstr ""
 
-#: language/smarty.c:225 language/smarty.c:236
 msgid "Bandwidth Limit"
 msgstr ""
 
-#: language/smarty.c:229
 msgid "Restore Defaults"
 msgstr ""
 
-#: language/smarty.c:230
 msgid "Rates per Domain"
 msgstr ""
 
-#: language/smarty.c:231
 msgid "You may also limit the amount of mail a single domain receives in a period. This is useful for larger mailings, and prevents the \"slamming\" of the domain (which can get your mails rejected). As example, you can choose to send no more than 1 mail every 20 seconds to a domain by setting the mails to 1 and the period interval to 20. Warning; this setting will significantly delay a mailing if many of your subscribers use the same domain (e.g. @yahoo.com)."
 msgstr ""
 
-#: language/smarty.c:232
 msgid "Period Interval"
 msgstr ""
 
-#: language/smarty.c:233
 msgid "%1 seconds"
 msgstr ""
 
-#: language/smarty.c:235 language/smarty.c:237
 msgid "%1 per Period"
 msgstr ""
 
-#: language/smarty.c:239
 msgid "No Limit"
 msgstr ""
 
-#: language/smarty.c:240
 msgid "List Name:"
 msgstr ""
 
-#: language/smarty.c:241
 msgid "(The name of your Mailing List)"
 msgstr ""
 
-#: language/smarty.c:242
 msgid "Website Name:"
 msgstr ""
 
-#: language/smarty.c:243
 msgid "(The name of your Website)"
 msgstr ""
 
-#: language/smarty.c:244 language/smarty.c:641
 msgid "Website URL:"
 msgstr ""
 
-#: language/smarty.c:245
 msgid "(Web address of your Website)"
 msgstr ""
 
-#: language/smarty.c:246
 msgid "Success URL:"
 msgstr ""
 
-#: language/smarty.c:247
 msgid "(Webpage users will see upon successfull subscription. Leave blank to display default welcome page.)"
 msgstr ""
 
-#: language/smarty.c:248
 msgid "Confirm URL:"
 msgstr ""
 
-#: language/smarty.c:249
 msgid "(Webpage users will see upon subscription attempt. Leave blank to display default confirmation page.)"
 msgstr ""
 
-#: language/smarty.c:250
 msgid "Email Confirmation:"
 msgstr ""
 
-#: language/smarty.c:253
 msgid "(Set to validate email upon subscription attempt.)"
 msgstr ""
 
-#: language/smarty.c:254
 msgid "Mail Exchanger:"
 msgstr ""
 
-#: language/smarty.c:255
 msgid "PHP Mail Function"
 msgstr ""
 
-#: language/smarty.c:257
 msgid "(Select Mail Exchanger)"
 msgstr ""
 
-#: language/smarty.c:258
 msgid "Setup your SMTP Servers"
 msgstr ""
 
-#: language/smarty.c:259
 msgid "(configure SMTP relays)"
 msgstr ""
 
-#: language/smarty.c:262
 msgid "(Default name mails will be sent from)"
 msgstr ""
 
-#: language/smarty.c:264
 msgid "(Default email mails will be sent from)"
 msgstr ""
 
-#: language/smarty.c:265
 msgid "Bounce Address:"
 msgstr ""
 
-#: language/smarty.c:266
 msgid "(Returned emails will be sent to this address)"
 msgstr ""
 
-#: language/smarty.c:267
 msgid "Demonstration Mode:"
 msgstr ""
 
-#: language/smarty.c:270
 msgid "(Toggle Demonstration Mode)"
 msgstr ""
 
-#: language/smarty.c:271
 msgid "Public Mailings"
 msgstr ""
 
-#: language/smarty.c:274
 msgid "(When on, the public can view past mailings at this %1URL%2)"
 msgstr ""
 
-#: language/smarty.c:275
 msgid "Set mailing throttle values"
 msgstr ""
 
-#: language/smarty.c:276
 msgid "(controls mails per second, bytes per second, and domain limits)"
 msgstr ""
 
-#: language/smarty.c:288
 msgid "(Select Default Character Set of Mailings)"
 msgstr ""
 
-#: language/smarty.c:289
 msgid "Runtime:"
 msgstr ""
 
-#: language/smarty.c:290
 msgid "(Seconds a processing script runs for. Default: 80, Minimum: 15)"
 msgstr ""
 
-#: language/smarty.c:292
 msgid "notifications"
 msgstr ""
 
-#: language/smarty.c:293
 msgid "Administrators can be sent a notification of subscription list changes."
 msgstr ""
 
-#: language/smarty.c:294
 msgid "Notification email(s):"
 msgstr ""
 
-#: language/smarty.c:295
 msgid "(Notifications will be sent to the above address(es). Multiple addresses can be entered -- seperate with a comma.)"
 msgstr ""
 
-#: language/smarty.c:296
 msgid "Subject Prefix:"
 msgstr ""
 
-#: language/smarty.c:297
 msgid "(The subject of Notification Mails will begin with this)"
 msgstr ""
 
-#: language/smarty.c:298 language/smarty.c:302 language/smarty.c:306
-#: language/smarty.c:310
 msgid "Notify on %1"
 msgstr ""
 
-#: language/smarty.c:301
 msgid "(sent upon successful subscription)"
 msgstr ""
 
-#: language/smarty.c:305
 msgid "(sent upon successful unsubscription)"
 msgstr ""
 
-#: language/smarty.c:309
 msgid "(sent upon subscriber update)"
 msgstr ""
 
-#: language/smarty.c:313
 msgid "(sent upon subscription attempt)"
 msgstr ""
 
-#: language/smarty.c:315 language/smarty.c:390
 msgid "Messages"
 msgstr ""
 
-#: language/smarty.c:316
 msgid "Customize the messages sent to your users when they subscribe, unsubscribe, attempt to subscribe, or request to update their records."
 msgstr ""
 
-#: language/smarty.c:319 language/smarty.c:329
 msgid "(Check to Enable)"
 msgstr ""
 
-#: language/smarty.c:321 language/smarty.c:323 language/smarty.c:331
-#: language/smarty.c:333 language/smarty.c:340 language/smarty.c:347
-#: language/smarty.c:354
 msgid "Message:"
 msgstr ""
 
-#: language/smarty.c:322 language/smarty.c:332
 msgid "Website"
 msgstr ""
 
-#: language/smarty.c:324 language/smarty.c:334
 msgid "(displayed on webpage)"
 msgstr ""
 
-#: language/smarty.c:326 language/smarty.c:336 language/smarty.c:343
-#: language/smarty.c:350 language/smarty.c:357
 msgid "Restore to Defaults"
 msgstr ""
 
-#: language/smarty.c:337
 msgid "Subscription Confirmation"
 msgstr ""
 
-#: language/smarty.c:341 language/smarty.c:348 language/smarty.c:355
 msgid "(Use %1[[url]]%2 for the confirm link at least once)"
 msgstr ""
 
-#: language/smarty.c:344
 msgid "Account Access"
 msgstr ""
 
-#: language/smarty.c:351
 msgid "Update Validation"
 msgstr ""
 
-#: language/smarty.c:358
 msgid "Administrator Username:"
 msgstr ""
 
-#: language/smarty.c:359 language/smarty.c:361 language/smarty.c:644
 msgid "(you will use this to login)"
 msgstr ""
 
-#: language/smarty.c:360 language/smarty.c:643
 msgid "Administrator Password:"
 msgstr ""
 
-#: language/smarty.c:362 language/smarty.c:645
 msgid "Verify Password:"
 msgstr ""
 
-#: language/smarty.c:363 language/smarty.c:646
 msgid "(enter password again)"
 msgstr ""
 
-#: language/smarty.c:364 language/smarty.c:647
 msgid "Administrator Email:"
 msgstr ""
 
-#: language/smarty.c:365
 msgid "(email address of administrator)"
 msgstr ""
 
-#: language/smarty.c:367
 msgid "Embedded Subscription Forms"
 msgstr ""
 
-#: language/smarty.c:368
 msgid "Return to Subscription Forms"
 msgstr ""
 
-#: language/smarty.c:369
 msgid "Subscription forms can easily be added to your website using a line of code. You can use the PHP include listed below, or embed the actual HTML. Remember, you can also direct subscribers to the "
 msgstr ""
 
-#: language/smarty.c:370
 msgid "Default Subscribe Form"
 msgstr ""
 
-#: language/smarty.c:371 language/smarty.c:379
 msgid "Mini Subscription Form"
 msgstr ""
 
-#: language/smarty.c:372
 msgid "This prints a form which prompts for a user's email address. If the inputted email exists as a registered subscriber, it redirects to the subscriber update page. If not, it redirects to the the default subscription form."
 msgstr ""
 
-#: language/smarty.c:374 language/smarty.c:378
 msgid "URL"
 msgstr ""
 
-#: language/smarty.c:375
 msgid "Full Subscription Form"
 msgstr ""
 
-#: language/smarty.c:376
 msgid "This prints the entire subscription form."
 msgstr ""
 
-#: language/smarty.c:383 language/smarty.c:384
 msgid "Return to Setup Page"
 msgstr ""
 
-#: language/smarty.c:386
 msgid "You can change the login information, set website and mailing list parameters, end enable demonstration mode. If you enable demonstration mode, no emails will be sent from the system."
 msgstr ""
 
-#: language/smarty.c:387
 msgid "Users"
 msgstr ""
 
-#: language/smarty.c:388
 msgid "General"
 msgstr ""
 
-#: language/smarty.c:391
 msgid "Fields Page"
 msgstr ""
 
-#: language/smarty.c:392
 msgid "Subscriber fields allow you to collect information on list members. They are typically displayed on the subscription form, although \"hidden\" ones can be used for administrative purposes. %1Groups%2 are based on subscriber field values."
 msgstr ""
 
-#: language/smarty.c:393 language/smarty.c:612
 msgid "Fields"
 msgstr ""
 
-#: language/smarty.c:394
 msgid "New field name:"
 msgstr ""
 
-#: language/smarty.c:395
 msgid "type new field name"
 msgstr ""
 
-#: language/smarty.c:396
 msgid "Field type:"
 msgstr ""
 
-#: language/smarty.c:404
 msgid "Field Ordering"
 msgstr ""
 
-#: language/smarty.c:405
 msgid "Change the ordering of fields on the subscription form by dragging and dropping the order icon"
 msgstr ""
 
-#: language/smarty.c:406
 msgid "ID"
 msgstr ""
 
-#: language/smarty.c:408 language/smarty.c:485 language/smarty.c:493
-#: language/smarty.c:501 language/smarty.c:541 language/smarty.c:586
 msgid "Edit"
 msgstr ""
 
-#: language/smarty.c:409
 msgid "Order"
 msgstr ""
 
-#: language/smarty.c:410
 msgid "Field Name"
 msgstr ""
 
-#: language/smarty.c:412
 msgid "%1Green%2 fields are active."
 msgstr ""
 
-#: language/smarty.c:413
 msgid "Subscription Forms"
 msgstr ""
 
-#: language/smarty.c:414
 msgid "Default Subscription Form"
 msgstr ""
 
-#: language/smarty.c:415
-msgid "Preview the default subscription form. Its look and feel can be adjusted through the theme template ([theme]/user/subscribe.tpl)."
+msgid "Preview the default subscription form. Its look and feel can be adjusted through the theme template ([theme]/user/subscribe.php)."
 msgstr ""
 
-#: language/smarty.c:416
 msgid "Embedded Subscription From"
 msgstr ""
 
-#: language/smarty.c:417
 msgid "Preview subscription forms that you can embed into an area of an existing webpage."
 msgstr ""
 
-#: language/smarty.c:418
 msgid "HTML Subscription Form"
 msgstr ""
 
-#: language/smarty.c:419
 msgid "Generate a plain HTML subscription form that you can customize to fit your site."
 msgstr ""
 
-#: language/smarty.c:421 language/smarty.c:607
 msgid "Manage"
 msgstr ""
 
-#: language/smarty.c:422
 msgid "subscribers. See an overview of your current and pending subscribers. You can add, delete, and edit subscribers from here."
 msgstr ""
 
-#: language/smarty.c:424
 msgid "Subscribers. You can import large amounts of subscribers using files stored on your computer."
 msgstr ""
 
-#: language/smarty.c:425 language/smarty.c:539 language/smarty.c:609
 msgid "Groups"
 msgstr ""
 
-#: language/smarty.c:426
 msgid "Manage \"mailing groups\" from this area. Mailing groups allow you to mail subsets of your subscribers, rather than just the entire list."
 msgstr ""
 
-#: language/smarty.c:427
 msgid "value must be a date"
 msgstr ""
 
-#: language/smarty.c:428
 msgid "value must be a number"
 msgstr ""
 
-#: language/smarty.c:429
 msgid "value must not be blank"
 msgstr ""
 
-#: language/smarty.c:430
 msgid "Match subscribers where"
 msgstr ""
 
-#: language/smarty.c:431
 msgid "Value(s)"
 msgstr ""
 
-#: language/smarty.c:435 language/smarty.c:466 language/smarty.c:468
 msgid "Include"
 msgstr ""
 
-#: language/smarty.c:436
 msgid "Exclude"
 msgstr ""
 
-#: language/smarty.c:437
 msgid "members in group %1."
 msgstr ""
 
-#: language/smarty.c:440
 msgid "Welcome to adding subscribers! You can add subscribers one-by-one here. If you would like to add subscribers in bulk, visit the %1Subscriber Import%2 page."
 msgstr ""
 
-#: language/smarty.c:441 language/smarty.c:444
 msgid "Add Subscriber"
 msgstr ""
 
-#: language/smarty.c:443 language/smarty.c:455
 msgid "Force (bypasses validation)"
 msgstr ""
 
-#: language/smarty.c:445 language/smarty.c:452 language/smarty.c:583
 msgid "Reset"
 msgstr ""
 
-#: language/smarty.c:447
 msgid "Enter email addresses of subscribers in the box below. Seperate emails with commas, spaces, or line breaks."
 msgstr ""
 
-#: language/smarty.c:448 language/smarty.c:451 language/smarty.c:562
-#: language/smarty.c:563
 msgid "Remove Subscribers"
 msgstr ""
 
-#: language/smarty.c:449
 msgid "Email Addresses:"
 msgstr ""
 
-#: language/smarty.c:450
 msgid "Enter Emails..."
 msgstr ""
 
-#: language/smarty.c:453
 msgid "Edit Subscriber"
 msgstr ""
 
-#: language/smarty.c:456
 msgid "Update Subscriber"
 msgstr ""
 
-#: language/smarty.c:458
 msgid "Welcome to subscriber export!"
 msgstr ""
 
-#: language/smarty.c:459 language/smarty.c:470 language/smarty.c:564
-#: language/smarty.c:565
 msgid "Export Subscribers"
 msgstr ""
 
-#: language/smarty.c:460
 msgid "Export Type"
 msgstr ""
 
-#: language/smarty.c:461
 msgid ".TXT - Only Email Addresses"
 msgstr ""
 
-#: language/smarty.c:462 language/smarty.c:550
 msgid ".CSV - All subscriber Data"
 msgstr ""
 
-#: language/smarty.c:463
 msgid "Export"
 msgstr ""
 
-#: language/smarty.c:464
 msgid "All Pages"
 msgstr ""
 
-#: language/smarty.c:465
 msgid "Current Page"
 msgstr ""
 
-#: language/smarty.c:472
 msgid "Edit Group"
 msgstr ""
 
-#: language/smarty.c:473
 msgid "To add subscribers to a group you must create matching rules. Subscribers are automatically added to a group if their %1subscriber field%2 values \"match\" a Group's rules. For example, if you collect \"AGE\" and \"COUNTRY\" as %1subscriber fields%2, you can match those who are 21+ and living in Japan by creating two rules; one which matches \"AGE\" to greater than 20, and another which matches \"Japan\" to \"COUNTRY\". Including or excluding members of other groups is possible."
 msgstr ""
 
-#: language/smarty.c:474
 msgid "Change Name"
 msgstr ""
 
-#: language/smarty.c:475
 msgid "Group name:"
 msgstr ""
 
-#: language/smarty.c:476 language/smarty.c:537
 msgid "type new group name"
 msgstr ""
 
-#: language/smarty.c:477
 msgid "Rename"
 msgstr ""
 
-#: language/smarty.c:478
 msgid "Add Rule"
 msgstr ""
 
-#: language/smarty.c:479
 msgid "Select a %1 field %2 to filter"
 msgstr ""
 
-#: language/smarty.c:480
 msgid "Choose Subscriber Field"
 msgstr ""
 
-#: language/smarty.c:481
 msgid "or, Select a %1 group %2 to include or exclude"
 msgstr ""
 
-#: language/smarty.c:482
 msgid "Choose Group"
 msgstr ""
 
-#: language/smarty.c:483
 msgid "Group Rules"
 msgstr ""
 
-#: language/smarty.c:486
 msgid "Field"
 msgstr ""
 
-#: language/smarty.c:487
 msgid "Logic"
 msgstr ""
 
-#: language/smarty.c:488
 msgid "Value"
 msgstr ""
 
-#: language/smarty.c:489 language/smarty.c:548
 msgid "Type"
 msgstr ""
 
-#: language/smarty.c:490
 msgid "\"AND\" RULES"
 msgstr ""
 
-#: language/smarty.c:491
 msgid "MATCH %1ALL%2 OF THE FOLLOWING"
 msgstr ""
 
-#: language/smarty.c:494 language/smarty.c:502
 msgid "or"
 msgstr ""
 
-#: language/smarty.c:495 language/smarty.c:503
 msgid "AND"
 msgstr ""
 
-#: language/smarty.c:496 language/smarty.c:504
 msgid "OR"
 msgstr ""
 
-#: language/smarty.c:497 language/smarty.c:505 language/smarty.c:509
 msgid "No rules have been added"
 msgstr ""
 
-#: language/smarty.c:498
 msgid "\"OR\" RULES"
 msgstr ""
 
-#: language/smarty.c:499
 msgid "<strong>OR</strong>, MATCH %1ANY%2 OF THE FOLLOWING"
 msgstr ""
 
-#: language/smarty.c:506
 msgid "<strong>AND</strong>, ADD OR SUBTRACT MEMBERS IN OTHER GROUPS"
 msgstr ""
 
-#: language/smarty.c:508
 msgid "%1Add%2 members matching %3"
 msgstr ""
 
-#: language/smarty.c:511
 msgid "%1Subtract%2 members matching %3"
 msgstr ""
 
-#: language/smarty.c:512
 msgid "%1 rules match a total of %2 active subscribers"
 msgstr ""
 
-#: language/smarty.c:514 language/smarty.c:525 language/smarty.c:543
 msgid "Import Subscribers"
 msgstr ""
 
-#: language/smarty.c:515 language/smarty.c:517
 msgid "Assign Fields"
 msgstr ""
 
-#: language/smarty.c:516
 msgid "Below is a preview of your CSV data. You can assign subscriber fields to columns. At the very least, you must assign an email address."
 msgstr ""
 
-#: language/smarty.c:518
 msgid "Ignore Column"
 msgstr ""
 
-#: language/smarty.c:524
 msgid "You must assign an email column!"
 msgstr ""
 
-#: language/smarty.c:527
 msgid "%1 non-duplicate subscribers will be imported. %2 were ignored as duplicates."
 msgstr ""
 
-#: language/smarty.c:528
 msgid "Notice: Imported subscribers will be flagged to update their records"
 msgstr ""
 
-#: language/smarty.c:534
 msgid "Subscriber Groups allow you to mail subsets of subscribers instead of the entire list. Groups are defined by customizable matching rules, and members are automatically assigned based on their %1subscriber field%2 values."
 msgstr ""
 
-#: language/smarty.c:535
 msgid "New group"
 msgstr ""
 
-#: language/smarty.c:536
 msgid "Group name"
 msgstr ""
 
-#: language/smarty.c:542
 msgid "Group Name"
 msgstr ""
 
-#: language/smarty.c:544
 msgid "Welcome to Subscriber Import! You can import subscribers from a list of email addresses or from a full fledged CSV file containing subscriber field values as well as their email. CSV files should have one subscriber(email) per line with field information seperated by commas(%1,%2)."
 msgstr ""
 
-#: language/smarty.c:545
 msgid "Popular programs such as Microsoft Excel and %1 Open Office %2 support saving files in CSV (Comma-Seperated-Value) format."
 msgstr ""
 
-#: language/smarty.c:546
 msgid "Duplicate subscribers or invalid email addresses will be ignored."
 msgstr ""
 
-#: language/smarty.c:549
 msgid "List of Email Addresses"
 msgstr ""
 
-#: language/smarty.c:552
 msgid "Type subscribers into a box"
 msgstr ""
 
-#: language/smarty.c:553
 msgid "From a box"
 msgstr ""
 
-#: language/smarty.c:554
 msgid "CSV file:"
 msgstr ""
 
-#: language/smarty.c:555
 msgid "Upload subscribers from a file"
 msgstr ""
 
-#: language/smarty.c:556
 msgid "From a file"
 msgstr ""
 
-#: language/smarty.c:557
 msgid "Type/Paste Contents..."
 msgstr ""
 
-#: language/smarty.c:558
 msgid "Allow unsubscribed emails to be re-subscribed."
 msgstr ""
 
-#: language/smarty.c:560 language/smarty.c:561
 msgid "Add Subscribers"
 msgstr ""
 
-#: language/smarty.c:570
 msgid "Active Subscribers"
 msgstr ""
 
-#: language/smarty.c:571
 msgid "Unsubscribed"
 msgstr ""
 
-#: language/smarty.c:573
 msgid "Belonging to Group"
 msgstr ""
 
-#: language/smarty.c:575 language/smarty.c:582
 msgid "Search"
 msgstr ""
 
-#: language/smarty.c:576
 msgid "Find Subscribers where"
 msgstr ""
 
-#: language/smarty.c:577
 msgid "email"
 msgstr ""
 
-#: language/smarty.c:578
 msgid "time registered"
 msgstr ""
 
-#: language/smarty.c:579
 msgid "time last updated"
 msgstr ""
 
-#: language/smarty.c:581
 msgid "is like"
 msgstr ""
 
-#: language/smarty.c:585
 msgid "Delete Checked Subscribers"
 msgstr ""
 
-#: language/smarty.c:587
 msgid "Edit Checked"
 msgstr ""
 
-#: language/smarty.c:589
 msgid "Updated"
 msgstr ""
 
-#: language/smarty.c:593
 msgid "Database Host"
 msgstr ""
 
-#: language/smarty.c:594
 msgid "Database Name"
 msgstr ""
 
-#: language/smarty.c:595
 msgid "Database User"
 msgstr ""
 
-#: language/smarty.c:596
 msgid "Database Password"
 msgstr ""
 
-#: language/smarty.c:598 language/smarty.c:622
 msgid "Page fueled by poMMo mailing management software"
 msgstr ""
 
-#: language/smarty.c:600
 msgid "Logout"
 msgstr ""
 
-#: language/smarty.c:601
 msgid "Support"
 msgstr ""
 
-#: language/smarty.c:602 language/smarty.c:675
 msgid "Admin Page"
 msgstr ""
 
-#: language/smarty.c:613
 msgid "Setup Form"
 msgstr ""
 
-#: language/smarty.c:614
 msgid "Demonstration mode is ON."
 msgstr ""
 
-#: language/smarty.c:615
 msgid "Demonstration mode is OFF."
 msgstr ""
 
-#: language/smarty.c:619
 msgid "Record(s)"
 msgstr ""
 
-#: language/smarty.c:620
 msgid "Match(es)"
 msgstr ""
 
-#: language/smarty.c:623 language/smarty.c:628
 msgid "Administrative Login"
 msgstr ""
 
-#: language/smarty.c:624
 msgid "You have requested to reset your password. If you are sure you want to do this, please fill in the captcha below. Enter the text you see between the brackets (%1[]%2)."
 msgstr ""
 
-#: language/smarty.c:625
 msgid "Captcha"
 msgstr ""
 
-#: language/smarty.c:626
 msgid "Captcha Text:"
 msgstr ""
 
-#: language/smarty.c:627
 msgid "Reset Password"
 msgstr ""
 
-#: language/smarty.c:629
 msgid "Username"
 msgstr ""
 
-#: language/smarty.c:630
 msgid "Password"
 msgstr ""
 
-#: language/smarty.c:631
 msgid "Log In"
 msgstr ""
 
-#: language/smarty.c:632
 msgid "Forgot your password?"
 msgstr ""
 
-#: language/smarty.c:633
 msgid "Installation"
 msgstr ""
 
-#: language/smarty.c:634
 msgid "Online install"
 msgstr ""
 
-#: language/smarty.c:635
 msgid "Welcome to the online installation process. We have connected to the database and set your language successfully. Fill in the values below, and you'll be on your way!"
 msgstr ""
 
-#: language/smarty.c:636
 msgid "Configuration Options"
 msgstr ""
 
-#: language/smarty.c:637
 msgid "Name of Mailing List:"
 msgstr ""
 
-#: language/smarty.c:638
 msgid "(ie. Brice's Mailing List)"
 msgstr ""
 
-#: language/smarty.c:639
 msgid "Name of Website:"
 msgstr ""
 
-#: language/smarty.c:640
 msgid "(ie. The poMMo Website)"
 msgstr ""
 
-#: language/smarty.c:642
 msgid "(ie. http://www.pommo-rocks.com/)"
 msgstr ""
 
-#: language/smarty.c:648
 msgid "(enter your valid email address)"
 msgstr ""
 
-#: language/smarty.c:649
 msgid "Install"
 msgstr ""
 
-#: language/smarty.c:650 language/smarty.c:677
 msgid "To disable debugging"
 msgstr ""
 
-#: language/smarty.c:652 language/smarty.c:679
 msgid "To enable debugging"
 msgstr ""
 
-#: language/smarty.c:654 language/smarty.c:683
 msgid "Continue to login page"
 msgstr ""
 
-#: language/smarty.c:657
 msgid "Join newsletter"
 msgstr ""
 
-#: language/smarty.c:660 language/smarty.c:667
 msgid "Choose Selection"
 msgstr ""
 
-#: language/smarty.c:662
 msgid "Your Information"
 msgstr ""
 
-#: language/smarty.c:665
 msgid "New Email:"
 msgstr ""
 
-#: language/smarty.c:666
 msgid "Verify New Email:"
 msgstr ""
 
-#: language/smarty.c:668
 msgid "Update Records"
 msgstr ""
 
-#: language/smarty.c:671
 msgid "Are you sure you want to."
 msgstr ""
 
-#: language/smarty.c:672
 msgid "Support Page"
 msgstr ""
 
-#: language/smarty.c:673
 msgid "Upgrader"
 msgstr ""
 
-#: language/smarty.c:674
 msgid "Online Upgrade Script"
 msgstr ""
 
-#: language/smarty.c:676
 msgid "Welcome to the poMMo online upgrade process. This script will automatically upgrade your old version of poMMo."
 msgstr ""
 
-#: language/smarty.c:681
 msgid "To force the upgrade"
 msgstr ""
 
-#: language/smarty.c:684
 msgid "Update Activation"
 msgstr ""
 
-#: language/smarty.c:685
 msgid "We require that you verify your email address before unsubscribing or updating your records. This extra step is necessary to maintain your privacy, and to protect you against fraudulent activity."
 msgstr ""
 
-#: language/smarty.c:686
 msgid "An activation email has recently been sent to %1. Please check your inbox."
 msgstr ""
 
-#: language/smarty.c:687
 msgid "Subscriber Confirmation"
 msgstr ""
 
-#: language/smarty.c:689
 msgid "Subscriber Login"
 msgstr ""
 
-#: language/smarty.c:690
 msgid "In order to check your subscription status, update your information, or unsubscribe, you must enter your email address in the field below."
 msgstr ""
 
-#: language/smarty.c:691 language/smarty.c:693
 msgid "Login"
 msgstr ""
 
-#: language/smarty.c:699
 msgid "Pending Changes"
 msgstr ""
 
-#: language/smarty.c:701
 msgid "SEND another confirmation email"
 msgstr ""
 
-#: language/smarty.c:702
 msgid "CANCEL your pending request"
 msgstr ""
 
-#: language/smarty.c:703
 msgid "Subscription Review"
 msgstr ""
 
-#: language/smarty.c:704
 msgid "Back to Subscription Form"
 msgstr ""
 
-#: language/smarty.c:706
 msgid "%1Update your records%2"
 msgstr ""
 
-#: language/smarty.c:707
 msgid "Subscriber Update"
 msgstr ""
 
-#: language/smarty.c:708
 msgid "Unsubscribe"
 msgstr ""
 
-#: language/smarty.c:709
 msgid "Comments"
 msgstr ""
 
-#: language/smarty.c:710
 msgid "Click to unsubscribe"
 msgstr ""
 
-#: language/smarty.c:711
 msgid "Really unsubscribe?"
 msgstr ""
 
-#: language/smarty.c:712
 msgid "January"
 msgstr ""
 
-#: language/smarty.c:713
 msgid "Febuary"
 msgstr ""
 
-#: language/smarty.c:714
 msgid "March"
 msgstr ""
 
-#: language/smarty.c:715
 msgid "April"
 msgstr ""
 
-#: language/smarty.c:716
 msgid "May"
 msgstr ""
 
-#: language/smarty.c:717
 msgid "June"
 msgstr ""
 
-#: language/smarty.c:718
 msgid "July"
 msgstr ""
 
-#: language/smarty.c:719
 msgid "August"
 msgstr ""
 
-#: language/smarty.c:720
 msgid "September"
 msgstr ""
 
-#: language/smarty.c:721
 msgid "October"
 msgstr ""
 
-#: language/smarty.c:722
 msgid "November"
 msgstr ""
 
-#: language/smarty.c:723
 msgid "December"
 msgstr ""
 
-#: language/smarty.c:724
 msgid "Sunday"
 msgstr ""
 
-#: language/smarty.c:725
 msgid "Monday"
 msgstr ""
 
-#: language/smarty.c:726
 msgid "Tuesday"
 msgstr ""
 
-#: language/smarty.c:727
 msgid "Wednesday"
 msgstr ""
 
-#: language/smarty.c:728
 msgid "Thursday"
 msgstr ""
 
-#: language/smarty.c:729
 msgid "Friday"
 msgstr ""
 
-#: language/smarty.c:730
 msgid "Saturday"
 msgstr ""
 
-#: language/smarty.c:731
 msgid "Prev"
 msgstr ""
 
-#: language/smarty.c:732
 msgid "Next"
 msgstr ""
 
-#: language/smarty.c:733
 msgid "Close"
 msgstr ""
 
-#: language/smarty.c:734 language/smarty.c:735
 msgid "Choose Date"
 msgstr ""

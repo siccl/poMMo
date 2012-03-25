@@ -28,7 +28,7 @@ pommo/admin/
 		This directory contains all the pages available to the poMMo administrator. Since poMMo is built around a MVC framework, the "view" (or page content) for each page is found in the pommo/themes/ directory. The themes structure correlates exactly to that of pommo/user or pommo/admin, so that;
 
 		"pommo/admin/mailings/admin_mailings.php" will call;
-		"pommo/themes/default/admin/mailings/admin_mailings.tpl" for its view if the "default" theme is selected.
+		"pommo/themes/default/admin/mailings/admin_mailings.php" for its view if the "default" theme is selected.
 
 
 pommo/admin/*/ajax/
@@ -38,7 +38,7 @@ pommo/admin/*/ajax/
 
 pommo/cache/
 		"Work directory" - web disabled (no URL's point here)
-		This is the default working directory, if not explicitly defined in config.php. This directory should be writable by the webserver. SMARTY compiles and caches its templates in this directory.
+		This is the default working directory, if not explicitly defined in config.php. This directory should be writable by the webserver.
 
 
 pommo/docs/
@@ -48,7 +48,9 @@ pommo/docs/
 
 pommo/classes/
 		"API Directory" 
-		This directory contains poMMo's base API.
+		This directory contains poMMo's base API. Files in this directory must
+		start with the "Pommo_" prefix to indicate that they are part of poMMo's
+		core. Classes are named after the name of the file.
 		Pommo_Db.php = database class
 		Pommo_Api.php = base api functions
 		Pommo_Install.php = install api
@@ -56,7 +58,7 @@ pommo/classes/
 		Pommo_Mail_Ctl.php = mailing controller API
 		Pommo_Mailer.php = mailing class (extends PHPMailer)
 		Pommo.php = *** pommo class and basic API *** loaded by bootstrap.php
-		Pommo_Template.php = view controller (extends SMARTY)
+		Pommo_Template.php = view controller
 		Pommo_Throttler.php = mail throttle class
 		Pommo_Sql.php = SQL generator -- generates grouping SQL statements
 		Pommo_Helper.php = common API helpers. Loaded during bootstrap process.
@@ -75,7 +77,7 @@ pommo/classes/
 
 pommo/lib/
 		"3rd Party Directory"
-		Holds third-party contributions and utilizations -- e.g. Smarty, PHP Gettext, SafeSQL
+		Holds third-party contributions and utilizations -- e.g. PHP Gettext, SafeSQL
 
 
 pommo/sql/

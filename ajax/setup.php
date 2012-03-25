@@ -1,29 +1,34 @@
 <?php
 /**
- * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  released originally under GPLV2
  * 
- * This file is part of poMMo (http://www.pommo.org)
+ *  This file is part of poMMo.
+ *
+ *  poMMo is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  poMMo is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
- * by the Free Software Foundation; either version 2, or any later version.
- * 
- * poMMo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty
- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
- * the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with program; see the file docs/LICENSE. If not, write to the
- * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *  This fork is from https://github.com/soonick/poMMo
+ *  Please see docs/contribs for Contributors
+ *
  */
 
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
-require ('../bootstrap.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Mailing.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
+require '../bootstrap.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Mailing.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Groups.php';
 
 Pommo::init();
 $logger = Pommo::$_logger;
@@ -32,9 +37,8 @@ $dbo 	= Pommo::$_dbo;
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
-$smarty->prepareForForm();
+require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
+$view = new Pommo_Template();
 
 if (Pommo_Mailing::isCurrent())
 {
@@ -67,7 +71,6 @@ $state = Pommo_Api::stateInit('mailing',
 		),
 		$_POST);
 
-// SmartyValidate Custom Validation Function
 function check_charset($value, $empty, & $params, & $formvars) {
 	$validCharsets = array (
 		'UTF-8',
@@ -84,29 +87,15 @@ function check_charset($value, $empty, & $params, & $formvars) {
 	return in_array($value, $validCharsets);
 }
 
-if (!SmartyValidate :: is_registered_form() || empty ($_POST))
+if (empty ($_POST))
 {
 	// ___ USER HAS NOT SENT FORM ___
-
-	SmartyValidate :: connect($smarty, true);
-
-	// register custom criteria
-	SmartyValidate :: register_criteria('isCharSet', 'check_charset');
-
-	SmartyValidate :: register_validator('fromname', 'fromname', 'notEmpty', false, false, 'trim');
-	SmartyValidate :: register_validator('subject', 'subject', 'notEmpty', false, false, 'trim');
-	SmartyValidate :: register_validator('fromemail', 'fromemail', 'isEmail', false, false, 'trim');
-	SmartyValidate :: register_validator('frombounce', 'frombounce', 'isEmail', false, false, 'trim');
-	SmartyValidate :: register_validator('mailgroup', 'mailgroup:/(all|\d+)/i', 'isRegExp', false, false, 'trim');
-
-	SmartyValidate :: register_validator('list_charset', 'list_charset', 'isCharSet', false, false, 'trim');
-	
 	$vMsg = array ();
 	$vMsg['fromname'] = $vMsg['subject'] = Pommo::_T('Cannot be empty.');
 	$vMsg['charset'] = Pommo::_T('Invalid Character Set');
 	$vMsg['fromemail'] = $vMsg['frombounce'] = Pommo::_T('Invalid email address');
 	$vMsg['ishtml'] = $vMsg['mailgroup'] = Pommo::_T('Invalid Input');
-	$smarty->assign('vMsg', $vMsg);
+	$view->assign('vMsg', $vMsg);
 	
 }
 else
@@ -119,28 +108,39 @@ else
 	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
 	$json = new Pommo_Json();
 
-	SmartyValidate::connect($smarty);
+	require_once Pommo::$_baseDir.'classes/Pommo_Validate.php';
+	$validator = new Pommo_Validate();
+    $validator->setPost($_POST);
+    $validator->addData('fromname', 'Other', false);
+    $validator->addData('subject', 'Other', false);
+    $validator->addData('fromemail', 'Email', false);
+    $validator->addData('frombounce', 'Email', false);
 
-	if (SmartyValidate::is_valid($_POST))
+	if ($result = $validator->checkData())
 	{
-		// __ FORM IS VALID
-
-		SmartyValidate::disconnect();
 		$json->success();
 	}
 	else
 	{
 		// __ FORM NOT VALID
-		
-		$json->add('fieldErrors',$smarty->getInvalidFields());
+		$fieldErrors = array();
+		$errors = $validator->getErrors();
+		foreach ($errors as $key => $val)
+		{
+			$fieldErrors[] = array (
+				'field' => $key,
+				'message' => $val
+			);
+		}
+		$json->add('fieldErrors', $fieldErrors);
 		$json->fail(Pommo::_T('Please review and correct errors with your submission.'));
 	}
 }
 
 $mailgroups = explode( ',', $state['mailgroup'] );
-$smarty->assign( 'mailgroups', $mailgroups );
-$smarty->assign('groups', Pommo_Groups::get());
-$smarty->assign($state);
-$smarty->display('admin/mailings/mailing/setup.tpl');
+$view->assign( 'mailgroups', $mailgroups );
+$view->assign('groups', Pommo_Groups::get());
+$view->assign($state);
+$view->display('admin/mailings/mailing/setup');
 
 

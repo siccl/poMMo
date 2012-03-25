@@ -33,8 +33,8 @@ $dbo 	= Pommo::$_dbo;
 	SETUP TEMPLATE, PAGE
  *********************************/
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
+$view = new Pommo_Template();
 
 
-$smarty->display('support/support.lib.tpl');
+$view->display('support/support.lib');
 

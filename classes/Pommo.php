@@ -183,47 +183,6 @@ class Pommo
 			require_once(self::$_baseDir.'classes/Pommo_Helper_L10n.php');
 			Pommo_Helper_L10n::init(self::$_language, self::$_baseDir);
 		}
-		
-		//	make sure workDir is writable
-		if (!is_dir(self::$_workDir.'/pommo/smarty'))
-		{
-				
-			$wd = self::$_workDir;
-			self::$_workDir = null;
-			if (!is_dir($wd))
-			{
-				Pommo::kill(sprintf(Pommo::_T('Work Directory (%s) not found!
-						Make sure it exists and the webserver can write to it.
-						You can change its location from the config.php file.'),
-						$wd));
-			}
-			if (!is_writable($wd))
-			{
-				Pommo::kill(sprintf(Pommo::_T('Cannot write to Work Directory
-						(%s). Make sure it has the proper permissions.'), $wd));
-			}
-			if ('1' == ini_get('safe_mode'))
-			{
-				Pommo::kill(sprintf(Pommo::_T('Working Directory (%s) cannot be
-						created under PHP SAFE MODE. See Documentation, or
-						disable SAFE MODE.'), $wd));
-			}
-			if (!is_dir($wd.'/pommo'))
-			{
-				if (!mkdir($wd.'/pommo'))
-				{
-					Pommo::kill(Pommo::_T('Could not create directory').' '.
-							$wd.'/pommo');
-				}
-			}
-				
-			if (!mkdir($wd.'/pommo/smarty'))
-			{
-				Pommo::kill(Pommo::_T('Could not create directory').' '.$wd.
-						'/pommo/smarty');
-			}
-			self::$_workdir = $wd;
-		}
 
 		//	set the current "section" -- should be "user" for /user/* files,
 		//	"mailings" for /admin/mailings/* files, etc. etc.
@@ -555,10 +514,10 @@ class Pommo
 			{
 				$logger = self::$_logger;
 				$logger->addErr($msg);
-				require_once(self::$_baseDir.'classes/Pommo_Template.php');
-				$smarty = new Pommo_Template();
-				$smarty->assign('fatalMsg', TRUE);
-				$smarty->display('message.tpl');
+				require_once self::$_baseDir.'classes/Pommo_Template.php';
+				$view = new Pommo_Template();
+				$view->assign('fatalMsg', TRUE);
+				$view->display('message');
 			}
 		}
 		

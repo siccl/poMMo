@@ -4,8 +4,8 @@ class Pommo_User_Test extends PHPUnit_Framework_TestCase
 {
 	public function setUp()
 	{
-		require_once '../bootstrap.php';
-		require_once '../classes/Pommo_User.php';
+		require_once __DIR__.'/../bootstrap.php';
+		require_once __DIR__.'/../classes/Pommo_User.php';
 		
 		//	Empty table users to have a know state
 		$dbo = Pommo::$_dbo;

@@ -1,31 +1,36 @@
 <?php
 /**
- * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
+ *  released originally under GPLV2
  * 
- * This file is part of poMMo (http://www.pommo.org)
+ *  This file is part of poMMo.
+ *
+ *  poMMo is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  poMMo is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
  * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
- * by the Free Software Foundation; either version 2, or any later version.
- * 
- * poMMo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty
- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
- * the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with program; see the file docs/LICENSE. If not, write to the
- * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ *  This fork is from https://github.com/soonick/poMMo
+ *  Please see docs/contribs for Contributors
+ *
  */
 
 /**********************************
 	INITIALIZATION METHODS
 *********************************/
-require ('../bootstrap.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Groups.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
-require_once(Pommo::$_baseDir.'classes/Pommo_Rules.php');
-			
+require '../bootstrap.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Groups.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Fields.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Rules.php';
+
 Pommo::init();
 $logger = Pommo::$_logger;
 $dbo 	= Pommo::$_dbo;
@@ -33,7 +38,7 @@ $dbo 	= Pommo::$_dbo;
 /**********************************
 	JSON OUTPUT INITIALIZATION
  *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
+require_once Pommo::$_baseDir.'classes/Pommo_Json.php';
 $json = new Pommo_Json();
 
 // Remember the Page State
@@ -46,8 +51,8 @@ switch ($_REQUEST['call'])
 		/**********************************
 			SETUP TEMPLATE, PAGE
 		 *********************************/
-		require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-		$smarty = new Pommo_Template();
+		require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
+		$view = new Pommo_Template();
 
 		$group = current(Pommo_Groups::get(array('id' => $state['group'])));
 		if (empty($group))
@@ -87,22 +92,22 @@ switch ($_REQUEST['call'])
 					Pommo_Rules::getEnglish(end(
 							Pommo_Rules::getLegal($group,array($field))));
 							
-			$smarty->assign('type', $type);
-			$smarty->assign('field',$field);
-			$smarty->assign('logic',$logic);
-			$smarty->assign('values',$values);
-			$smarty->assign('firstVal',$firstVal);
+			$view->assign('type', $type);
+			$view->assign('field',$field);
+			$view->assign('logic',$logic);
+			$view->assign('values',$values);
+			$view->assign('firstVal',$firstVal);
 		
-			$smarty->display('admin/subscribers/ajax/rule.field.tpl');
+			$view->display('admin/subscribers/ajax/rule.field');
 		}
 		elseif($_REQUEST['ruleType'] == 'group') {
 			$match = Pommo_Groups::getNames($_REQUEST['fieldID']);
 			$key = key($match);
 			
-			$smarty->assign('match_name',$match[$key]);
-			$smarty->assign('match_id',$key);
+			$view->assign('match_name',$match[$key]);
+			$view->assign('match_id',$key);
 			
-			$smarty->display('admin/subscribers/ajax/rule.group.tpl');
+			$view->display('admin/subscribers/ajax/rule.group');
 			Pommo::kill();
 		}
 	break;

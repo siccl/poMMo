@@ -158,33 +158,43 @@ class Pommo_Helper_Messages
 		return $messages;
 	}
 	
-	function testExchanger($to,$exchanger) {
-		global $pommo;
-		$logger =& Pommo::$_logger;
-		
-		require_once(Pommo::$_baseDir.'classes/Pommo_Mailer.php');
-		
-		$subject = Pommo::_T('poMMo test message');
-		$body = sprintf(Pommo::_T("This message indicates that poMMo is able to use the %s exchanger."),$exchanger);
-		
+	function testExchanger($to, $exchanger)
+	{
+		$logger = Pommo::$_logger;
+
+		require_once Pommo::$_baseDir.'classes/Pommo_Mailer.php';
+
+		$subject = _('poMMo test message');
+		$body = sprintf(_("This message indicates that poMMo is able to use the
+				%s exchanger."), $exchanger);
+
 		$mail = new Pommo_Mailer();
-	
+
 		// allow mail to be sent, even if demo mode is on
 		$mail->toggleDemoMode("off");
-	
+
 		// send the confirmation mail
 		$mail->prepareMail($subject, $body);
-		
+
 		$ret = true;
-		if (!$mail->bmSendmail($to)) {
-			$logger->addErr(Pommo::_T('Error Sending Mail'));
+
+		// Catch output so error messages from PHPMailer are not echoed
+		ob_start();
+
+		if (!$mail->bmSendmail($to))
+		{
+			$logger->addErr(_('Error Sending Mail'));
 			$ret = false;
 		}
+
+		// Stop catching output
+		ob_get_clean();
+
 		// reset demo mode to default
 		$mail->toggleDemoMode();
 		return $ret;
 	}
-	
+
 	function notify(&$notices,&$sub,$type,$comments=false) {
 		global $pommo;
 		require_once(Pommo::$_baseDir.'classes/Pommo_Mailer.php');

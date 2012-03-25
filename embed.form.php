@@ -22,24 +22,23 @@
 	INITIALIZATION METHODS
  *********************************/
 define('_poMMo_embed', TRUE);
-require(dirname(__FILE__).'/bootstrap.php');
+require dirname(__FILE__).'/bootstrap.php';
 Pommo::init(array('authLevel' => 0, 'noSession' => TRUE));
-$logger = & Pommo::$_logger;
-$dbo = & Pommo::$_dbo;
+$logger = Pommo::$_logger;
+$dbo = Pommo::$_dbo;
 
 /**********************************
 	SETUP TEMPLATE, PAGE
  *********************************/
-require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
-$smarty = new Pommo_Template();
+require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
+$view = new Pommo_Template();
 
 
 // subscription forms will be activated from this template
 // Function
-$smarty->prepareForSubscribeForm();
+$view->prepareForSubscribeForm();
 
 // assign referer since this is an embedded form
-$smarty->assign('referer',htmlspecialchars($_SERVER['PHP_SELF']));
+$view->assign('referer',htmlspecialchars($_SERVER['PHP_SELF']));
 
-$smarty->display('subscribe/form.subscribe.tpl');
-?>
+$view->display('subscribe/form.subscribe');

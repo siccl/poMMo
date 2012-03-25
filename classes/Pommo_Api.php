@@ -114,11 +114,15 @@ class Pommo_Api
 		$dbo = Pommo::$_dbo;
 
 		if (!is_array($input))
-			Pommo :: kill('Bad input passed to updateConfig', TRUE);
-			
+		{
+			Pommo::kill('Bad input passed to updateConfig', TRUE);
+		}
+
 		// if this is password, skip if empty
 		if (isset($input['admin_password']) && empty($input['admin_password']))
+		{
 			unset($input['admin_password']);
+		}
 
 		// get eligible config rows/options to change
 		$force = ($force) ? null : 'on';
@@ -140,8 +144,12 @@ class Pommo_Api
 			SET config_value =
 				CASE config_name ".$when." ELSE config_value END
 			[WHERE config_name IN(%Q)]";
-		if (!$dbo->query($dbo->prepare($query,array($where))))
+		$query = $dbo->prepare($query,array($where));
+
+		if (!$dbo->query($query))
+		{
 			Pommo::kill('Error updating config');
+		}
 		return true;
 	}
 	

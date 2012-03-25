@@ -11,9 +11,9 @@ CREATE TABLE :::config::: (
 
 INSERT INTO :::config::: VALUES ('admin_username', 'admin', 'Username', 'off', 'on');
 INSERT INTO :::config::: VALUES ('admin_password', 'c40d70861d2b0e48a8ff2daa7ca39727', 'Password', 'off', 'on');
-INSERT INTO :::config::: VALUES ('admin_email', 'nesta@iceburg.net', 'Administrator Email', 'on', 'on');
+INSERT INTO :::config::: VALUES ('admin_email', 'admin@yourdomain.com', 'Administrator Email', 'on', 'on');
 INSERT INTO :::config::: VALUES ('site_name', 'A', 'Website Name', 'on', 'on');
-INSERT INTO :::config::: VALUES ('site_url', 'http://66.111.62.220/pommo', 'Website URL', 'on', 'on');
+INSERT INTO :::config::: VALUES ('site_url', 'http://yourdomain.com/pommo', 'Website URL', 'on', 'on');
 INSERT INTO :::config::: VALUES ('site_success', '', 'Signup Success URL', 'off', 'on');
 INSERT INTO :::config::: VALUES ('site_confirm', '', '', 'off', 'on');
 INSERT INTO :::config::: VALUES ('list_name', 'A', 'List Name', 'on', 'on');

@@ -19,9 +19,9 @@
 
 // Abstraction Libary for FCKEdior 2.5.1
 var wysiwyg = {
-	enabled: false, // state of WYSIWYG. False == Disabled, True == Enabled (visible). Default to disabled. Compose.tpl will enable it.
+	enabled: false, // state of WYSIWYG. False == Disabled, True == Enabled (visible). Default to disabled. Compose.php will enable it.
 	language: 'en', // the WYSIWYG language
-	baseURL: '/pommo/themes/wysiwyg/', // the URL path to poMMo's WYSIWYG directory [written via compose.tpl]
+	baseURL: '/pommo/themes/wysiwyg/', // the URL path to poMMo's WYSIWYG directory [written via compose.php]
 	fck: false, // instance of the FCKEditor
 	textarea: false, // shortcut to the original textarea [jQuery Object]
 	enable: function(){ // enable the WYSIWYG
@@ -98,8 +98,8 @@ var wysiwyg = {
 		this.fck = false; 
 		wysiwyg = $.extend(wysiwyg,o);
 	},
-	t_weblink: "View this Mailing on the Web", // translated via compose.tpl
-	t_unsubscribe: "Unsubscribe or Update your Records" // translated via compose.tpl
+	t_weblink: "View this Mailing on the Web", // translated via compose.php
+	t_unsubscribe: "Unsubscribe or Update your Records" // translated via compose.php
 }
 
 function FCKeditor_OnComplete(instance) {
