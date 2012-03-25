@@ -28,17 +28,11 @@ class Pommo_Template
 		// set theme -- TODO; extend this to the theme selector
 		$this->_pommoTheme = 'default';
 
-		// set smarty directories
+		// set directories
 		$this->_themeDir = Pommo::$_baseDir . 'themes/';
 		$this->template_dir = $this->_themeDir . $this->_pommoTheme;
 		$this->config_dir = $this->template_dir . '/inc/config';
-		$this->cache_dir = Pommo::$_workDir . '/pommo/smarty';
-		$this->compile_dir = Pommo::$_workDir . '/pommo/smarty';
-		$this->plugins_dir = array (
-				'plugins', // the default under SMARTY_DIR
-				Pommo::$_baseDir . 'lib/smarty-plugins/gettext',
-				Pommo::$_baseDir . 'lib/smarty-plugins/pommo');
-				
+
 		// set base/core variables available to all template
 		$this->assign('url', array (
 			'theme' => array (
@@ -175,20 +169,6 @@ class Pommo_Template
 		}
 
 		$this->assign($_POST);
-	}
-	
-	// returns an array of invalid fields, empty if none.
-	// array key == invalid field, value == message
-	// e.g. array(field => 'email', 'message' => 'Must be an Email Address');
-	function getInvalidFields($form = SMARTY_VALIDATE_DEFAULT_FORM) {
-		$o = array();
-		
-		foreach($_SESSION['SmartyValidate'][$form]['validators'] as $validator) {
-			if(!$validator['valid'])
-				array_push($o,array('field' => $validator['field'], 'message' => $validator['message']));
-		}
-		
-		return $o;
 	}
 
 	/**

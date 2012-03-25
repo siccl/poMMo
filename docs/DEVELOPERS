@@ -38,7 +38,7 @@ pommo/admin/*/ajax/
 
 pommo/cache/
 		"Work directory" - web disabled (no URL's point here)
-		This is the default working directory, if not explicitly defined in config.php. This directory should be writable by the webserver. SMARTY compiles and caches its templates in this directory.
+		This is the default working directory, if not explicitly defined in config.php. This directory should be writable by the webserver.
 
 
 pommo/docs/

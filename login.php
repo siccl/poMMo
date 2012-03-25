@@ -33,7 +33,7 @@ Pommo::init(array('authLevel' => 0, 'noSession' => true));
 $logger = Pommo::$_logger;
 $dbo = Pommo::$_dbo;
 
-session_start(); // required by smartyValidate. TODO -> verify if needed
+session_start();
 
 /**********************************
 	SETUP TEMPLATE, PAGE
@@ -64,12 +64,10 @@ if (empty($_POST)) {
 		{
 			if (Pommo_Pending::isEmailPending($_POST['Email'])) {
 				$input = urlencode(serialize(array('Email' => $_POST['Email'])));
-				SmartyValidate :: disconnect();
 				Pommo::redirect('pending.php?input='.$input);
 			}
 			else {
 				// __ EMAIL IN SUBSCRIBERS TABLE, REDIRECT
-				SmartyValidate :: disconnect();
 				Pommo::redirect('activate.php?email='.$_POST['Email']);
 			}
 		}
