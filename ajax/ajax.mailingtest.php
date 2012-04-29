@@ -91,11 +91,12 @@ else
 			$state['tally'] = 1;
 			$state['group'] = _('Test Mailing');
 
-			if ($state['ishtml'] == 'off')
-			{
-				$state['body'] = $state['altbody'];
-				$state['altbody'] = '';
-			}
+            if ('off' == $state['ishtml']) {
+                $state['body'] = $state['altbody'];
+                $state['altbody'] = '';
+            } else {
+                $state['ishtml'] = 'on';
+            }
 
 			// create mailing
 			$mailing = Pommo_Mailing::make(array(), TRUE);
