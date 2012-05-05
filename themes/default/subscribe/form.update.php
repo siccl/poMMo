@@ -39,64 +39,67 @@
 			</div>
 
 			<?php
-				foreach ($this->fields as $key => $field)
-				{
-				?>
-				<div>
-					<!-- DON'T DISPLAY COMMENT FIELDS ON UPDATE FORM. A COMMENT FIELD
-							IS PROVIDED @ user/update.php FOR UNSUBSCRIBE -->
-					<?php
-					if ('comment' != $field['type'])
-					{
-					?>
-						<label
-						<?php
-							if ('on' == $field['required'])
-							{
-								echo 'class="required"';
-							}
-						?> for="field<?php echo $key; ?>">
-							<?php echo $field['name']; ?>:
-						</label>
-					<?php
-					}
+                if (!empty($this->fields) && is_array($this->fields))
+                {
+                    foreach ($this->fields as $key => $field)
+                    {
+                    ?>
+                    <div>
+                        <!-- DON'T DISPLAY COMMENT FIELDS ON UPDATE FORM. A COMMENT FIELD
+                                IS PROVIDED @ user/update.php FOR UNSUBSCRIBE -->
+                        <?php
+                        if ('comment' != $field['type'])
+                        {
+                        ?>
+                            <label
+                            <?php
+                                if ('on' == $field['required'])
+                                {
+                                    echo 'class="required"';
+                                }
+                            ?> for="field<?php echo $key; ?>">
+                                <?php echo $field['name']; ?>:
+                            </label>
+                        <?php
+                        }
 
-					switch ($field['type'])
-					{
-						case 'checkbox':
-							echo '<input type="checkbox" name="d['.$key.']"
-									id="field'.$key.'"'.('on' == $this->d[$key] ?
-									' checked="checked" ' : '').' />';
-							break;
-						case 'multiple':
-							echo '<select name="d['.$key.']" id="field'.$key.'">';
-							echo
-								'<option value="">'
-									._('Choose Selection')
-								.'</option>';
-							foreach ($field['array'] as $option)
-							{
-								echo
-									'<option '.($option == $this->d[$key] ?
-											' selected="selected" ' : '').'>'
-										.$option
-									.'</option>';
-							}
-							echo '</select>';
-							break;
-						default:
-							echo '<input type="text" '.('date' == $field['type'] ?
-									'class="text datepicker" size="12" ' :
-									'size="32" ').'name="d['.$key.']"
-									id="field'.$key.'" '.(isset($this->d[$key]) ?
-									' value="'.htmlentities($this->d[$key]).'" ' :
-									'').' />';
-							break;
-					}
-					?>
-			</div>
-			<?php
-				}
+                        switch ($field['type'])
+                        {
+                            case 'checkbox':
+                                echo '<input type="checkbox" name="d['.$key.']"
+                                        id="field'.$key.'"'.('on' == $this->d[$key] ?
+                                        ' checked="checked" ' : '').' />';
+                                break;
+                            case 'multiple':
+                                echo '<select name="d['.$key.']" id="field'.$key.'">';
+                                echo
+                                    '<option value="">'
+                                        ._('Choose Selection')
+                                    .'</option>';
+                                foreach ($field['array'] as $option)
+                                {
+                                    echo
+                                        '<option '.($option == $this->d[$key] ?
+                                                ' selected="selected" ' : '').'>'
+                                            .$option
+                                        .'</option>';
+                                }
+                                echo '</select>';
+                                break;
+                            default:
+                                echo '<input type="text" '.('date' == $field['type'] ?
+                                        'class="text datepicker" size="12" ' :
+                                        'size="32" ').'name="d['.$key.']"
+                                        id="field'.$key.'" '.(isset($this->d[$key]) ?
+                                        ' value="'.htmlentities($this->d[$key]).'" ' :
+                                        '').' />';
+                                break;
+                        }
+                        ?>
+                </div>
+                <?php
+                    }
+                }
 			?>
 		</fieldset>
 
@@ -106,4 +109,3 @@
 		</div>
 	</form>
 </div>
-
