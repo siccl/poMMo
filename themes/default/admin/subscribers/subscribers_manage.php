@@ -53,7 +53,7 @@ include $this->template_dir.'/inc/messages.php';
 		<ul class="inpage_menu view">
 			<li>
 				<label>
-					<?php echo _('View'); ?> 
+					<?php echo _('View'); ?>
 					<select name="status">
 						<option value="1"
 						<?php
@@ -72,7 +72,7 @@ include $this->template_dir.'/inc/messages.php';
 						?>><?php echo _('Unsubscribed'); ?></option>
 						<option value="2"
 						<?php
-							if (1 == $this->state['status'])
+							if (2 == $this->state['status'])
 							{
 								echo 'selected="selected"';
 							}
@@ -82,7 +82,7 @@ include $this->template_dir.'/inc/messages.php';
 			</li>
 			<li>
 				<label>
-					<?php echo _('Belonging to Group'); ?> 
+					<?php echo _('Belonging to Group'); ?>
 					<select name="group">
 						<option value="all"
 						<?php
@@ -270,7 +270,7 @@ $(function()
 	$('#add').jqmAddTrigger('a.addTrigger');
 	$('#del').jqmAddTrigger('a.delTrigger');
 	$('#exp').jqmAddTrigger('a.expTrigger');
-	
+
 	$('a.editTrigger').click(function()
 	{
 		// prevent edit window from appearing if no row is selected
@@ -278,16 +278,16 @@ $(function()
 			$('#edit').jqmShow(this);
 		return false;
 	});
-	
-	
+
+
 	$('#orderForm select').change(function()
 	{
 		$('#orderForm')[0].submit();
 	});
-	
+
 	$('legend.click').click(function()
-	{ 
-		$(this).siblings('ul').slideToggle(); 
+	{
+		$(this).siblings('ul').slideToggle();
 	});
 
 	<?php
@@ -295,7 +295,7 @@ $(function()
 		{
 		?>
 		$('ul.search').slideDown();
-		<?php	
+		<?php
 		}
 
 		if ('all' != $this->state['group'] || 1 != $this->state['statue'])
@@ -329,4 +329,3 @@ include $this->template_dir.'/inc/dialog.php';
 $this->capturedDialogs = ob_get_clean();
 
 include $this->template_dir.'/inc/admin.footer.php';
-
