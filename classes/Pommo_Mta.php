@@ -321,7 +321,11 @@ class Pommo_Mta
 				$personal = FALSE;
 				if (Pommo::$_session['personalization'])
 					$personal =& $this->_queue[$this->_hash[$mail[0]]];
-				
+
+				if (empty($personal)) {
+				    $this->stop();
+				}
+
 				if (!$this->_mailer->bmSendmail($mail[0], $personal)) // sending failed, write to log  
 					$this->_failed[] = $mail[0];
 				else
