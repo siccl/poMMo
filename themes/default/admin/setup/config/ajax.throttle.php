@@ -153,27 +153,27 @@ $('div.ui-slider').each(function(){
 		case 'mps':
 			p.maxValue = 300;
 			p.minValue = 0;
-			p.startValue = <?php echo $this>mps; ?>;
+			p.startValue = <?php echo $this->mps; ?>;
 			break;
 		case 'bps':
 			p.maxValue = 400;
 			p.minValue = 0;
-			p.startValue = <?php echo $this>bps; ?>;
+			p.startValue = <?php echo $this->bps; ?>;
 			break;
 		case 'dp':
 			p.maxValue = 20;
 			p.minValue = 5;
-			p.startValue = <?php echo $this>dp; ?>;
+			p.startValue = <?php echo $this->dp; ?>;
 			break;
 		case 'dmpp':
 			p.maxValue = 5;
 			p.minValue = 0;
-			p.startValue = <?php echo $this>dmpp; ?>;
+			p.startValue = <?php echo $this->dmpp; ?>;
 			break;
 		case 'dbpp':
 			p.maxValue = 400;
 			p.minValue = 0;
-			p.startValue = <?php echo $this>dbpp; ?>;
+			p.startValue = <?php echo $this->dbpp; ?>;
 			break;
 			
 	}
