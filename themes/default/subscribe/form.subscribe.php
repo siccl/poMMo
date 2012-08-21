@@ -30,136 +30,138 @@
 		</div>
 
 		<?php
-			foreach ($this->fields as $key => $field)
-			{
-			?>
-			<div>
-				<label for="field<?php echo $key; ?>">
-					<?php
-						if ('on' == $field['required'])
-						{
-							echo '<strong class="required">';
-						}
-						echo $field['name'];
-						if ('on' == $field['required'])
-						{
-							echo '</strong>';
-						}
-					?>
-				</label>
+            if (isset($this->fields) && is_array($this->fields)) {
+                foreach ($this->fields as $key => $field) {
+                ?>
+                <div>
+                    <label for="field<?php echo $key; ?>">
+                        <?php
+                            if ('on' == $field['required'])
+                            {
+                                echo '<strong class="required">';
+                            }
+                            echo $field['name'];
+                            if ('on' == $field['required'])
+                            {
+                                echo '</strong>';
+                            }
+                        ?>
+                    </label>
 
-				<?php
-					switch ($field['type'])
-					{
-						case 'text':
-						case 'number':
-						?>
-							<input type="text" size="32" name="d[<?php echo $key; ?>]"
-									id="field<?php echo $key; ?>"
-									<?php
-										if (isset($this->d[$key]))
-										{
-											echo 'value="'.htmlentities(
-													$this->d[$key]).'" ';
-										}
-										elseif ($field['normally'])
-										{
-											echo 'value="'.htmlentities(
-													$field['normally']).'" ';
-										}
-									?>
-									/>
-						<?php
-							break;
-						case 'checkbox':
-						?>
-							<input type="checkbox" name="d[<?php echo $key; ?>]"
-									id="field<?php echo $key; ?>"
-							<?php
-								if ('on' == $this->d['key'])
-								{
-									echo 'checked="checked" ';
-								}
-								elseif (!$this->formSubmitted
-										&& 'on' == $field['normally'])
-								{
-									echo 'checked="checked" ';
-								}
-							?>
-							/>
-						<?php
-							break;
-						case 'multiple':
-						?>
-							<select name="d[<?php echo $key; ?>]"
-									id="field<?php echo $key; ?>">
-								<option value=""><?php echo _('Choose Selection');
-										?></option>
-							<?php
-								foreach ($field['array'] as $option)
-								{
-									echo '<option ';
-									if ($option == $this->d['key'])
-									{
-										echo 'selected="selected" ';
-									}
-									elseif (!isset($this->d['key'])
-											&& $option == $field['normally'])
-									{
-										echo 'selected="selected" ';
-									}
-									echo '>'.$option.'</option>';
-									
-								}
-							?>
-							</select>
-						<?php
-							break;
-						case 'date':
-						?>
-							<input type="text" class="datepicker" size="12"
-									name="d[<?php echo $key; ?>]"
-									id="field<?php echo $key; ?>"
-							<?php
-								if (isset($this->d['key']))
-								{
-									echo 'value="'.htmlentities($this->d['key'])
-											.'" ';
-								}
-								elseif ($field['normally'])
-								{
-									echo 'value="'.htmlentities($field['normally'])
-											.'" ';
-								}
-								else
-								{
-									echo 'value="'.$this->config['app']['dateformat']
-											.'" ';
-								}
-							?>
-							/>
-						<?php
-							break;
-						case 'comment':
-						?>
-							<textarea name="comments" rows="3" cols="33"
-									maxlength="255"><?php
-							if (isset($this->d['key']))
-							{
-								echo $this->d['key'];
-							}
-							elseif ($field['normally'])
-							{
-								echo $field['normally'];
-							}
-							?></textarea>
-						<?php
-							break;
-					}
-				?>
-			</div>
-			<?php
-			}
+                    <?php
+                        switch ($field['type'])
+                        {
+                            case 'text':
+                            case 'number':
+                            ?>
+                                <input type="text" size="32" name="d[<?php echo $key; ?>]"
+                                        id="field<?php echo $key; ?>"
+                                        <?php
+                                            if (isset($this->d[$key]))
+                                            {
+                                                echo 'value="'.htmlentities(
+                                                        $this->d[$key]).'" ';
+                                            }
+                                            elseif ($field['normally'])
+                                            {
+                                                echo 'value="'.htmlentities(
+                                                        $field['normally']).'" ';
+                                            }
+                                        ?>
+                                        />
+                            <?php
+                                break;
+                            case 'checkbox':
+                            ?>
+                                <input type="checkbox" name="d[<?php echo $key; ?>]"
+                                        id="field<?php echo $key; ?>"
+                                <?php
+                                    if ('on' == $this->d['key'])
+                                    {
+                                        echo 'checked="checked" ';
+                                    }
+                                    elseif (!$this->formSubmitted
+                                        && 'on' == $field['normally'])
+                                    {
+                                        echo 'checked="checked" ';
+
+                                    }
+                                ?>
+                                />
+                            <?php
+                                break;
+                            case 'multiple':
+                            ?>
+                                <select name="d[<?php echo $key; ?>]"
+                                        id="field<?php echo $key; ?>">
+                                    <option value=""><?php echo _('Choose Selection');
+                                        ?></option>
+                                <?php
+                                    foreach ($field['array'] as $option)
+                                    {
+                                        echo '<option ';
+                                        if ($option == $this->d['key'])
+                                        {
+                                            echo 'selected="selected" ';
+                                        }
+                                        elseif (!isset($this->d['key'])
+                                                && $option == $field['normally'])
+                                        {
+                                            echo 'selected="selected" ';
+                                        }
+                                        echo '>'.$option.'</option>';
+
+                                    }
+                                ?>
+                                </select>
+                            <?php
+                                break;
+                            case 'date':
+                            ?>
+                                <input type="text" class="datepicker" size="12"
+                                        name="d[<?php echo $key; ?>]"
+                                        id="field<?php echo $key; ?>"
+                                <?php
+                                    if (isset($this->d['key']))
+                                    {
+                                        echo 'value="'.htmlentities($this->d['key'])
+                                                .'" ';
+                                    }
+                                    elseif ($field['normally'])
+                                    {
+                                        echo 'value="'.htmlentities($field['normally'])
+                                                .'" ';
+                                    }
+                                    else
+                                    {
+                                        echo 'value="'.$this->config['app']['dateformat']
+                                                .'" ';
+                                    }
+                                ?>
+                                />
+                            <?php
+                                break;
+                            case 'comment':
+                            ?>
+                                <textarea name="comments" rows="3" cols="33"
+                                        maxlength="255"><?php
+                                if (isset($this->d['key']))
+                                {
+                                    echo $this->d['key'];
+                                }
+                                elseif ($field['normally'])
+                                {
+                                    echo $field['normally'];
+                                }
+                                ?></textarea>
+                            <?php
+                                break;
+                        }
+                    ?>
+                </div>
+                <?php
+                }
+            }
 		?>
 	</fieldset>
 
