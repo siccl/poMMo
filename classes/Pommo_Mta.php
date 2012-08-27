@@ -317,14 +317,15 @@ class Pommo_Mta
 			// if an email was returned, send it.
 			if (!empty($mail)) {
 
-				// set $personal as subscriber if personalization is enabled
-				$personal = FALSE;
-				if (Pommo::$_session['personalization'])
-					$personal =& $this->_queue[$this->_hash[$mail[0]]];
+                // set $personal as subscriber if personalization is enabled
+                $personal = FALSE;
+                if (Pommo::$_session['personalization']) {
+                    $personal =& $this->_queue[$this->_hash[$mail[0]]];
 
-				if (empty($personal)) {
-				    $this->stop();
-				}
+                    if (empty($personal)) {
+                        $this->stop();
+                    }
+                }
 
 				if (!$this->_mailer->bmSendmail($mail[0], $personal)) // sending failed, write to log
 					$this->_failed[] = $mail[0];
