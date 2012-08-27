@@ -50,7 +50,7 @@ switch ($_REQUEST['call']) {
 	
 	case 'altbody' :
 		require_once(Pommo::$_baseDir.'lib/lib.html2txt.php');
-		$h2t = & new html2text($_REQUEST['body']);
+		$h2t = new html2text($_REQUEST['body']);
 		$json->add('altbody',$h2t->get_text());
 	break;
 	

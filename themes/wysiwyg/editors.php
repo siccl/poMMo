@@ -30,9 +30,9 @@ class PommoWYSIWYG {
  *   dependencies. Javascripts path is relative to "themes/wysiwyg/"
  */
 		
-		$this->registerEditor('FCKEditor', array(
-			'fckeditor.lib.js',
-			'fckeditor/fckeditor.js')
+		$this->registerEditor('CKEditor', array(
+			'ckeditor/ckeditor.js',
+			'ckeditor.lib.js')
 		);
 		
 		// $this->registerEditor('TinyMCE', array('lib.tinymce.js','tinymce/tinymce.js'));
@@ -40,7 +40,7 @@ class PommoWYSIWYG {
 		// Determine editor to load during mail composition.
 		// TODO; allow selection of editor via mailing configuration page.
 		
-		$this->_default = 'FCKEditor';
+		$this->_default = 'CKEditor';
 	}
 	
 /**
