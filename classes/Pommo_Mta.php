@@ -21,11 +21,11 @@
  // poMMo MTA - poMMo's background mailer
 
  // includes
-require_once(Pommo::$_baseDir. 'classes/Pommo_Mail_Ctl.php');
-require_once(Pommo::$_baseDir. 'classes/Pommo_Mailer.php');
-require_once(Pommo::$_baseDir. 'classes/Pommo_Throttler.php');
-require_once(Pommo::$_baseDir. 'classes/Pommo_Mailing.php');
-require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
+require_once Pommo::$_baseDir . 'classes/Pommo_Mail_Ctl.php';
+require_once Pommo::$_baseDir . 'classes/Pommo_Mailer.php';
+require_once Pommo::$_baseDir . 'classes/Pommo_Throttler.php';
+require_once Pommo::$_baseDir . 'classes/Pommo_Mailing.php';
+require_once Pommo::$_baseDir . 'classes/Pommo_Subscribers.php';
 
 class Pommo_Mta
 {
@@ -70,6 +70,13 @@ class Pommo_Mta
 	// the throttle object
 	var $_throttler;
 
+    /**
+     * Register function that will be called when the script terminates abruptly.
+     * Get code, test and id from URL.
+     * Retrieve mailing (subject, body, attachments, etc) that will be sent.
+     *
+     * @param array $args.- Configuration overwrites
+     */
 	function Pommo_Mta($args = array())
 	{
 		$defaults = array (
@@ -82,18 +89,14 @@ class Pommo_Mta
 		);
 		$p = Pommo_Api::getParams($defaults, $args);
 
-		foreach($p as $k => $v)
-		{
+		foreach($p as $k => $v) {
 			$this->{'_'.$k} = $v;
 		}
 
 		// protect against safe mode timeouts
-		if (ini_get('safe_mode'))
-		{
+		if (ini_get('safe_mode')) {
 			$this->_maxRunTime = ini_get('max_execution_time') - 10;
-		}
-		else
-		{
+		} else {
 			set_time_limit(0);
 		}
 
@@ -101,7 +104,7 @@ class Pommo_Mta
 		ignore_user_abort(true);
 
 		// register shutdown method
-   		register_shutdown_function(array(&$this, "shutdown"));
+        register_shutdown_function(array(&$this, "shutdown"));
 
    		// set parameters from URL
 		$this->_code = (empty($_GET['code'])) ? 'invalid' : $_GET['code'];
@@ -116,36 +119,44 @@ class Pommo_Mta
 
 		$this->_mailing = current(Pommo_Mailing::get($p));
 
-		if (!is_numeric($this->_mailing['id']))
-		{
+		if (!is_numeric($this->_mailing['id'])) {
 			$this->shutdown('Unable to initialize mailing.');
 		}
 		$this->_id = $this->_mailing['id'];
 
-		// make sure the $_GET global holds the mailing id (used in personalizations, etc.)
+		// make sure the $_GET global holds the mailing id
+		// (used in personalizations, etc.) TODO: Find another way to do this
 		$_GET['id'] = $this->_id;
 
 		// security routines
-		if($this->_mailing['end'] > 0)
+		if ($this->_mailing['end'] > 0) {
 			$this->shutdown(Pommo::_T('Mailing Complete.'));
+		}
 
-		if(empty($this->_mailing['serial']))
-			if (!Pommo_Mail_Ctl::mark($this->_serial,$this->_id))
-				$this->shutdown('Unable to serialize mailing (ID: '.$this->_id.' SERIAL: '.$this->_serial.')');
+        if (empty($this->_mailing['serial'])) {
+            if (!Pommo_Mail_Ctl::mark($this->_serial,$this->_id)) {
+                $this->shutdown(
+                    'Unable to serialize mailing (ID: ' . $this->_id
+                    . ' SERIAL: ' . $this->_serial . ')'
+                );
+            }
+        }
 
-		if($this->_maxRunTime < 15)
-			$this->shutdown('Max Runtime must be at least 15 seconds!');
+        if ($this->_maxRunTime < 15) {
+            $this->shutdown('Max Runtime must be at least 15 seconds!');
+        }
 
-		$this->_queue = $this->_sent = $this->_failed = array();
+        $this->_queue = $this->_sent = $this->_failed = array();
+    }
 
-		return;
-	}
-
-	// polls the current mailing
-	function poll() {
-		global $pommo;
-		$dbo =& Pommo::$_dbo;
-		$logger =& Pommo::$_logger;
+    /**
+     * Retrieves the current command from the DB and acts based on that.
+     * restart: Set command to "none" in the DB.
+     */
+    function poll()
+    {
+        $dbo = Pommo::$_dbo;
+        $logger = Pommo::$_logger;
 
 		$query = "
 			SELECT command, current_status, serial
@@ -153,78 +164,83 @@ class Pommo_Mta
 			WHERE current_id=%i";
 		$query = $dbo->prepare($query,array($this->_id));
 
-		$row = mysql_fetch_assoc($dbo->query($query));
-		if (empty($row))
-			$this->shutdown('Unable to poll mailing.');
+        $row = mysql_fetch_assoc($dbo->query($query));
+        if (empty($row)) {
+            $this->shutdown('Unable to poll mailing.');
+        }
 
+        switch ($row['command']) {
+            case 'restart': // terminate if this is not a "fresh"/"new" process
+                if (is_object($this->_mailer)) {
+                    $this->_mailer->SmtpClose();
+                    $this->shutdown(sprintf(Pommo::_T('Restarting Mailing #%s'),$this->_id));
+                }
 
-		switch ($row['command']) {
-		case 'restart': // terminate if this is not a "fresh"/"new" process
-			if (is_object($this->_mailer)) {
-				$this->_mailer->SmtpClose();
-				$this->shutdown(sprintf(Pommo::_T('Restarting Mailing #%s'),$this->_id));
-			}
+                $query = "
+                    UPDATE ". $dbo->table['mailing_current']."
+                    SET
+                        serial=%i,
+                        command='none',
+                        current_status='started'
+                        WHERE current_id=%i";
+                $query = $dbo->prepare($query,array($this->_serial,$this->_id));
+                if (!$dbo->query($query)) {
+                    $this->shutdown('Database Query failed: ' . $query);
+                }
 
-			$query = "
-				UPDATE ". $dbo->table['mailing_current']."
-				SET
-					serial=%i,
-					command='none',
-					current_status='started'
-					WHERE current_id=%i";
-			$query = $dbo->prepare($query,array($this->_serial,$this->_id));
-			if (!$dbo->query($query))
-				$this->shutdown('Database Query failed: '.$query);
+                $logger->addMsg(sprintf(Pommo::_T('Started Mailing #%s'),$this->_id), 3);
 
-			$logger->addMsg(sprintf(Pommo::_T('Started Mailing #%s'),$this->_id), 3);
+                break;
 
-			break;
+            case 'stop':
+                if (is_object($this->_mailer))
+                    $this->_mailer->SmtpClose();
 
-		case 'stop':
-			if (is_object($this->_mailer))
-				$this->_mailer->SmtpClose();
+                $query = "
+                    UPDATE ". $dbo->table['mailing_current']."
+                    SET
+                        command='none',
+                        current_status='stopped' WHERE current_id=%i";
+                $query = $dbo->prepare($query,array($this->_id));
+                if (!$dbo->query($query))
+                    $this->shutdown('Database Query failed: '.$query);
 
-			$query = "
-				UPDATE ". $dbo->table['mailing_current']."
-				SET
-					command='none',
-					current_status='stopped' WHERE current_id=%i";
-			$query = $dbo->prepare($query,array($this->_id));
-			if (!$dbo->query($query))
-				$this->shutdown('Database Query failed: '.$query);
+                $logger->addMsg(sprintf(Pommo::_T('Stopped Mailing #%s'),$this->_id), 3, TRUE);
+                break;
 
-			$logger->addMsg(sprintf(Pommo::_T('Stopped Mailing #%s'),$this->_id), 3, TRUE);
-			break;
+            case 'cancel':
+                Pommo_Mail_Ctl::finish($this->_id, true);
+                $this->shutdown(Pommo::_T('Mailing Cancelled.'), true);
+                break;
 
-		case 'cancel':
-			Pommo_Mail_Ctl::finish($this->_id, true);
-			$this->shutdown(Pommo::_T('Mailing Cancelled.'), true);
-			break;
+            default:
+                if (!$this->_skipSecurity && $row['serial'] != $this->_serial) {
+                    $this->shutdown('Terminating due to Serial Mismatch!');
+                }
+                if ($row['current_status'] == 'stopped') {
+                    $this->shutdown(Pommo::_T('You must restart the mailing.'));
+                }
 
-		default :
-			if (!$this->_skipSecurity && $row['serial'] != $this->_serial)
-				$this->shutdown('Terminating due to Serial Mismatch!');
-			if ($row['current_status'] == 'stopped')
-				$this->shutdown(Pommo::_T('You must restart the mailing.'));
-
-			// upate the timestamp
-			$query = "UPDATE ". $dbo->table['mailing_current']." SET touched=NULL WHERE current_id=%i";
-			$query = $dbo->prepare($query,array($this->_id));
-			if (!$dbo->query($query))
-				$this->shutdown('Database Query failed: '.$query);
-			break;
-		}
+                // upate the timestamp
+                $query = "UPDATE ". $dbo->table['mailing_current']." SET touched=NULL WHERE current_id=%i";
+                $query = $dbo->prepare($query,array($this->_id));
+                if (!$dbo->query($query)) {
+                    $this->shutdown('Database Query failed: '.$query);
+                }
+                break;
+        }
 
 		// update the notices, queue
 		$this->update();
-
-		return true;
 	}
 
-	// pulls from the queue
-	function pullQueue() {
-		global $pommo;
-		$dbo =& Pommo::$_dbo;
+    /**
+     * Verify if there are still subscribers to whom the mailing hasn't been
+     * sent. If there aren't, stop. If there are: Get some subscribers from the
+     * DB.
+     */
+    function pullQueue() {
+        $dbo = Pommo::$_dbo;
 
 		$relay = 1; // switched to static relay in PR15, will utilize swiftmailer's multi-SMTP support.
 
@@ -236,8 +252,11 @@ class Pommo_Mta
 			SELECT COUNT(subscriber_id)
 			FROM ".$dbo->table['queue']."
 			WHERE status=0";
-		if($dbo->query($query,0) < 1) // no unsent mails left in queue, mailing complete!
-			$this->stop(true);
+
+        // no unsent mails left in queue, mailing complete!
+        if ($dbo->query($query,0) < 1) {
+            $this->stop(true);
+        }
 
 		// release lock on queue
 		$query = "
@@ -245,8 +264,9 @@ class Pommo_Mta
 			SET smtp=0
 			WHERE smtp=%i";
 		$query = $dbo->prepare($query, array($relay));
-		if(!$dbo->query($query))
+		if(!$dbo->query($query)) {
 			$this->shutdown('Database Query failed: '.$query);
+        }
 
 		// mark our working queue
 		$query = "
@@ -255,8 +275,9 @@ class Pommo_Mta
 			WHERE smtp=0 AND status=0
 			LIMIT %i";
 		$query = $dbo->prepare($query,array($relay,$this->_queueSize));
-		if(!$dbo->query($query))
+		if(!$dbo->query($query)) {
 			$this->shutdown('Database Query failed: '.$query);
+        }
 
 		// pull our queue
 		$query = "
@@ -265,16 +286,16 @@ class Pommo_Mta
 			WHERE smtp=%i";
 		$query = $dbo->prepare($query,array($relay));
 
-		if(!$dbo->query($query))
+		if(!$dbo->query($query)) {
 			$this->shutdown('Database Query failed: '.$query);
+        }
 
-		$this->_queue =& Pommo_Subscribers::get(array(
+		$this->_queue = Pommo_Subscribers::get(array(
 			'id' => $dbo->getAll(false, 'assoc', 'subscriber_id')));
 
-		if (empty($this->_queue))
+		if (empty($this->_queue)) {
 			$this->shutdown('Unable to pull queue.');
-
-		return;
+        }
 	}
 
 	// pushes queue into throttler
@@ -299,8 +320,7 @@ class Pommo_Mta
 
 	// continually sends mails from the queue until mailing completes or max runtime reached
 	function processQueue() {
-		global $pommo;
-		$logger =& Pommo::$_logger;
+		$logger = Pommo::$_logger;
 
 		$timer = time();
 		while(true) {
@@ -359,9 +379,9 @@ class Pommo_Mta
 	// updates the queue and notices
 	// accepts a array of failed emails
 	// accepts a array of sent emails
-	function update() {
-		global $pommo;
-		$dbo =& Pommo::$_dbo;
+	function update()
+	{
+		$dbo = Pommo::$_dbo;
 
 		if (!empty($this->_sent)) {
 			$a = array();
