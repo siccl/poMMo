@@ -84,21 +84,32 @@
 		}
 	?>
 	<strong><?php echo _('Text Version'); ?></strong>: <br /><br />
-	<div><?php echo $this->altbody; ?></div>
+    <div>
+    <?php
+        // Replace line endings with <br> so preview looks good
+        echo str_replace(
+            array(
+                "\r\n",
+                "\n"
+            ),
+            '<br>',
+            $this->altbody
+        );
+    ?>
+    </div>
 </div>
 
 <script type="text/javascript">
 $().ready(function() {
-	
+
 	$('#e_test').click(function() {
 		$('#dialog').jqmShow(this);
 		return false;
 	});
-	
+
 	$('#e_send').click(function() {
 		$('#sendForm').submit();
 		return false;
 	});
 });
 </script>
-
