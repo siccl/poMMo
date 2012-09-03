@@ -2,7 +2,7 @@
 /**
  *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  *  released originally under GPLV2
- * 
+ *
  *  This file is part of poMMo.
  *
  *  poMMo is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  *  This fork is from https://github.com/soonick/poMMo
  *  Please see docs/contribs for Contributors
  *
@@ -41,12 +41,13 @@ require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
 $view = new Pommo_Template();
 $view->assign('returnStr', _('Configure'));
 
-// Read user requested changes	
+// Read user requested changes
 if (!empty ($_POST['addSmtpServer']))
 {
 	$server = array (
 		'host' => 'mail.localhost',
 		'port' => '25',
+		'security' => 'none',
 		'auth' => 'off',
 		'user' => '',
 		'pass' => ''
@@ -58,8 +59,14 @@ if (!empty ($_POST['addSmtpServer']))
 elseif (!empty ($_POST['updateSmtpServer']))
 {
 	$key = key($_POST['updateSmtpServer']);
-	$server = array (
-		'host' => $_POST['host'][$key], 'port' => $_POST['port'][$key], 'auth' => $_POST['auth'][$key], 'user' => $_POST['user'][$key], 'pass' => $_POST['pass'][$key]);
+    $server = array (
+        'host' => $_POST['host'][$key],
+        'security' => $_POST['security'][$key],
+        'port' => $_POST['port'][$key],
+        'auth' => $_POST['auth'][$key],
+        'user' => $_POST['user'][$key],
+        'pass' => $_POST['pass'][$key]
+    );
 	$input['smtp_' . $key] = serialize($server);
 	Pommo_Api::configUpdate( $input, TRUE);
 	$update = true;
@@ -120,10 +127,11 @@ for ($i = 1; $i < 5; $i++) {
 	$test[$i]->Port = (empty ($smtp[$i]['port'])) ? null : $smtp[$i]['port'];
 	if (!empty ($smtp[$i]['auth']) && $smtp[$i]['auth'] == 'on') {
 		$test[$i]->SMTPAuth = TRUE;
+        $test[$i]->SMTPSecure = $smtp[$i]['security'];
 		$test[$i]->Username = (empty ($smtp[$i]['user'])) ? null : $smtp[$i]['user'];
 		$test[$i]->Password = (empty ($smtp[$i]['pass'])) ? null : $smtp[$i]['pass'];
 	}
-        
+
     try {
         if (@ $test[$i]->SmtpConnect()) {
             $smtpStatus[$i] = TRUE;

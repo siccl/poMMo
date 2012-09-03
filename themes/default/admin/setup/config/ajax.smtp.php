@@ -79,6 +79,32 @@
 				</div>
 			</div>
 
+            <div>
+                <label for="security[<?php echo $id; ?>]">
+                    <?php echo _('SMTP Security:'); ?>
+                </label>
+                <input type="radio" name="security[<?php echo $id; ?>]" value="none"
+                <?php
+                    if (
+                        !$this->smtp[$id]['security']
+                        || 'none' == $this->smtp[$id]['security']
+                    ) {
+                        echo 'checked="checked"';
+                    }
+                ?>
+                /> None
+                <input type="radio" name="security[<?php echo $id; ?>]" value="ssl"
+                <?php
+                    if ('ssl' === $this->smtp[$id]['security']) {
+                        echo 'checked="checked"';
+                    }
+                ?>
+                /> SSL
+                <div class="notes">
+                    <?php echo _('(If you are using gmail, SSL is required)'); ?>
+                </div>
+            </div>
+
 			<div>
 				<label for="port[<?php echo $id; ?>]">
 					<?php echo _('Port Number:'); ?>
@@ -129,7 +155,7 @@
 				<label for="pass[<?php echo $id; ?>]">
 					<?php echo _('SMTP Password:'); ?>
 				</label>
-				<input type="text" name="pass[<?php echo $id; ?>]"
+				<input type="password" name="pass[<?php echo $id; ?>]"
 						value="<?php echo htmlentities($this->smtp[$id]['pass']);
 						?>" />
 				<div class="notes"><?php echo _('(optional)'); ?></div>

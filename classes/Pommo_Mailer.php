@@ -1,18 +1,18 @@
 <?php
 /**
  * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
- * 
+ *
  * This file is part of poMMo (http://www.pommo.org)
- * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
+ *
+ * poMMo is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation; either version 2, or any later version.
- * 
+ *
  * poMMo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
  * the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with program; see the file docs/LICENSE. If not, write to the
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -29,7 +29,7 @@ class Pommo_Mailer extends PHPMailer {
 
 	var $_charset;
 	var $_personalize;
-	
+
 	var $_fromname;
 	var $_fromemail;
 	var $_frombounce;
@@ -46,7 +46,7 @@ class Pommo_Mailer extends PHPMailer {
 	var $_validated; // if this is TRUE, skip all validation checks + setting of all parameters other than "to" .. this is used for bulk mailing
 
 	var $logger; // references the global logger
-	
+
 	// default constructor....
 
 	// called like $pommo = new bMailer(fromname,fromemail,frombounce, exchanger)
@@ -54,9 +54,9 @@ class Pommo_Mailer extends PHPMailer {
 	function Pommo_Mailer($fromname = NULL, $fromemail = NULL, $frombounce = NULL, $exchanger = NULL, $demonstration = NULL, $charset = NULL, $personalize = FALSE) {
 		global $pommo;
 		$this->logger =& Pommo::$_logger;
-		
+
 		// TODO -> only make this call if passed values don't exist ..'
-		
+
 		$listConfig = Pommo_Api::configGet(array (
 			'list_fromname',
 			'list_fromemail',
@@ -64,8 +64,8 @@ class Pommo_Mailer extends PHPMailer {
 			'list_exchanger',
 			'list_charset'
 		));
-		
-		
+
+
 		if (empty ($fromname))
 			$fromname = $listConfig['list_fromname'];
 
@@ -80,7 +80,7 @@ class Pommo_Mailer extends PHPMailer {
 
 		if (empty ($demonstration))
 			$demonstration = Pommo::$_config['demo_mode'];
-			
+
 		if (empty($charset))
 			$charset = $listConfig['list_charset'];
 
@@ -101,7 +101,7 @@ class Pommo_Mailer extends PHPMailer {
 		$this->_validated = FALSE;
 
 		$this->_sentCount = 0;
-		
+
 		$langPath = Pommo::$_baseDir . 'lib/phpmailer/language/';
 		if (!$this->SetLanguage('en', $langPath))
 			return false;
@@ -112,7 +112,7 @@ class Pommo_Mailer extends PHPMailer {
 		global $pommo;
 		if ($val == "on")
 			$this->_demonstration = "on";
-		elseif ($val == "off") 
+		elseif ($val == "off")
 			$this->_demonstration = "off";
 		else
 			$this->_demonstration = Pommo::$_config['demo_mode'];
@@ -154,22 +154,22 @@ class Pommo_Mailer extends PHPMailer {
 
 		if (!Pommo_Helper::isEmail($this->_fromemail)) {
 			$this->logger->addMsg("From email must be a valid email address.");
-			return false;	
+			return false;
 		}
 
 		if (!Pommo_Helper::isEmail($this->_frombounce)) {
 			$this->logger->addMsg("Bounce email must be a valid email address.");
-			return false;	
+			return false;
 		}
 
 		if (empty ($this->_subject)) {
 			$this->logger->addMsg("Subject cannot be blank.");
-			return false;	
+			return false;
 		}
 
 		if (empty ($this->_body)) {
 			$this->logger->addMsg("Message content cannot be blank.");
-			return false;	
+			return false;
 		}
 
 		return true;
@@ -186,7 +186,7 @@ class Pommo_Mailer extends PHPMailer {
 	 */
 	function prepareMail($subject = NULL, $body = NULL, $HTML = FALSE,
 			$altbody = NULL, $attachments = NULL)
-	{	
+	{
 		$this->_subject		= $subject;
 		$this->_body 		= $body;
 		$this->_altbody 	= $altbody;
@@ -203,37 +203,38 @@ class Pommo_Mailer extends PHPMailer {
 			}
 			// TODO -> should I just set PHPMailer parameters in the 1st place & skip $this->_paramName ?
 			// TODO -> pass these by reference ??
-			
+
 			// set the character set
 			$this->CharSet = $this->_charset;
 
 			$this->FromName = $this->_fromname;
 			$this->From = $this->_fromemail;
 			$this->Subject = $this->_subject;
-			
+
 			// set Sender (bounce address)
 			$this->Sender = $this->_frombounce;
-			
+
 			// if safe mode is on && using sendmail, force php mail() as excahnger [sendmail will not send w/ safe mode on]
 			if (ini_get('safe_mode') && $this->_exchanger == 'sendmail')
 				$this->_exchanger = 'mail';
 
 			// make sure exchanger is valid, DEFAULT to PHP Mail
 			if ($this->_exchanger != "mail" && $this->_exchanger != "sendmail" && $this->_exchanger != "smtp")
-				$this->_exchanger = "mail";				
-			
+				$this->_exchanger = "mail";
+
 			$this->Mailer = $this->_exchanger;
 
 			if ($this->Mailer == 'smtp') { // loads the default relay (#1) -- use setRelay() to change.
 				$config = Pommo_Api::configGet('smtp_1');
 				$smtp = unserialize($config['smtp_1']);
-	
+
 				if (!empty ($smtp['host']))
 					$this->Host = $smtp['host'];
 				if (!empty ($smtp['port']))
 					$this->Port = $smtp['port'];
 				if (!empty ($smtp['auth']) && $smtp['auth'] == 'on') {
 					$this->SMTPAuth = TRUE;
+                    $this->SMTPSecure = $smtp['security'];
 					if (!empty ($smtp['user']))
 						$this->Username = $smtp['user'];
 					if (!empty ($smtp['pass']))
@@ -247,7 +248,7 @@ class Pommo_Mailer extends PHPMailer {
 				if (!empty ($this->_altbody))
 					$this->AltBody = $this->_altbody;
 			}
-			
+
 			$this->Body = $this->_body;
 
 			// passed all sanity checks...
@@ -318,7 +319,7 @@ class Pommo_Mailer extends PHPMailer {
 				{
 					$errors[] = Pommo::_T("Sending failed: ") . $this->ErrorInfo;
 				}
-				
+
 				$this->ClearAddresses();
 
 			}
