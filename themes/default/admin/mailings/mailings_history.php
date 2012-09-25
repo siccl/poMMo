@@ -39,10 +39,17 @@ if ($this->tally > 0)
 		<li><a href="ajax/history.rpc.php?call=reload" class="modal visit"><img src="<?php echo $this->url['theme']['shared']; ?>images/icons/typewritter_small.png"/><?php echo _('Reload Checked Mailing'); ?></a></li>
 		<li><a href="ajax/history.rpc.php?call=delete" class="modal confirm"><img src="<?php echo $this->url['theme']['shared']; ?>images/icons/delete.png"/><?php echo _('Delete Checked Mailings'); ?></a></li>
 	</ul>
+    <ul class="inpage_menu">
+        <li>
+            <a href="#" class="modal visit">
+                <?php echo _('Export Mailing Hits'); ?>
+            </a>
+        </li>
+    </ul>
 
 	<script type="text/javascript">
-	$().ready(function() {	
-	
+	$().ready(function() {
+
 		var p = {
 		colNames: [
 			'ID',
@@ -66,43 +73,43 @@ if ($this->tally > 0)
 		],
 		url: 'ajax/history.list.php'
 		};
-	
+
 		poMMo.grid = PommoGrid.init('#grid',p);
 	});
 	</script>
 
 	<script type="text/javascript">
 	$().ready(function(){
-	
+
 		// Setup Modal Dialogs
 		PommoDialog.init();
 
 		$('a.modal').click(function(){
 			var rows = poMMo.grid.getRowIDs();
 			if(rows) {
-			
+
 				// check for confirmation
 				if($(this).hasClass('confirm') && !poMMo.confirm())
 					return false;
-				
+
 				// serialize the data
 				var data = $.param({'mailings[]': rows});
-			
+
 				// rewrite the HREF of the clicked element
 				var oldHREF = this.href;
 				this.href += (this.href.match(/\?/) ? "&" : "?") + data
-			
+
 				// trigger the modal dialog, or visit the URL
 				if($(this).hasClass('visit'))
 					window.location = this.href;
 				else
 					$('#dialog').jqmShow(this);
-			
+
 				// restore the original HREF
 				this.href = oldHREF;
-			
+
 				poMMo.grid.reset();
-			
+
 			}
 			return false;
 		});
@@ -110,7 +117,7 @@ if ($this->tally > 0)
 
 	poMMo.callback.deleteMailing = function(p) {
 		poMMo.grid.delRow(p.ids);
-		$('#dialog').jqmHide();  		
+		$('#dialog').jqmHide();
 	}
 
 	</script>
@@ -133,4 +140,3 @@ include $this->template_dir.'/inc/dialog.php';
 $this->capturedDialogs = ob_get_clean();
 
 include $this->template_dir.'/inc/admin.footer.php';
-
