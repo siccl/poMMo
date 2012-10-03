@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: BMail Translation 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-23 17:24-0400\n"
-"PO-Revision-Date: 2012-10-03 02:38+0100\n"
+"PO-Revision-Date: 2012-10-03 02:40+0100\n"
 "Last-Translator: Uli Köhler <ulikoehler@online.de>\n"
 "Language-Team: Albert Warnecke <awarnecke@bandikutmedia.de>\n"
 "MIME-Version: 1.0\n"
@@ -2189,7 +2189,7 @@ msgstr ""
 # File: pommo_theme_lang.php, line: 1284
 #. aardvark-development/themes/default/admin/subscribers/import_txt.php
 msgid "Notice: Imported subscribers will be flagged to update their records"
-msgstr ""
+msgstr "Hinweis: Importierte Empfänger werden für eine Aktualisierung ihrer Daten markiert werden"
 
 #
 # File: pommo_theme_lang.php, line: 1290
