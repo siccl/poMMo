@@ -41,13 +41,34 @@ if ($this->tally > 0)
 	</ul>
     <ul class="inpage_menu">
         <li>
-            <a href="#" class="modal visit">
+            <a href="#" id="exportCsv">
                 <?php echo _('Export Mailing Hits'); ?>
             </a>
         </li>
     </ul>
 
 	<script type="text/javascript">
+    // CSV export hits action
+    $(function() {
+        $('#exportCsv').click(function(e) {
+            var rows = poMMo.grid.getRowIDs();
+
+            if (Array !== rows.constructor) {
+                alert(
+                    "<?php echo _('You must select a mailing to export'); ?>"
+                );
+                return e.preventDefault();
+            }
+
+            if (1 < rows.length) {
+                alert("<?php echo _('Select just one mailing to export'); ?>");
+                return e.preventDefault();
+            }
+
+            $(this).attr('href', 'export_hits.php?mailingHits=' + rows[0]);
+        });
+    });
+
 	$().ready(function() {
 
 		var p = {
