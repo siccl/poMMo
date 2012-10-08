@@ -1,24 +1,24 @@
 <?php
 /**
  * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
- * 
+ *
  * This file is part of poMMo (http://www.pommo.org)
- * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
+ *
+ * poMMo is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation; either version 2, or any later version.
- * 
+ *
  * poMMo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
  * the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with program; see the file docs/LICENSE. If not, write to the
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-// include the subscriber prototype object 
+// include the subscriber prototype object
 require_once(Pommo::$_baseDir.'classes/Pommo_Type.php');
 
 /**
@@ -45,10 +45,10 @@ require_once(Pommo::$_baseDir.'classes/Pommo_Type.php');
  *	subscriber_id	(int)			Subscriber ID in subscribers table
  *	value			(str)			Subscriber's field value
  */
-	
+
 class Pommo_Subscribers
 {
-	
+
 	// make a subscriber template
 	// accepts a subscriber template (assoc array)
 	// accepts a flag (bool) to designate return of a pending subscriber type
@@ -59,9 +59,9 @@ class Pommo_Subscribers
 			Pommo_Type::subscriber();
 		return Pommo_Api::getParams($o, $in);
 	}
-	
+
 	// make a subscriber template based off a database row (field schema)
-	// accepts a subscriber template (assoc array)  
+	// accepts a subscriber template (assoc array)
 	// accepts a flag (bool) to designate return of a pending subscriber type
 	// return a subscriber object (array)
 	function & makeDB(&$row, $pending = FALSE) {
@@ -73,7 +73,7 @@ class Pommo_Subscribers
 		'flag' => $row['flag'],
 		'ip' => $row['ip'],
 		'status' => $row['status']);
-			
+
 		if ($pending) {
 			$o = array(
 				'pending_code' => $row['pending_code'],
@@ -87,14 +87,14 @@ class Pommo_Subscribers
 			Pommo_Api::getParams(Pommo_Type::subscriber(),$in);
 		return $o;
 	}
-	
+
 	// subscriber validation
 	// accepts a subscriber object (array)
 	// returns true if subscriber ($in) is valid, false if not
 	// NOTE: has the magic functionality of converting english status to bool equiv.
 	function validate(&$in) {
 		$logger = Pommo::$_logger;
-		
+
 		$invalid = array();
 
 		if (!Pommo_Helper::isEmail($in['email']))
@@ -105,7 +105,7 @@ class Pommo_Subscribers
 			$invalid[] = 'flag';
 		if (!is_array($in['data']))
 			$invalid[] = 'data';
-		
+
 		switch($in['status']) {
 			case 0:
 			case 1:
@@ -114,7 +114,7 @@ class Pommo_Subscribers
 			default:
 				$invalid[] = 'status';
 		}
-		
+
 		if ($in['status'] == 2) {
 			if(empty($in['pending_code']))
 				$invalid[] = 'pending_code';
@@ -125,18 +125,18 @@ class Pommo_Subscribers
 				case 'password':
 					break;
 				default:
-					$invalid[] = 'pending_type'; 
+					$invalid[] = 'pending_type';
 			}
 		}
-			
+
 		if (!empty($invalid)) {
 			$logger->addErr("Subscriber failed validation on; ".implode(',',$invalid),1);
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	// fetches subscribers (and their data) from the databse
 	// accepts filtering array -->
 	//   status (str) [0,1,2,'all'(def)]
@@ -154,25 +154,25 @@ class Pommo_Subscribers
 			$search = array('field' => null, 'string' => null))
 	{
 		$defaults = array(
-			'status' => 'all', 
-			'email' => null, 
-			'sort' => null, 
-			'order' => null, 
-			'limit' => null, 
-			'offset' => null, 
+			'status' => 'all',
+			'email' => null,
+			'sort' => null,
+			'order' => null,
+			'limit' => null,
+			'offset' => null,
 			'id' => null);
 		$p = Pommo_Api::getParams($defaults, $p);
-			
+
 		$dbo = Pommo::$_dbo;
-		
+
 		if ($p['status'] == 'all')
 			$p['status'] = null;
-			
+
 		if (is_numeric($p['limit']) && !is_numeric($p['offset']))
 			$p['offset'] = 0;
-		
+
 		$o = array();
-		
+
 		$query = "
 			SELECT
 				s.subscriber_id,
@@ -185,33 +185,33 @@ class Pommo_Subscribers
 				p.pending_code,
 				p.pending_array,
 				p.pending_type".
-				
+
 				// if sort is numeric, we're sorting by a field and must grab the field from data table
-			    (is_numeric($p['sort']) ? 
-			    	", d.value" : 
+			    (is_numeric($p['sort']) ?
+			    	", d.value" :
 			    	'').
 			    // if searching against a subriber field, we must fetch subscriber data for this field
-			    (is_numeric($search['field']) ? 
-			    	", search.value" : 
+			    (is_numeric($search['field']) ?
+			    	", search.value" :
 			    	'').
 
 			" FROM ".$dbo->table['subscribers']." s
 			LEFT JOIN " . $dbo->table['subscriber_pending']." p ON (s.subscriber_id = p.subscriber_id) ".
-			
+
 			// if sort is numeric, we're sorting by a field and must grab the field from data table
 			(is_numeric($p['sort']) ?
 				"LEFT JOIN (SELECT * FROM " .$dbo->table['subscriber_data'].
 					" WHERE field_id = ".(int)($p['sort'])." ) AS d".
-					" ON (s.subscriber_id = d.subscriber_id)" : 
+					" ON (s.subscriber_id = d.subscriber_id)" :
 				'').
-			
+
 			// if searching against a subscriber field, left join the data table
 			(is_numeric($search['field']) ?
 				"LEFT JOIN (SELECT value FROM " .$dbo->table['subscriber_data'].
 					" WHERE field_id = ".(int)($search['field'])." ) AS search".
-					" ON (s.subscriber_id = search.subscriber_id)" : 
+					" ON (s.subscriber_id = search.subscriber_id)" :
 				'').
-			
+
 		  " WHERE
 				1
 				[AND s.subscriber_id IN(%C)]
@@ -220,46 +220,46 @@ class Pommo_Subscribers
 				[AND %S LIKE '%%S%']
 				[ORDER BY %S] [%S]
 				[LIMIT %I, %I]";
-		
+
 		// Check if we're sorting against a field.
 		//   If so, sort against the "value" column select.
 		//   If it's a numeric field, cast the value (string) as an Integer by the DBE for proper sorting.
 		if(is_numeric($p['sort'])) {
 			require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 			$numericFields = Pommo_Fields::getByType(array('date','number'));
-			
+
 			$p['sort'] = (in_array($p['sort'],$numericFields)) ?
 				'CAST(value as SIGNED)' :
 				'value';
 		}
-		
-		
+
+
 		// If we're searching/filtering, generate the proper SQL
 		$searchSQL = NULL;
 		if(!empty($search['field']) && !empty($search['string'])) {
-			
+
 			// make MySQL LIKE() compliant
 			$search['string'] = addcslashes($search['string'],'%_');
-			
-			$search['field'] = is_numeric($search['field']) ? 
+
+			$search['field'] = is_numeric($search['field']) ?
 				'search.value' :
 				's.'.$search['field'];
 		}
-			
+
 		$query = $dbo->prepare($query,array($p['id'],$p['status'], $p['email'], $search['field'], $search['string'], $p['sort'], $p['order'], $p['offset'], $p['limit']));
-		while ($row = $dbo->getRows($query)) 
+		while ($row = $dbo->getRows($query))
 			$o[$row['subscriber_id']] = (empty($row['pending_code'])) ?
 				Pommo_Subscribers::makeDB($row) :
 				Pommo_Subscribers::makeDB($row, TRUE);
-		
+
 		// fetch data
 		if (!empty($o)) {
-			
+
 			// get any date fields for conversion. We can't use the MySQL 4.1/5
 			// engine, as it doesn't support negative timestamps... !!!
 			require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 			$dates = Pommo_Fields::getByType('date');
-			
+
 			$query = "
 				SELECT
 					field_id,
@@ -269,7 +269,7 @@ class Pommo_Subscribers
 					" . $dbo->table['subscriber_data']."
 				WHERE
 					subscriber_id IN(%c)";
-			$query = $dbo->prepare($query,array(array_keys($o)));	
+			$query = $dbo->prepare($query,array(array_keys($o)));
 			while ($row = $dbo->getRows($query)) {
 				$o[$row['subscriber_id']]['data'][$row['field_id']] = (in_array($row['field_id'],$dates)) ?
 					Pommo_Helper::timeToStr($row['value']) :
@@ -278,7 +278,7 @@ class Pommo_Subscribers
 		}
 		return $o;
 	}
-	
+
 	// fetches subscriber emails from the databse
 	// accepts filtering array -->
 	//   status (str) [0,1,2,'all'(def)]
@@ -288,39 +288,39 @@ class Pommo_Subscribers
 	function & getEmail($p = array()) {
 		$defaults = array('status' => 'all', 'id' => null);
 		$p = Pommo_Api :: getParams($defaults, $p);
-		
+
 		$dbo = Pommo::$_dbo;
-		
+
 		if ($p['status'] == 'all')
 			$p['status'] = null;
 
 		$o = array();
-		
+
 		$query = "
 			SELECT
 				subscriber_id,
 				email
-			FROM 
+			FROM
 				" . $dbo->table['subscribers']."
 			WHERE
 				1
 				[AND subscriber_id IN(%C)]
 				[AND status=%I]";
 		$query = $dbo->prepare($query,array($p['id'],$p['status']));
-		
-		while ($row = $dbo->getRows($query)) 
+
+		while ($row = $dbo->getRows($query))
 			$o[$row['subscriber_id']] = $row['email'];
-		
+
 		return $o;
 	}
-	
+
 	// fetches subscriber IDs from passed emails
 	// accepts a email address (str) or array of email addresses
 	// accepts filtering by subscriber status, or all statuses if not supplied
 	// returns an array of subscriber IDs
 	function & getIDByEmail($email, $status = null) {
 		$dbo = Pommo::$_dbo;
-		
+
 		$query = "
 			SELECT subscriber_id
 			FROM " . $dbo->table['subscribers'] . "
@@ -329,9 +329,9 @@ class Pommo_Subscribers
 		$query = $dbo->prepare($query,array($email,$status));
 		return $dbo->getAll($query, 'assoc', 'subscriber_id');
 	}
-	
+
 	// fetches subscribers from the database based off their attributes
-	// accepts a attribute filtering array. 
+	// accepts a attribute filtering array.
 	//   array_key == filter table (subscriber_pending, subscriber_data, subscribers)
 	//   array_value == array column
 	//  Returns an array of subscriber IDs
@@ -352,24 +352,24 @@ class Pommo_Subscribers
 	function & getIDByAttr($f = array('subscriber_pending' => array(), 'subscriber_data' => array(), 'subscribers' => array())) {
 		$dbo = Pommo::$_dbo;
 		require_once(Pommo::$_baseDir.'classes/Pommo_Sql.php');
-		
+
 		$sql = array('where' => array(), 'join' => array());
-		
+
 		if (!empty($f['subscribers']))
 			$sql = array_merge_recursive($sql, Pommo_Sql::fromFilter($f['subscribers'],'s'));
-		
+
 		if (!empty($f['subscriber_data']))
 			$sql = array_merge_recursive($sql, Pommo_Sql::fromFilter($f['subscriber_data'],'d'));
-		
+
 		$p = null;
 		if (!empty($f['subscriber_pending'])) {
 			$p = 'p';
 			$sql = array_merge_recursive($sql, Pommo_Sql::fromFilter($f['subscriber_pending'],'p'));
 		}
-		
+
 		$joins = implode(' ',$sql['join']);
 		$where = implode(' ',$sql['where']);
-		
+
 		$query = "
 			SELECT DISTINCT s.subscriber_id
 			FROM ". $dbo->table['subscribers']." s
@@ -381,19 +381,19 @@ class Pommo_Subscribers
 		die($query);
 		return $dbo->getAll($query, 'assoc', 'subscriber_id');
 	}
-	
-	
+
+
 	// adds a subscriber to the database
 	// accepts a subscriber (array)
 	// accepts a ID (int typically 0) if set forces the added subscriber ID to a key, ovverriding row
 	// returns the database ID of the added field or FALSE if failed
-	
+
 	// TODO -> potentially use the REPLACE INTO of this function
 	//  as a means for UPDATE?
 	function add($in, $id = null)
 	{
 		$dbo = Pommo::$_dbo;
-		
+
 		// set the registration date if not provided
 		if (empty($in['registered']))
 		{
@@ -404,7 +404,7 @@ class Pommo_Subscribers
 		{
 			return false;
 		}
-		
+
 		$insert = ($id === null) ? 'INSERT' : 'REPLACE';
 		$query = $insert.' INTO '.$dbo->table['subscribers'].'
 				SET
@@ -422,15 +422,15 @@ class Pommo_Subscribers
 			$in['ip'],
 			$in['status']
 		));
-		
+
 		// fetch new subscriber's ID
 		$id = $dbo->lastId($query);
-		
+
 		if (!$id)
 		{
 			return false;
 		}
-		
+
 		// insert pending (if exists)
 		if ($in['status'] == 2)
 		{
@@ -450,7 +450,7 @@ class Pommo_Subscribers
 			if (!$dbo->query($query))
 				return false;
 		}
-		
+
 		// insert data
 		$values = array();
 		foreach ($in['data'] as $field_id => $value)
@@ -458,7 +458,7 @@ class Pommo_Subscribers
 			$values[] = $dbo->prepare("(%i,%i,'%s')",
 					array($field_id,$id,$value));
 		}
-			
+
 		if (!empty($values))
 		{
 			$query = "
@@ -468,58 +468,58 @@ class Pommo_Subscribers
 			if (!$dbo->query($query))
 				return false;
 		}
-			
+
 		return $id;
 	}
-	
+
 	// removes a subscriber from the database
-	// accepts a single ID (int) or array of IDs 
+	// accepts a single ID (int) or array of IDs
 	// returns the # of deleted subscribers (int). 0 (false) if none.
 	function delete(&$id) {
 		$dbo = Pommo::$_dbo;
-		
+
 		$query = "
 			DELETE
 			FROM " . $dbo->table['subscribers'] . "
 			WHERE subscriber_id IN(%c)";
 		$query = $dbo->prepare($query,array($id));
-		
+
 		$deleted = $dbo->affected($query);
-		
+
 		$query = "
 			DELETE
 			FROM " . $dbo->table['subscriber_pending'] . "
 			WHERE subscriber_id IN(%c)";
 		$query = $dbo->prepare($query,array($id));
 		$dbo->query($query);
-		
+
 		$query = "
 			DELETE
 			FROM " . $dbo->table['subscriber_data'] . "
 			WHERE subscriber_id IN(%c)";
 		$query = $dbo->prepare($query,array($id));
 		$dbo->query($query);
-		
+
 		return $deleted;
 	}
-	
+
 	// updates a subscriber in the database
 	// accepts a subscriber (array)
 	// accepts a mode;
 	// 		REPLACE_ALL =  Removes all assosiated subscriber field data and replaces with passed Data
 	//		REPLACE_ACTIVE = Removes active (non hidden) subscriber field data and replaces with passed data
 	//		REPLACE_PASSED = [default] Removes passed subscriber fields and replaces them.
-	//		
+	//
 	// accepts a toggle; TRUE (default) => ALL subscriber_data for this subscriber will be replaced,
 	//   FALSE => only passed data will be replaced
 	// returns success (bool)
-	// NOTE: The passed subscriber field will overwrites all subscriber info 
+	// NOTE: The passed subscriber field will overwrites all subscriber info
 	//   (including values in subscriber_pending/subscriber_data). Make sure to pass
 	//   the entire subscriber!
 	// Does not change the subscriber_id -->  paves the path to add manually assign subs to a group?
 	function update(&$in, $mode = 'REPLACE_PASSED') {
 		$dbo = Pommo::$_dbo;
-		
+
 		$query = "
 			UPDATE " . $dbo->table['subscribers'] . "
 			SET
@@ -540,8 +540,8 @@ class Pommo_Subscribers
 		));
 		if (!$dbo->query($query) || ($dbo->affected() != 1))
 				return false;
-		
-		
+
+
 		if (!empty($in['data']) || $mode == 'REPLACE_ALL') {
 
 			switch ($mode) {
@@ -550,17 +550,17 @@ class Pommo_Subscribers
 					$fields = Pommo_Fields::get(array('active' => TRUE));
 					$select = array_keys($fields);
 					break;
-				
+
 				case "REPLACE_ALL":
 					$select = NULL;
 					break;
-					
+
 				case "REPLACE_PASSED":
-				default: 
-					$select = array_keys($in['data']);	
+				default:
+					$select = array_keys($in['data']);
 					break;
 			}
-		
+
 			$query = "
 				DELETE
 				FROM " . $dbo->table['subscriber_data'] . "
@@ -570,12 +570,12 @@ class Pommo_Subscribers
 			if (!$dbo->query($query))
 					return false;
 		}
-		
+
 		$values = array();
 		foreach ($in['data'] as $field_id => $value)
 			if (!empty($value))
 				$values[] = $dbo->prepare("(%i,%i,'%s')",array($field_id,$in['id'],$value));
-			
+
 		if (!empty($values)) {
 			$query = "
 			INSERT INTO " . $dbo->table['subscriber_data'] . "
@@ -584,34 +584,34 @@ class Pommo_Subscribers
 			if (!$dbo->query($query))
 				return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	// flags subscribers to update their records
-	// accepts a single ID (int) or array of IDs 
+	// accepts a single ID (int) or array of IDs
 	// returns the # of subscribers successfully flagged (int). 0 (false) if none.
 	function flagByID(&$id) {
 		$dbo = Pommo::$_dbo;
-		
+
 		$query = "
 			UPDATE " . $dbo->table['subscribers'] ."
 			SET flag=9
 			WHERE subscriber_id IN (%q)";
 		$query = $dbo->prepare($query,array($id));
-		
+
 		return $dbo->affected($query);
 	}
-	
+
 	// gets the number of subscribers
 	// accepts filter by status (str) either either 1 (active) (default), 0 (inactive), 2 (pending) or 'all'/NULL (any/all)
 	// returns subscriber tally (int)
 	function tally($status = 1) {
 		$dbo = Pommo::$_dbo;
 
-		if ($status === 'all') 
+		if ($status === 'all')
 			$status = null;
-			
+
 		$query = "
 			SELECT count(subscriber_id)
 			FROM " . $dbo->table['subscribers'] ."
@@ -619,13 +619,46 @@ class Pommo_Subscribers
 		$query=$dbo->prepare($query,array($status));
 		return ($dbo->query($query,0));
 	}
-	
+
 	// returns the activation code for the passed subscriber
 	function getActCode($subscriber){
 		if (empty($subscriber['id']) || empty($subscriber['registered']))
 			Pommo::kill('Invalid Subscriber passed to getActCode!');
-			
+
 		return md5($subscriber['id'].$subscriber['registered']);
 	}
-}
 
+    /**
+     * Returns all the subscribers in the database and if they have opened the
+     * passed mailing id
+     *
+     * @param int $mailing.- Mailing id to verify if subscribers have seen it
+     *
+     * @return array $subscribers.- Subscribers and if they have opened mailing
+     */
+    public function getSubscribersHits($mailing)
+    {
+        $mailing = (int)$mailing;
+        $dbo = Pommo::$_dbo;
+
+        $query =
+            'SELECT
+                s.email,
+                s.status,
+                h.hit_date
+            FROM
+                ' . $dbo->table['subscribers'] . ' s
+            LEFT JOIN
+                ' . $dbo->table['mailings_hits'] . ' h
+            ON
+                (s.subscriber_id = h.subscriber_id
+                && h.mailing_id = ' . $mailing . ')
+            ORDER BY
+                s.email';
+
+        $subscribers = array();
+        $subscribers = $dbo->getAll($query);
+
+        return $subscribers;
+    }
+}

@@ -65,7 +65,7 @@ if ($this->tally > 0)
                 return e.preventDefault();
             }
 
-            $(this).attr('href', 'export_hits.php?mailingHits=' + rows[0]);
+            $(this).attr('href', 'export_hits.php?mailing=' + rows[0]);
         });
     });
 
