@@ -1,18 +1,18 @@
 <?php
 /**
  * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
- * 
+ *
  * This file is part of poMMo (http://www.pommo.org)
- * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
+ *
+ * poMMo is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation; either version 2, or any later version.
- * 
+ *
  * poMMo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
  * the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with program; see the file docs/LICENSE. If not, write to the
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -30,7 +30,7 @@ class Pommo_Api
 	 *
 	 *	@return	array	$p.- Merged array
 	 */
-	public static function getParams(&$defaults, &$args)
+	public static function getParams($defaults, $args)
 	{
 		$p = array_merge($defaults, $args);
 
@@ -58,14 +58,14 @@ class Pommo_Api
 	{
 		$dbo = Pommo::$_dbo;
 		$dbo->dieOnQuery(FALSE);
-		
+
 		$config = array();
-		
+
 		$query = 'SELECT config_name, config_value
 			FROM '.$dbo->table['config'].'
 			WHERE autoload="on"';
 		$query = $dbo->prepare($query);
-		
+
 		while ($row = $dbo->getRows($query))
 		{
 			$config[$row['config_name']] = $row['config_value'];
@@ -76,7 +76,7 @@ class Pommo_Api
 	}
 
 	/*	configGet
-	 *	Gets specified config value(s) from the DB. 
+	 *	Gets specified config value(s) from the DB.
 	 * 	Pass a single or array of config_names, returns array name->value.
 	 *
 	 *	@param	mixed	$arg.- Value or values to get
@@ -92,12 +92,12 @@ class Pommo_Api
 		{
 			$arg = null;
 		}
-			
+
 		$query = 'SELECT config_name,config_value
 			FROM '.$dbo->table['config'].'
 			[WHERE config_name IN(%Q)]';
 		$query = $dbo->prepare($query, array($arg));
-		
+
 		while ($row = $dbo->getRows($query))
 		{
 			$config[$row['config_name']] = $row['config_value'];
@@ -107,9 +107,9 @@ class Pommo_Api
 		return $config;
 	}
 
-	// update the config table. 
+	// update the config table.
 	//  $input must be an array as key:value ([config_name] => config_value)
-	function configUpdate($input, $force = FALSE)
+	static function configUpdate($input, $force = FALSE)
 	{
 		$dbo = Pommo::$_dbo;
 
@@ -152,7 +152,7 @@ class Pommo_Api
 		}
 		return true;
 	}
-	
+
 	/*	stateInit
 	 *	initializes a page state
 	 *
@@ -162,7 +162,7 @@ class Pommo_Api
 	 *
 	 *	@return	array	$state.- Current state
 	 */
-	function &stateInit($name = 'default', $defaults = array (), $source = array())
+	static function &stateInit($name = 'default', $defaults = array (), $source = array())
 	{
 		if (empty(Pommo::$_session['state'][$name]))
 		{
@@ -200,11 +200,11 @@ class Pommo_Api
 		if (count($state) > count($defaults))
 		{
 			$state = Pommo_Helper::arrayIntersect($state, $defaults);
-		} 
-			
+		}
+
 		return $state;
 	}
-	
+
 	// clears page state(s)
 	// accepts a state name or array of state names to clear
 	//   if not supplied, ALL page states are cleared
@@ -212,13 +212,13 @@ class Pommo_Api
 	function stateReset($state = array()) {
 		if (!is_array($state))
 			$state = array($state);
-		
+
 		if (empty($state))
 			Pommo::$_session['state'] = array();
 		else
 			foreach($state as $s)
 				unset(Pommo::$_session['state'][$s]);
-				
+
 		return true;
 	}
 }

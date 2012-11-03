@@ -26,10 +26,10 @@
 
 class SafeSQL
 {
-	
+
 	// values that determine dropping bracketed sections
 	var $_drop_values = array('');
-	
+
 /*======================================================================*\
     Function: SafeSQL
     Purpose:  constructor
@@ -41,16 +41,16 @@ class SafeSQL
     Purpose:  process the query string
 \*======================================================================*/
 	function query($query_string, $query_vars)
-	{		
+	{
 
 		if(is_array($query_vars)) {
-			
+
 			$_var_count = count($query_vars);
-			
+
 			if($_var_count != preg_match_all('!%[sSiIfFcClLqQ]!', $query_string, $_match)) {
 				$this->_error_msg('unmatched number of vars and % placeholders: ' . $query_string);
 			}
-						
+
 			// get string position for each element
 			$_var_pos = array();
 			$_curr_pos = 0;
@@ -81,7 +81,7 @@ class SafeSQL
                     // of the string, so slice the first part out then find it
 					$_str_slice = substr($query_string, 0, $_var_pos[$_x]);
 					$_left_pos = strrpos($_str_slice, '[');
-                    
+
 					if($_right_pos === false || $_left_pos === false) {
 						$this->_error_msg('missing or unmatched brackets: ' . $query_string);
 					}
@@ -89,7 +89,7 @@ class SafeSQL
                         $_last_removed_pos = $_left_pos;
 						// remove entire part of string
 						$query_string = substr_replace($query_string, '', $_left_pos, $_right_pos - $_left_pos + 1);
-                        $_last_var_pos = null;			
+                        $_last_var_pos = null;
                     } else if ($_x > 0 && $_var_pos[$_x-1] > $_left_pos) {
                         // still variables left in brackets, leave them and just replace var
                         $_convert_var = $this->_convert_var($query_vars[$_x], $_match[0][$_x]);
@@ -97,7 +97,7 @@ class SafeSQL
                         $_last_var_pos = $_var_pos[$_x] + strlen($_convert_var);
 					} else {
 						// remove the brackets only, and replace %S
-						$query_string = substr_replace($query_string, '', $_right_pos, 1);											
+						$query_string = substr_replace($query_string, '', $_right_pos, 1);
 						$query_string = substr_replace($query_string, $this->_convert_var($query_vars[$_x], $_match[0][$_x]), $_var_pos[$_x], 2);
 						$query_string = substr_replace($query_string, '', $_left_pos, 1);
                         $_last_var_pos = null;
@@ -105,13 +105,13 @@ class SafeSQL
 				} else {
 					$query_string = substr_replace($query_string, $this->_convert_var($query_vars[$_x], $_match[0][$_x]), $_var_pos[$_x], 2);
 				}
-			}			
+			}
 		}
-		
+
 		return $query_string;
-						
+
 	}
-	
+
 /*======================================================================*\
     Function: _convert_var
     Purpose:  convert a variable to the given type
@@ -163,49 +163,49 @@ class SafeSQL
 				break;
 		}
 		return $var;
-	}	
+	}
 
 /*======================================================================*\
     Function: error
     Purpose:  handle error messages
 \*======================================================================*/
 	function _error_msg($error_msg) {
-		trigger_error('SafeSQL: ' . $error_msg);	
+		trigger_error('SafeSQL: ' . $error_msg);
 	}
 
 /*======================================================================*\
     Function: SetDropValues
-    Purpose:  
+    Purpose:
 \*======================================================================*/
 	function set_drop_values($drop_values) {
 		if(is_array($drop_values)) {
 			$this->_drop_values = $drop_values;
 		} else {
-			$this->_error_msg('drop values must be an array');			
+			$this->_error_msg('drop values must be an array');
 		}
 	}
 
 /*======================================================================*\
     Function: GetDropValues
-    Purpose:  
+    Purpose:
 \*======================================================================*/
 	function get_drop_values() {
 		return $this->_drop_values;
 	}
-				
-		
+
+
 /*======================================================================*\
     Function: _sql_escape
     Purpose:  method overridden by subclass
 \*======================================================================*/
-	function _sql_escape() { }
-	
+	function _sql_escape($var) { }
+
 }
-		
+
 class SafeSQL_MySQL extends SafeSQL {
-	
-	var $_link_id;	
-	
+
+	var $_link_id;
+
 /*======================================================================*\
     Function: SafeSQL_MySQL
     Purpose:  constructor
@@ -236,14 +236,14 @@ class SafeSQL_MySQL extends SafeSQL {
 			return mysql_escape_string($var);
 		} else {
 			return addslashes($var);
-		}	
+		}
 		break;
-	}	
+	}
 }
 
 class SafeSQL_ANSI extends SafeSQL {
-	
-	
+
+
 /*======================================================================*\
     Function: SafeSQL_ANSI
     Purpose:  constructor
@@ -263,7 +263,7 @@ class SafeSQL_ANSI extends SafeSQL {
 		}
 		return str_replace("'", "''", $var);
 		break;
-	}	
+	}
 }
 
 ?>

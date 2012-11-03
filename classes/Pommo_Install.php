@@ -3,7 +3,7 @@
 /**
  *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  *  released originally under GPLV2
- * 
+ *
  *  This file is part of poMMo.
  *
  *  poMMo is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  *  This fork is from https://github.com/soonick/poMMo
  *  Please see docs/contribs for Contributors
  *
@@ -64,7 +64,7 @@ class Pommo_Install
      * 	@return	boolean	True on success, false otherwise
      */
 
-    function parseSQL($ignoreerrors = false, $file = false)
+    static function parseSQL($ignoreerrors = false, $file = false)
     {
         $dbo = Pommo::$_dbo;
         $logger = Pommo::$_logger;
@@ -118,7 +118,7 @@ class Pommo_Install
      *
      * 	@return	boolean	True if installed, false otherwise
      */
-    function verify()
+    static function verify()
     {
         global $pommo;
         $dbo = & Pommo::$_dbo;
@@ -137,7 +137,7 @@ class Pommo_Install
      * 	performs an update increment
      *
      * 	@param  integer $serial - Version being checked
-     *                  $sql    - 
+     *                  $sql    -
      *
      * 	@return	boolean	True if installed, false otherwise
      */
@@ -153,7 +153,7 @@ class Pommo_Install
         $msg = $serial.". $msg ...";
 
         $query = "
-			SELECT serial FROM ".$dbo->table['updates']." 
+			SELECT serial FROM ".$dbo->table['updates']."
 			WHERE serial=%i";
 
         $query = $dbo->prepare($query, array($serial));
@@ -193,7 +193,7 @@ class Pommo_Install
         }
 
         $query = "
-			INSERT INTO ".$dbo->table['updates']." 
+			INSERT INTO ".$dbo->table['updates']."
 			(serial) VALUES(%i)";
         $query = $dbo->prepare($query, array($serial));
         if (!$dbo->query($query))

@@ -40,7 +40,7 @@ class Pommo_Fields {
 	// makes a field
 	// accepts a field template (assoc array)
 	// return a field (array)
-	function & make($in = array()) {
+	static function make($in = array()) {
 		$o = Pommo_Type::field();
 		return Pommo_Api::getParams($o, $in);
 	}
@@ -48,7 +48,7 @@ class Pommo_Fields {
 	// makes a field based off a database row (field schema)
 	// accepts a field template (assoc array)
 	// return a field (array)
-	function & makeDB(&$row) {
+	static function makeDB($row) {
 		$in = @array(
 		'id' => $row['field_id'],
 		'active' => $row['field_active'],
@@ -62,14 +62,14 @@ class Pommo_Fields {
 		if (!empty($row['field_array']))
 			$in['array'] = unserialize($row['field_array']);
 
-		$o = Pommo_Api::getParams(Pommo_Type::field(),$in);
+		$o = Pommo_Api::getParams(Pommo_Type::field(), $in);
 		return $o;
 	}
 
 	// field validation
 	// accepts a field (array)
 	// returns true if field ($in) is valid, false if not
-	function validate(&$in) {
+	static function validate(&$in) {
 		$logger = Pommo::$_logger;
 
 		$invalid = array();
@@ -132,7 +132,7 @@ class Pommo_Fields {
 	//   id (array) -> an array of field IDs
 	//   byName -> will order by name (alphabetical .. else by default order)
 	// returns an array of fields. Array key(s) correlates to field key.
-	function & get($p = array()) {
+	static function get($p = array()) {
 		$defaults = array('active' => false, 'id' => null, 'byName' => false);
 		$p = Pommo_Api::getParams($defaults, $p);
 
@@ -206,7 +206,7 @@ class Pommo_Fields {
 	// adds a field to the database
 	// accepts a field (array)
 	// returns the database ID of the added field or FALSE if failed
-	function add(&$in) {
+	static function add(&$in) {
 		$dbo =& Pommo::$_dbo;
 
 		// set the ordering of field if not provided

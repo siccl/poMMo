@@ -1,18 +1,18 @@
 <?php
 /**
  * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
- * 
+ *
  * This file is part of poMMo (http://www.pommo.org)
- * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
+ *
+ * poMMo is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation; either version 2, or any later version.
- * 
+ *
  * poMMo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
  * the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with program; see the file docs/LICENSE. If not, write to the
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -28,7 +28,7 @@ class Pommo_Type {
 	 * ==SQL Schema==
 	 *	field_id		(int)			Database ID/Key
 	 *	field_active	('on','off')	If field is displayed on subscriber form
-	 *	field_ordering	(int)			Order in which field is displayed @ subscriber form	
+	 *	field_ordering	(int)			Order in which field is displayed @ subscriber form
 	 *	field_name		(str)			Descriptive name for field (used for short identification)
 	 *	field_prompt	(str)			Prompt assosiated with field on subscriber form
 	 *	field_normally	(str)			Default value of field on subscriber form
@@ -36,7 +36,7 @@ class Pommo_Type {
 	 *	field_required	('on','off')	If field is required for subscription
 	 *	field_type		(enum)			checkbox, multiple, text, date, number
 	 */
-	function field() {
+	static function field() {
 		return array(
 			'id' => null,
 			'active' => null,
@@ -49,15 +49,15 @@ class Pommo_Type {
 			'type' => null
 		);
 	}
-	
+
 	/**
 	 * Group: A Group of Subscribers
 	 * ==SQL Schema==
 	 *	group_id		(int)		Database ID/Key
 	 *	group_name		(str)		Descriptive name for field (used for short identification)
-	 *	
+	 *
 	 * ==Additional Columns from group_rules==
-	 * 
+	 *
 	 *  rule_id			(int)		Database ID/Key
 	 *  group_id		(int)		Correlating Group ID
 	 *  field_id		(int)		Correlating Field ID
@@ -71,7 +71,7 @@ class Pommo_Type {
 			'rules' => array()
 		);
 	}
-	
+
 	/**
 	 * Subscriber: A Subscriber
 	 * ==SQL Schema==
@@ -96,7 +96,7 @@ class Pommo_Type {
 	 *	subscriber_id	(int)			Subscriber ID in subscribers table
 	 *	value			(str)			Subscriber's field value
 	 */
-	
+
 	function subscriber() {
 		return array(
 			'id' => null,
@@ -114,7 +114,7 @@ class Pommo_Type {
 		$o['pending_code'] = $o['pending_array'] = $o['pending_type'] = null;
 		return $o;
 	}
-	
+
 	function pending() {
 		return array(
 			'id' => null,
@@ -143,9 +143,9 @@ class Pommo_Type {
 	 *  sent			(int)		Number of mails sent
 	 *  charset			(str)		Encoding of Message
 	 *  status			(bool)		0: finished, 1: processing, 2: cancelled
-	 * 	
+	 *
 	 * ==Additional Columns for Current Mailing==
-	 * 
+	 *
 	 *  current_id		(int)		ID of current mailing (from mailing_id)
 	 *  command			(enum)		'none' (default), 'restart', 'stop'
 	 *  serial			(int)		Serial of this mailing
@@ -153,7 +153,7 @@ class Pommo_Type {
 	 *	notices			(str)		Mailing Messages
 	 *  current_status	(enum)		'started', 'stopped' (default)
 	 */
-	 
+
 	function mailing()
 	{
 		return array(
@@ -179,7 +179,7 @@ class Pommo_Type {
 			'hits' => null
 		);
 	}
-	
+
 	function &mailingCurrent()
 	{
 		$o = Pommo_Type::mailing();
@@ -187,8 +187,8 @@ class Pommo_Type {
 				= $o['code'] = $o['current_status'] = null;
 		return $o;
 	}
-	
-	
+
+
 	/**
 	 * Template: A Template for Mailings
 	 * ==SQL Schema==
@@ -198,7 +198,7 @@ class Pommo_Type {
 	 *  body			(str)		HTML body
 	 *  altbody			(str)		Text body
 	 */
-	
+
 	function template() {
 		return array(
 			'id' => null,

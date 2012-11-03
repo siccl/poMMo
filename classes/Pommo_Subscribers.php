@@ -606,7 +606,7 @@ class Pommo_Subscribers
 	// gets the number of subscribers
 	// accepts filter by status (str) either either 1 (active) (default), 0 (inactive), 2 (pending) or 'all'/NULL (any/all)
 	// returns subscriber tally (int)
-	function tally($status = 1) {
+	static function tally($status = 1) {
 		$dbo = Pommo::$_dbo;
 
 		if ($status === 'all')
