@@ -2,7 +2,7 @@
 /**
  *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  *  released originally under GPLV2
- * 
+ *
  *  This file is part of poMMo.
  *
  *  poMMo is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  *  This fork is from https://github.com/soonick/poMMo
  *  Please see docs/contribs for Contributors
  *
@@ -26,7 +26,7 @@
 /**********************************
 	INITIALIZATION METHODS
  *********************************/
- 
+
 require ('bootstrap.php');
 Pommo::init(array('authLevel' => 0));
 $logger = Pommo::$_logger;
@@ -37,16 +37,8 @@ $logger = Pommo::$_logger;
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
 $view = new Pommo_Template();
 
-/*********************************  
-  CHECK WE HAVE REQUIRED MODULES
- *********************************/
-
-require (Pommo::$_baseDir.'lib/Module_Check.php');
-$modules = new moduleCheck();
-
-//Php-mysql
-if(!$modules->isLoaded('mysql')) 
-{ 
+// Check we have the mysql module installed
+if (!extension_loaded('mysql')) {
     $fatal_error[] = "Php mysql module is not installed.";
     $view->assign('errors', $fatal_error);
     $view->display('message');
@@ -58,7 +50,7 @@ if (!is_writable (dirname(__FILE__).'/cache')) {
     $fatal_error[] = "The cache directory needs to be writable";
     $view->assign('errors', $fatal_error);
     $view->display('message');
-    exit(); 
+    exit();
 }
 
 //	log the user out if requested
@@ -93,7 +85,7 @@ elseif (isset($_POST['submit'])
 		}
 
 		Pommo::$_auth->login($_POST['username']);
-		
+
 		Pommo::redirect(Pommo::$_http.$_POST['referer']);
 	}
 	else
@@ -225,4 +217,3 @@ else
 	$view->assign('dbuser', $_POST['dbuser']);
 	$view->display('configure');
 }
-
