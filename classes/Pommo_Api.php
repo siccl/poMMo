@@ -83,7 +83,7 @@ class Pommo_Api
 	 *
 	 *	@return	array	$config.- Config Base
 	 */
-	function configGet($arg)
+	static function configGet($arg)
 	{
 		$dbo = Pommo::$_dbo;
 		$dbo->dieOnQuery(FALSE);

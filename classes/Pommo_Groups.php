@@ -106,7 +106,7 @@ class Pommo_Groups {
 	// make a group template based off a database row (group/group_rules schema)
 	// accepts a group template (assoc array)
 	// return a group object (array)
-	function & makeDB(&$row) {
+	static function & makeDB(&$row) {
 		$in = @array(
 		'id' => $row['group_id'],
 		'name' => $row['group_name']);

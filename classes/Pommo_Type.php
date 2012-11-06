@@ -64,7 +64,7 @@ class Pommo_Type {
 	 *  logic			(enum)		'is','not','greater','less','true','false','is_in','not_in'
 	 *	value			(str)		Match Value
 	 */
-	function group() {
+	static function group() {
 		return array(
 			'id' => null,
 			'name' => null,
