@@ -171,7 +171,7 @@ include $this->template_dir.'/inc/messages.php';
 		<ul class="inpage_menu search">
 			<li>
 				<label><?php echo _('is like'); ?>
-					<input value="<?php echo htmlentities(
+					<input value="<?php echo $this->escape(
 							$this->state['search']['string']); ?>" type="text"
 							name="searchString" />
 				</label>
@@ -227,12 +227,12 @@ if ($this->tally > 0)
 				<?php
 					foreach ($this->fields as $id => $f)
 					{
-						echo "'".htmlentities($f['name'])."',";
+						echo "'".$this->escape($f['name'])."',";
 					}
 				?>
-				'<?php echo htmlentities('Registered'); ?>',
-				'<?php echo htmlentities('Updated'); ?>',
-				'<?php echo htmlentities('IP Address'); ?>'
+				'<?php echo $this->escape('Registered'); ?>',
+				'<?php echo $this->escape('Updated'); ?>',
+				'<?php echo $this->escape('IP Address'); ?>'
 			],
 			colModel: [
 				{name: 'id', index: 'id', hidden: true, width: 1},

@@ -16,7 +16,7 @@
 		<label for="subject">
 			<span class="required"><?php echo _('Subject:'); ?></span>
 		</label>
-		<input value="<?php echo htmlentities($this->subject); ?>"
+		<input value="<?php echo $this->escape($this->subject); ?>"
 				type="text" name="subject" />
 		<span class="notes"><?php echo _('(maximum of 60 characters)'); ?></span>
 	</div>
@@ -62,7 +62,7 @@
 		<label for="fromname"><span class="required"><?php echo _('From Name:');
 				?></span></label>
 		<input type="text" name="fromname" value="<?php
-				echo htmlentities($this->fromname); ?>" />
+				echo $this->escape($this->fromname); ?>" />
 		<span class="notes"><?php echo _('(maximum of 60 characters)'); ?></span>
 	</div>
 
@@ -70,14 +70,14 @@
 		<label for="fromemail"><span class="required"><?php echo _('From Email:');
 				?></span></label>
 		<input type="text" name="fromemail" value="<?php
-				echo htmlentities($this->fromemail); ?>" />
+				echo $this->escape($this->fromemail); ?>" />
 		<span class="notes"><?php echo _('(maximum of 60 characters)'); ?></span>
 	</div>
 
 	<div>
 		<label for="frombounce"><span class="required"><?php echo _('Return:');
 				?></span></label>
-		<input value="<?php echo htmlentities($this->frombounce); ?>"
+		<input value="<?php echo $this->escape($this->frombounce); ?>"
 				type="text" name="frombounce" />
 		<span class="notes"><?php echo _('(maximum of 60 characters)'); ?></span>
 	</div>
@@ -189,4 +189,3 @@
 	</div>
 
 </form>
-

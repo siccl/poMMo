@@ -93,7 +93,7 @@
 							<?php
 								if ($field['normally'])
 								{
-									echo 'value="'.htmlentities($field['normally'])
+									echo 'value="'.$this->escape($field['normally'])
 											.'" ';
 								}
 								else
@@ -115,7 +115,7 @@
 							<?php
 								if ($field['normally'])
 								{
-									echo 'value="'.htmlentities($field['normally'])
+									echo 'value="'.$this->escape($field['normally'])
 											.'" ';
 								}
 							?> />
@@ -133,7 +133,7 @@
 							<?php
 								if ($field['normally'])
 								{
-									echo 'value="'.htmlentities($field['normally'])
+									echo 'value="'.$this->escape($field['normally'])
 											.'" ';
 								}
 							?> />
@@ -174,7 +174,7 @@ $().ready(function(){
         else
         	poMMo.grid.addRow(json.key,json);
 	};
-	
+
 	$('input[@name="force"]').click(function(){
 		if(this.checked)
 			$(this).jqvDisable();
@@ -184,4 +184,3 @@ $().ready(function(){
 
 });
 </script>
-

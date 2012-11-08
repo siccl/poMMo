@@ -12,7 +12,7 @@
 		<label for="list_fromname">
 			<strong class="required"><?php echo _('From Name:'); ?></strong>
 		</label>
-		<input value="<?php echo htmlentities($this->list_fromname); ?>"
+		<input value="<?php echo $this->escape($this->list_fromname); ?>"
 				type="text" name="list_fromname"/>
 		<span class="notes">
 			<?php echo _('(Default name mails will be sent from)'); ?>
@@ -23,7 +23,7 @@
 		<label for="list_fromemail">
 			<strong class="required"><?php echo _('From Email:'); ?></strong>
 		</label>
-		<input value="<?php echo htmlentities($this->list_fromemail); ?>"
+		<input value="<?php echo $this->escape($this->list_fromemail); ?>"
 				type="text" name="list_fromemail"/>
 		<span class="notes">
 			<?php echo _('(Default email mails will be sent from)'); ?>
@@ -34,7 +34,7 @@
 		<label for="list_frombounce">
 			<strong class="required"><?php echo _('Bounce Address:'); ?></strong>
 		</label>
-		<input value="<?php echo htmlentities($this->list_frombounce); ?>"
+		<input value="<?php echo $this->escape($this->list_frombounce); ?>"
 				type="text" name="list_frombounce"/>
 		<span class="notes">
 			<?php echo _('(Returned emails will be sent to this address)'); ?>
@@ -185,7 +185,7 @@
 		<label for="maxRuntime">
 			<strong class="required"><?php echo _('Runtime:'); ?></strong>
 		</label>
-		<input value="<?php echo htmlentities($this->maxRuntime); ?>" size="4"
+		<input value="<?php echo $this->escape($this->maxRuntime); ?>" size="4"
 				type="text" name="maxRuntime" maxlength="5" />
 		<span class="notes">
 			<?php echo _('(Seconds a processing script runs for. Default: 80,
@@ -204,4 +204,3 @@ $().ready(function(){
 	$('#throttleWindow').jqmAddTrigger($('#throttleTrigger'));
 });
 </script>
-

@@ -24,7 +24,7 @@ if ($this->sent)
 		<div>
 			<label class="required" for="email"><?php echo _('Email:'); ?></label>
 			<input type="text" size="32" maxlength="60" name="email"
-					value="<?php echo htmlentities($this->email); ?>" />
+					value="<?php echo $this->escape($this->email); ?>" />
 			<input type="submit" value="<?php echo _('Send Mailing'); ?>"/>
 		</div>
 	</fieldset>
@@ -89,7 +89,7 @@ if ($this->sent)
 						echo '" size="12" name="d['.$key.']" value="';
 						if ($field['normally'])
 						{
-							echo htmlentities($field['normally']);
+							echo $this->escape($field['normally']);
 						}
 						else
 						{
@@ -107,7 +107,7 @@ if ($this->sent)
 						echo '" size="12" name="d['.$key.']" value="';
 						if ($field['normally'])
 						{
-							echo htmlentities($field['normally']);
+							echo $this->escape($field['normally']);
 						}
 						echo '" />';
 					}
@@ -121,7 +121,7 @@ if ($this->sent)
 						echo 'size="32" name="d['.$key.']" value="';
 						if ($field.normally)
 						{
-							echo htmlentities($field['escape']);
+							echo $this->escape($field['escape']);
 						}
 						echo '" />';
 					}

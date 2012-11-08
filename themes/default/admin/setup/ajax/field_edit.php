@@ -26,7 +26,7 @@
 			<label for="field_name">
 				<strong class="required"><?php echo _('Short Name:'); ?></strong><!--{fv message="field_name"}-->
 			</label>
-			<input value="<?php echo htmlentities($this->field['name']); ?>"
+			<input value="<?php echo $this->escape($this->field['name']); ?>"
 					type="text" name="field_name"/>
 			<div class="notes">
 			<?php
@@ -40,7 +40,7 @@
 			<label for="field_prompt">
 				<strong class="required"><?php echo _('Form Name:'); ?></strong><!--{fv message="field_prompt"}-->
 			</label>
-			<input value="<?php echo htmlentities($this->field['prompt']); ?>"
+			<input value="<?php echo $this->escape($this->field['prompt']); ?>"
 					type="text" name="field_prompt"/>
 			<div class="notes">
 			<?php
@@ -125,7 +125,7 @@
 		<div>
 			<label for="field_normally"><?php echo _('Default:'); ?></label>
 			<input type="text" name="field_normally" value="<?php
-					echo htmlentities($this->field['normally']); ?>" />
+					echo $this->escape($this->field['normally']); ?>" />
 			<div class="notes">
 				<?php echo _('If provided, this value will appear pre-filled on
 						the subscription form'); ?>

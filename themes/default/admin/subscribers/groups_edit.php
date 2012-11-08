@@ -50,7 +50,7 @@ include $this->template_dir.'/inc/messages.php';
 			<input class="pvEmpty" type="text" title="<?php
 					echo _('type new group name'); ?>" maxlength="60" size="30"
 					name="group_name" id="group_name" value="<?php
-					echo htmlentities($this->group['name']); ?>" />
+					echo $this->escape($this->group['name']); ?>" />
 			<input type="submit" name="rename" value="<?php echo _('Rename'); ?>" />
 			<div class="output"></div>
 		</div>
@@ -167,9 +167,9 @@ include $this->template_dir.'/inc/messages.php';
 											?>images/icons/delete.png"
 											alt="<?php echo _('Delete'); ?>"
 											onClick="poMMo.callback.updateRule({fieldID:'<?php
-											echo htmlentities($field_id);
+											echo $this->escape($field_id);
 											?>',logic:'<?php
-											echo htmlentities($logic_id);
+											echo $this->escape($logic_id);
 											?>',request:'delete'});" />
 								</td>
 								<td>
@@ -183,9 +183,9 @@ include $this->template_dir.'/inc/messages.php';
 												?>images/icons/edit.png"
 												alt="<?php echo _('Edit'); ?>"
 												onClick="poMMo.callback.editRule({fieldID:'<?php
-												echo htmlentities($field_id);
+												echo $this->escape($field_id);
 												?>',logic:'<?php echo
-												htmlentities($logic_id);
+												$this->escape($logic_id);
 												?>', type: 'and'});" />
 									<?php
 									}
@@ -233,8 +233,8 @@ include $this->template_dir.'/inc/messages.php';
 
 								<td>
 									<select onChange="poMMo.callback.updateRule({fieldID:'<?php
-											echo htmlentities($field_id); ?>',logic:'<?php
-											echo htmlentities($logic_id);
+											echo $this->escape($field_id); ?>',logic:'<?php
+											echo $this->escape($logic_id);
 											?>',type:'or',request:'update'});">
 										<option selected><?php echo _('AND'); ?></option>
 										<option><?php echo _('OR'); ?></option>
@@ -286,7 +286,7 @@ include $this->template_dir.'/inc/messages.php';
 							?>
 							<tr class="r<?php echo $cycle; ?>">
 								<td>
-									<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/delete.png" alt="<?php echo _('Delete'); ?>" onClick="poMMo.callback.updateRule({fieldID:'<?php echo htmlentities($field_id); ?>',logic:'<?php echo htmlentities($logic_id); ?>',request:'delete'});" />
+									<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/delete.png" alt="<?php echo _('Delete'); ?>" onClick="poMMo.callback.updateRule({fieldID:'<?php echo $this->escape($field_id); ?>',logic:'<?php echo $this->escape($logic_id); ?>',request:'delete'});" />
 								</td>
 
 								<td>
@@ -295,7 +295,7 @@ include $this->template_dir.'/inc/messages.php';
 									if ('true' != $logic_id && 'false' != $logic_id)
 									{
 									?>
-										<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/edit.png" alt="<?php echo _('Edit'); ?>" onClick="poMMo.callback.editRule({fieldID:'<?php echo htmlentities($field_id); ?>',logic:'<?php echo htmlentities($logic_id); ?>', type: 'or'});" />
+										<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/edit.png" alt="<?php echo _('Edit'); ?>" onClick="poMMo.callback.editRule({fieldID:'<?php echo $this->escape($field_id); ?>',logic:'<?php echo $this->escape($logic_id); ?>', type: 'or'});" />
 									<?php
 									}
 								?>
@@ -335,7 +335,7 @@ include $this->template_dir.'/inc/messages.php';
 								</td>
 
 								<td>
-									<select onChange="poMMo.callback.updateRule({fieldID:'<?php echo htmlentities($field_id); ?>',logic:'<?php echo htmlentities($logic_id); ?>',type:'and',request:'update'});">
+									<select onChange="poMMo.callback.updateRule({fieldID:'<?php echo $this->escape($field_id); ?>',logic:'<?php echo $this->escape($logic_id); ?>',type:'and',request:'update'});">
 										<option><?php echo _('AND'); ?></option>
 										<option selected=true><?php echo _('OR'); ?></option>
 									</select>
@@ -389,7 +389,7 @@ include $this->template_dir.'/inc/messages.php';
 									?>images/icons/delete.png"
 									alt="<?php echo _('Delete'); ?>"
 									onClick="poMMo.callback.updateRule({fieldID:'<?php
-									echo htmlentities($field_id);
+									echo $this->escape($field_id);
 									?>',logic:'is_in',request:'delete'});" />
 							</td>
 
@@ -432,7 +432,7 @@ include $this->template_dir.'/inc/messages.php';
 										?>images/icons/delete.png"
 										alt="<?php echo _('Delete'); ?>"
 										onClick="poMMo.callback.updateRule({fieldID:'<?php
-										echo htmlentities($field_id);
+										echo $this->escape($field_id);
 										?>',logic:'not_in',request:'delete'});" />
 							</td>
 
@@ -462,7 +462,7 @@ include $this->template_dir.'/inc/messages.php';
 $().ready(function(){
 	// assign ajax + json forms
 	poMMo.form.assign();
-	
+
 	// Setup Modal Dialogs
 	PommoDialog.init('#dialog',{modal: true});
 
@@ -473,7 +473,7 @@ $().ready(function(){
 				.jqm({ajax: 'ajax/group.rpc.php?call=displayRule&ruleType='+type+'&fieldID='+fieldID})
 				.jqmShow();
 	});
-	
+
 });
 
 poMMo.callback.updateRule = function(p) {
@@ -481,7 +481,7 @@ poMMo.callback.updateRule = function(p) {
 	$('#rules input[@name=logic]').val(p.logic);
 	$('#rules input[@name=type]').val(p.type);
 	$('#rules input[@name=request]').val(p.request);
-	
+
 	poMMo.callback.pause();
 	$('#rules').submit();
 	return false;
@@ -491,7 +491,7 @@ poMMo.callback.editRule = function(p) {
 	console.log(p.logic);
 	$('#dialog')
 		.jqm({ajax: 'ajax/group.rpc.php?call=displayRule&ruleType=field&fieldID='+p.fieldID+'&logic='+p.logic+'&type='+p.type})
-		.jqmShow();	
+		.jqmShow();
 	return false;
 };
 
@@ -509,4 +509,3 @@ include $this->template_dir.'/inc/dialog.php';
 $this->capturedDialogs = ob_get_clean();
 
 include $this->template_dir.'/inc/admin.footer.php';
-

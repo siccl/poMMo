@@ -8,7 +8,7 @@
 			<label for="notify_email">
 				<?php echo _('Notification email(s):'); ?>
 			</label>
-			<input value="<?php echo htmlentities($this->notify_email); ?>"
+			<input value="<?php echo $this->escape($this->notify_email); ?>"
 					type="text" name="notify_email" />
 			<span class="notes">
 				<?php echo _('(Notifications will be sent to the above
@@ -19,7 +19,7 @@
 
 		<div>
 			<label for="notify_subject"><?php echo _('Subject Prefix:'); ?></label>
-			<input value="<?php echo htmlentities($this->notify_subject); ?>"
+			<input value="<?php echo $this->escape($this->notify_subject); ?>"
 					type="text" name="notify_subject" />
 			<span class="notes">
 				<?php echo _('(The subject of Notification Mails will begin with
@@ -172,7 +172,7 @@
 			<label for="subscribe_sub">
 				<strong class="required"><?php echo _('Subject:'); ?></strong>
 			</label>
-			<input value="<?php echo htmlentities($this->subscribe_sub); ?>"
+			<input value="<?php echo $this->escape($this->subscribe_sub); ?>"
 					type="text" name="subscribe_sub" />
 		</div>
 
@@ -181,7 +181,7 @@
 				<strong class="required"><?php echo _('Message:'); ?></strong>
 			</label>
 			<textarea name="subscribe_msg" cols="70" rows="10"><?php
-					echo htmlentities($this->subscribe_msg); ?></textarea>
+					echo $this->escape($this->subscribe_msg); ?></textarea>
 		</div>
 
 		<h3><?php echo _('Website'); ?></h3>
@@ -191,7 +191,7 @@
 				<strong class="required"><?php echo _('Message:'); ?></strong>
 			</label>
 			<textarea name="subscribe_web" cols="70" rows="5"><?php
-					echo htmlentities($this->subscribe_web); ?></textarea>
+					echo $this->escape($this->subscribe_web); ?></textarea>
 			<div class="notes"><?php echo '(displayed on webpage)'; ?></div>
 		</div>
 
@@ -229,7 +229,7 @@
 			<label for="unsubscribe_sub">
 				<strong class="required"><?php echo _('Subject:'); ?></strong>
 			</label>
-			<input value="<?php echo htmlentities($this->unsubscribe_sub); ?>"
+			<input value="<?php echo $this->escape($this->unsubscribe_sub); ?>"
 					type="text" name="unsubscribe_sub" />
 		</div>
 
@@ -238,7 +238,7 @@
 				<strong class="required"><?php echo _('Message:'); ?></strong>
 			</label>
 			<textarea name="unsubscribe_msg" cols="70" rows="10"><?php
-					echo htmlentities($this->unsubscribe_msg); ?></textarea>
+					echo $this->escape($this->unsubscribe_msg); ?></textarea>
 		</div>
 
 		<h3><?php echo _('Website'); ?></h3>
@@ -248,7 +248,7 @@
 				<strong class="required"><?php echo _('Message:'); ?></strong>
 			</label>
 			<textarea name="unsubscribe_web" cols="70" rows="5"><?php
-					echo htmlentities($this->unsubscribe_web); ?></textarea>
+					echo $this->escape($this->unsubscribe_web); ?></textarea>
 			<div class="notes"><?php echo '(displayed on webpage)'; ?></div>
 		</div>
 
@@ -278,7 +278,7 @@
 			<label for="confirm_sub">
 				<strong class="required"><?php echo _('Subject:'); ?></strong>
 			</label>
-			<input value="<?php echo htmlentities($this->confirm_sub); ?>"
+			<input value="<?php echo $this->escape($this->confirm_sub); ?>"
 					type="text" name="confirm_sub" />
 		</div>
 
@@ -287,7 +287,7 @@
 				<strong class="required"><?php echo _('Message:'); ?></strong>
 			</label>
 			<textarea name="confirm_msg" cols="70" rows="10"><?php
-					echo htmlentities($this->confirm_msg); ?></textarea>
+					echo $this->escape($this->confirm_msg); ?></textarea>
 			<div class="notes">
 			<?php
 				echo sprintf(_('(Use %s[[url]]%s for the confirm link at least once)'),
@@ -321,7 +321,7 @@
 			<label for="activate_sub">
 				<strong class="required"><?php echo _('Subject:'); ?></strong>
 			</label>
-			<input value="<?php echo htmlentities($this->activate_sub); ?>"
+			<input value="<?php echo $this->escape($this->activate_sub); ?>"
 					type="text" name="activate_sub" />
 		</div>
 
@@ -330,7 +330,7 @@
 				<strong class="required"><?php echo _('Message:'); ?></strong>
 			</label>
 			<textarea name="activate_msg" cols="70" rows="10"><?php
-					echo htmlentities($this->activate_msg); ?></textarea>
+					echo $this->escape($this->activate_msg); ?></textarea>
 			<div class="notes">
 			<?php
 				echo sprintf(_('(Use %s[[url]]%s for the confirm link at least once)'),
@@ -365,7 +365,7 @@
 			<label for="update_sub">
 				<strong class="required"><?php echo _('Subject:'); ?></strong>
 			</label>
-			<input value="<?php echo htmlentities($this->update_sub); ?>"
+			<input value="<?php echo $this->escape($this->update_sub); ?>"
 					type="text" name="update_sub" />
 		</div>
 
@@ -374,7 +374,7 @@
 				<strong class="required"><?php echo _('Message:'); ?></strong>
 			</label>
 			<textarea name="update_msg" cols="70" rows="10"><?php
-					echo htmlentities($this->update_msg); ?></textarea>
+					echo $this->escape($this->update_msg); ?></textarea>
 			<div class="notes">
 			<?php
 				echo sprintf(_('(Use %s[[url]]%s for the confirm link at least once)'),

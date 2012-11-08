@@ -24,7 +24,7 @@
 				<label for="email">
 					<strong class="required"><?php echo _('Email:'); ?></strong>
 				</label>
-				<input value="<?php echo htmlentities($this->email); ?>" type="text"
+				<input value="<?php echo $this->escape($this->email); ?>" type="text"
 						name="email" />
 				<span class="notes">
 					<?php echo _('(address to send test message to)'); ?>

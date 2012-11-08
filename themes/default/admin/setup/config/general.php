@@ -14,7 +14,7 @@
 				<?php echo _('List Name:'); ?>
 			</strong>
 		</label>
-		<input value="<?php echo htmlentities($this->list_name); ?>"
+		<input value="<?php echo $this->escape($this->list_name); ?>"
 				type="text" name="list_name" />
 		<span class="notes"><?php echo _('(The name of your Mailing List)'); ?></span>
 	</div>
@@ -25,7 +25,7 @@
 				<?php echo _('Website Name:'); ?>
 			</strong>
 		</label>
-		<input value="<?php echo htmlentities($this->site_name); ?>"
+		<input value="<?php echo $this->escape($this->site_name); ?>"
 				type="text" name="site_name" />
 		<span class="notes"><?php echo _('(The name of your Website)'); ?></span>
 	</div>
@@ -36,7 +36,7 @@
 				<?php echo _('Website URL:'); ?>
 			</strong>
 		</label>
-		<input value="<?php echo htmlentities($this->site_url); ?>"
+		<input value="<?php echo $this->escape($this->site_url); ?>"
 				type="text" name="site_url" />
 		<span class="notes"><?php echo _('(Web address of your Website)'); ?></span>
 	</div>
@@ -45,7 +45,7 @@
 		<label for="site_success">
 			<?php echo _('Success URL:'); ?>
 		</label>
-		<input value="<?php echo htmlentities($this->site_success); ?>"
+		<input value="<?php echo $this->escape($this->site_success); ?>"
 				type="text" name="site_success" />
 		<span class="notes"><?php echo _('(Webpage users will see upon successfull
 				subscription. Leave blank to display default welcome page.)');
@@ -56,7 +56,7 @@
 		<label for="site_confirm">
 			<?php echo _('Confirm URL:'); ?>
 		</label>
-		<input value="<?php echo htmlentities($this->site_confirm); ?>"
+		<input value="<?php echo $this->escape($this->site_confirm); ?>"
 				type="text" name="site_confirm"/>
 		<span class="notes"><?php echo _('(Webpage users will see upon
 				subscription attempt. Leave blank to display default
@@ -156,12 +156,12 @@ var exchanger = $('select[@name=list_exchanger]');
 $().ready(function(){
 	$('#smtpWindow').jqmAddTrigger($('#smtpTrigger'));
 	$('#testWindow').jqmAddTrigger($('#testTrigger'));
-	
+
 	exchanger.change(function(){
 		$(this).parents('form:eq(0)').submit();
-		showSMTP(); 
+		showSMTP();
 	});
 	showSMTP();
-	
+
 });
 </script>

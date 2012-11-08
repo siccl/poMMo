@@ -72,7 +72,7 @@
 				<label for="host[<?php echo $id; ?>]">
 					<?php echo _('SMTP Host:'); ?>
 				</label>
-				<input value="<?php echo htmlentities($this->smtp[$id]['host']); ?>"
+				<input value="<?php echo $this->escape($this->smtp[$id]['host']); ?>"
 						type="text" name="host[<?php echo $id; ?>]" />
 				<div class="notes">
 					<?php echo _('(IP Address or Name of SMTP server)'); ?>
@@ -110,7 +110,7 @@
 					<?php echo _('Port Number:'); ?>
 				</label>
 				<input type="text" name="port[<?php echo $id; ?>]"
-						value="<?php echo htmlentities($this->smtp[$id]['port']); ?>" />
+						value="<?php echo $this->escape($this->smtp[$id]['port']); ?>" />
 				<div class="notes">
 					<?php echo _('(Port # of SMTP server [usually 25])'); ?>
 				</div>
@@ -146,7 +146,7 @@
 					<?php echo _('SMTP Username:'); ?>
 				</label>
 				<input type="text" name="user[<?php echo $id; ?>]"
-						value="<?php echo htmlentities($this->smtp[$id]['user']);
+						value="<?php echo $this->escape($this->smtp[$id]['user']);
 						?>" />
 				<div class="notes"><?php echo _('(optional)'); ?></div>
 			</div>
@@ -156,7 +156,7 @@
 					<?php echo _('SMTP Password:'); ?>
 				</label>
 				<input type="password" name="pass[<?php echo $id; ?>]"
-						value="<?php echo htmlentities($this->smtp[$id]['pass']);
+						value="<?php echo $this->escape($this->smtp[$id]['pass']);
 						?>" />
 				<div class="notes"><?php echo _('(optional)'); ?></div>
 			</div>

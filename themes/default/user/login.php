@@ -25,7 +25,7 @@ include $this->template_dir.'/inc/messages.php';
 				<strong class="required"><?php echo _('Your Email:'); ?></strong>
 			</label>
 			<input type="text" name="Email" id="email" size="32" maxlength="60"
-					value="<?php echo htmlentities($this->Email); ?>" />
+					value="<?php echo $this->escape($this->Email); ?>" />
 		</div>
 	</fieldset>
 
@@ -37,4 +37,3 @@ include $this->template_dir.'/inc/messages.php';
 <?php
 
 include $this->template_dir.'/inc/user.footer.php';
-

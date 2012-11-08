@@ -106,7 +106,7 @@
 							<?php
 								if ($field['normally'])
 								{
-									echo 'value="'.htmlentities($field['normally'])
+									echo 'value="'.$this->escape($field['normally'])
 											.'"';
 								}
 							?> />
@@ -125,7 +125,7 @@
 							value="<?php
 								if ($field['normally'])
 								{
-									echo htmlentities($field['normally']);
+									echo $this->escape($field['normally']);
 								}
 							?>" />
 							<?php
@@ -163,7 +163,7 @@ $().ready(function(){
 		poMMo.grid.setRow(p);
 	};
 
-	// populate form with first selected row... 
+	// populate form with first selected row...
 	// TODO; add support for multiple subscriber editing at a time.
 	var data = poMMo.grid.getRow();
 	var scope = $('#edForm')[0];
@@ -181,7 +181,7 @@ $().ready(function(){
 				this.checked = (data[i] == 'on') ? true : false;
 			else
 				$(this).val(""+data[i]+"");
-		}); 
+		});
 	}
 
 	$('input[@name="force"]',scope).click(function(){
@@ -193,4 +193,3 @@ $().ready(function(){
 
 });
 </script>
-

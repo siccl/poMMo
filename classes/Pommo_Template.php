@@ -181,7 +181,7 @@ class Pommo_Template
 	 */
 	public function escape($string)
 	{
-		return htmlentities($string);
+		return htmlentities($string, ENT_COMPAT | ENT_HTML401, 'UTF-8');
 	}
 }
 

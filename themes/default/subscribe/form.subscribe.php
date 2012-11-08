@@ -26,7 +26,7 @@
 				<strong><?php echo _('Your Email:'); ?></strong>
 			</label>
 			<input type="text" size="32" maxlength="60" name="Email" id="email"
-					value="<?php echo htmlentities($this->Email); ?>" />
+					value="<?php echo $this->escape($this->Email); ?>" />
 		</div>
 
 		<?php
@@ -59,12 +59,12 @@
                                         <?php
                                             if (isset($this->d[$key]))
                                             {
-                                                echo 'value="'.htmlentities(
+                                                echo 'value="'.$this->escape(
                                                         $this->d[$key]).'" ';
                                             }
                                             elseif ($field['normally'])
                                             {
-                                                echo 'value="'.htmlentities(
+                                                echo 'value="'.$this->escape(
                                                         $field['normally']).'" ';
                                             }
                                         ?>
@@ -124,12 +124,12 @@
                                 <?php
                                     if (isset($this->d['key']))
                                     {
-                                        echo 'value="'.htmlentities($this->d['key'])
+                                        echo 'value="'.$this->escape($this->d['key'])
                                                 .'" ';
                                     }
                                     elseif ($field['normally'])
                                     {
-                                        echo 'value="'.htmlentities($field['normally'])
+                                        echo 'value="'.$this->escape($field['normally'])
                                                 .'" ';
                                     }
                                     else

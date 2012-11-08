@@ -22,7 +22,7 @@
 					<strong><?php echo _('Your Email:'); ?></strong>
 				</label>
 				<input type="text" size="32" maxlength="60" name="email" id="email"
-						value="<?php echo htmlentities($this->email); ?>"
+						value="<?php echo $this->escape($this->email); ?>"
 						readonly="readonly" />
 			</div>
 
@@ -91,7 +91,7 @@
                                         'class="text datepicker" size="12" ' :
                                         'size="32" ').'name="d['.$key.']"
                                         id="field'.$key.'" '.(isset($this->d[$key]) ?
-                                        ' value="'.htmlentities($this->d[$key]).'" ' :
+                                        ' value="'.$this->escape($this->d[$key]).'" ' :
                                         '').' />';
                                 break;
                         }

@@ -22,14 +22,14 @@
 
 	<div>
 		<label for="name"><span class="required"><?php echo _('Name:'); ?></span></label>
-		<input type="text" name="name" value="<?php echo htmlentities($_POST['name']); ?>" />
+		<input type="text" name="name" value="<?php echo $this->escape($_POST['name']); ?>" />
 		<span class="notes"><?php echo _('(maximum of 60 characters)'); ?></span>
 	</div>
 
 	<div>
 		<label for="description"><?php echo _('Description:'); ?></span></label>
 		<textarea name="description" style="height: 60px;"><?php
-				echo htmlentities($_POST['description']); ?></textarea>
+				echo $this->escape($_POST['description']); ?></textarea>
 		<span class="notes"><?php echo _('(Brief Summary - 255 characters)'); ?></span>
 	</div>
 
@@ -45,4 +45,3 @@ $().ready(function(){
 	$('form .jqmClose',$('#dialog')[0]).click(function(){$('#dialog').jqmHide();});
 });
 </script>
-
