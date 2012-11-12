@@ -617,6 +617,38 @@ qq.extend(qq.FileUploader.prototype, {
         } else {
             qq.addClass(item, this._classes.fail);
         }
+
+        // Add a button to remove uploaded file
+        // This part requires jQuery
+        if ('function' === typeof jQuery) {
+            var attachmentId = result.attachment_id;
+            var url = 'ajax/delete_attachment.php';
+            var $deleteLink = $('<a href="' + url + '">Remove</a>');
+            var errorMessage = function() {
+                alert('The attachment could not be deleted');
+            };
+            $(item).append($deleteLink);
+
+            $deleteLink.click(function(e) {
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'json',
+                    data: {id: attachmentId},
+                    success: function(data) {
+                        if (data.success) {
+                            $(item).remove();
+                        } else {
+                            errorMessage();
+                        }
+                    },
+                    error: function() {
+                        errorMessage();
+                    }
+                });
+                e.preventDefault();
+            });
+        }
     },
     _addToList: function(id, fileName){
         var item = qq.toElement(this._options.fileTemplate);
