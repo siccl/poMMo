@@ -2,7 +2,7 @@
 /**
  *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  *  released originally under GPLV2
- * 
+ *
  *  This file is part of poMMo.
  *
  *  poMMo is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  *  This fork is from https://github.com/soonick/poMMo
  *  Please see docs/contribs for Contributors
  *
@@ -67,7 +67,8 @@ $state = Pommo_Api::stateInit('mailing',
 			'subject' => '',
 			'body' => '',
 			'altbody' => '',
-			'track' => ''
+			'track' => '',
+            'attachments' => ''
 		),
 		$_POST);
 
@@ -96,7 +97,7 @@ if (empty ($_POST))
 	$vMsg['fromemail'] = $vMsg['frombounce'] = Pommo::_T('Invalid email address');
 	$vMsg['ishtml'] = $vMsg['mailgroup'] = Pommo::_T('Invalid Input');
 	$view->assign('vMsg', $vMsg);
-	
+
 }
 else
 {
@@ -142,5 +143,3 @@ $view->assign( 'mailgroups', $mailgroups );
 $view->assign('groups', Pommo_Groups::get());
 $view->assign($state);
 $view->display('admin/mailings/mailing/setup');
-
-

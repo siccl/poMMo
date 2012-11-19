@@ -2,7 +2,7 @@
 /**
  *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  *  released originally under GPLV2
- * 
+ *
  *  This file is part of poMMo.
  *
  *  poMMo is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  *  This fork is from https://github.com/soonick/poMMo
  *  Please see docs/contribs for Contributors
  *
@@ -122,7 +122,7 @@ if (!empty ($_REQUEST['sendaway']))
 	 *********************************/
 	require_once(Pommo::$_baseDir.'classes/Pommo_Json.php');
 	$json = new Pommo_Json();
-	
+
 	if ($state['tally'] > 0)
 	{
 		if ($state['ishtml'] == 'off')
@@ -138,23 +138,23 @@ if (!empty ($_REQUEST['sendaway']))
 		$mailing = Pommo_Helper::arrayIntersect($state, $mailing);
 
 		$code = Pommo_Mailing::add($mailing);
-		
+
 		if (!Pommo_Mail_Ctl::queueMake($memberIDs))
 		{
 			$json->fail('Unable to populate queue');
 		}
-			
+
 		if (!Pommo_Mail_Ctl::spawn(
 				Pommo::$_baseUrl.'ajax/mailings_send4.php?code='.$code))
 		{
 			$json->fail('Unable to spawn background mailer');
 		}
-			
+
 		// clear mailing composistion data from session
 		Pommo_Api::stateReset(array('mailing'));
 		$json->add('callbackFunction','redirect');
 		$json->add('callbackParams',Pommo::$_baseUrl.'mailing_status.php');
-		
+
 	}
 	else
 	{
@@ -165,4 +165,3 @@ if (!empty ($_REQUEST['sendaway']))
 
 $view->assign($state);
 $view->display('admin/mailings/mailing/preview');
-

@@ -29,11 +29,24 @@
 		<span class="notes">(<?php echo _('Leave blank to send text only'); ?>)</span>
 	</div>
 
+    <?php
+        // Add hidden inputs for each attachment already saved
+        $attachments = array();
+        if (!empty($this->attachments)) {
+            $attachments = explode(',', $this->attachments);
+        }
+        foreach ($attachments as $attachment) {
+        ?>
+            <input type="hidden" name="attachment[]" class="attached_file"
+                    value="<?php echo $attachment; ?>">
+        <?php
+        }
+    ?>
 	<div id="file-uploader-demo1" style='float: left; margin-left: 30px'>
-		<noscript>			
+		<noscript>
 			<p><?php echo _('Please enable JavaScript to use file uploader.'); ?></p>
 			<!-- or put a simple form for upload here -->
-		</noscript>         
+		</noscript>
 	</div>
 
 	<ul class="inpage_menu" style='float: left'>
@@ -85,15 +98,15 @@
 
 <script type='text/javascript'>
 	function createUploader()
-	{            
+	{
 		var uploader = new qq.FileUploader(
 	    {
 			element: document.getElementById('file-uploader-demo1'),
 	        action: 'ajax/process_upload.php',
-	        template: '<div class="qq-uploader">' + 
+	        template: '<div class="qq-uploader">' +
                 '<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' +
                 '<div class="qq-upload-button">Add attachment</div>' +
-                '<ul class="qq-upload-list"></ul>' + 
+                '<ul class="qq-upload-list"></ul>' +
             '</div>',
       		onComplete: function(id, fileName, responseJSON)
             {
@@ -102,7 +115,7 @@
 						'name="attachment[]"' + ' class="attached_file" ' +
 						'value="' + attachment_id + '">');
             }
-	    });           
+	    });
 	}
 
 	createUploader();
@@ -132,13 +145,13 @@ $().ready(function()
 		<?php
 		}
 	?>
-	
+
 	// Command Buttons (toggle HTML, add personalization, save template, generate altbody)
 	$('#e_toggle').click(function()
 	{
 		if(wysiwyg.enabled) {
 			if(wysiwyg.disable()) {
-				$('#toggleText').html(offText) 
+				$('#toggleText').html(offText)
 				$.getJSON('ajax/ajax.rpc.php?call=wysiwyg&disable=true');
 			}
 		}
@@ -150,60 +163,59 @@ $().ready(function()
 		}
 		return false;
 	});
-	
+
 	$('#e_personalize').click(function() {
 		$('#dialog').jqmShow(this);
 		return false;
 	});
-	
+
 	$('#e_template').click(function() {
-		
+
 		// submit the bodies
 		var post = {
 			body: wysiwyg.getBody(),
 			altbody: $('textarea[@name=altbody]').val()
 		},trigger = this;
-		
+
 		poMMo.pause();
-		
+
 		$.post('ajax/ajax.rpc.php?call=savebody',post,function(){
 			$('#dialog').jqmShow(trigger);
 			poMMo.resume();
 		});
-		
+
 		return false;
 	});
-	
-	
+
+
 	$('.e_altbody').click(function() {
-		
+
 		var post = {
 			body: wysiwyg.getBody()
 		};
-		
+
 		poMMo.pause();
-		
+
 		$.post('ajax/ajax.rpc.php?call=altbody',post,function(json){
 			$('textarea[@name=altbody]').val(json.altbody);
 			poMMo.resume();
 		},"json");
-		
+
 		return false;
 	});
-	
-	
+
+
 	$('#compose').submit(function()
 	{
 		// submit the bodies and attachments
 		attachments = {};
 		i = 0;
-		$('#file-uploader-demo1 .attached_file').each(function()
-		{
+		$('.attached_file').each(function() {
 			theName = 'attachment[' + i + ']';
 			attachments[theName] = $(this).val();
 			i++;
 		});
-		
+
 		var post = $.extend
 		(
 			{
@@ -212,15 +224,14 @@ $().ready(function()
 			},
 			attachments
 		);
-		
+
 		poMMo.pause();
-		
+
 		$.post('ajax/ajax.rpc.php?call=savebody',post,function(){
 			poMMo.resume();
 		});
 	});
-	
+
 });
 
 </script>
-

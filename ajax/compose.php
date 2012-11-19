@@ -2,7 +2,7 @@
 /**
  *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  *  released originally under GPLV2
- * 
+ *
  *  This file is part of poMMo.
  *
  *  poMMo is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  *  This fork is from https://github.com/soonick/poMMo
  *  Please see docs/contribs for Contributors
  *
@@ -58,7 +58,7 @@ if (isset($_REQUEST['compose']))
 	$json = new Pommo_Json();
 	$json->success();
 }
-	
+
 $dbvalues = Pommo_Api::configGet(array(
 	'list_fromname',
 	'list_fromemail',
@@ -78,14 +78,15 @@ $state = Pommo_Api::stateInit('mailing',array(
 	'subject' => '',
 	'body' => '',
 	'altbody' => '',
-	'track' => ''
+	'track' => '',
+    'attachments' => ''
 ),
 $_POST);
+var_dump($state);
 
 $view->assign($state);
 
 // assign language (for wysiwyg)
-$view->assign('lang',(Pommo::$_slanguage) ? Pommo::$_slanguage : Pommo::$_language);	
+$view->assign('lang',(Pommo::$_slanguage) ? Pommo::$_slanguage : Pommo::$_language);
 
 $view->display('admin/mailings/mailing/compose');
-
