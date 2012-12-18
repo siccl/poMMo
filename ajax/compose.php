@@ -82,7 +82,6 @@ $state = Pommo_Api::stateInit('mailing',array(
     'attachments' => ''
 ),
 $_POST);
-var_dump($state);
 
 $view->assign($state);
 
