@@ -27,6 +27,7 @@
 	INITIALIZATION METHODS
 *********************************/
 require '../bootstrap.php';
+require_once Pommo::$_baseDir.'classes/Pommo_Helper_Messages.php';
 Pommo::init();
 $logger = Pommo::$_logger;
 $dbo = Pommo::$_dbo;
@@ -46,7 +47,6 @@ $json = new Pommo_Json();
 // Check if user requested to restore defaults
 if (isset($_POST['restore']))
 {
-	require_once Pommo::$_baseDir.'classes/Pommo_Helper_Messages.php';
 	switch (key($_POST['restore']))
 	{
 		case 'subscribe':
