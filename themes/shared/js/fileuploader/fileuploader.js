@@ -527,6 +527,44 @@ qq.FileUploader = function(o){
 
     this._bindCancelEvent();
     this._setupDragDrop();
+
+    // Make the "Remove" attachment button work
+    if ('function' === typeof jQuery) {
+        var errorMessage = function() {
+            alert('The attachment could not be deleted');
+        };
+        $('#file-uploader-demo1').click(function(e) {
+            var $target = $(e.target);
+            var $parent = $target.parent();
+            var url = $target.attr('href');
+            var $input = $parent.next();
+            // We only care about remove links
+            if (!url || !$parent.hasClass('qq-upload-success')) {
+                return;
+            }
+            e.preventDefault();
+            e.stopPropagation();
+
+            var attachmentId = $input.val();
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: 'json',
+                data: {id: attachmentId},
+                success: function(data) {
+                    if (data.success) {
+                        $parent.remove();
+                        $input.remove();
+                    } else {
+                        errorMessage();
+                    }
+                },
+                error: function() {
+                    errorMessage();
+                }
+            });
+        });
+    }
 };
 
 // inherit from Basic Uploader
@@ -624,30 +662,7 @@ qq.extend(qq.FileUploader.prototype, {
             var attachmentId = result.attachment_id;
             var url = 'ajax/delete_attachment.php';
             var $deleteLink = $('<a href="' + url + '">Remove</a>');
-            var errorMessage = function() {
-                alert('The attachment could not be deleted');
-            };
             $(item).append($deleteLink);
-
-            $deleteLink.click(function(e) {
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    dataType: 'json',
-                    data: {id: attachmentId},
-                    success: function(data) {
-                        if (data.success) {
-                            $(item).remove();
-                        } else {
-                            errorMessage();
-                        }
-                    },
-                    error: function() {
-                        errorMessage();
-                    }
-                });
-                e.preventDefault();
-            });
         }
     },
     _addToList: function(id, fileName){

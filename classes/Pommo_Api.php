@@ -221,5 +221,46 @@ class Pommo_Api
 
 		return true;
 	}
+
+    /**
+     * Get attachments names based on attachment indexes
+     *
+     * @param string $attachments.- Attachments indexes separated by comma:
+     *               $attachments = '1,2,4'
+     *
+     * @return array $result = Array with attachments details:
+     *              array(
+     *                  array(
+     *                      'id' => 1,
+     *                      'name' => 'file.txt'
+     *                  ),
+     *                  array(
+     *                      'id' => 2,
+     *                      'name' => 'image.jpg'
+     *                  )
+     *              )
+     */
+    public static function getAttachmentsWithNames($attachments)
+    {
+        if (empty($attachments)) {
+            return false;
+        }
+
+        $attachments = explode(',', $attachments);
+        $dbo = Pommo::$_dbo;
+        $query =
+            'SELECT
+                file_id, file_name
+            FROM
+                ' . $dbo->table['attachment_files'] . '
+            WHERE
+                file_id IN(%q)';
+        $query = $dbo->prepare($query, array($attachments));
+
+        $result = array();
+        while ($row = $dbo->getRows($query)) {
+            $result[] = $row;
+        }
+        return $result;
+    }
 }
-?>
