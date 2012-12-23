@@ -29,19 +29,6 @@
 		<span class="notes">(<?php echo _('Leave blank to send text only'); ?>)</span>
 	</div>
 
-    <?php
-        // Add hidden inputs for each attachment already saved
-        $attachments = array();
-        if (!empty($this->attachments)) {
-            $attachments = explode(',', $this->attachments);
-        }
-        foreach ($attachments as $attachment) {
-        ?>
-            <input type="hidden" name="attachment[]" class="attached_file"
-                    value="<?php echo $attachment; ?>">
-        <?php
-        }
-    ?>
 	<div id="file-uploader-demo1" style='float: left; margin-left: 30px'>
 		<noscript>
 			<p><?php echo _('Please enable JavaScript to use file uploader.'); ?></p>
@@ -106,7 +93,27 @@
 	        template: '<div class="qq-uploader">' +
                 '<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' +
                 '<div class="qq-upload-button">Add attachment</div>' +
-                '<ul class="qq-upload-list"></ul>' +
+                '<ul class="qq-upload-list">' +
+                <?php
+                    if (isset($this->attachmentsDetails)
+                            && is_array($this->attachmentsDetails)) {
+                        foreach ($this->attachmentsDetails as $att) {
+                            echo
+                                '\'<li class="qq-upload-success">\' +
+                                    \'<span class="qq-upload-file">\' +'
+                                        . '\'' . $att['file_name'] . '\' +'
+                                    . '\'</span>\' +
+                                    \'<a href="ajax/delete_attachment.php">\' +
+                                        \'Remove\' +
+                                    \'</a>\' +
+                                \'</li>\' +
+                                \'<input class="attached_file" type="hidden" '
+                                    . 'value="' . $att['file_id'] . '" '
+                                    . 'name="attachment[]">\' + ';
+                        }
+                    }
+                ?>
+                '</ul>' +
             '</div>',
       		onComplete: function(id, fileName, responseJSON)
             {

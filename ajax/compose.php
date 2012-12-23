@@ -82,9 +82,12 @@ $state = Pommo_Api::stateInit('mailing',array(
     'attachments' => ''
 ),
 $_POST);
-var_dump($state);
+
+// We want more information about the attachments
+$attachments = Pommo_Api::getAttachmentsWithNames($state['attachments']);
 
 $view->assign($state);
+$view->assign('attachmentsDetails', $attachments);
 
 // assign language (for wysiwyg)
 $view->assign('lang',(Pommo::$_slanguage) ? Pommo::$_slanguage : Pommo::$_language);
