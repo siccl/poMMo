@@ -25,9 +25,9 @@ include $this->template_dir.'/inc/admin.header.php';
 		<legend><?php echo _('Assign Fields'); ?></legend>
 
 		<div>
-			<?php echo _('Below is a preview of your CSV data. You can assign
-					subscriber fields to columns. At the very least, you must assign
-					an email address.'); ?>
+			<?php echo _('Below is a preview of your CSV data. You can assign'
+				.' subscriber fields to columns. At the very least, you must assign'
+				.' an email address.'); ?>
 		</div>
 
 		<?php

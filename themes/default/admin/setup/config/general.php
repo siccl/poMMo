@@ -47,9 +47,9 @@
 		</label>
 		<input value="<?php echo $this->escape($this->site_success); ?>"
 				type="text" name="site_success" />
-		<span class="notes"><?php echo _('(Webpage users will see upon successfull
-				subscription. Leave blank to display default welcome page.)');
-				?></span>
+		<span class="notes"><?php echo _('(Webpage users will see upon successfull'
+			.' subscription. Leave blank to display default welcome page.)');
+		?></span>
 	</div>
 
 	<div>
@@ -58,9 +58,9 @@
 		</label>
 		<input value="<?php echo $this->escape($this->site_confirm); ?>"
 				type="text" name="site_confirm"/>
-		<span class="notes"><?php echo _('(Webpage users will see upon
-				subscription attempt. Leave blank to display default
-				confirmation page.)'); ?></span>
+		<span class="notes"><?php echo _('(Webpage users will see upon'
+			.' subscription attempt. Leave blank to display default'
+			.' confirmation page.)'); ?></span>
 	</div>
 
 	<div>
@@ -83,8 +83,8 @@
 			}
 		?>
 		/><?php echo _('off'); ?>
-		<span class="notes"><?php echo _('(Set to validate email upon
-				subscription attempt.)'); ?></span>
+		<span class="notes"><?php echo _('(Set to validate email upon'
+			.' subscription attempt.)'); ?></span>
 	</div>
 
 	<div>

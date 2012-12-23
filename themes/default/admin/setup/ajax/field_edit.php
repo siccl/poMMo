@@ -30,8 +30,8 @@
 					type="text" name="field_name"/>
 			<div class="notes">
 			<?php
-				echo _('Identifying name. NOT displayed on Subscription Form or
-						seen by users.');
+				echo _('Identifying name. NOT displayed on Subscription Form or'
+					.' seen by users.');
 			?>
 			</div>
 		</div>
@@ -44,8 +44,8 @@
 					type="text" name="field_prompt"/>
 			<div class="notes">
 			<?php
-				printf(_('Prompt for field on the Subscription Form. e.g.
-						%sType your city%s'), '<tt>', '</tt>');
+				printf(_('Prompt for field on the Subscription Form. e.g.'
+					.' %sType your city%s'), '<tt>', '</tt>');
 			?>
 			</div>
 		</div>
@@ -76,8 +76,8 @@
 			?>
 			<div class="notes">
 			<?php
-				printf(_('Toggle to require field on Subscription Form (user
-						cannot leave blank if %syes%s)'), '<tt>', '</tt>');
+				printf(_('Toggle to require field on Subscription Form (user'
+					.' cannot leave blank if %syes%s)'), '<tt>', '</tt>');
 			?>
 			</div>
 		</div>
@@ -127,8 +127,8 @@
 			<input type="text" name="field_normally" value="<?php
 					echo $this->escape($this->field['normally']); ?>" />
 			<div class="notes">
-				<?php echo _('If provided, this value will appear pre-filled on
-						the subscription form'); ?>
+				<?php echo _('If provided, this value will appear pre-filled on'
+					.' the subscription form'); ?>
 			</div>
 		</div>
 		<?php
@@ -161,8 +161,8 @@
 				?>
 			</select>
 			<div class="notes">
-				<?php echo _('If provided, this value will appear pre-filled on
-						the subscription form'); ?>
+				<?php echo _('If provided, this value will appear pre-filled on'
+					.' the subscription form'); ?>
 			</div>
 		</div>
 		<?php
@@ -192,8 +192,8 @@
 				?>
 			</select>
 			<div class="notes">
-				<?php echo _('If provided, this value will appear pre-filled on
-						the subscription form'); ?>
+				<?php echo _('If provided, this value will appear pre-filled on'
+					.' the subscription form'); ?>
 			</div>
 		</div>
 		<?php
@@ -225,9 +225,9 @@ if ('multiple' == $this->field['type'])
 					name="loading" class="hidden" title="<?php echo _('loading...'); ?>"
 					alt="<?php echo _('loading...'); ?>" />
 			<div class="notes">
-				<?php echo _('Enter a multiple choice option. You can add more
-						than one choice at a time by separating each with a
-						comma.'); ?>
+				<?php echo _('Enter a multiple choice option. You can add more'
+					.' than one choice at a time by separating each with a'
+					.' comma.'); ?>
 			</div>
 			<div class="output"></div>
 		</div>

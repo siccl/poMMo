@@ -20,10 +20,10 @@ include $this->template_dir.'/inc/admin.header.php';
 	<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/embed.png"
 			alt="embed" class="navimage right" />
 	<?php
-		echo _('Subscription forms can easily be added to your website
-				using a line of code. You can use the PHP include listed
-				below, or embed the actual HTML. Remember, you can also
-				direct subscribers to the ');
+		echo _('Subscription forms can easily be added to your website'
+			.' using a line of code. You can use the PHP include listed'
+			.' below, or embed the actual HTML. Remember, you can also'
+			.' direct subscribers to the ');
 	?>
 	<a href="<?php echo $this->url['base']; ?>subscribe.php">
 		<?php echo _('Default Subscribe Form'); ?>

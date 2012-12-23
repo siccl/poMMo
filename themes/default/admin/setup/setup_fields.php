@@ -17,11 +17,11 @@ include $this->template_dir.'/inc/admin.header.php';
 	<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/fields.png"
 			alt="fields icon" class="navimage right" />
 	<?php
-		printf(_('Subscriber fields allow you to collect information on list
-				members. They are typically displayed on the subscription form,
-				although "hidden" ones can be used for administrative purposes.
-				%sGroups%s are based on subscriber field values.'),
-				'<a href="'.$this->url['base'].'subscribers_groups.php">', '</a>');
+		printf(_('Subscriber fields allow you to collect information on list'
+			.' members. They are typically displayed on the subscription form,'
+			.' although "hidden" ones can be used for administrative purposes.'
+			.' %sGroups%s are based on subscriber field values.'),
+			'<a href="'.$this->url['base'].'subscribers_groups.php">', '</a>');
 	?>
 </p>
 
@@ -58,8 +58,8 @@ include $this->template_dir.'/inc/admin.header.php';
 <h3><?php echo _('Field Ordering'); ?></h3>
 <ul>
 	<li>
-		<?php echo _('Change the ordering of fields on the subscription form by
-				dragging and dropping the order icon'); ?>
+		<?php echo _('Change the ordering of fields on the subscription form by'
+			.' dragging and dropping the order icon'); ?>
 	</li>
 </ul>
 

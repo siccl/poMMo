@@ -14,18 +14,18 @@ include $this->template_dir.'/inc/admin.header.php';
 <p>
 	<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/alert.png"
 			class="navimage right" alt="thunderbolt icon" />
-	<?php echo sprintf(_('Mailings take place in the background so feel free to close
-			this page, visit other sites, or even turn off your computer. You
-			can always return to this status page by visiting the Mailings
-			section.  %sThrottle settings%s can also be adjusted -- although you
-			must pause and revive the mailing before changes take effect.'),
+	<?php echo sprintf(_('Mailings take place in the background so feel free to close'
+			.' this page, visit other sites, or even turn off your computer. You'
+			.' can always return to this status page by visiting the Mailings'
+			.' section.  %sThrottle settings%s can also be adjusted -- although you'
+			.' must pause and revive the mailing before changes take effect.'),
 			'<a href="'.$this->url['base'].'setup_configure.php#mailings">',
 			'</a>'); ?>
 </p>
 
 <div>
 <?php
-	echo sprintf(_('Sending message to %1 subscribers.'), $this->mailing['tally']);
+	echo sprintf(_('Sending message to %s subscribers.'), $this->mailing['tally']);
 ?>
 </div>
 

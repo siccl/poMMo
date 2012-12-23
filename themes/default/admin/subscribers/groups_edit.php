@@ -22,16 +22,16 @@ include $this->template_dir.'/inc/admin.header.php';
 	<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/groups.png"
 			alt="groups icon" class="navimage right" />
 	<?php
-		echo sprintf(_('To add subscribers to a group you must create matching
-				rules. Subscribers are automatically added to a group if their
-				%ssubscriber field%s values "match" a Group\'s rules. For
-				example, if you collect "AGE" and "COUNTRY" as %ssubscriber
-				fields%s, you can match those who are 21+ and living in Japan
-				by creating two rules; one which matches "AGE" to greater than
-				20, and another which matches "Japan" to "COUNTRY". Including
-				or excluding members of other groups is possible.'),
-				'<a href="'.$this->url['base'].'setup_fields.php">', '</a>',
-				'<a href="'.$this->url['base'].'setup_fields.php">', '</a>');
+		echo sprintf(_('To add subscribers to a group you must create matching'
+			.' rules. Subscribers are automatically added to a group if their'
+			.' %ssubscriber field%s values "match" a Group\'s rules. For'
+			.' example, if you collect "AGE" and "COUNTRY" as %ssubscriber'
+			.' fields%s, you can match those who are 21+ and living in Japan'
+			.' by creating two rules; one which matches "AGE" to greater than'
+			.' 20, and another which matches "Japan" to "COUNTRY". Including'
+			.' or excluding members of other groups is possible.'),
+			'<a href="'.$this->url['base'].'setup_fields.php">', '</a>',
+			'<a href="'.$this->url['base'].'setup_fields.php">', '</a>');
 	?>
 </p>
 
@@ -89,7 +89,7 @@ include $this->template_dir.'/inc/messages.php';
 		<div>
 			<label for="group">
 			<?php
-				echo sprintf(_('or, Select a %1 group %2 to include or exclude'),
+				echo sprintf(_('or, Select a %s group %s to include or exclude'),
 						'<strong><a href="'.$this->url['base'].'subscribers_groups.php">',
 						'</a></strong>');
 			?>
@@ -263,8 +263,8 @@ include $this->template_dir.'/inc/messages.php';
 						<?php
 							echo _('"OR" RULES');
 							echo '<br />';
-							echo sprintf(_('<strong>OR</strong>, MATCH %sANY%s
-									OF THE FOLLOWING'), '<strong>', '</strong>');
+							echo sprintf(_('<strong>OR</strong>, MATCH %sANY%s'
+								.' OF THE FOLLOWING'), '<strong>', '</strong>');
 						?>
 					</center>
 				</td>
@@ -361,8 +361,8 @@ include $this->template_dir.'/inc/messages.php';
 				<td colspan="6" style="padding: 5px;">
 					<center>
 						<?php
-							echo _('<strong>AND</strong>, ADD OR SUBTRACT
-									MEMBERS IN OTHER GROUPS');
+							echo _('<strong>AND</strong>, ADD OR SUBTRACT'
+								.' MEMBERS IN OTHER GROUPS');
 						?>
 						<br />
 					</center>

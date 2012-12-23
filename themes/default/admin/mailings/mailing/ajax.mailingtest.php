@@ -31,8 +31,8 @@ if ($this->sent)
 
 	<p>
 	<?php
-		echo sprintf(_('If your mailing includes personalizations, you can
-				%soptionally%s supply test values'), '<strong>', '</strong>');
+		echo sprintf(_('If your mailing includes personalizations, you can'
+			.' %soptionally%s supply test values'), '<strong>', '</strong>');
 	?>
 	</p>
 

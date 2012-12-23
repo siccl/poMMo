@@ -23,8 +23,8 @@
 			><?php echo _('on'); ?></option>
 			</select>
 			<div class="notes">
-				<?php echo _('(ON; the throttler will be global. OFF; independent
-						throttler per relay.)'); ?>
+				<?php echo _('(ON; the throttler will be global. OFF; independent'
+					.' throttler per relay.)'); ?>
 			</div>
 		</div>
 		<img src="<?php echo $this->url['theme']['shared']; ?>images/loader.gif"

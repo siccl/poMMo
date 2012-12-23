@@ -3,9 +3,9 @@
 			alt="help icon" style="float: left; margin: 0 10px; 0 5px;" />
 
 	<p>
-		<?php echo sprintf(_('Mailings may be personalized per subscriber. You can inject
-				%ssubscriber field%s values, clickable links, and tracking information.'),
-				'<a href="'.$this->url['base'].'setup_fields.php">', '</a>'); ?>
+		<?php echo sprintf(_('Mailings may be personalized per subscriber. You can inject'
+			.' %ssubscriber field%s values, clickable links, and tracking information.'),
+			'<a href="'.$this->url['base'].'setup_fields.php">', '</a>'); ?>
 	</p>
 
 	<p>
@@ -42,8 +42,8 @@
 				?>
 			</select>
 			<p>
-				<label for="default"><?php echo _('Default (optional; used if no
-						value exists)'); ?>:</label><br />
+				<label for="default"><?php echo _('Default (optional; used if no'
+					.' value exists)'); ?>:</label><br />
 				<input type="text" name="default" style="width: 200px;" />
 			</p>
 		</div>
@@ -52,8 +52,8 @@
 			<select>
 			<option value="!unsubscribe"><?php echo _('Unsubscribe or Update Records');
 					?></option>
-			<option value="!weblink"><?php echo _('View on Web (public mailings must
-					be enabled)'); ?></option>
+			<option value="!weblink"><?php echo _('View on Web (public mailings must'
+				.' be enabled)'); ?></option>
 			</select>
 		</div>
 

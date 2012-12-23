@@ -11,14 +11,14 @@ include $this->template_dir.'/inc/admin.header.php';
 
 	<div>
 	<?php
-		echo sprintf(_('%s non-duplicate subscribers will be imported. %s
-				were ignored as duplicates.'), $this->tally, $this->dupes);
+		echo sprintf(_('%s non-duplicate subscribers will be imported. %s'
+			.' were ignored as duplicates.'), $this->tally, $this->dupes);
 
 		if ($this->flag)
 		{
 		?>
-			<p class="warn"><?php echo _('Notice: Imported subscribers will
-					be flagged to update their records'); ?></p>
+			<p class="warn"><?php echo _('Notice: Imported subscribers will'
+				.' be flagged to update their records'); ?></p>
 		<?php
 		}
 	?>

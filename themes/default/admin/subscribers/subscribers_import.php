@@ -10,19 +10,19 @@ include $this->template_dir.'/inc/admin.header.php';
 	<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/cells.png"
 			class="navimage right" alt="table cells icon"/>
 	<?php
-		echo sprintf(_('Welcome to Subscriber Import! You can import subscribers
-				from a list of email addresses or from a full fledged CSV file
-				containing subscriber field values as well as their email. CSV
-				files should have one subscriber(email) per line with field
-				information seperated by commas(%s,%s).'), '<tt>', '</tt>');
+		echo sprintf(_('Welcome to Subscriber Import! You can import subscribers'
+			.' from a list of email addresses or from a full fledged CSV file'
+			.' containing subscriber field values as well as their email. CSV'
+			.' files should have one subscriber(email) per line with field'
+			.' information seperated by commas(%s,%s).'), '<tt>', '</tt>');
 	?>
 </p>
 
 <p>
 	<?php
-		echo sprintf(_('Popular programs such as Microsoft Excel and %s Open
-				Office %s support saving files in CSV (Comma-Seperated-Value)
-				format.'), '<a href="http://www.openoffice.org/">', '</a>');
+		echo sprintf(_('Popular programs such as Microsoft Excel and %s Open'
+			.' Office %s support saving files in CSV (Comma-Seperated-Value)'
+			.' format.'), '<a href="http://www.openoffice.org/">', '</a>');
 	?>
 </p>
 

@@ -6,9 +6,9 @@ include $this->template_dir.'/inc/user.header.php';
 
 <h2><?php echo _('Subscriber Login'); ?></h2>
 
-<p><?php echo _('In order to check your subscription status, update your
-		information, or unsubscribe, you must enter your email address in the
-		field below.'); ?></p>
+<p><?php echo _('In order to check your subscription status, update your'
+	.' information, or unsubscribe, you must enter your email address in the'
+	.' field below.'); ?></p>
 
 <?php
 

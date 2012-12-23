@@ -1,7 +1,7 @@
 <div class="alert">
 <?php
-	echo _('Templates allow you to re-use your crafted message bodies. The HTML and
-			text version is remembered.');
+	echo _('Templates allow you to re-use your crafted message bodies. The HTML and'
+			.' text version is remembered.');
 ?>
 </div>
 

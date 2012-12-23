@@ -87,8 +87,8 @@ while (($row = fgetcsv($fp,2048,',','"')) !== FALSE) {
 }
 
 unlink(Pommo::$_workDir.'/import.csv');
-echo '<div class="warn"><p>'.sprintf(_('%s subscribers imported! Of these, %s
-		were flagged to update their records.'), $tally, $flagged).'<p>'
+echo '<div class="warn"><p>'.sprintf(_('%s subscribers imported! Of these, %s'
+		.' were flagged to update their records.'), $tally, $flagged).'<p>'
 		.sprintf(_('%s duplicates encountered.'), $dupes).'</p></div>';
 
 echo "<table>";

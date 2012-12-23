@@ -1,8 +1,8 @@
 <p>
 <?php
-	echo sprintf(_('Welcome to adding subscribers! You can add subscribers
-			one-by-one here. If you would like to add subscribers in bulk,
-			visit the %sSubscriber Import%s page.'),
+	echo sprintf(_('Welcome to adding subscribers! You can add subscribers'
+			.' one-by-one here. If you would like to add subscribers in bulk,'
+			.' visit the %sSubscriber Import%s page.'),
 			'<a href="subscribers_import.php">', '</a>');
 ?>
 </p>

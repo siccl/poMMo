@@ -12,9 +12,9 @@ include 'inc/configure.header.php';
 </ul>
 
 <p>
-    <?php echo _('Welcome to the online installation process. We have connected
-	to the database and set your language successfully. Fill in the values
-	below, and you\'ll be on your way!'); ?>
+    <?php echo _('Welcome to the online installation process. We have connected'
+		.' to the database and set your language successfully. Fill in the values'
+		.' below, and you\'ll be on your way!'); ?>
 </p>
 
 <?php

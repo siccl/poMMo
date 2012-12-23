@@ -7,13 +7,13 @@
 <form class="json" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
 	<div class="alert">
-		<?php echo _('Templates allow you to re-use your crafted message bodies.
-				The HTML and text version is remembered.'); ?>
+		<?php echo _('Templates allow you to re-use your crafted message bodies.'
+			.' The HTML and text version is remembered.'); ?>
 	</div>
 
 	<p>
 	<?php
-		echo sprintf(_('You may %1load%2 or %sdelete%s templates from here.'),
+		echo sprintf(_('You may %sload%s or %sdelete%s templates from here.'),
 			'<strong>', '</strong>');
 			
 	?>

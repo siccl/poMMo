@@ -59,14 +59,14 @@
 		<legend><?php echo _('Rates per Domain'); ?></legend>
 
 		<?php
-			echo _('You may also limit the amount of mail a single domain receives
-					in a period. This is useful for larger mailings, and prevents
-					the "slamming" of the domain (which can get your mails
-					rejected). As example, you can choose to send no more than 1
-					mail every 20 seconds to a domain by setting the mails to 1
-					and the period interval to 20. Warning; this setting will
-					significantly delay a mailing if many of your subscribers
-					use the same domain (e.g. @yahoo.com).'); ?>
+			echo _('You may also limit the amount of mail a single domain receives'
+			.' in a period. This is useful for larger mailings, and prevents'
+			.' the "slamming" of the domain (which can get your mails'
+			.' rejected). As example, you can choose to send no more than 1'
+			.' mail every 20 seconds to a domain by setting the mails to 1'
+			.' and the period interval to 20. Warning; this setting will'
+			.' significantly delay a mailing if many of your subscribers'
+			.' use the same domain (e.g. @yahoo.com).'); ?>
 
 		<br />
 
