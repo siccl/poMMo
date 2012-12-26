@@ -56,17 +56,16 @@ switch ($_REQUEST['call'])
 					0);
 			if (!empty($unsubscribed)) 
 			{
-				$json->fail(sprintf(Pommo::_T('%s has already unsubscribed. To
-						add the subscriber anyway, check the box to force the
-						addition.'),'<strong>'.$_REQUEST['Email'].'</strong>'));
+				$json->fail(sprintf(Pommo::_T('%s has already unsubscribed. To'
+						.' add the subscriber anyway, check the box to force the'
+						.' addition.'),'<strong>'.$_REQUEST['Email'].'</strong>'));
 			}
 		}
 		
 		// check if duplicate
 		if(Pommo_Helper::isDupe($_POST['Email']))
 		{
-			$json->fail(Pommo::_T('Email address already exists. Duplicates are
-					not allowed.'));
+			$json->fail(Pommo::_T('Email address already exists. Duplicates are not allowed.'));
 		}
 		
 		$subscriber = array(
@@ -104,8 +103,8 @@ switch ($_REQUEST['call'])
 		
 		if($flag)
 		{
-			$json->addErr(Pommo::_T('Subscriber has been flagged for update due
-					to invalid or missing information.'));
+			$json->addErr(Pommo::_T('Subscriber has been flagged for update due'
+					.' to invalid or missing information.'));
 		}
 		
 		// add the subscriber to JSON output

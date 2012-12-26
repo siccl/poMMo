@@ -34,10 +34,10 @@ include $this->template_dir.'/inc/admin.header.php';
 
 <p>
 	<?php
-		echo _('This prints a form which prompts for a user\'s email address.
-				If the inputted email exists as a registered subscriber, it
-				redirects to the subscriber update page. If not, it redirects to
-				the the default subscription form.');
+		echo _('This prints a form which prompts for a user\'s email address.'
+				.' If the inputted email exists as a registered subscriber, it'
+				.' redirects to the subscriber update page. If not, it redirects to'
+				.' the the default subscription form.');
 	?>
 </p>
 

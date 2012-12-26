@@ -165,8 +165,8 @@ class Pommo_Helper_Messages
 		require_once Pommo::$_baseDir.'classes/Pommo_Mailer.php';
 
 		$subject = _('poMMo test message');
-		$body = sprintf(_("This message indicates that poMMo is able to use the
-				%s exchanger."), $exchanger);
+		$body = sprintf(_('This message indicates that poMMo is able to use the'
+				.' %s exchanger.'), $exchanger);
 
 		$mail = new Pommo_Mailer();
 
