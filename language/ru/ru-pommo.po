@@ -1,557 +1,563 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: poMMo Soonic\n"
-"POT-Creation-Date: 2012-12-23 22:34+0400\n"
-"PO-Revision-Date: 2012-12-23 22:34+0400\n"
-"Last-Translator: Dmitriy S. Sinyavskiy <dreel@bk.eu>\n"
+"POT-Creation-Date: 2012-12-23 22:33+0400\n"
+"PO-Revision-Date: 2012-12-26 23:16+0400\n"
+"Last-Translator: Dmitriy S. Sinyavskiy <dreel@bk.ru>\n"
 "Language-Team: \n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: poMMo by Soonic\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: ../groups_edit.php:44
-#: ../themes/default/admin/subscribers/subscribers_groups.php:9
+#: groups_edit.php:44
+#: themes/default/admin/subscribers/subscribers_groups.php:9
 msgid "Groups Page"
-msgstr ""
+msgstr "Группы"
 
-#: ../import_csv.php:43 ../import_csv2.php:102
-#: ../themes/default/admin/subscribers/admin_subscribers.php:25
-#: ../themes/default/admin/subscribers/import_csv.php:107
-#: ../themes/default/admin/subscribers/import_txt.php:10
-#: ../themes/default/admin/subscribers/subscribers_import.php:43
-#: ../themes/default/admin/subscribers/subscribers_import.php:86
-#: ../themes/default/inc/admin.sidebar.php:19
+#: import_csv.php:43 import_csv2.php:102
+#: themes/default/admin/subscribers/admin_subscribers.php:25
+#: themes/default/admin/subscribers/import_csv.php:107
+#: themes/default/admin/subscribers/import_txt.php:10
+#: themes/default/admin/subscribers/subscribers_import.php:43
+#: themes/default/admin/subscribers/subscribers_import.php:86
+#: themes/default/inc/admin.sidebar.php:19
 msgid "Import"
-msgstr ""
+msgstr "Импорт"
 
-#: ../import_csv2.php:90
-#, php-format
+#: import_csv2.php:90
 msgid ""
 "%s subscribers imported! Of these, %s were flagged to update their records."
 msgstr ""
+"%s подписчиков импортировано! Из них,%s помечены для обновления их записей."
 
-#: ../import_csv2.php:92
-#, php-format
+#: import_csv2.php:92
 msgid "%s duplicates encountered."
-msgstr ""
+msgstr "%s дубликатов найдено."
 
-#: ../import_csv2.php:101
+#: import_csv2.php:101
 msgid "Complete!"
-msgstr ""
+msgstr "Завершено!"
 
-#: ../import_csv2.php:101
-#: ../themes/default/admin/mailings/mailing_status.php:59
+#: import_csv2.php:101 themes/default/admin/mailings/mailing_status.php:59
 msgid "Return to"
-msgstr ""
+msgstr "Вернуться к"
 
-#: ../subscribers_manage.php:42
-#: ../themes/default/admin/subscribers/admin_subscribers.php:7
+#: subscribers_manage.php:42
+#: themes/default/admin/subscribers/admin_subscribers.php:7
 msgid "Subscribers Page"
-msgstr ""
+msgstr "Подписчики"
 
-#: ../ajax/ajax.mailingtest.php:92
+#: ajax/ajax.mailingtest.php:92
 msgid "Test Mailing"
-msgstr ""
+msgstr "Тест рассылки"
 
-#: ../ajax/ajax.mailingtest.php:131
+#: ajax/ajax.mailingtest.php:131
 msgid "A mailing is currently taking place. Please try again later."
-msgstr ""
+msgstr "Сейчас уже идет рассылка. Пожалуйста, повторите попытку позже"
 
-#: ../ajax/ajax.mailingtest.php:137 ../ajax/ajax.throttle.php:90
-#: ../ajax/mailings.php:121 ../ajax/messages.php:246
+#: ajax/ajax.mailingtest.php:137 ajax/ajax.throttle.php:90
+#: ajax/mailings.php:121 ajax/messages.php:246
 msgid "Please review and correct errors with your submission."
-msgstr ""
+msgstr "Пожалуйста, просмотрите и исправьте ошибки вашей заявки."
 
-#: ../ajax/ajax.mailingtest.php:144
-#, php-format
+#: ajax/ajax.mailingtest.php:144
 msgid ""
 "%sDemonstration Mode%s is on -- no Emails will actually be sent. This is "
 "good for testing settings."
 msgstr ""
+"%sДемонстрационный режим%s включен - фактически письма не будут "
+"отправляться. Используйте для тестирования."
 
-#: ../ajax/ajax.smtp.php:42 ../themes/default/configure.php:9
-#: ../themes/default/admin/setup/admin_setup.php:11
-#: ../themes/default/admin/setup/setup_configure.php:18
-#: ../themes/default/inc/admin.sidebar.php:29
+#: ajax/ajax.smtp.php:42 themes/default/configure.php:9
+#: themes/default/admin/setup/admin_setup.php:11
+#: themes/default/admin/setup/setup_configure.php:18
+#: themes/default/inc/admin.sidebar.php:29
 msgid "Configure"
-msgstr ""
+msgstr "Конфигурировать"
 
-#: ../ajax/ajax.throttle.php:51 ../ajax/ajax.throttle.php:85
-#: ../ajax/mailings.php:106 ../ajax/messages.php:231
+#: ajax/ajax.throttle.php:51 ajax/ajax.throttle.php:85 ajax/mailings.php:106
+#: ajax/messages.php:231
 msgid "Configuration Updated."
-msgstr ""
+msgstr "Конфигурация обновлена."
 
-#: ../ajax/mailings.php:61
+#: ajax/mailings.php:61
 msgid "Enter a number."
-msgstr ""
+msgstr "Введите чило."
 
-#: ../ajax/mailings.php:62 ../ajax/messages.php:103
-#: ../classes/Pommo_Validate.php:104
+#: ajax/mailings.php:62 ajax/messages.php:103 classes/Pommo_Validate.php:104
 msgid "Cannot be empty."
-msgstr ""
+msgstr "Не может быть пустым."
 
-#: ../ajax/mailings.php:63
+#: ajax/mailings.php:63
 msgid "Invalid email address"
-msgstr ""
+msgstr "Неврный e-mail адрес"
 
-#: ../ajax/messages.php:107
+#: ajax/messages.php:107
 msgid "You must include \"[[URL]]\" for the confirm link"
-msgstr ""
+msgstr "Вы должны вставить \"[[URL]]\" для ссылки-подтверждения"
 
-#: ../ajax/messages.php:128
+#: ajax/messages.php:128
 msgid "[poMMo Notice]"
-msgstr ""
+msgstr "[Уведомление poMMo]"
 
-#: ../ajax/messages.php:250
-#: ../themes/default/admin/setup/config/messages.php:159
-#: ../themes/default/subscribe/subscribe.php:7
-#: ../themes/default/subscribe/subscribe.php:21
+#: ajax/messages.php:250 themes/default/admin/setup/config/messages.php:159
+#: themes/default/subscribe/subscribe.php:7
+#: themes/default/subscribe/subscribe.php:21
 msgid "Subscription"
-msgstr ""
+msgstr "Подписка"
 
-#: ../ajax/messages.php:251
-#: ../themes/default/admin/setup/config/messages.php:216
+#: ajax/messages.php:251 themes/default/admin/setup/config/messages.php:216
 msgid "Unsubscription"
-msgstr ""
+msgstr "Отказ от подписки"
 
-#: ../ajax/messages.php:252
-#: ../themes/default/admin/subscribers/subscribers_manage.php:79
+#: ajax/messages.php:252
+#: themes/default/admin/subscribers/subscribers_manage.php:79
 msgid "Pending"
-msgstr ""
+msgstr "Ожидающие подтверждения"
 
-#: ../ajax/messages.php:253
-#: ../themes/default/admin/setup/ajax/field_edit.php:204
-#: ../themes/default/admin/setup/config/ajax.throttle.php:42
-#: ../themes/default/admin/setup/config/ajax.throttle.php:118
-#: ../themes/default/admin/setup/config/general.php:142
-#: ../themes/default/admin/setup/config/mailings.php:196
-#: ../themes/default/admin/setup/config/messages.php:136
-#: ../themes/default/admin/setup/config/messages.php:199
-#: ../themes/default/admin/setup/config/messages.php:256
-#: ../themes/default/admin/setup/config/messages.php:300
-#: ../themes/default/admin/setup/config/messages.php:343
-#: ../themes/default/admin/setup/config/messages.php:387
-#: ../themes/default/admin/setup/config/users.php:102
-#: ../themes/default/admin/subscribers/ajax/rule.field.php:139
+#: ajax/messages.php:253 themes/default/admin/setup/ajax/field_edit.php:204
+#: themes/default/admin/setup/config/ajax.throttle.php:42
+#: themes/default/admin/setup/config/ajax.throttle.php:118
+#: themes/default/admin/setup/config/general.php:142
+#: themes/default/admin/setup/config/mailings.php:196
+#: themes/default/admin/setup/config/messages.php:136
+#: themes/default/admin/setup/config/messages.php:199
+#: themes/default/admin/setup/config/messages.php:256
+#: themes/default/admin/setup/config/messages.php:300
+#: themes/default/admin/setup/config/messages.php:343
+#: themes/default/admin/setup/config/messages.php:387
+#: themes/default/admin/setup/config/users.php:102
+#: themes/default/admin/subscribers/ajax/rule.field.php:139
 msgid "Update"
-msgstr ""
+msgstr "Обновить"
 
-#: ../classes/Pommo_Helper_Messages.php:167
+#: classes/Pommo_Helper_Messages.php:167
 msgid "poMMo test message"
-msgstr ""
+msgstr "Тестовое сообщение poMMo"
 
-#: ../classes/Pommo_Helper_Messages.php:168
-#, php-format
+#: classes/Pommo_Helper_Messages.php:168
 msgid ""
 "This message indicates that poMMo is able to use the\n"
 "\t\t\t\t%s exchanger."
 msgstr ""
+"Это сообщение указывает, что poMMo может использовать почтовый сервер %s."
 
-#: ../classes/Pommo_Helper_Messages.php:186
+#: classes/Pommo_Helper_Messages.php:186
 msgid "Error Sending Mail"
-msgstr ""
+msgstr "Ошибка отправки почты"
 
-#: ../classes/Pommo_Validate.php:105
+#: classes/Pommo_Validate.php:105
 msgid "Passwords must match."
-msgstr ""
+msgstr "Пароли должы совпадать."
 
-#: ../classes/Pommo_Validate.php:362
+#: classes/Pommo_Validate.php:362
 msgid "Must be a valid email"
-msgstr ""
+msgstr "Должно быть верным e-mail"
 
-#: ../classes/Pommo_Validate.php:382
+#: classes/Pommo_Validate.php:382
 msgid "Must be a valid datetime"
-msgstr ""
+msgstr "Должно быть верной датой и временем"
 
-#: ../classes/Pommo_Validate.php:403
+#: classes/Pommo_Validate.php:403
 msgid "Must be a valid date"
-msgstr ""
+msgstr "Должно быть верной датой"
 
-#: ../classes/Pommo_Validate.php:442
+#: classes/Pommo_Validate.php:442
 msgid "Must be a valid time"
-msgstr ""
+msgstr "Должно быть верным временем"
 
-#: ../classes/Pommo_Validate.php:461
+#: classes/Pommo_Validate.php:461
 msgid "Must be a valid URL"
-msgstr ""
+msgstr "Должно быть верным URL"
 
-#: ../classes/Pommo_Validate.php:481
+#: classes/Pommo_Validate.php:481
 msgid "Value is not valid"
-msgstr ""
+msgstr "Значение не верно"
 
-#: ../themes/default/configure.php:14
+#: themes/default/configure.php:14
 msgid "You need to configure pommo before you can use it"
-msgstr ""
+msgstr "Вы должны настроить poMMo прежде, чем вы сможете использовать его"
 
-#: ../themes/default/configure.php:18
+#: themes/default/configure.php:18
 msgid "Database Host"
-msgstr ""
+msgstr "Хост базы данных"
 
-#: ../themes/default/configure.php:23
+#: themes/default/configure.php:23
 msgid "Database Name"
-msgstr ""
+msgstr "Имя базы данных"
 
-#: ../themes/default/configure.php:28
+#: themes/default/configure.php:28
 msgid "Database User"
-msgstr ""
+msgstr "Пользователь базы данных"
 
-#: ../themes/default/configure.php:33
+#: themes/default/configure.php:33
 msgid "Database Password"
-msgstr ""
+msgstr "Пароль базы данных"
 
-#: ../themes/default/configure.php:43
-#: ../themes/default/admin/mailings/mailing/compose.php:24
-#: ../themes/default/admin/mailings/mailing/compose.php:94
-#: ../themes/default/admin/mailings/mailing/setup.php:185
+#: themes/default/configure.php:43
+#: themes/default/admin/mailings/mailing/compose.php:24
+#: themes/default/admin/mailings/mailing/compose.php:94
+#: themes/default/admin/mailings/mailing/setup.php:185
 msgid "Continue"
-msgstr ""
+msgstr "Продолжить"
 
-#: ../themes/default/index.php:10 ../themes/default/index.php:43
+#: themes/default/index.php:10 themes/default/index.php:43
 msgid "Administrative Login"
-msgstr ""
+msgstr "Вход для администратора"
 
-#: ../themes/default/index.php:14
-#, php-format
+#: themes/default/index.php:14
 msgid ""
 "You have requested to reset your password. If you are sure you want to do "
 "this, please fill in the captcha below. Enter the text you see between the "
 "brackets (%s[]%s)."
 msgstr ""
+"Вы запросили изменение своего пароля. Если Вы уверены, что хотите это "
+"сделать, пожалуйста, заполните проверочный код ниже. Введите текст, который "
+"вы видите в квадратных скобках (%s[]%s)."
 
-#: ../themes/default/index.php:22
+#: themes/default/index.php:22
 msgid "Captcha"
-msgstr ""
+msgstr "Защитный код"
 
-#: ../themes/default/index.php:31
+#: themes/default/index.php:31
 msgid "Captcha Text:"
-msgstr ""
+msgstr "Текст защитного кода:"
 
-#: ../themes/default/index.php:36
+#: themes/default/index.php:36
 msgid "Reset Password"
-msgstr ""
+msgstr "Сбрость пароль"
 
-#: ../themes/default/index.php:47 ../themes/default/user/login.php:21
-#: ../themes/default/user/login.php:33
+#: themes/default/index.php:47 themes/default/user/login.php:21
+#: themes/default/user/login.php:33
 msgid "Login"
-msgstr ""
+msgstr "Вход"
 
-#: ../themes/default/index.php:53
+#: themes/default/index.php:53
 msgid "Username"
-msgstr ""
+msgstr "Имя"
 
-#: ../themes/default/index.php:58
+#: themes/default/index.php:58
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
-#: ../themes/default/index.php:66
+#: themes/default/index.php:66
 msgid "Log In"
-msgstr ""
+msgstr "Войти"
 
-#: ../themes/default/index.php:68
+#: themes/default/index.php:68
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Забыли пароль?"
 
-#: ../themes/default/install.php:6
+#: themes/default/install.php:6
 msgid "Installation"
-msgstr ""
+msgstr "Установка"
 
-#: ../themes/default/install.php:8
+#: themes/default/install.php:8
 msgid "Online install"
-msgstr ""
+msgstr "Онлайн установка"
 
-#: ../themes/default/install.php:15
+#: themes/default/install.php:15
 msgid ""
 "Welcome to the online installation process. We have connected to the "
 "database and set your language successfully. Fill in the values below, and "
 "you'll be on your way!"
 msgstr ""
+"Добро пожаловать в процесс онлйн установки. Мы подключились к базе данных и "
+"успешно установили язык. Заполните значения ниже."
 
-#: ../themes/default/install.php:30
+#: themes/default/install.php:30
 msgid "Configuration Options"
-msgstr ""
+msgstr "Параметры конфигурации"
 
-#: ../themes/default/install.php:39
+#: themes/default/install.php:39
 msgid "Name of Mailing List:"
-msgstr ""
+msgstr "Название рассылки:"
 
-#: ../themes/default/install.php:46
+#: themes/default/install.php:46
 msgid "(ie. Pommos's Mailing List)"
-msgstr ""
+msgstr "(например, Новости компании Рога и Копыта)"
 
-#: ../themes/default/install.php:57
+#: themes/default/install.php:57
 msgid "Name of Website:"
-msgstr ""
+msgstr "Название вашего сайта:"
 
-#: ../themes/default/install.php:63
+#: themes/default/install.php:63
 msgid "(ie. The poMMo Website)"
-msgstr ""
+msgstr "(ie. The poMMo Website)"
 
-#: ../themes/default/install.php:74
-#: ../themes/default/admin/setup/config/general.php:36
+#: themes/default/install.php:74
+#: themes/default/admin/setup/config/general.php:36
 msgid "Website URL:"
-msgstr ""
+msgstr "URL сайта:"
 
-#: ../themes/default/install.php:80
+#: themes/default/install.php:80
 msgid "(ie. http://www.pommo-rocks.com/)"
-msgstr ""
+msgstr "(например, http://example.org/)"
 
-#: ../themes/default/install.php:91
+#: themes/default/install.php:91
 msgid "Administrator Password:"
-msgstr ""
+msgstr "Пароль администратора:"
 
-#: ../themes/default/install.php:99
+#: themes/default/install.php:99
 msgid "(you will use this to login)"
-msgstr ""
+msgstr "(будет использован вами для входа)"
 
-#: ../themes/default/install.php:110
+#: themes/default/install.php:110
 msgid "Verify Password:"
-msgstr ""
+msgstr "Подтверждение пароля:"
 
-#: ../themes/default/install.php:118
+#: themes/default/install.php:118
 msgid "(enter password again)"
-msgstr ""
+msgstr "(введите пароль еще раз)"
 
-#: ../themes/default/install.php:129
-#: ../themes/default/admin/setup/config/users.php:97
+#: themes/default/install.php:129
+#: themes/default/admin/setup/config/users.php:97
 msgid "Administrator Email:"
-msgstr ""
+msgstr "E-mail администратора:"
 
-#: ../themes/default/install.php:136
+#: themes/default/install.php:136
 msgid "(enter your valid email address)"
-msgstr ""
+msgstr "(введите правильный адрес)"
 
-#: ../themes/default/install.php:142
+#: themes/default/install.php:142
 msgid "Install"
-msgstr ""
+msgstr "Установить"
 
-#: ../themes/default/install.php:149
+#: themes/default/install.php:149
 msgid "To disable debugging"
-msgstr ""
+msgstr "Для отключения режима отладки"
 
-#: ../themes/default/install.php:150 ../themes/default/install.php:156
-#: ../themes/default/admin/mailings/mailing/preview.php:80
+#: themes/default/install.php:150 themes/default/install.php:156
+#: themes/default/admin/mailings/mailing/preview.php:80
 msgid "Click Here"
-msgstr ""
+msgstr "нажмите сюда"
 
-#: ../themes/default/install.php:156
+#: themes/default/install.php:156
 msgid "To enable debugging"
-msgstr ""
+msgstr "To enable debugging"
 
-#: ../themes/default/install.php:170
+#: themes/default/install.php:170
 msgid "Continue to login page"
-msgstr ""
+msgstr "Перейти на страницу входа"
 
-#: ../themes/default/admin/admin.php:7
+#: themes/default/admin/admin.php:7
 msgid "Admin Menu"
-msgstr ""
+msgstr "Меню администратора"
 
-#: ../themes/default/admin/admin.php:36
-#: ../themes/default/admin/setup/setup_configure.php:33
-#: ../themes/default/inc/admin.sidebar.php:5
+#: themes/default/admin/admin.php:36
+#: themes/default/admin/setup/setup_configure.php:33
+#: themes/default/inc/admin.sidebar.php:5
 msgid "Mailings"
-msgstr ""
+msgstr "Рассылки"
 
-#: ../themes/default/admin/admin.php:37
+#: themes/default/admin/admin.php:37
 msgid ""
 "Send mailings to the entire list or to a subset of subscribers. Mailing "
 "status and history can also be viewed from here."
 msgstr ""
+"Отправить рассылки всему списку или выбранным подписчикам. Здесь можно "
+"посмотреть статус рассылки и историю."
 
-#: ../themes/default/admin/admin.php:42
-#: ../themes/default/admin/subscribers/subscribers_import.php:59
-#: ../themes/default/inc/admin.sidebar.php:15
+#: themes/default/admin/admin.php:42
+#: themes/default/admin/subscribers/subscribers_import.php:59
+#: themes/default/inc/admin.sidebar.php:15
 msgid "Subscribers"
-msgstr ""
+msgstr "Подписчики"
 
-#: ../themes/default/admin/admin.php:43
+#: themes/default/admin/admin.php:43
 msgid ""
 "Here you can list, add, delete, import, export, and update your subscribers. "
 "You can also create groups (subsets) of your subsribers from here."
 msgstr ""
+"Здесь вы можете просмотреть, добавить, удалить, импортировать, "
+"экспортировать и обновить ваших подписчиков. Здесь Вы также можете создавать "
+"группы (подмножества) ваших подписчиков."
 
-#: ../themes/default/admin/admin.php:48
-#: ../themes/default/admin/mailings/mailings_start.php:44
-#: ../themes/default/inc/admin.sidebar.php:26
+#: themes/default/admin/admin.php:48
+#: themes/default/admin/mailings/mailings_start.php:44
+#: themes/default/inc/admin.sidebar.php:26
 msgid "Setup"
-msgstr ""
+msgstr "Установка"
 
-#: ../themes/default/admin/admin.php:49
+#: themes/default/admin/admin.php:49
 msgid ""
 "This area allows you to configure poMMo. Set mailing list parameters, choose "
 "the information you'd like to collect from subscribers, and generate "
 "subscription forms from here."
 msgstr ""
+"Эта область позволяет настроить poMMo. Настроить параметры рассылки, выбрать "
+"информацию, которую вы хотели бы собрать от подписчиков, а также "
+"генерировать формы подписки."
 
-#: ../themes/default/admin/confirm.php:13
+#: themes/default/admin/confirm.php:13
 msgid "Confirm your action."
-msgstr ""
+msgstr "Подтвердите действие."
 
-#: ../themes/default/admin/confirm.php:16
-#: ../themes/default/admin/mailings/mailing/setup.php:170
-#: ../themes/default/admin/subscribers/import_txt.php:31
+#: themes/default/admin/confirm.php:16
+#: themes/default/admin/mailings/mailing/setup.php:170
+#: themes/default/admin/subscribers/import_txt.php:31
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
-#: ../themes/default/admin/confirm.php:16
+#: themes/default/admin/confirm.php:16
 msgid "please return"
-msgstr ""
+msgstr "пожалуйста вернитесь"
 
-#: ../themes/default/admin/confirm.php:20
-#: ../themes/default/admin/mailings/mailing/setup.php:178
-#: ../themes/default/admin/subscribers/import_txt.php:29
+#: themes/default/admin/confirm.php:20
+#: themes/default/admin/mailings/mailing/setup.php:178
+#: themes/default/admin/subscribers/import_txt.php:29
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
-#: ../themes/default/admin/confirm.php:20
+#: themes/default/admin/confirm.php:20
 msgid "I confirm"
-msgstr ""
+msgstr "Подтверждаю"
 
-#: ../themes/default/admin/confirm.php:45 ../themes/default/inc/dialog.php:59
+#: themes/default/admin/confirm.php:45 themes/default/inc/dialog.php:59
 msgid "Please Wait"
-msgstr ""
+msgstr "Подождите"
 
-#: ../themes/default/admin/confirm.php:65
+#: themes/default/admin/confirm.php:65
 msgid "Confirm"
-msgstr ""
+msgstr "Подтвердить"
 
-#: ../themes/default/admin/mailings/admin_mailings.php:7
-#: ../themes/default/admin/mailings/mailing_status.php:59
+#: themes/default/admin/mailings/admin_mailings.php:7
+#: themes/default/admin/mailings/mailing_status.php:59
 msgid "Mailings Page"
-msgstr ""
+msgstr "Рассылки"
 
-#: ../themes/default/admin/mailings/admin_mailings.php:16
-#: ../themes/default/inc/admin.sidebar.php:8
+#: themes/default/admin/mailings/admin_mailings.php:16
+#: themes/default/inc/admin.sidebar.php:8
 msgid "Send"
-msgstr ""
+msgstr "Отправить"
 
-#: ../themes/default/admin/mailings/admin_mailings.php:18
+#: themes/default/admin/mailings/admin_mailings.php:18
 msgid "Create and send a mailing."
-msgstr ""
+msgstr "Создать и отправить рассылку."
 
-#: ../themes/default/admin/mailings/admin_mailings.php:25
-#: ../themes/default/inc/admin.sidebar.php:9
+#: themes/default/admin/mailings/admin_mailings.php:25
+#: themes/default/inc/admin.sidebar.php:9
 msgid "History"
-msgstr ""
+msgstr "История"
 
-#: ../themes/default/admin/mailings/admin_mailings.php:27
+#: themes/default/admin/mailings/admin_mailings.php:27
 msgid "View mailings that have already been sent."
-msgstr ""
+msgstr "Показать отправленные рассылки."
 
-#: ../themes/default/admin/mailings/mailings_history.php:19
-#: ../themes/default/admin/subscribers/groups_edit.php:15
-#: ../themes/default/admin/subscribers/import_csv.php:15
-#: ../themes/default/user/confirm.php:14 ../themes/default/user/pending.php:14
-#: ../themes/default/user/process.php:30
-#, php-format
+#: themes/default/admin/mailings/mailings_history.php:19
+#: themes/default/admin/subscribers/groups_edit.php:15
+#: themes/default/admin/subscribers/import_csv.php:15
+#: themes/default/user/confirm.php:14 themes/default/user/pending.php:14
+#: themes/default/user/process.php:30
 msgid "Return to %s"
-msgstr ""
+msgstr "Вернуться к %s"
 
-#: ../themes/default/admin/mailings/mailings_history.php:25
-#: ../themes/default/user/mailings.php:20
+#: themes/default/admin/mailings/mailings_history.php:25
+#: themes/default/user/mailings.php:20
 msgid "Mailings History"
-msgstr ""
+msgstr "История рассылок"
 
-#: ../themes/default/admin/mailings/mailings_history.php:37
-#: ../themes/default/user/mailings.php:37
+#: themes/default/admin/mailings/mailings_history.php:37
+#: themes/default/user/mailings.php:37
 msgid "View Mailing"
-msgstr ""
+msgstr "Посмотреть рассылку"
 
-#: ../themes/default/admin/mailings/mailings_history.php:38
+#: themes/default/admin/mailings/mailings_history.php:38
 msgid "View Last Notices"
-msgstr ""
+msgstr "Показать последние уведомления"
 
-#: ../themes/default/admin/mailings/mailings_history.php:39
+#: themes/default/admin/mailings/mailings_history.php:39
 msgid "Reload Checked Mailing"
-msgstr ""
+msgstr "Перезагрузить отмечанные подписки"
 
-#: ../themes/default/admin/mailings/mailings_history.php:40
+#: themes/default/admin/mailings/mailings_history.php:40
 msgid "Delete Checked Mailings"
-msgstr ""
+msgstr "Удалить отмеченные подписки"
 
-#: ../themes/default/admin/mailings/mailings_history.php:45
+#: themes/default/admin/mailings/mailings_history.php:45
 msgid "Export Mailing Hits"
-msgstr ""
+msgstr "Экспорт просмотров рассылки"
 
-#: ../themes/default/admin/mailings/mailings_history.php:58
+#: themes/default/admin/mailings/mailings_history.php:58
 msgid "You must select a mailing to export"
-msgstr ""
+msgstr "Выберите рассылку для экспорта"
 
-#: ../themes/default/admin/mailings/mailings_history.php:64
+#: themes/default/admin/mailings/mailings_history.php:64
 msgid "Select just one mailing to export"
-msgstr ""
+msgstr "Выберите только одну рассылку для экспорта"
 
-#: ../themes/default/admin/mailings/mailings_history.php:77
-#: ../themes/default/user/mailings.php:48
+#: themes/default/admin/mailings/mailings_history.php:77
+#: themes/default/user/mailings.php:48
 msgid "Subject"
-msgstr ""
+msgstr "Тема"
 
-#: ../themes/default/admin/mailings/mailings_history.php:78
+#: themes/default/admin/mailings/mailings_history.php:78
 msgid "Group (count)"
-msgstr ""
+msgstr "Группы (количество)"
 
-#: ../themes/default/admin/mailings/mailings_history.php:79
-#: ../themes/default/user/mailings.php:49
+#: themes/default/admin/mailings/mailings_history.php:79
+#: themes/default/user/mailings.php:49
 msgid "Sent"
-msgstr ""
+msgstr "Отправлено"
 
-#: ../themes/default/admin/mailings/mailings_history.php:80
+#: themes/default/admin/mailings/mailings_history.php:80
 msgid "Started"
-msgstr ""
+msgstr "Запущено"
 
-#: ../themes/default/admin/mailings/mailings_history.php:81
+#: themes/default/admin/mailings/mailings_history.php:81
 msgid "Finished"
-msgstr ""
+msgstr "Завершено"
 
-#: ../themes/default/admin/mailings/mailings_history.php:82
+#: themes/default/admin/mailings/mailings_history.php:82
 msgid "Status"
-msgstr ""
+msgstr "Состояние"
 
-#: ../themes/default/admin/mailings/mailings_history.php:83
+#: themes/default/admin/mailings/mailings_history.php:83
 msgid "Hits"
-msgstr ""
+msgstr "Просмотров"
 
-#: ../themes/default/admin/mailings/mailings_history.php:150
-#: ../themes/default/admin/subscribers/subscribers_manage.php:260
-#: ../themes/default/user/mailings.php:89
+#: themes/default/admin/mailings/mailings_history.php:150
+#: themes/default/admin/subscribers/subscribers_manage.php:260
+#: themes/default/user/mailings.php:89
 msgid "No records returned."
-msgstr ""
+msgstr "Нет записей."
 
-#: ../themes/default/admin/mailings/mailings_start.php:32
-#: ../themes/default/admin/subscribers/subscribers_manage.php:38
-#: ../themes/default/admin/subscribers/subscribers_manage.php:39
+#: themes/default/admin/mailings/mailings_start.php:32
+#: themes/default/admin/subscribers/subscribers_manage.php:38
+#: themes/default/admin/subscribers/subscribers_manage.php:39
 msgid "Return to Subscribers Page"
-msgstr ""
+msgstr "Вернуться к странице подписчиков"
 
-#: ../themes/default/admin/mailings/mailings_start.php:33
+#: themes/default/admin/mailings/mailings_start.php:33
 msgid "Return to Mailings Page"
-msgstr ""
+msgstr "Вернуться к странице рассылок"
 
-#: ../themes/default/admin/mailings/mailings_start.php:45
+#: themes/default/admin/mailings/mailings_start.php:45
 msgid "Templates"
-msgstr ""
+msgstr "Шаблоны"
 
-#: ../themes/default/admin/mailings/mailings_start.php:46
+#: themes/default/admin/mailings/mailings_start.php:46
 msgid "Compose"
-msgstr ""
+msgstr "Создать"
 
-#: ../themes/default/admin/mailings/mailings_start.php:47
-#: ../themes/default/admin/setup/form_embed.php:46
-#: ../themes/default/admin/setup/form_embed.php:65
-#: ../themes/default/admin/setup/form_embed.php:96
-#: ../themes/default/admin/setup/form_embed.php:116
+#: themes/default/admin/mailings/mailings_start.php:47
+#: themes/default/admin/setup/form_embed.php:46
+#: themes/default/admin/setup/form_embed.php:65
+#: themes/default/admin/setup/form_embed.php:96
+#: themes/default/admin/setup/form_embed.php:116
 msgid "Preview"
-msgstr ""
+msgstr "Предпросмотр"
 
-#: ../themes/default/admin/mailings/mailing_status.php:17
-#, php-format
+#: themes/default/admin/mailings/mailing_status.php:17
 msgid ""
 "Mailings take place in the background so feel free to close this page, visit "
 "other sites, or even turn off your computer. You can always return to this "
@@ -559,986 +565,1016 @@ msgid ""
 "also be adjusted -- although you must pause and revive the mailing before "
 "changes take effect."
 msgstr ""
+"Рассылки происходят в фоновом режиме, так что не бойтесь закрыть эту "
+"страницу, посещать другие сайты, или даже выключить компьютер. Вы всегда "
+"можете вернуться к этой странице состояния, посетив раздел рассылки. "
+"%sПараметры регулировки%s также могут быть скорректированы - хотя вы  должны "
+"остановить и продолжить рассылку до того, чтобы изменения вступили в силу."
 
-#: ../themes/default/admin/mailings/mailing_status.php:28
-#, php-format
+#: themes/default/admin/mailings/mailing_status.php:28
 msgid "Sending message to %s subscribers."
-msgstr ""
+msgstr "Отправка сообщения %s подписчикам."
 
-#: ../themes/default/admin/mailings/mailing_status.php:34
+#: themes/default/admin/mailings/mailing_status.php:34
 msgid "Mailing Status"
-msgstr ""
+msgstr "Состояние рассылки"
 
-#: ../themes/default/admin/mailings/mailing_status.php:40
+#: themes/default/admin/mailings/mailing_status.php:40
 msgid "Initializing..."
-msgstr ""
+msgstr "Инициализация..."
 
-#: ../themes/default/admin/mailings/mailing_status.php:43
+#: themes/default/admin/mailings/mailing_status.php:43
 msgid "Pause Mailing"
-msgstr ""
+msgstr "Приостановить рассылку"
 
-#: ../themes/default/admin/mailings/mailing_status.php:44
-#: ../themes/default/admin/mailings/mailing_status.php:48
-#: ../themes/default/admin/mailings/mailing_status.php:53
+#: themes/default/admin/mailings/mailing_status.php:44
+#: themes/default/admin/mailings/mailing_status.php:48
+#: themes/default/admin/mailings/mailing_status.php:53
 msgid "Resume Mailing"
-msgstr ""
+msgstr "Продолжить рассылку"
 
-#: ../themes/default/admin/mailings/mailing_status.php:49
-#: ../themes/default/admin/mailings/mailing_status.php:54
+#: themes/default/admin/mailings/mailing_status.php:49
+#: themes/default/admin/mailings/mailing_status.php:54
 msgid "Cancel Mailing"
-msgstr ""
+msgstr "Отменить рассылку"
 
-#: ../themes/default/admin/mailings/mailing_status.php:59
+#: themes/default/admin/mailings/mailing_status.php:59
 msgid "Mailing Finished"
-msgstr ""
+msgstr "Рассылка завершена"
 
-#: ../themes/default/admin/mailings/mailing_status.php:64
+#: themes/default/admin/mailings/mailing_status.php:64
 msgid "Command Recieved. Please wait..."
-msgstr ""
+msgstr "Команда получена. Подождите..."
 
-#: ../themes/default/admin/mailings/mailing_status.php:71
-#, php-format
+#: themes/default/admin/mailings/mailing_status.php:71
 msgid "%s mails sent"
-msgstr ""
+msgstr "%s писем отправлено."
 
-#: ../themes/default/admin/mailings/mailing_status.php:90
+#: themes/default/admin/mailings/mailing_status.php:90
 msgid "Last 50 notices"
-msgstr ""
+msgstr "Последние 50 уведомлений"
 
-#: ../themes/default/admin/mailings/mailing_status.php:93
-#: ../themes/default/admin/mailings/mailing_status.php:95
-#: ../themes/default/admin/mailings/mailing_status.php:97
-#: ../themes/default/admin/subscribers/subscribers_manage.php:52
-#: ../themes/default/admin/subscribers/subscribers_manage.php:56
+#: themes/default/admin/mailings/mailing_status.php:93
+#: themes/default/admin/mailings/mailing_status.php:95
+#: themes/default/admin/mailings/mailing_status.php:97
+#: themes/default/admin/subscribers/subscribers_manage.php:52
+#: themes/default/admin/subscribers/subscribers_manage.php:56
 msgid "View"
-msgstr ""
+msgstr "Показать"
 
-#: ../themes/default/admin/mailings/mailing_status.php:94
+#: themes/default/admin/mailings/mailing_status.php:94
 msgid "Sent Emails"
-msgstr ""
+msgstr "Отаправленные e-mail"
 
-#: ../themes/default/admin/mailings/mailing_status.php:96
+#: themes/default/admin/mailings/mailing_status.php:96
 msgid "Unsent Emails"
-msgstr ""
+msgstr "Неотправленные e-mail"
 
-#: ../themes/default/admin/mailings/mailing_status.php:98
+#: themes/default/admin/mailings/mailing_status.php:98
 msgid "Failed Emails"
-msgstr ""
+msgstr "Не удалось отправить e-mail"
 
-#: ../themes/default/admin/mailings/mailing/ajax.addtemplate.php:3
-#: ../themes/default/admin/mailings/mailing/templates.php:10
+#: themes/default/admin/mailings/mailing/ajax.addtemplate.php:3
+#: themes/default/admin/mailings/mailing/templates.php:10
 msgid ""
 "Templates allow you to re-use your crafted message bodies. The HTML and text "
 "version is remembered."
 msgstr ""
+"Шаблоны позволяют вам повторно использовать созданные ранее тексты сообщений"
 
-#: ../themes/default/admin/mailings/mailing/ajax.addtemplate.php:18
-#: ../themes/default/admin/mailings/mailing/setup.php:10
-#: ../themes/default/admin/subscribers/ajax/subscriber_add.php:161
-#: ../themes/default/admin/subscribers/ajax/subscriber_edit.php:153
-#: ../themes/default/subscribe/form.update.php:14
-#, php-format
+#: themes/default/admin/mailings/mailing/ajax.addtemplate.php:18
+#: themes/default/admin/mailings/mailing/setup.php:10
+#: themes/default/admin/subscribers/ajax/subscriber_add.php:161
+#: themes/default/admin/subscribers/ajax/subscriber_edit.php:153
+#: themes/default/subscribe/form.update.php:14
 msgid "Fields marked like %s this %s are required."
-msgstr ""
+msgstr "Поля отмеченные %s как это %s обязательны к заполнению."
 
-#: ../themes/default/admin/mailings/mailing/ajax.addtemplate.php:24
+#: themes/default/admin/mailings/mailing/ajax.addtemplate.php:24
 msgid "Name:"
-msgstr ""
+msgstr "Имя:"
 
-#: ../themes/default/admin/mailings/mailing/ajax.addtemplate.php:26
-#: ../themes/default/admin/mailings/mailing/setup.php:21
-#: ../themes/default/admin/mailings/mailing/setup.php:66
-#: ../themes/default/admin/mailings/mailing/setup.php:74
-#: ../themes/default/admin/mailings/mailing/setup.php:82
+#: themes/default/admin/mailings/mailing/ajax.addtemplate.php:26
+#: themes/default/admin/mailings/mailing/setup.php:21
+#: themes/default/admin/mailings/mailing/setup.php:66
+#: themes/default/admin/mailings/mailing/setup.php:74
+#: themes/default/admin/mailings/mailing/setup.php:82
 msgid "(maximum of 60 characters)"
-msgstr ""
+msgstr "(максимум 60 символов)"
 
-#: ../themes/default/admin/mailings/mailing/ajax.addtemplate.php:30
+#: themes/default/admin/mailings/mailing/ajax.addtemplate.php:30
 msgid "Description:"
-msgstr ""
+msgstr "Описание:"
 
-#: ../themes/default/admin/mailings/mailing/ajax.addtemplate.php:33
+#: themes/default/admin/mailings/mailing/ajax.addtemplate.php:33
 msgid "(Brief Summary - 255 characters)"
-msgstr ""
+msgstr "(Короткое описани - 255 символов)"
 
-#: ../themes/default/admin/mailings/mailing/ajax.addtemplate.php:37
+#: themes/default/admin/mailings/mailing/ajax.addtemplate.php:37
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
-#: ../themes/default/admin/mailings/mailing/ajax.addtemplate.php:38
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:69
-#: ../themes/default/admin/subscribers/ajax/rule.field.php:146
-#: ../themes/default/admin/subscribers/ajax/rule.group.php:18
+#: themes/default/admin/mailings/mailing/ajax.addtemplate.php:38
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:69
+#: themes/default/admin/subscribers/ajax/rule.field.php:146
+#: themes/default/admin/subscribers/ajax/rule.group.php:18
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
-#: ../themes/default/admin/mailings/mailing/ajax.mailingtest.php:8
-#, php-format
+#: themes/default/admin/mailings/mailing/ajax.mailingtest.php:8
 msgid "Mailing sent to %s"
-msgstr ""
+msgstr "Рассылка отправлена %s"
 
-#: ../themes/default/admin/mailings/mailing/ajax.mailingtest.php:22
-#: ../themes/default/admin/setup/config/ajax.testexchanger.php:22
+#: themes/default/admin/mailings/mailing/ajax.mailingtest.php:22
+#: themes/default/admin/setup/config/ajax.testexchanger.php:22
 msgid "Recipient"
-msgstr ""
+msgstr "Получатель"
 
-#: ../themes/default/admin/mailings/mailing/ajax.mailingtest.php:25
-#: ../themes/default/admin/setup/config/ajax.testexchanger.php:25
-#: ../themes/default/admin/subscribers/ajax/subscriber_add.php:19
-#: ../themes/default/admin/subscribers/ajax/subscriber_edit.php:11
+#: themes/default/admin/mailings/mailing/ajax.mailingtest.php:25
+#: themes/default/admin/setup/config/ajax.testexchanger.php:25
+#: themes/default/admin/subscribers/ajax/subscriber_add.php:19
+#: themes/default/admin/subscribers/ajax/subscriber_edit.php:11
 msgid "Email:"
-msgstr ""
+msgstr "E-mail:"
 
-#: ../themes/default/admin/mailings/mailing/ajax.mailingtest.php:28
-#: ../themes/default/admin/mailings/mailing/preview.php:64
-#: ../themes/default/admin/setup/config/ajax.testexchanger.php:34
+#: themes/default/admin/mailings/mailing/ajax.mailingtest.php:28
+#: themes/default/admin/mailings/mailing/preview.php:64
+#: themes/default/admin/setup/config/ajax.testexchanger.php:34
 msgid "Send Mailing"
-msgstr ""
+msgstr "Отправка рассылки"
 
-#: ../themes/default/admin/mailings/mailing/ajax.mailingtest.php:34
-#, php-format
+#: themes/default/admin/mailings/mailing/ajax.mailingtest.php:34
 msgid ""
 "If your mailing includes personalizations, you can %soptionally%s supply "
 "test values"
 msgstr ""
+"Если ваша подписка включает индивидуализацию, вы %sдополнительно%s можете "
+"указать тестовые значения."
 
-#: ../themes/default/admin/mailings/mailing/ajax.mailingtest.php:40
+#: themes/default/admin/mailings/mailing/ajax.mailingtest.php:40
 msgid "Personalizations"
-msgstr ""
+msgstr "Индивидуализации"
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:6
-#, php-format
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:6
 msgid ""
 "Mailings may be personalized per subscriber. You can inject %ssubscriber "
 "field%s values, clickable links, and tracking information."
 msgstr ""
+"Рассылки могут быть индивидуализированны для каждого подписчика. Вы можете "
+"вставить значения %sполя подписчика%s, ссылки и отслеживающую информации."
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:13
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:13
 msgid ""
 "Personalizations allow you to write a message like \"Dear [[firstName|Loyal "
 "Subscriber]], Happy New Year! .... follow this link to unsubscribe or update "
 "your records; [[!unsubscribe]]\"."
 msgstr ""
+"Индивидуализация позволит вам писать сообщения вида  \"Дорогой [[firstName|"
+"Постоянный подписчик]], поздравляем с Новым годом! .... используйте эту "
+"ссылку, чтобы отказаться от рассылки или обновить ваши данные; [[!"
+"unsubscribe]]\"."
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:23
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:23
 msgid "Personalization"
-msgstr ""
+msgstr "Индивидуализация"
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:24
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:24
 msgid "Link (URL)"
-msgstr ""
+msgstr "Ссылка (URL)"
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:26
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:26
 msgid "Tracking (ID)"
-msgstr ""
+msgstr "ID отслеживания"
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:33
-#: ../themes/default/admin/setup/config/messages.php:161
-#: ../themes/default/admin/setup/config/messages.php:218
-#: ../themes/default/admin/setup/config/messages.php:275
-#: ../themes/default/admin/setup/config/messages.php:319
-#: ../themes/default/admin/setup/config/messages.php:362
-#: ../themes/default/admin/subscribers/import_csv.php:53
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:33
+#: themes/default/admin/setup/config/messages.php:161
+#: themes/default/admin/setup/config/messages.php:218
+#: themes/default/admin/setup/config/messages.php:275
+#: themes/default/admin/setup/config/messages.php:319
+#: themes/default/admin/setup/config/messages.php:362
+#: themes/default/admin/subscribers/import_csv.php:53
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:34
-#: ../themes/default/admin/subscribers/import_csv.php:57
-#: ../themes/default/admin/subscribers/subscribers_manage.php:165
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:34
+#: themes/default/admin/subscribers/import_csv.php:57
+#: themes/default/admin/subscribers/subscribers_manage.php:165
 msgid "IP Address"
-msgstr ""
+msgstr "IP-адрес"
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:35
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:35
 msgid "Registered"
-msgstr ""
+msgstr "Зарегистрирован"
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:45
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:45
 msgid "Default (optional; used if no value exists)"
-msgstr ""
+msgstr "По-умолчанию (дополнительно; используется, если не указано значение)"
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:53
-#: ../themes/default/admin/mailings/mailing/compose.php:134
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:53
+#: themes/default/admin/mailings/mailing/compose.php:134
 msgid "Unsubscribe or Update Records"
-msgstr ""
+msgstr "Отписаться от рассылки или обновить данные"
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:55
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:55
 msgid "View on Web (public mailings must be enabled)"
-msgstr ""
+msgstr "Показать в сети (открытые подписки должны быть включены)"
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:62
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:62
 msgid "Subscriber ID"
-msgstr ""
+msgstr "ID подписчика"
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:63
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:63
 msgid "Mailing ID"
-msgstr ""
+msgstr "ID рассылки"
 
-#: ../themes/default/admin/mailings/mailing/ajax.personalize.php:68
+#: themes/default/admin/mailings/mailing/ajax.personalize.php:68
 msgid "Insert"
-msgstr ""
+msgstr "Вставить"
 
-#: ../themes/default/admin/mailings/mailing/compose.php:12
-#: ../themes/default/admin/mailings/mailing/preview.php:76
+#: themes/default/admin/mailings/mailing/compose.php:12
+#: themes/default/admin/mailings/mailing/preview.php:76
 msgid "HTML Message"
-msgstr ""
+msgstr "HTML сообщение"
 
-#: ../themes/default/admin/mailings/mailing/compose.php:19
-#: ../themes/default/admin/mailings/mailing/compose.php:89
+#: themes/default/admin/mailings/mailing/compose.php:19
+#: themes/default/admin/mailings/mailing/compose.php:89
 msgid "Copy text from HTML Message"
-msgstr ""
+msgstr "Копировать текст из HTML сообщения"
 
-#: ../themes/default/admin/mailings/mailing/compose.php:29
+#: themes/default/admin/mailings/mailing/compose.php:29
 msgid "Leave blank to send text only"
-msgstr ""
+msgstr "Оставьте пустым для отправки только текста"
 
-#: ../themes/default/admin/mailings/mailing/compose.php:47
+#: themes/default/admin/mailings/mailing/compose.php:47
 msgid "Please enable JavaScript to use file uploader."
-msgstr ""
+msgstr "Пожалуйста включите JavaScript для использования загрузчика файлов."
 
-#: ../themes/default/admin/mailings/mailing/compose.php:58
-#: ../themes/default/admin/mailings/mailing/compose.php:126
+#: themes/default/admin/mailings/mailing/compose.php:58
+#: themes/default/admin/mailings/mailing/compose.php:126
 msgid "Enable WYSIWYG"
-msgstr ""
+msgstr "Включить визуальный редактор"
 
-#: ../themes/default/admin/mailings/mailing/compose.php:65
+#: themes/default/admin/mailings/mailing/compose.php:65
 msgid "Add Personalization"
-msgstr ""
+msgstr "Добавить индивидуальные настройки"
 
-#: ../themes/default/admin/mailings/mailing/compose.php:71
+#: themes/default/admin/mailings/mailing/compose.php:71
 msgid "Save as Template"
-msgstr ""
+msgstr "Сохранить как шаблон"
 
-#: ../themes/default/admin/mailings/mailing/compose.php:79
-#: ../themes/default/admin/mailings/mailing/preview.php:86
+#: themes/default/admin/mailings/mailing/compose.php:79
+#: themes/default/admin/mailings/mailing/preview.php:86
 msgid "Text Version"
-msgstr ""
+msgstr "Текстовая версия"
 
-#: ../themes/default/admin/mailings/mailing/compose.php:81
+#: themes/default/admin/mailings/mailing/compose.php:81
 msgid "Leave blank to send HTML only"
-msgstr ""
+msgstr "Оставьте пустым для отправки только HTML"
 
-#: ../themes/default/admin/mailings/mailing/compose.php:125
+#: themes/default/admin/mailings/mailing/compose.php:125
 msgid "Disable WYSIWYG"
-msgstr ""
+msgstr "Отключить визуальный редактор"
 
-#: ../themes/default/admin/mailings/mailing/compose.php:133
+#: themes/default/admin/mailings/mailing/compose.php:133
 msgid "View this Mailing on the Web"
-msgstr ""
+msgstr "Показать эту рассылку в Сети"
 
-#: ../themes/default/admin/mailings/mailing/preview.php:1
+#: themes/default/admin/mailings/mailing/preview.php:1
 msgid "Preview Mailing"
-msgstr ""
+msgstr "Предпросмотр рассылки"
 
-#: ../themes/default/admin/mailings/mailing/preview.php:13
-#: ../themes/default/admin/mailings/mailing/setup.php:17
-#: ../themes/default/admin/setup/config/messages.php:173
-#: ../themes/default/admin/setup/config/messages.php:230
-#: ../themes/default/admin/setup/config/messages.php:279
-#: ../themes/default/admin/setup/config/messages.php:322
-#: ../themes/default/admin/setup/config/messages.php:366
+#: themes/default/admin/mailings/mailing/preview.php:13
+#: themes/default/admin/mailings/mailing/setup.php:17
+#: themes/default/admin/setup/config/messages.php:173
+#: themes/default/admin/setup/config/messages.php:230
+#: themes/default/admin/setup/config/messages.php:279
+#: themes/default/admin/setup/config/messages.php:322
+#: themes/default/admin/setup/config/messages.php:366
 msgid "Subject:"
-msgstr ""
+msgstr "Тема:"
 
-#: ../themes/default/admin/mailings/mailing/preview.php:18
+#: themes/default/admin/mailings/mailing/preview.php:18
 msgid "To:"
-msgstr ""
+msgstr "Кому:"
 
-#: ../themes/default/admin/mailings/mailing/preview.php:22
+#: themes/default/admin/mailings/mailing/preview.php:22
 msgid "recipients"
-msgstr ""
+msgstr "получатели"
 
-#: ../themes/default/admin/mailings/mailing/preview.php:26
+#: themes/default/admin/mailings/mailing/preview.php:26
 msgid "From:"
-msgstr ""
+msgstr "От:"
 
-#: ../themes/default/admin/mailings/mailing/preview.php:36
+#: themes/default/admin/mailings/mailing/preview.php:36
 msgid "Bounces:"
-msgstr ""
+msgstr "Возвраты:"
 
-#: ../themes/default/admin/mailings/mailing/preview.php:44
-#: ../themes/default/admin/mailings/mailing/setup.php:86
-#: ../themes/default/admin/setup/config/mailings.php:105
+#: themes/default/admin/mailings/mailing/preview.php:44
+#: themes/default/admin/mailings/mailing/setup.php:86
+#: themes/default/admin/setup/config/mailings.php:105
 msgid "Character Set:"
-msgstr ""
+msgstr "Кодировка:"
 
-#: ../themes/default/admin/mailings/mailing/preview.php:56
+#: themes/default/admin/mailings/mailing/preview.php:56
 msgid "Send Test"
-msgstr ""
+msgstr "Тест отправки"
 
-#: ../themes/default/admin/mailings/mailing/preview.php:69
+#: themes/default/admin/mailings/mailing/preview.php:69
 msgid "Message"
-msgstr ""
+msgstr "Сообщение"
 
-#: ../themes/default/admin/mailings/mailing/preview.php:78
+#: themes/default/admin/mailings/mailing/preview.php:78
 msgid "Preview Message"
-msgstr ""
+msgstr "Предпросмотр сообщения"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:26
+#: themes/default/admin/mailings/mailing/setup.php:26
 msgid "Send Mail To:"
-msgstr ""
+msgstr "Отправить письмо к:"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:37
+#: themes/default/admin/mailings/mailing/setup.php:37
 msgid "All subscribers"
-msgstr ""
+msgstr "Все подписчики"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:54
+#: themes/default/admin/mailings/mailing/setup.php:54
 msgid ""
 "(Select who should receive the mailing. Control click ( or command click on "
 "the Mac ) to select multiple groups. Note: If a subscriber is in more than "
 "one group they will only receive one email and NOT one for each group that "
 "they're in.)"
 msgstr ""
+"(выбрите, кто должен получить рассылку. Ctrl+клик или Command + клик на Mac) "
+"для выбора нескольких групп. Внимание: если подисчик принадлежит более чем "
+"одной группе, то он получит одно письмо, а не столько в скольки он группах)"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:62
-#: ../themes/default/admin/setup/config/mailings.php:13
+#: themes/default/admin/mailings/mailing/setup.php:62
+#: themes/default/admin/setup/config/mailings.php:13
 msgid "From Name:"
-msgstr ""
+msgstr "От имя:"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:70
-#: ../themes/default/admin/setup/config/mailings.php:24
+#: themes/default/admin/mailings/mailing/setup.php:70
+#: themes/default/admin/setup/config/mailings.php:24
 msgid "From Email:"
-msgstr ""
+msgstr "От адрес:"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:78
+#: themes/default/admin/mailings/mailing/setup.php:78
 msgid "Return:"
-msgstr ""
+msgstr "Обратный:"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:96
-#: ../themes/default/admin/setup/config/mailings.php:114
+#: themes/default/admin/mailings/mailing/setup.php:96
+#: themes/default/admin/setup/config/mailings.php:114
 msgid "UTF-8 (recommended)"
-msgstr ""
+msgstr "UTF-8 (рекомендуется)"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:103
-#: ../themes/default/admin/setup/config/mailings.php:121
+#: themes/default/admin/mailings/mailing/setup.php:103
+#: themes/default/admin/setup/config/mailings.php:121
 msgid "Western (ISO-8859-1)"
-msgstr ""
+msgstr "Западная (ISO-8859-1)"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:110
-#: ../themes/default/admin/setup/config/mailings.php:128
+#: themes/default/admin/mailings/mailing/setup.php:110
+#: themes/default/admin/setup/config/mailings.php:128
 msgid "Western (ISO-8859-15)"
-msgstr ""
+msgstr "Западная (ISO-8859-15)"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:117
-#: ../themes/default/admin/setup/config/mailings.php:135
+#: themes/default/admin/mailings/mailing/setup.php:117
+#: themes/default/admin/setup/config/mailings.php:135
 msgid "Central/Eastern European (ISO-8859-2)"
-msgstr ""
+msgstr "Central/Eastern European (ISO-8859-2)"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:124
-#: ../themes/default/admin/setup/config/mailings.php:142
+#: themes/default/admin/mailings/mailing/setup.php:124
+#: themes/default/admin/setup/config/mailings.php:142
 msgid "Greek (ISO-8859-7)"
-msgstr ""
+msgstr "Greek (ISO-8859-7)"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:131
-#: ../themes/default/admin/setup/config/mailings.php:149
+#: themes/default/admin/mailings/mailing/setup.php:131
+#: themes/default/admin/setup/config/mailings.php:149
 msgid "Japanese (ISO-2022-JP)"
-msgstr ""
+msgstr "Japanese (ISO-2022-JP)"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:138
-#: ../themes/default/admin/setup/config/mailings.php:156
+#: themes/default/admin/mailings/mailing/setup.php:138
+#: themes/default/admin/setup/config/mailings.php:156
 msgid "Japanese (EUC-JP)"
-msgstr ""
+msgstr "Japanese (EUC-JP)"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:145
-#: ../themes/default/admin/setup/config/mailings.php:163
+#: themes/default/admin/mailings/mailing/setup.php:145
+#: themes/default/admin/setup/config/mailings.php:163
 msgid "cyrillic (Windows-1251)"
-msgstr ""
+msgstr "Кирилическая (Windows-1251)"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:152
-#: ../themes/default/admin/setup/config/mailings.php:170
+#: themes/default/admin/mailings/mailing/setup.php:152
+#: themes/default/admin/setup/config/mailings.php:170
 msgid "cyrillic (KOI8-R)"
-msgstr ""
+msgstr "Кирилическая (KOI8-R)"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:159
-#: ../themes/default/admin/setup/config/mailings.php:177
+#: themes/default/admin/mailings/mailing/setup.php:159
+#: themes/default/admin/setup/config/mailings.php:177
 msgid "Simplified Chinese (GB2312)"
-msgstr ""
+msgstr "Simplified Chinese (GB2312)"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:162
+#: themes/default/admin/mailings/mailing/setup.php:162
 msgid "(Select Character Set of Mailings)"
-msgstr ""
+msgstr "(выберите кодировку рассылок)"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:167
+#: themes/default/admin/mailings/mailing/setup.php:167
 msgid "Track when people open this mailing:"
-msgstr ""
+msgstr "Отслеживать, когда люди открывают эту рассылку:"
 
-#: ../themes/default/admin/mailings/mailing/setup.php:187
-#: ../themes/default/admin/mailings/mailing/setup.php:188
-#: ../themes/default/admin/setup/ajax/field_edit.php:206
-#: ../themes/default/admin/setup/ajax/field_edit.php:207
-#: ../themes/default/admin/setup/ajax/field_edit.php:225
-#: ../themes/default/admin/setup/ajax/field_edit.php:226
-#: ../themes/default/admin/setup/ajax/field_edit.php:254
-#: ../themes/default/admin/setup/ajax/field_edit.php:255
+#: themes/default/admin/mailings/mailing/setup.php:187
+#: themes/default/admin/mailings/mailing/setup.php:188
+#: themes/default/admin/setup/ajax/field_edit.php:206
+#: themes/default/admin/setup/ajax/field_edit.php:207
+#: themes/default/admin/setup/ajax/field_edit.php:225
+#: themes/default/admin/setup/ajax/field_edit.php:226
+#: themes/default/admin/setup/ajax/field_edit.php:254
+#: themes/default/admin/setup/ajax/field_edit.php:255
 msgid "loading..."
-msgstr ""
+msgstr "загрузка..."
 
-#: ../themes/default/admin/mailings/mailing/templates.php:16
-#, php-format
+#: themes/default/admin/mailings/mailing/templates.php:16
 msgid "You may %sload%s or %sdelete%s templates from here."
-msgstr ""
+msgstr "Вы можете %sзагрузить%s или %sудалить%s шаблон тут."
 
-#: ../themes/default/admin/mailings/mailing/templates.php:23
+#: themes/default/admin/mailings/mailing/templates.php:23
 msgid "Template"
-msgstr ""
+msgstr "Шаблон"
 
-#: ../themes/default/admin/mailings/mailing/templates.php:25
+#: themes/default/admin/mailings/mailing/templates.php:25
 msgid "choose template"
-msgstr ""
+msgstr "выберите шаблон"
 
-#: ../themes/default/admin/mailings/mailing/templates.php:36
+#: themes/default/admin/mailings/mailing/templates.php:36
 msgid "Description"
-msgstr ""
+msgstr "Описание"
 
-#: ../themes/default/admin/mailings/mailing/templates.php:38
-#: ../themes/default/admin/mailings/mailing/templates.php:59
+#: themes/default/admin/mailings/mailing/templates.php:38
+#: themes/default/admin/mailings/mailing/templates.php:59
 msgid "No template selected"
-msgstr ""
+msgstr "Шаблон не выбран"
 
-#: ../themes/default/admin/mailings/mailing/templates.php:45
+#: themes/default/admin/mailings/mailing/templates.php:45
 msgid "Skip"
-msgstr ""
+msgstr "Пропустить"
 
-#: ../themes/default/admin/mailings/mailing/templates.php:46
+#: themes/default/admin/mailings/mailing/templates.php:46
 msgid "Load"
-msgstr ""
+msgstr "Загрузить"
 
-#: ../themes/default/admin/mailings/mailing/templates.php:47
-#: ../themes/default/admin/setup/setup_fields.php:69
-#: ../themes/default/admin/setup/ajax/field_edit.php:252
-#: ../themes/default/admin/setup/config/users.php:91
-#: ../themes/default/admin/subscribers/groups_edit.php:130
-#: ../themes/default/admin/subscribers/groups_edit.php:168
-#: ../themes/default/admin/subscribers/groups_edit.php:289
-#: ../themes/default/admin/subscribers/groups_edit.php:390
-#: ../themes/default/admin/subscribers/groups_edit.php:433
-#: ../themes/default/admin/subscribers/subscribers_groups.php:46
-#: ../themes/default/admin/subscribers/subscribers_manage.php:209
+#: themes/default/admin/mailings/mailing/templates.php:47
+#: themes/default/admin/setup/setup_fields.php:69
+#: themes/default/admin/setup/ajax/field_edit.php:252
+#: themes/default/admin/setup/config/users.php:91
+#: themes/default/admin/subscribers/groups_edit.php:130
+#: themes/default/admin/subscribers/groups_edit.php:168
+#: themes/default/admin/subscribers/groups_edit.php:289
+#: themes/default/admin/subscribers/groups_edit.php:390
+#: themes/default/admin/subscribers/groups_edit.php:433
+#: themes/default/admin/subscribers/subscribers_groups.php:46
+#: themes/default/admin/subscribers/subscribers_manage.php:209
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
-#: ../themes/default/admin/setup/admin_setup.php:3
+#: themes/default/admin/setup/admin_setup.php:3
 msgid "Setup Page"
-msgstr ""
+msgstr "Страница настройки"
 
-#: ../themes/default/admin/setup/admin_setup.php:12
+#: themes/default/admin/setup/admin_setup.php:12
 msgid ""
 "Set your mailing list name, its default behaviour, and the administrator's "
 "information."
 msgstr ""
+"Установите название вашего списка рассылки, его поведение по-умолчанию, и "
+"данные администратора."
 
-#: ../themes/default/admin/setup/admin_setup.php:20
+#: themes/default/admin/setup/admin_setup.php:20
 msgid "Subscriber Fields"
-msgstr ""
+msgstr "Поля подписчика"
 
-#: ../themes/default/admin/setup/admin_setup.php:21
+#: themes/default/admin/setup/admin_setup.php:21
 msgid "Choose the information you'd like to collect from your subscribers."
-msgstr ""
+msgstr "Выбиерите какие данные вы хотите собирать от подписчиков."
 
-#: ../themes/default/admin/setup/admin_setup.php:28
-#: ../themes/default/admin/setup/form_embed.php:116
+#: themes/default/admin/setup/admin_setup.php:28
+#: themes/default/admin/setup/form_embed.php:116
 msgid "Subscription Form"
-msgstr ""
+msgstr "Форма подписки"
 
-#: ../themes/default/admin/setup/admin_setup.php:29
+#: themes/default/admin/setup/admin_setup.php:29
 msgid "Preview and Generate the subscription form for your website."
-msgstr ""
+msgstr "Предпросмотр и Создание формы подписки для вашего сайта."
 
-#: ../themes/default/admin/setup/form_embed.php:9
+#: themes/default/admin/setup/form_embed.php:9
 msgid "Embedded Subscription Forms"
-msgstr ""
+msgstr "Встроенная форма подписки"
 
-#: ../themes/default/admin/setup/form_embed.php:14
+#: themes/default/admin/setup/form_embed.php:14
 msgid "Return to Subscription Forms"
-msgstr ""
+msgstr "Вернуться к Формам подписки"
 
-#: ../themes/default/admin/setup/form_embed.php:23
+#: themes/default/admin/setup/form_embed.php:23
 msgid ""
 "Subscription forms can easily be added to your website using a line of code. "
 "You can use the PHP include listed below, or embed the actual HTML. "
 "Remember, you can also direct subscribers to the "
 msgstr ""
+"Формы подписки могут быть легко добавлены на ваш сайт одной строкой кода. Вы "
+"можете использовать вставку PHP, или внедрять реальный HTML-код. Запомните, "
+"вы можете также направить подписчиков на "
 
-#: ../themes/default/admin/setup/form_embed.php:29
+#: themes/default/admin/setup/form_embed.php:29
 msgid "Default Subscribe Form"
-msgstr ""
+msgstr "Форма подписки по-умолчанию"
 
-#: ../themes/default/admin/setup/form_embed.php:33
-#: ../themes/default/admin/setup/form_embed.php:95
+#: themes/default/admin/setup/form_embed.php:33
+#: themes/default/admin/setup/form_embed.php:95
 msgid "Mini Subscription Form"
-msgstr ""
+msgstr "Мини форма подписки"
 
-#: ../themes/default/admin/setup/form_embed.php:37
+#: themes/default/admin/setup/form_embed.php:37
 msgid ""
 "This prints a form which prompts for a user's email address.\n"
 "\t\t\t\tIf the inputted email exists as a registered subscriber, it\n"
 "\t\t\t\tredirects to the subscriber update page. If not, it redirects to\n"
 "\t\t\t\tthe the default subscription form."
 msgstr ""
+"Это выводит форму, которая запрашивает адрес электронной почты пользователя. "
+"Если введенный электронной почты существует в качестве зарегистрированного "
+"подписчика, он перенаправляет на страницу обновления данных подписчика. Если "
+"нет, то он перенаправляет на форму подписки по умолчанию."
 
-#: ../themes/default/admin/setup/form_embed.php:50
-#: ../themes/default/admin/setup/form_embed.php:68
+#: themes/default/admin/setup/form_embed.php:50
+#: themes/default/admin/setup/form_embed.php:68
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
-#: ../themes/default/admin/setup/form_embed.php:60
+#: themes/default/admin/setup/form_embed.php:60
 msgid "Full Subscription Form"
-msgstr ""
+msgstr "Полная форма подписки"
 
-#: ../themes/default/admin/setup/form_embed.php:62
+#: themes/default/admin/setup/form_embed.php:62
 msgid "This prints the entire subscription form."
-msgstr ""
+msgstr "Это выводит форму подписки."
 
-#: ../themes/default/admin/setup/setup_configure.php:14
-#: ../themes/default/admin/setup/setup_configure.php:15
+#: themes/default/admin/setup/setup_configure.php:14
+#: themes/default/admin/setup/setup_configure.php:15
 msgid "Return to Setup Page"
-msgstr ""
+msgstr "Вернуться к странице установки"
 
-#: ../themes/default/admin/setup/setup_configure.php:22
+#: themes/default/admin/setup/setup_configure.php:22
 msgid ""
 "You can change the login information, set website and mailing list "
 "parameters, end enable demonstration mode. If you enable demonstration mode, "
 "no emails will be sent from the system."
 msgstr ""
+"Вы можете изменить регистрационную информацию, установить параметры веб-"
+"сайта и рассылки, и включить демонстрационный режим. Если вы включите режим "
+"демонстрации, то электронные письма не будут отправлены из системы."
 
-#: ../themes/default/admin/setup/setup_configure.php:31
+#: themes/default/admin/setup/setup_configure.php:31
 msgid "Users"
-msgstr ""
+msgstr "Пользователи"
 
-#: ../themes/default/admin/setup/setup_configure.php:32
+#: themes/default/admin/setup/setup_configure.php:32
 msgid "General"
-msgstr ""
+msgstr "Общее"
 
-#: ../themes/default/admin/setup/setup_configure.php:34
-#: ../themes/default/admin/setup/config/messages.php:153
+#: themes/default/admin/setup/setup_configure.php:34
+#: themes/default/admin/setup/config/messages.php:153
 msgid "Messages"
-msgstr ""
+msgstr "Сообщения"
 
-#: ../themes/default/admin/setup/setup_fields.php:14
+#: themes/default/admin/setup/setup_fields.php:14
 msgid "Fields Page"
-msgstr ""
+msgstr "Страница Поля"
 
-#: ../themes/default/admin/setup/setup_fields.php:20
-#, php-format
+#: themes/default/admin/setup/setup_fields.php:20
 msgid ""
 "Subscriber fields allow you to collect information on list members. They are "
 "typically displayed on the subscription form, although \"hidden\" ones can "
 "be used for administrative purposes. %sGroups%s are based on subscriber "
 "field values."
 msgstr ""
+"Поля подписчика позволяют собирать информацию о списке участников. Они, как "
+"правило, отображаются в форме подписки, хотя \"скрытые\" поля могут "
+"использоваться для административных целей. %sГруппы%s основаны на значениях "
+"полей подписчика."
 
-#: ../themes/default/admin/setup/setup_fields.php:33
-#: ../themes/default/inc/admin.sidebar.php:30
+#: themes/default/admin/setup/setup_fields.php:33
+#: themes/default/inc/admin.sidebar.php:30
 msgid "Fields"
-msgstr ""
+msgstr "Поля"
 
-#: ../themes/default/admin/setup/setup_fields.php:35
+#: themes/default/admin/setup/setup_fields.php:35
 msgid "New field name:"
-msgstr ""
+msgstr "Название нового поля:"
 
-#: ../themes/default/admin/setup/setup_fields.php:36
+#: themes/default/admin/setup/setup_fields.php:36
 msgid "type new field name"
-msgstr ""
+msgstr "введите название нового поля"
 
-#: ../themes/default/admin/setup/setup_fields.php:41
+#: themes/default/admin/setup/setup_fields.php:41
 msgid "Field type:"
-msgstr ""
+msgstr "Тип поля:"
 
-#: ../themes/default/admin/setup/setup_fields.php:43
+#: themes/default/admin/setup/setup_fields.php:43
 msgid "Text"
-msgstr ""
+msgstr "Текстовое"
 
-#: ../themes/default/admin/setup/setup_fields.php:44
+#: themes/default/admin/setup/setup_fields.php:44
 msgid "Number"
-msgstr ""
+msgstr "Числовое"
 
-#: ../themes/default/admin/setup/setup_fields.php:45
+#: themes/default/admin/setup/setup_fields.php:45
 msgid "Checkbox"
-msgstr ""
+msgstr "Флажок"
 
-#: ../themes/default/admin/setup/setup_fields.php:46
+#: themes/default/admin/setup/setup_fields.php:46
 msgid "Multiple Choice"
-msgstr ""
+msgstr "Множественный выбор"
 
-#: ../themes/default/admin/setup/setup_fields.php:47
+#: themes/default/admin/setup/setup_fields.php:47
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
-#: ../themes/default/admin/setup/setup_fields.php:48
+#: themes/default/admin/setup/setup_fields.php:48
 msgid "Comment"
-msgstr ""
+msgstr "Комментарий"
 
-#: ../themes/default/admin/setup/setup_fields.php:53
-#: ../themes/default/admin/setup/ajax/field_edit.php:223
-#: ../themes/default/admin/subscribers/subscribers_groups.php:35
-#: ../themes/default/admin/subscribers/ajax/rule.field.php:143
-#: ../themes/default/admin/subscribers/ajax/rule.group.php:17
+#: themes/default/admin/setup/setup_fields.php:53
+#: themes/default/admin/setup/ajax/field_edit.php:223
+#: themes/default/admin/subscribers/subscribers_groups.php:35
+#: themes/default/admin/subscribers/ajax/rule.field.php:143
+#: themes/default/admin/subscribers/ajax/rule.group.php:17
 msgid "Add"
-msgstr ""
+msgstr "Добавить"
 
-#: ../themes/default/admin/setup/setup_fields.php:58
+#: themes/default/admin/setup/setup_fields.php:58
 msgid "Field Ordering"
-msgstr ""
+msgstr "Порядок полей"
 
-#: ../themes/default/admin/setup/setup_fields.php:61
+#: themes/default/admin/setup/setup_fields.php:61
 msgid ""
 "Change the ordering of fields on the subscription form by dragging and "
 "dropping the order icon"
-msgstr ""
+msgstr "Изменение порядка полей в форме подписке перетягиванием иконки позиции"
 
-#: ../themes/default/admin/setup/setup_fields.php:68
+#: themes/default/admin/setup/setup_fields.php:68
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
-#: ../themes/default/admin/setup/setup_fields.php:70
-#: ../themes/default/admin/subscribers/groups_edit.php:131
-#: ../themes/default/admin/subscribers/groups_edit.php:184
-#: ../themes/default/admin/subscribers/groups_edit.php:298
-#: ../themes/default/admin/subscribers/subscribers_groups.php:47
-#: ../themes/default/admin/subscribers/subscribers_manage.php:214
+#: themes/default/admin/setup/setup_fields.php:70
+#: themes/default/admin/subscribers/groups_edit.php:131
+#: themes/default/admin/subscribers/groups_edit.php:184
+#: themes/default/admin/subscribers/groups_edit.php:298
+#: themes/default/admin/subscribers/subscribers_groups.php:47
+#: themes/default/admin/subscribers/subscribers_manage.php:214
 msgid "Edit"
-msgstr ""
+msgstr "Изменить"
 
-#: ../themes/default/admin/setup/setup_fields.php:71
+#: themes/default/admin/setup/setup_fields.php:71
 msgid "Order"
-msgstr ""
+msgstr "Порядок"
 
-#: ../themes/default/admin/setup/setup_fields.php:72
+#: themes/default/admin/setup/setup_fields.php:72
 msgid "Field Name"
-msgstr ""
+msgstr "Название поля"
 
-#: ../themes/default/admin/setup/setup_fields.php:142
-#, php-format
+#: themes/default/admin/setup/setup_fields.php:142
 msgid "Fields marked like %s this %s are required. "
-msgstr ""
+msgstr "Поля отмеченные %sкак это%s обязательны к заполнению."
 
-#: ../themes/default/admin/setup/setup_fields.php:144
-#, php-format
+#: themes/default/admin/setup/setup_fields.php:144
 msgid "%sGreen%s fields are active."
-msgstr ""
+msgstr "%sЗеленые%s поля активны."
 
-#: ../themes/default/admin/setup/setup_form.php:7
+#: themes/default/admin/setup/setup_form.php:7
 msgid "Subscription Forms"
-msgstr ""
+msgstr "Формы подписки"
 
-#: ../themes/default/admin/setup/setup_form.php:15
+#: themes/default/admin/setup/setup_form.php:15
 msgid "Default Subscription Form"
-msgstr ""
+msgstr "Форма подписки по-умолчанию"
 
-#: ../themes/default/admin/setup/setup_form.php:17
+#: themes/default/admin/setup/setup_form.php:17
 msgid ""
 "Preview the default subscription form. Its look and feel can be adjusted "
 "through the theme template ([theme]/user/subscribe.php)."
 msgstr ""
+"Предварительный просмотр формы подписки по умолчанию. Его внешний вид и "
+"может быть изменен через шаблон темы ([theme]/user/subscribe.php)."
 
-#: ../themes/default/admin/setup/setup_form.php:26
+#: themes/default/admin/setup/setup_form.php:26
 msgid "Embedded Subscription From"
-msgstr ""
+msgstr "Встроенная форма подписки"
 
-#: ../themes/default/admin/setup/setup_form.php:28
+#: themes/default/admin/setup/setup_form.php:28
 msgid ""
 "Preview subscription forms that you can embed into an area of an existing "
 "webpage."
 msgstr ""
+"Предварительный просмотр форм подписки, которые можно вставлять в области "
+"существующей веб-страницы."
 
-#: ../themes/default/admin/setup/setup_form.php:36
+#: themes/default/admin/setup/setup_form.php:36
 msgid "HTML Subscription Form"
-msgstr ""
+msgstr "HTML форма подписки"
 
-#: ../themes/default/admin/setup/setup_form.php:38
+#: themes/default/admin/setup/setup_form.php:38
 msgid ""
 "Generate a plain HTML subscription form that you can customize to fit your "
 "site."
 msgstr ""
+"Generate a plain HTML subscription form that you can customize to fit your "
+"site."
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:27
+#: themes/default/admin/setup/ajax/field_edit.php:27
 msgid "Short Name:"
-msgstr ""
+msgstr "Короткое название:"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:33
+#: themes/default/admin/setup/ajax/field_edit.php:33
 msgid "Identifying name. NOT displayed on Subscription Form or seen by users."
-msgstr ""
+msgstr "Отличительное имя. Не отображается на Форме подписки и пользователям."
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:41
+#: themes/default/admin/setup/ajax/field_edit.php:41
 msgid "Form Name:"
-msgstr ""
+msgstr "От:"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:47
-#, php-format
+#: themes/default/admin/setup/ajax/field_edit.php:47
 msgid "Prompt for field on the Subscription Form. e.g. %sType your city%s"
-msgstr ""
+msgstr "Запрашивать поле в форме подписки, например, %sУкажите ваш город%s"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:58
+#: themes/default/admin/setup/ajax/field_edit.php:58
 msgid "Required:"
-msgstr ""
+msgstr "Обязательное:"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:66
+#: themes/default/admin/setup/ajax/field_edit.php:66
 msgid "yes"
-msgstr ""
+msgstr "да"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:75
+#: themes/default/admin/setup/ajax/field_edit.php:75
 msgid "no"
-msgstr ""
+msgstr "нет"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:79
-#, php-format
+#: themes/default/admin/setup/ajax/field_edit.php:79
 msgid ""
 "Toggle to require field on Subscription Form (user cannot leave blank if "
 "%syes%s)"
 msgstr ""
+"Установите, чтобы поле было обязательным в форме подписки (пользователь не "
+"может оставить пустым, если %sда%s)"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:95
+#: themes/default/admin/setup/ajax/field_edit.php:95
 msgid "Active:"
-msgstr ""
+msgstr "Актвно:"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:103
+#: themes/default/admin/setup/ajax/field_edit.php:103
 msgid "show"
-msgstr ""
+msgstr "показать"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:112
+#: themes/default/admin/setup/ajax/field_edit.php:112
 msgid "hide"
-msgstr ""
+msgstr "скрыть"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:115
+#: themes/default/admin/setup/ajax/field_edit.php:115
 msgid "Toggle display of field for Subscription Form"
-msgstr ""
+msgstr "Изменить видимость поля в Форме подписки"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:126
-#: ../themes/default/admin/setup/ajax/field_edit.php:140
-#: ../themes/default/admin/setup/ajax/field_edit.php:174
+#: themes/default/admin/setup/ajax/field_edit.php:126
+#: themes/default/admin/setup/ajax/field_edit.php:140
+#: themes/default/admin/setup/ajax/field_edit.php:174
 msgid "Default:"
-msgstr ""
+msgstr "По-умолчанию:"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:130
-#: ../themes/default/admin/setup/ajax/field_edit.php:164
-#: ../themes/default/admin/setup/ajax/field_edit.php:195
+#: themes/default/admin/setup/ajax/field_edit.php:130
+#: themes/default/admin/setup/ajax/field_edit.php:164
+#: themes/default/admin/setup/ajax/field_edit.php:195
 msgid "If provided, this value will appear pre-filled on the subscription form"
 msgstr ""
+"Если значение указано, то оно будет заранее заполняться в форме подписки "
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:149
+#: themes/default/admin/setup/ajax/field_edit.php:149
 msgid "Checked"
-msgstr ""
+msgstr "Отмечено"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:159
+#: themes/default/admin/setup/ajax/field_edit.php:159
 msgid "Not Checked"
-msgstr ""
+msgstr "Не отмечено"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:176
+#: themes/default/admin/setup/ajax/field_edit.php:176
 msgid "Select default choice"
-msgstr ""
+msgstr "Выберите вариант по-умолчанию"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:215
+#: themes/default/admin/setup/ajax/field_edit.php:215
 msgid "Multiple Choices"
-msgstr ""
+msgstr "Несколько вариантов"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:220
+#: themes/default/admin/setup/ajax/field_edit.php:220
 msgid "Add Option(s)"
-msgstr ""
+msgstr "Добавить вариант(ы)"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:222
+#: themes/default/admin/setup/ajax/field_edit.php:222
 msgid "type option(s)"
-msgstr ""
+msgstr "напишите вариант(ы)"
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:228
+#: themes/default/admin/setup/ajax/field_edit.php:228
 msgid ""
 "Enter a multiple choice option. You can add more than one choice at a time "
 "by separating each with a comma."
 msgstr ""
+"Введите несколько вариантов выбора. Вы можете добавить несколько вариантов, "
+"разделив их запятой."
 
-#: ../themes/default/admin/setup/ajax/field_edit.php:240
+#: themes/default/admin/setup/ajax/field_edit.php:240
 msgid "Delete Option(s)"
-msgstr ""
+msgstr "Удалить вариант(ы)"
 
-#: ../themes/default/admin/setup/ajax/user_add.php:4
-#: ../themes/default/admin/setup/ajax/user_add.php:35
+#: themes/default/admin/setup/ajax/user_add.php:4
+#: themes/default/admin/setup/ajax/user_add.php:35
 msgid "Add User"
-msgstr ""
+msgstr "Добавить пользователя"
 
-#: ../themes/default/admin/setup/ajax/user_add.php:7
+#: themes/default/admin/setup/ajax/user_add.php:7
 msgid "User and password must be at least 5 characters"
-msgstr ""
+msgstr "Имя пользователя и пароль должны быть не менее 5 символов"
 
-#: ../themes/default/admin/setup/ajax/user_add.php:12
+#: themes/default/admin/setup/ajax/user_add.php:12
 msgid "User:"
-msgstr ""
+msgstr "Имя пользователя:"
 
-#: ../themes/default/admin/setup/ajax/user_add.php:19
-#: ../themes/default/admin/setup/ajax/user_add.php:26
+#: themes/default/admin/setup/ajax/user_add.php:19
+#: themes/default/admin/setup/ajax/user_add.php:26
 msgid "Password:"
-msgstr ""
+msgstr "Пароль:"
 
-#: ../themes/default/admin/setup/ajax/user_add.php:36
-#: ../themes/default/admin/subscribers/subscribers_manage.php:190
-#: ../themes/default/admin/subscribers/ajax/subscriber_add.php:156
-#: ../themes/default/admin/subscribers/ajax/subscriber_del.php:27
+#: themes/default/admin/setup/ajax/user_add.php:36
+#: themes/default/admin/subscribers/subscribers_manage.php:190
+#: themes/default/admin/subscribers/ajax/subscriber_add.php:156
+#: themes/default/admin/subscribers/ajax/subscriber_del.php:27
 msgid "Reset"
-msgstr ""
+msgstr "Сборсить"
 
-#: ../themes/default/admin/setup/ajax/user_add.php:41
-#, php-format
+#: themes/default/admin/setup/ajax/user_add.php:41
 msgid "Fields marked like %sthis%s are required."
-msgstr ""
+msgstr "Поля отмеченные %sкак это%s обязательны к заполнению."
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:4
+#: themes/default/admin/setup/config/ajax.smtp.php:4
 msgid "SMTP Throttling"
-msgstr ""
+msgstr "Регулировка SMTP"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:6
+#: themes/default/admin/setup/config/ajax.smtp.php:6
 msgid "Throttle Sharing"
-msgstr ""
+msgstr "Совместная регулировка"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:15
-#: ../themes/default/admin/setup/config/general.php:85
-#: ../themes/default/admin/setup/config/mailings.php:61
-#: ../themes/default/admin/setup/config/mailings.php:80
-#: ../themes/default/admin/setup/config/messages.php:51
-#: ../themes/default/admin/setup/config/messages.php:77
-#: ../themes/default/admin/setup/config/messages.php:103
-#: ../themes/default/admin/setup/config/messages.php:129
+#: themes/default/admin/setup/config/ajax.smtp.php:15
+#: themes/default/admin/setup/config/general.php:85
+#: themes/default/admin/setup/config/mailings.php:61
+#: themes/default/admin/setup/config/mailings.php:80
+#: themes/default/admin/setup/config/messages.php:51
+#: themes/default/admin/setup/config/messages.php:77
+#: themes/default/admin/setup/config/messages.php:103
+#: themes/default/admin/setup/config/messages.php:129
 msgid "off"
-msgstr ""
+msgstr "откл."
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:23
-#: ../themes/default/admin/setup/config/general.php:77
-#: ../themes/default/admin/setup/config/mailings.php:54
-#: ../themes/default/admin/setup/config/mailings.php:73
-#: ../themes/default/admin/setup/config/messages.php:44
-#: ../themes/default/admin/setup/config/messages.php:70
-#: ../themes/default/admin/setup/config/messages.php:96
-#: ../themes/default/admin/setup/config/messages.php:122
+#: themes/default/admin/setup/config/ajax.smtp.php:23
+#: themes/default/admin/setup/config/general.php:77
+#: themes/default/admin/setup/config/mailings.php:54
+#: themes/default/admin/setup/config/mailings.php:73
+#: themes/default/admin/setup/config/messages.php:44
+#: themes/default/admin/setup/config/messages.php:70
+#: themes/default/admin/setup/config/messages.php:96
+#: themes/default/admin/setup/config/messages.php:122
 msgid "on"
-msgstr ""
+msgstr "вкл."
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:26
+#: themes/default/admin/setup/config/ajax.smtp.php:26
 msgid ""
 "(ON; the throttler will be global. OFF; independent throttler per relay.)"
 msgstr ""
+"(ВКЛ.; регулятор будет всеобщим. ОТКЛ.; независимый регулятор на каждую "
+"передачу.)"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:47
-#, php-format
+#: themes/default/admin/setup/config/ajax.smtp.php:47
 msgid "SMTP #%s"
-msgstr ""
+msgstr "SMTP №%s"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:50
+#: themes/default/admin/setup/config/ajax.smtp.php:50
 msgid "SMTP Status:"
-msgstr ""
+msgstr "SMTP состояние:"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:57
+#: themes/default/admin/setup/config/ajax.smtp.php:57
 msgid "Connected to SMTP server"
-msgstr ""
+msgstr "Подключен к SMTP серверу"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:65
+#: themes/default/admin/setup/config/ajax.smtp.php:65
 msgid "Unable to connect to SMTP server"
-msgstr ""
+msgstr "Невозможно подключиться к SMTP серверу"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:73
+#: themes/default/admin/setup/config/ajax.smtp.php:73
 msgid "SMTP Host:"
-msgstr ""
+msgstr "SMTP хост:"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:78
+#: themes/default/admin/setup/config/ajax.smtp.php:78
 msgid "(IP Address or Name of SMTP server)"
-msgstr ""
+msgstr "(IP адрес или Название SMTP сервера)"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:84
+#: themes/default/admin/setup/config/ajax.smtp.php:84
 msgid "SMTP Security:"
-msgstr ""
+msgstr "Безопасность SMTP:"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:104
+#: themes/default/admin/setup/config/ajax.smtp.php:104
 msgid "(If you are using gmail, SSL is required)"
-msgstr ""
+msgstr "(если вы используетн GMail, то требуется SSL)"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:110
+#: themes/default/admin/setup/config/ajax.smtp.php:110
 msgid "Port Number:"
-msgstr ""
+msgstr "Номер порта:"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:115
+#: themes/default/admin/setup/config/ajax.smtp.php:115
 msgid "(Port # of SMTP server [usually 25])"
-msgstr ""
+msgstr "(% Порта SMTP сервера [обычно 25])"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:121
+#: themes/default/admin/setup/config/ajax.smtp.php:121
 msgid "SMTP Authentication:"
-msgstr ""
+msgstr "Аутентификация SMTP:"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:140
+#: themes/default/admin/setup/config/ajax.smtp.php:140
 msgid "(Toggle SMTP Authentication [usually off])"
-msgstr ""
+msgstr "(Переключить SMTP аутентификацию [обычно откл.])"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:146
+#: themes/default/admin/setup/config/ajax.smtp.php:146
 msgid "SMTP Username:"
-msgstr ""
+msgstr "SMTP имя пользователя:"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:151
-#: ../themes/default/admin/setup/config/ajax.smtp.php:161
+#: themes/default/admin/setup/config/ajax.smtp.php:151
+#: themes/default/admin/setup/config/ajax.smtp.php:161
 msgid "(optional)"
-msgstr ""
+msgstr "(не обязательно)"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:156
+#: themes/default/admin/setup/config/ajax.smtp.php:156
 msgid "SMTP Password:"
-msgstr ""
+msgstr "SMTP пароль:"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:167
-#, php-format
+#: themes/default/admin/setup/config/ajax.smtp.php:167
 msgid "Update Relay #%s"
-msgstr ""
+msgstr "Обновить танспорт №%s"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:176
+#: themes/default/admin/setup/config/ajax.smtp.php:176
 msgid "This is your default relay"
-msgstr ""
+msgstr "Это ваш транспорт по умолчанию"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:184
-#, php-format
+#: themes/default/admin/setup/config/ajax.smtp.php:184
 msgid "Remove Relay #%s"
-msgstr ""
+msgstr "Удалить транспорт №%s"
 
-#: ../themes/default/admin/setup/config/ajax.smtp.php:210
+#: themes/default/admin/setup/config/ajax.smtp.php:210
 msgid "Add Another Relay"
-msgstr ""
+msgstr "Добавить еще транспорт "
 
-#: ../themes/default/admin/setup/config/ajax.testexchanger.php:3
-#, php-format
+#: themes/default/admin/setup/config/ajax.testexchanger.php:3
 msgid ""
 "A test message will be sent to the supplied recipient. If you receive it, "
 "poMMo can use the %s exchanger. Remember to check your SPAM folder too."
 msgstr ""
+"Тестовое сообщение будет отправлено указанному получателю. Если вы его "
+"получите, poMMo может использовать почтовый сервер %s. Не забудьте также "
+"проверить папку со спамом."
 
-#: ../themes/default/admin/setup/config/ajax.testexchanger.php:30
+#: themes/default/admin/setup/config/ajax.testexchanger.php:30
 msgid "(address to send test message to)"
-msgstr ""
+msgstr "(адрес кому отправить тестовое сообщение)"
 
-#: ../themes/default/admin/setup/config/ajax.throttle.php:4
+#: themes/default/admin/setup/config/ajax.throttle.php:4
 msgid "Global Rates"
-msgstr ""
+msgstr "Глобальные скорости"
 
-#: ../themes/default/admin/setup/config/ajax.throttle.php:7
-#: ../themes/default/admin/setup/config/ajax.throttle.php:86
+#: themes/default/admin/setup/config/ajax.throttle.php:7
+#: themes/default/admin/setup/config/ajax.throttle.php:86
 msgid "Mail Rate"
-msgstr ""
+msgstr "Скорость отправки писем"
 
-#: ../themes/default/admin/setup/config/ajax.throttle.php:13
-#: ../themes/default/admin/setup/config/ajax.throttle.php:26
-#, php-format
+#: themes/default/admin/setup/config/ajax.throttle.php:13
+#: themes/default/admin/setup/config/ajax.throttle.php:26
 msgid "%s per Second"
-msgstr ""
+msgstr "%s в секунду"
 
-#: ../themes/default/admin/setup/config/ajax.throttle.php:14
-#: ../themes/default/admin/setup/config/ajax.throttle.php:27
-#, php-format
+#: themes/default/admin/setup/config/ajax.throttle.php:14
+#: themes/default/admin/setup/config/ajax.throttle.php:27
 msgid "%s per Hour"
-msgstr ""
+msgstr "%s в час"
 
-#: ../themes/default/admin/setup/config/ajax.throttle.php:20
-#: ../themes/default/admin/setup/config/ajax.throttle.php:98
+#: themes/default/admin/setup/config/ajax.throttle.php:20
+#: themes/default/admin/setup/config/ajax.throttle.php:98
 msgid "Bandwidth Limit"
-msgstr ""
+msgstr "Предел полосы пропускания"
 
-#: ../themes/default/admin/setup/config/ajax.throttle.php:44
+#: themes/default/admin/setup/config/ajax.throttle.php:44
 msgid "Restore Defaults"
-msgstr ""
+msgstr "Восстановить умолчания"
 
-#: ../themes/default/admin/setup/config/ajax.throttle.php:59
+#: themes/default/admin/setup/config/ajax.throttle.php:59
 msgid "Rates per Domain"
-msgstr ""
+msgstr "Скорости на домен"
 
-#: ../themes/default/admin/setup/config/ajax.throttle.php:62
+#: themes/default/admin/setup/config/ajax.throttle.php:62
 msgid ""
 "You may also limit the amount of mail a single domain receives in a period. "
 "This is useful for larger mailings, and prevents the \"slamming\" of the "
@@ -1548,301 +1584,324 @@ msgid ""
 "delay a mailing if many of your subscribers use the same domain (e.g. @yahoo."
 "com)."
 msgstr ""
+"Вы также можете ограничить количество почты, которое домен получает за "
+"период. Это полезно для больших почтовых рассылок, и предотвращает «критику» "
+"домена (который может отклонить ваши письма). Например, вы можете выбрать "
+"отправку не более 1 письма каждые 20 секунд  для домена, установив число "
+"писем 1 и период 20. Предупреждение, этот параметр будет существенно "
+"задерживать рассылки, если многие подписчики используют один домен "
+"(например, @mail.ru)."
 
-#: ../themes/default/admin/setup/config/ajax.throttle.php:74
+#: themes/default/admin/setup/config/ajax.throttle.php:74
 msgid "Period Interval"
-msgstr ""
+msgstr "Интервал периода"
 
-#: ../themes/default/admin/setup/config/ajax.throttle.php:80
-#, php-format
+#: themes/default/admin/setup/config/ajax.throttle.php:80
 msgid "%s seconds"
-msgstr ""
+msgstr "%s сек"
 
-#: ../themes/default/admin/setup/config/ajax.throttle.php:92
-#: ../themes/default/admin/setup/config/ajax.throttle.php:104
-#, php-format
+#: themes/default/admin/setup/config/ajax.throttle.php:92
+#: themes/default/admin/setup/config/ajax.throttle.php:104
 msgid "%s per Period"
-msgstr ""
+msgstr "%s за период"
 
-#: ../themes/default/admin/setup/config/ajax.throttle.php:126
+#: themes/default/admin/setup/config/ajax.throttle.php:126
 msgid "No Limit"
-msgstr ""
+msgstr "Неограниченно"
 
-#: ../themes/default/admin/setup/config/general.php:14
+#: themes/default/admin/setup/config/general.php:14
 msgid "List Name:"
-msgstr ""
+msgstr "Название списка:"
 
-#: ../themes/default/admin/setup/config/general.php:19
+#: themes/default/admin/setup/config/general.php:19
 msgid "(The name of your Mailing List)"
-msgstr ""
+msgstr "(Название вашего списка рассылки)"
 
-#: ../themes/default/admin/setup/config/general.php:25
+#: themes/default/admin/setup/config/general.php:25
 msgid "Website Name:"
-msgstr ""
+msgstr "Название сайта:"
 
-#: ../themes/default/admin/setup/config/general.php:30
+#: themes/default/admin/setup/config/general.php:30
 msgid "(The name of your Website)"
-msgstr ""
+msgstr "(Название вашего веб-сайта)"
 
-#: ../themes/default/admin/setup/config/general.php:41
+#: themes/default/admin/setup/config/general.php:41
 msgid "(Web address of your Website)"
-msgstr ""
+msgstr "(Адрес вашего веб-сайта)"
 
-#: ../themes/default/admin/setup/config/general.php:46
+#: themes/default/admin/setup/config/general.php:46
 msgid "Success URL:"
-msgstr ""
+msgstr "После подписки перейти на URL:"
 
-#: ../themes/default/admin/setup/config/general.php:50
+#: themes/default/admin/setup/config/general.php:50
 msgid ""
 "(Webpage users will see upon successfull subscription. Leave blank to "
 "display default welcome page.)"
 msgstr ""
+"(Страница, которую пользователи будут видеть при успешной подписке. Оставьте "
+"поле пустым для отображения страницы приветствия по умолчанию.)"
 
-#: ../themes/default/admin/setup/config/general.php:57
+#: themes/default/admin/setup/config/general.php:57
 msgid "Confirm URL:"
-msgstr ""
+msgstr "URL подтверждения:"
 
-#: ../themes/default/admin/setup/config/general.php:61
+#: themes/default/admin/setup/config/general.php:61
 msgid ""
 "(Webpage users will see upon subscription attempt. Leave blank to display "
 "default confirmation page.)"
 msgstr ""
+"(Страница, которую пользователи увидят при запросе подписки. Оставьте пустым "
+"для отображения страницы подтверждения по-умолчанию)"
 
-#: ../themes/default/admin/setup/config/general.php:68
+#: themes/default/admin/setup/config/general.php:68
 msgid "Email Confirmation:"
-msgstr ""
+msgstr "Подтверждение адреса почты:"
 
-#: ../themes/default/admin/setup/config/general.php:86
+#: themes/default/admin/setup/config/general.php:86
 msgid "(Set to validate email upon subscription attempt.)"
-msgstr ""
+msgstr "(установите для проверки адреса e-mail при попытке подписки)"
 
-#: ../themes/default/admin/setup/config/general.php:93
+#: themes/default/admin/setup/config/general.php:93
 msgid "Mail Exchanger:"
-msgstr ""
+msgstr "Почтовый сервер:"
 
-#: ../themes/default/admin/setup/config/general.php:112
+#: themes/default/admin/setup/config/general.php:112
 msgid "PHP Mail Function"
-msgstr ""
+msgstr "Функция PHP Mail"
 
-#: ../themes/default/admin/setup/config/general.php:124
+#: themes/default/admin/setup/config/general.php:124
 msgid "Test Exchanger"
-msgstr ""
+msgstr "Проверить сервер"
 
-#: ../themes/default/admin/setup/config/general.php:126
+#: themes/default/admin/setup/config/general.php:126
 msgid "(Select Mail Exchanger)"
-msgstr ""
+msgstr "(Выберите почтовый сервер)"
 
-#: ../themes/default/admin/setup/config/general.php:135
+#: themes/default/admin/setup/config/general.php:135
 msgid "Setup your SMTP Servers"
-msgstr ""
+msgstr "Настройте ваши SMTP серверы"
 
-#: ../themes/default/admin/setup/config/general.php:137
+#: themes/default/admin/setup/config/general.php:137
 msgid "(configure SMTP relays)"
-msgstr ""
+msgstr "(настройка SMTP транспортов)"
 
-#: ../themes/default/admin/setup/config/mailings.php:18
+#: themes/default/admin/setup/config/mailings.php:18
 msgid "(Default name mails will be sent from)"
-msgstr ""
+msgstr "(по умолчанию именные письма будут отправлены от)"
 
-#: ../themes/default/admin/setup/config/mailings.php:29
+#: themes/default/admin/setup/config/mailings.php:29
 msgid "(Default email mails will be sent from)"
-msgstr ""
+msgstr "(по умолчанию адресные письма будут отправлены ОТ)"
 
-#: ../themes/default/admin/setup/config/mailings.php:35
+#: themes/default/admin/setup/config/mailings.php:35
 msgid "Bounce Address:"
-msgstr ""
+msgstr "Адрес для отказов:"
 
-#: ../themes/default/admin/setup/config/mailings.php:40
+#: themes/default/admin/setup/config/mailings.php:40
 msgid "(Returned emails will be sent to this address)"
 msgstr ""
+"(Возвращаемые сообщения электронной почты будет отправлены на этот адрес)"
 
-#: ../themes/default/admin/setup/config/mailings.php:46
+#: themes/default/admin/setup/config/mailings.php:46
 msgid "Demonstration Mode:"
-msgstr ""
+msgstr "Демо режим:"
 
-#: ../themes/default/admin/setup/config/mailings.php:62
+#: themes/default/admin/setup/config/mailings.php:62
 msgid "(Toggle Demonstration Mode)"
-msgstr ""
+msgstr "(Переключить демо режим)"
 
-#: ../themes/default/admin/setup/config/mailings.php:66
+#: themes/default/admin/setup/config/mailings.php:66
 msgid "Public Mailings"
-msgstr ""
+msgstr "Общедоступные рассылки"
 
-#: ../themes/default/admin/setup/config/mailings.php:83
-#, php-format
+#: themes/default/admin/setup/config/mailings.php:83
 msgid "(When on, the public can view past mailings at this %sURL%s)"
 msgstr ""
+"(При включении, люди могут просматривать последние рассылки по этому адресу  "
+"%sURL%s)"
 
-#: ../themes/default/admin/setup/config/mailings.php:94
+#: themes/default/admin/setup/config/mailings.php:94
 msgid "Set mailing throttle values"
-msgstr ""
+msgstr "Установить значения скорости рассылки"
 
-#: ../themes/default/admin/setup/config/mailings.php:97
+#: themes/default/admin/setup/config/mailings.php:97
 msgid "(controls mails per second, bytes per second, and domain limits)"
 msgstr ""
+"(управляет скоростью писем в секунду, байт в секунду, и доменными "
+"ограничениями)"
 
-#: ../themes/default/admin/setup/config/mailings.php:180
+#: themes/default/admin/setup/config/mailings.php:180
 msgid "(Select Default Character Set of Mailings)"
-msgstr ""
+msgstr "(Выберите кодировку по-умолчанию для рассылок)"
 
-#: ../themes/default/admin/setup/config/mailings.php:186
+#: themes/default/admin/setup/config/mailings.php:186
 msgid "Runtime:"
-msgstr ""
+msgstr "Время выполнения:"
 
-#: ../themes/default/admin/setup/config/mailings.php:191
+#: themes/default/admin/setup/config/mailings.php:191
 msgid "(Seconds a processing script runs for. Default: 80, Minimum: 15)"
-msgstr ""
+msgstr "(Сколько секунд работает скрипт, по умолчанию. 80, минимум: 15)"
 
-#: ../themes/default/admin/setup/config/messages.php:3
+#: themes/default/admin/setup/config/messages.php:3
 msgid "notifications"
-msgstr ""
+msgstr "уведомления"
 
-#: ../themes/default/admin/setup/config/messages.php:4
+#: themes/default/admin/setup/config/messages.php:4
 msgid "Administrators can be sent a notification of subscription list changes."
 msgstr ""
+"Администраторам могут отправляться уведомления об изменении  списка "
+"подписчиков."
 
-#: ../themes/default/admin/setup/config/messages.php:9
+#: themes/default/admin/setup/config/messages.php:9
 msgid "Notification email(s):"
-msgstr ""
+msgstr "Почтовые адрес(а)  для уведомлений:"
 
-#: ../themes/default/admin/setup/config/messages.php:14
+#: themes/default/admin/setup/config/messages.php:14
 msgid ""
 "(Notifications will be sent to the above address(es). Multiple addresses can "
 "be entered -- seperate with a comma.)"
 msgstr ""
+"(Уведомления будут отправлены на следующий адрес(а). Можно указать несколько "
+"адресов, разделяя их запятыми)"
 
-#: ../themes/default/admin/setup/config/messages.php:21
+#: themes/default/admin/setup/config/messages.php:21
 msgid "Subject Prefix:"
-msgstr ""
+msgstr "Префикс темы:"
 
-#: ../themes/default/admin/setup/config/messages.php:25
+#: themes/default/admin/setup/config/messages.php:25
 msgid "(The subject of Notification Mails will begin with this)"
-msgstr ""
+msgstr "(Тема уведомлений рассылки будет начинаться с этого)"
 
-#: ../themes/default/admin/setup/config/messages.php:33
-#: ../themes/default/admin/setup/config/messages.php:60
-#: ../themes/default/admin/setup/config/messages.php:86
-#: ../themes/default/admin/setup/config/messages.php:112
-#, php-format
+#: themes/default/admin/setup/config/messages.php:33
+#: themes/default/admin/setup/config/messages.php:60
+#: themes/default/admin/setup/config/messages.php:86
+#: themes/default/admin/setup/config/messages.php:112
 msgid "Notify on %s"
-msgstr ""
+msgstr "Уведомлять при %s"
 
-#: ../themes/default/admin/setup/config/messages.php:53
+#: themes/default/admin/setup/config/messages.php:53
 msgid "(sent upon successful subscription)"
-msgstr ""
+msgstr "(отправляется при удачной подписке)"
 
-#: ../themes/default/admin/setup/config/messages.php:79
+#: themes/default/admin/setup/config/messages.php:79
 msgid "(sent upon successful unsubscription)"
-msgstr ""
+msgstr "(отправляется при удачной отписке)"
 
-#: ../themes/default/admin/setup/config/messages.php:105
+#: themes/default/admin/setup/config/messages.php:105
 msgid "(sent upon subscriber update)"
-msgstr ""
+msgstr "(отправляется при обновлении данных подписчика)"
 
-#: ../themes/default/admin/setup/config/messages.php:131
+#: themes/default/admin/setup/config/messages.php:131
 msgid "(sent upon subscription attempt)"
-msgstr ""
+msgstr "(отправляется при попытке подписки)"
 
-#: ../themes/default/admin/setup/config/messages.php:155
+#: themes/default/admin/setup/config/messages.php:155
 msgid ""
 "Customize the messages sent to your users when they subscribe, unsubscribe, "
 "attempt to subscribe, or request to update their records."
 msgstr ""
+"Индивидуализировать сообщения, отсылаемые пользователям при подписке, риказа "
+"от подписки, запросе подписки или при обновлении их данных."
 
-#: ../themes/default/admin/setup/config/messages.php:169
-#: ../themes/default/admin/setup/config/messages.php:226
+#: themes/default/admin/setup/config/messages.php:169
+#: themes/default/admin/setup/config/messages.php:226
 msgid "(Check to Enable)"
-msgstr ""
+msgstr "(выберите для включения)"
 
-#: ../themes/default/admin/setup/config/messages.php:181
-#: ../themes/default/admin/setup/config/messages.php:191
-#: ../themes/default/admin/setup/config/messages.php:238
-#: ../themes/default/admin/setup/config/messages.php:248
-#: ../themes/default/admin/setup/config/messages.php:287
-#: ../themes/default/admin/setup/config/messages.php:330
-#: ../themes/default/admin/setup/config/messages.php:374
+#: themes/default/admin/setup/config/messages.php:181
+#: themes/default/admin/setup/config/messages.php:191
+#: themes/default/admin/setup/config/messages.php:238
+#: themes/default/admin/setup/config/messages.php:248
+#: themes/default/admin/setup/config/messages.php:287
+#: themes/default/admin/setup/config/messages.php:330
+#: themes/default/admin/setup/config/messages.php:374
 msgid "Message:"
-msgstr ""
+msgstr "Сообщение:"
 
-#: ../themes/default/admin/setup/config/messages.php:187
-#: ../themes/default/admin/setup/config/messages.php:244
+#: themes/default/admin/setup/config/messages.php:187
+#: themes/default/admin/setup/config/messages.php:244
 msgid "Website"
-msgstr ""
+msgstr "Сайт:"
 
-#: ../themes/default/admin/setup/config/messages.php:201
-#: ../themes/default/admin/setup/config/messages.php:258
-#: ../themes/default/admin/setup/config/messages.php:301
-#: ../themes/default/admin/setup/config/messages.php:345
-#: ../themes/default/admin/setup/config/messages.php:389
+#: themes/default/admin/setup/config/messages.php:201
+#: themes/default/admin/setup/config/messages.php:258
+#: themes/default/admin/setup/config/messages.php:301
+#: themes/default/admin/setup/config/messages.php:345
+#: themes/default/admin/setup/config/messages.php:389
 msgid "Restore to Defaults"
-msgstr ""
+msgstr "Восстановить умолчания"
 
-#: ../themes/default/admin/setup/config/messages.php:273
+#: themes/default/admin/setup/config/messages.php:273
 msgid "Subscription Confirmation"
-msgstr ""
+msgstr "Подтверждение подписки"
 
-#: ../themes/default/admin/setup/config/messages.php:293
-#: ../themes/default/admin/setup/config/messages.php:336
-#: ../themes/default/admin/setup/config/messages.php:380
-#, php-format
+#: themes/default/admin/setup/config/messages.php:293
+#: themes/default/admin/setup/config/messages.php:336
+#: themes/default/admin/setup/config/messages.php:380
 msgid "(Use %s[[url]]%s for the confirm link at least once)"
 msgstr ""
+"(Используйте %s[[url]]%s для вставки ссылки подтверждения, как минимум раз)"
 
-#: ../themes/default/admin/setup/config/messages.php:317
+#: themes/default/admin/setup/config/messages.php:317
 msgid "Account Access"
-msgstr ""
+msgstr "Доступ учетной записи"
 
-#: ../themes/default/admin/setup/config/messages.php:360
+#: themes/default/admin/setup/config/messages.php:360
 msgid "Update Validation"
-msgstr ""
+msgstr "Обновить проверку"
 
-#: ../themes/default/admin/setup/config/users.php:12
+#: themes/default/admin/setup/config/users.php:12
 msgid "User"
-msgstr ""
+msgstr "Пользователь"
 
-#: ../themes/default/admin/setup/config/users.php:85
+#: themes/default/admin/setup/config/users.php:85
 msgid "New"
-msgstr ""
+msgstr "Новый"
 
-#: ../themes/default/admin/setup/config/users.php:99
+#: themes/default/admin/setup/config/users.php:99
 msgid "(email address of administrator)"
-msgstr ""
+msgstr "(e-mail администратора)"
 
-#: ../themes/default/admin/subscribers/admin_subscribers.php:14
-#: ../themes/default/inc/admin.sidebar.php:18
+#: themes/default/admin/subscribers/admin_subscribers.php:14
+#: themes/default/inc/admin.sidebar.php:18
 msgid "Manage"
-msgstr ""
+msgstr "Управлять"
 
-#: ../themes/default/admin/subscribers/admin_subscribers.php:16
+#: themes/default/admin/subscribers/admin_subscribers.php:16
 msgid ""
 "subscribers. See an overview of your current and pending subscribers. You "
 "can add, delete, and edit subscribers from here."
 msgstr ""
+"подписчики. См. ваши текущих и ожидающих подписчиков. Тут вы можете "
+"добавлять, удалять, измениять подписчиков."
 
-#: ../themes/default/admin/subscribers/admin_subscribers.php:27
+#: themes/default/admin/subscribers/admin_subscribers.php:27
 msgid ""
 "Subscribers. You can import large amounts of subscribers using files stored "
 "on your computer."
 msgstr ""
+"Подписчики. Вы можете импортировать большое число подиписчиков загрузив ваши "
+"файлы с компютера."
 
-#: ../themes/default/admin/subscribers/admin_subscribers.php:35
-#: ../themes/default/admin/subscribers/subscribers_groups.php:42
-#: ../themes/default/inc/admin.sidebar.php:20
+#: themes/default/admin/subscribers/admin_subscribers.php:35
+#: themes/default/admin/subscribers/subscribers_groups.php:42
+#: themes/default/inc/admin.sidebar.php:20
 msgid "Groups"
-msgstr ""
+msgstr "Группы"
 
-#: ../themes/default/admin/subscribers/admin_subscribers.php:37
+#: themes/default/admin/subscribers/admin_subscribers.php:37
 msgid ""
 "Manage \"mailing groups\" from this area. Mailing groups allow you to mail "
 "subsets of your subscribers, rather than just the entire list."
 msgstr ""
+"Управление \"группами рассылки\". Группы рассылок позваляют вам отпрвлять "
+"письма определенному набору подписчиков, а не только указанному списку."
 
-#: ../themes/default/admin/subscribers/groups_edit.php:19
+#: themes/default/admin/subscribers/groups_edit.php:19
 msgid "Edit Group"
-msgstr ""
+msgstr "Изменить группу"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:25
-#, php-format
+#: themes/default/admin/subscribers/groups_edit.php:25
 msgid ""
 "To add subscribers to a group you must create matching rules. Subscribers "
 "are automatically added to a group if their %ssubscriber field%s values "
@@ -1852,741 +1911,767 @@ msgid ""
 "and another which matches \"Japan\" to \"COUNTRY\". Including or excluding "
 "members of other groups is possible."
 msgstr ""
+"Для добавления подписчика в группу вы должны создать правила отбора. "
+"Подписчики автоматически попадают в группу, если значения их %sполей "
+"подписчика%s совпадают с правилами группы. Например, если вы собираете "
+"\"ВОЗАСТ\" и \"СТРАНА\" как %sполя подписчика%s, вы можете выбрать тех кому "
+"более 21 года и проживают в России создав два правила: первое ищет "
+"совпадения \"ВОЗРАСТ\" больше 20, и второе ищет совпадения \"СТРАНА\" равно "
+"\"Россия\". Возможно включение или исключение участников других групп."
 
-#: ../themes/default/admin/subscribers/groups_edit.php:47
+#: themes/default/admin/subscribers/groups_edit.php:47
 msgid "Change Name"
-msgstr ""
+msgstr "Изменить название"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:49
+#: themes/default/admin/subscribers/groups_edit.php:49
 msgid "Group name:"
-msgstr ""
+msgstr "Названме группы:"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:51
-#: ../themes/default/admin/subscribers/subscribers_groups.php:31
+#: themes/default/admin/subscribers/groups_edit.php:51
+#: themes/default/admin/subscribers/subscribers_groups.php:31
 msgid "type new group name"
-msgstr ""
+msgstr "введите название новой группы"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:54
+#: themes/default/admin/subscribers/groups_edit.php:54
 msgid "Rename"
-msgstr ""
+msgstr "Переименовать"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:62
+#: themes/default/admin/subscribers/groups_edit.php:62
 msgid "Add Rule"
-msgstr ""
+msgstr "Добавить правило"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:67
-#, php-format
+#: themes/default/admin/subscribers/groups_edit.php:67
 msgid "Select a %sfield%s to filter"
-msgstr ""
+msgstr "Выберите %sполе%s для фильтрации"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:74
+#: themes/default/admin/subscribers/groups_edit.php:74
 msgid "Choose Subscriber Field"
-msgstr ""
+msgstr "Выберите поле подписчика"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:92
-#, php-format
+#: themes/default/admin/subscribers/groups_edit.php:92
 msgid "or, Select a %s group %s to include or exclude"
-msgstr ""
+msgstr "или, Выберите %sгруппу%s для включения или исключения"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:98
+#: themes/default/admin/subscribers/groups_edit.php:98
 msgid "Choose Group"
-msgstr ""
+msgstr "Выберите группу"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:125
+#: themes/default/admin/subscribers/groups_edit.php:125
 msgid "Group Rules"
-msgstr ""
+msgstr "Групповые правила"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:132
+#: themes/default/admin/subscribers/groups_edit.php:132
 msgid "Field"
-msgstr ""
+msgstr "Поле"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:133
+#: themes/default/admin/subscribers/groups_edit.php:133
 msgid "Logic"
-msgstr ""
+msgstr "Алгоритм"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:134
+#: themes/default/admin/subscribers/groups_edit.php:134
 msgid "Value"
-msgstr ""
+msgstr "Значение"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:135
-#: ../themes/default/admin/subscribers/subscribers_import.php:46
+#: themes/default/admin/subscribers/groups_edit.php:135
+#: themes/default/admin/subscribers/subscribers_import.php:46
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:142
+#: themes/default/admin/subscribers/groups_edit.php:142
 msgid "\"AND\" RULES"
-msgstr ""
+msgstr "\"И\" павила"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:143
-#, php-format
+#: themes/default/admin/subscribers/groups_edit.php:143
 msgid "MATCH %sALL%s OF THE FOLLOWING"
-msgstr ""
+msgstr "СОВПАДЕНИЯ %sВСЕХ%s СЛЕДУЮЩИХ"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:215
-#: ../themes/default/admin/subscribers/groups_edit.php:318
+#: themes/default/admin/subscribers/groups_edit.php:215
+#: themes/default/admin/subscribers/groups_edit.php:318
 msgid "or"
-msgstr ""
+msgstr "или"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:239
-#: ../themes/default/admin/subscribers/groups_edit.php:339
+#: themes/default/admin/subscribers/groups_edit.php:239
+#: themes/default/admin/subscribers/groups_edit.php:339
 msgid "AND"
-msgstr ""
+msgstr "И"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:240
-#: ../themes/default/admin/subscribers/groups_edit.php:340
+#: themes/default/admin/subscribers/groups_edit.php:240
+#: themes/default/admin/subscribers/groups_edit.php:340
 msgid "OR"
-msgstr ""
+msgstr "ИЛИ"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:253
-#: ../themes/default/admin/subscribers/groups_edit.php:353
-#: ../themes/default/admin/subscribers/groups_edit.php:411
+#: themes/default/admin/subscribers/groups_edit.php:253
+#: themes/default/admin/subscribers/groups_edit.php:353
+#: themes/default/admin/subscribers/groups_edit.php:411
 msgid "No rules have been added"
-msgstr ""
+msgstr "Правила не были добавлены"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:264
+#: themes/default/admin/subscribers/groups_edit.php:264
 msgid "\"OR\" RULES"
-msgstr ""
+msgstr "\"ИЛИ\" правила"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:266
-#, php-format
+#: themes/default/admin/subscribers/groups_edit.php:266
 msgid "<strong>OR</strong>, MATCH %sANY%s OF THE FOLLOWING"
-msgstr ""
+msgstr "<strong>ИЛИ</strong>, СОВПАДЕНИЕ %sЛЮБОЕ%s ИЗ СЛЕДУЮЩИХ"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:364
+#: themes/default/admin/subscribers/groups_edit.php:364
 msgid "<strong>AND</strong>, ADD OR SUBTRACT MEMBERS IN OTHER GROUPS"
-msgstr ""
+msgstr "<strong>И</strong>, ДОБАВИТЬ ИЛИ ВЫЧЕСТЬ УЧАСТНИКОВ В ДРГИХ ГРУППАХ"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:398
-#, php-format
+#: themes/default/admin/subscribers/groups_edit.php:398
 msgid "%sAdd%s members matching %s"
-msgstr ""
+msgstr "%sДобавить%s участников соответствующих %s"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:441
-#, php-format
+#: themes/default/admin/subscribers/groups_edit.php:441
 msgid "%sSubtract%s members matching %s"
-msgstr ""
+msgstr "%sИсключить%s участников совпадающих с %s"
 
-#: ../themes/default/admin/subscribers/groups_edit.php:456
-#, php-format
+#: themes/default/admin/subscribers/groups_edit.php:456
 msgid "%s rules match a total of %s active subscribers"
-msgstr ""
+msgstr "%s правила соответствуют %s активным подписчикам"
 
-#: ../themes/default/admin/subscribers/import_csv.php:21
-#: ../themes/default/admin/subscribers/import_txt.php:7
-#: ../themes/default/admin/subscribers/subscribers_import.php:7
+#: themes/default/admin/subscribers/import_csv.php:21
+#: themes/default/admin/subscribers/import_txt.php:7
+#: themes/default/admin/subscribers/subscribers_import.php:7
 msgid "Import Subscribers"
-msgstr ""
+msgstr "Импортировать подписчиков"
 
-#: ../themes/default/admin/subscribers/import_csv.php:25
-#: ../themes/default/admin/subscribers/import_csv.php:41
+#: themes/default/admin/subscribers/import_csv.php:25
+#: themes/default/admin/subscribers/import_csv.php:41
 msgid "Assign Fields"
-msgstr ""
+msgstr "Назначить поля"
 
-#: ../themes/default/admin/subscribers/import_csv.php:28
+#: themes/default/admin/subscribers/import_csv.php:28
 msgid ""
 "Below is a preview of your CSV data. You can assign subscriber fields to "
 "columns. At the very least, you must assign an email address."
 msgstr ""
+"Ниже предварительный просмотр ваших CSV данных. Вы можете назначить поля "
+"подписчика столбцам. По крайней мере, вы можете назначить электронный адрес."
 
-#: ../themes/default/admin/subscribers/import_csv.php:50
+#: themes/default/admin/subscribers/import_csv.php:50
 msgid "Ignore Column"
-msgstr ""
+msgstr "Игнорировать столбец"
 
-#: ../themes/default/admin/subscribers/import_csv.php:56
+#: themes/default/admin/subscribers/import_csv.php:56
 msgid "Date Registered"
-msgstr ""
+msgstr "Дата регистрации"
 
-#: ../themes/default/admin/subscribers/import_csv.php:114
-#: ../themes/default/admin/subscribers/import_txt.php:38
-#: ../themes/default/inc/ui.tabs.php:16
+#: themes/default/admin/subscribers/import_csv.php:114
+#: themes/default/admin/subscribers/import_txt.php:38
+#: themes/default/inc/ui.tabs.php:16
 msgid "Processing"
-msgstr ""
+msgstr "Обработка"
 
-#: ../themes/default/admin/subscribers/import_csv.php:134
+#: themes/default/admin/subscribers/import_csv.php:134
 msgid "You must assign an email column!"
-msgstr ""
+msgstr "Вы должны назначить e-mail столбец!"
 
-#: ../themes/default/admin/subscribers/import_txt.php:14
-#, php-format
+#: themes/default/admin/subscribers/import_txt.php:14
 msgid ""
 "%s non-duplicate subscribers will be imported. %s were ignored as duplicates."
 msgstr ""
+"%s не повторяющихся подписчиков будут импортированы. %s были проигнорированы "
+"как повторяющиеся."
 
-#: ../themes/default/admin/subscribers/import_txt.php:20
+#: themes/default/admin/subscribers/import_txt.php:20
 msgid "Notice: Imported subscribers will be flagged to update their records"
 msgstr ""
+"Примечание: импортированные подписчики будет помечены для обновления их "
+"записей"
 
-#: ../themes/default/admin/subscribers/import_txt.php:28
-#: ../themes/default/inc/admin.header.php:12
-#: ../themes/default/inc/configure.header.php:12
+#: themes/default/admin/subscribers/import_txt.php:28
+#: themes/default/inc/admin.header.php:12
+#: themes/default/inc/configure.header.php:12
 msgid "Are you sure?"
-msgstr ""
+msgstr "Are you sure?"
 
-#: ../themes/default/admin/subscribers/subscribers_groups.php:15
-#, php-format
+#: themes/default/admin/subscribers/subscribers_groups.php:15
 msgid ""
 "Subscriber Groups allow you to mail subsets of subscribers instead of the "
 "entire list. Groups are defined by customizable matching rules, and members "
 "are automatically assigned based on their %ssubscriber field%s values."
 msgstr ""
+"Группы подписчиков позволяют вам отправлять почту подмножеству подписчиков, "
+"а не всему списку. Группы определяются с помощью настраиваемых правил "
+"соответствия, а участники назначаются автоматически на основе значений их "
+"%sполей подписчика%s ."
 
-#: ../themes/default/admin/subscribers/subscribers_groups.php:28
+#: themes/default/admin/subscribers/subscribers_groups.php:28
 msgid "New group"
-msgstr ""
+msgstr "Новая группа"
 
-#: ../themes/default/admin/subscribers/subscribers_groups.php:30
+#: themes/default/admin/subscribers/subscribers_groups.php:30
 msgid "Group name"
-msgstr ""
+msgstr "Название группы"
 
-#: ../themes/default/admin/subscribers/subscribers_groups.php:48
+#: themes/default/admin/subscribers/subscribers_groups.php:48
 msgid "Group Name"
-msgstr ""
+msgstr "Название группы"
 
-#: ../themes/default/admin/subscribers/subscribers_import.php:13
-#, php-format
+#: themes/default/admin/subscribers/subscribers_import.php:13
 msgid ""
 "Welcome to Subscriber Import! You can import subscribers from a list of "
 "email addresses or from a full fledged CSV file containing subscriber field "
 "values as well as their email. CSV files should have one subscriber(email) "
 "per line with field information seperated by commas(%s,%s)."
 msgstr ""
+"Вы можете импортировать подписчиков из списка адресов электронной почты или "
+"полноценного файла CSV, содержащего значения полей подписчика, а также их "
+"электронную почту. В CSV на каждой строке  адрес подписчика (адрес "
+"электронной почты) с информацией о полях подписчика разделенной запятыми (%s,"
+"%s)."
 
-#: ../themes/default/admin/subscribers/subscribers_import.php:23
-#, php-format
+#: themes/default/admin/subscribers/subscribers_import.php:23
 msgid ""
 "Popular programs such as Microsoft Excel and %s Open Office %s support "
 "saving files in CSV (Comma-Seperated-Value) format."
 msgstr ""
+"Популярные программы, такие как Microsoft Excel и %s Open Office %s "
+"Поддерживают сохранение файлов в формате CSV (Comma-Seperated-Value)."
 
-#: ../themes/default/admin/subscribers/subscribers_import.php:31
+#: themes/default/admin/subscribers/subscribers_import.php:31
 msgid "Duplicate subscribers or invalid email addresses will be ignored."
-msgstr ""
+msgstr "Duplicate subscribers or invalid email addresses will be ignored."
 
-#: ../themes/default/admin/subscribers/subscribers_import.php:49
+#: themes/default/admin/subscribers/subscribers_import.php:49
 msgid "List of Email Addresses"
-msgstr ""
+msgstr "Список E-mail адресов"
 
-#: ../themes/default/admin/subscribers/subscribers_import.php:52
+#: themes/default/admin/subscribers/subscribers_import.php:52
 msgid ".CSV - All subscriber Data"
-msgstr ""
+msgstr ".CSV - все данные подпичсиков"
 
-#: ../themes/default/admin/subscribers/subscribers_import.php:63
+#: themes/default/admin/subscribers/subscribers_import.php:63
 msgid "Type subscribers into a box"
-msgstr ""
+msgstr "Введите подписчиков в поле"
 
-#: ../themes/default/admin/subscribers/subscribers_import.php:64
+#: themes/default/admin/subscribers/subscribers_import.php:64
 msgid "From a box"
-msgstr ""
+msgstr "Из поля"
 
-#: ../themes/default/admin/subscribers/subscribers_import.php:67
+#: themes/default/admin/subscribers/subscribers_import.php:67
 msgid "CSV file:"
-msgstr ""
+msgstr "CSV файл:"
 
-#: ../themes/default/admin/subscribers/subscribers_import.php:74
+#: themes/default/admin/subscribers/subscribers_import.php:74
 msgid "Upload subscribers from a file"
-msgstr ""
+msgstr "Загрузить подписчиков из файла"
 
-#: ../themes/default/admin/subscribers/subscribers_import.php:75
+#: themes/default/admin/subscribers/subscribers_import.php:75
 msgid "From a file"
-msgstr ""
+msgstr "Из файла"
 
-#: ../themes/default/admin/subscribers/subscribers_import.php:78
+#: themes/default/admin/subscribers/subscribers_import.php:78
 msgid "Type/Paste Contents..."
-msgstr ""
+msgstr "Написать/Вставить содержимое..."
 
-#: ../themes/default/admin/subscribers/subscribers_import.php:82
+#: themes/default/admin/subscribers/subscribers_import.php:82
 msgid "Allow unsubscribed emails to be re-subscribed."
-msgstr ""
+msgstr "Разрешить отписанным адресам повторно подписываться."
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:15
-#: ../themes/default/admin/subscribers/subscribers_manage.php:16
+#: themes/default/admin/subscribers/subscribers_manage.php:15
+#: themes/default/admin/subscribers/subscribers_manage.php:16
 msgid "Add Subscribers"
-msgstr ""
+msgstr "Добавить подписчиков"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:22
-#: ../themes/default/admin/subscribers/subscribers_manage.php:24
-#: ../themes/default/admin/subscribers/ajax/subscriber_del.php:12
-#: ../themes/default/admin/subscribers/ajax/subscriber_del.php:25
+#: themes/default/admin/subscribers/subscribers_manage.php:22
+#: themes/default/admin/subscribers/subscribers_manage.php:24
+#: themes/default/admin/subscribers/ajax/subscriber_del.php:12
+#: themes/default/admin/subscribers/ajax/subscriber_del.php:25
 msgid "Remove Subscribers"
-msgstr ""
+msgstr "Удалить подписчиков"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:30
-#: ../themes/default/admin/subscribers/subscribers_manage.php:32
+#: themes/default/admin/subscribers/subscribers_manage.php:30
+#: themes/default/admin/subscribers/subscribers_manage.php:32
 msgid "Export Subscribers"
-msgstr ""
+msgstr "Экспортировать подписчиков"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:64
+#: themes/default/admin/subscribers/subscribers_manage.php:64
 msgid "Active Subscribers"
-msgstr ""
+msgstr "Активные подписчики"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:72
+#: themes/default/admin/subscribers/subscribers_manage.php:72
 msgid "Unsubscribed"
-msgstr ""
+msgstr "Отписанные"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:85
+#: themes/default/admin/subscribers/subscribers_manage.php:85
 msgid "Belonging to Group"
-msgstr ""
+msgstr "Принадлежащие гуппе"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:93
+#: themes/default/admin/subscribers/subscribers_manage.php:93
 msgid "All Subscribers"
-msgstr ""
+msgstr "Все подписчики"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:118
-#: ../themes/default/admin/subscribers/subscribers_manage.php:181
+#: themes/default/admin/subscribers/subscribers_manage.php:118
+#: themes/default/admin/subscribers/subscribers_manage.php:181
 msgid "Search"
-msgstr ""
+msgstr "Поиск"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:122
+#: themes/default/admin/subscribers/subscribers_manage.php:122
 msgid "Find Subscribers where"
-msgstr ""
+msgstr "Найти подписчиков, где"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:130
+#: themes/default/admin/subscribers/subscribers_manage.php:130
 msgid "email"
-msgstr ""
+msgstr "E-mail"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:151
+#: themes/default/admin/subscribers/subscribers_manage.php:151
 msgid "time registered"
-msgstr ""
+msgstr "время регистрации"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:158
+#: themes/default/admin/subscribers/subscribers_manage.php:158
 msgid "time last updated"
-msgstr ""
+msgstr "время последнего обновления"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:173
+#: themes/default/admin/subscribers/subscribers_manage.php:173
 msgid "is like"
-msgstr ""
+msgstr "как"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:210
+#: themes/default/admin/subscribers/subscribers_manage.php:210
 msgid "Delete Checked Subscribers"
-msgstr ""
+msgstr "Удалить отмеченных подписчиков"
 
-#: ../themes/default/admin/subscribers/subscribers_manage.php:215
+#: themes/default/admin/subscribers/subscribers_manage.php:215
 msgid "Edit Checked"
-msgstr ""
+msgstr "Редактировать отмеченные"
 
-#: ../themes/default/admin/subscribers/ajax/rule.field.php:5
+#: themes/default/admin/subscribers/ajax/rule.field.php:5
 msgid "value must be a date"
-msgstr ""
+msgstr "значение должно быть датой"
 
-#: ../themes/default/admin/subscribers/ajax/rule.field.php:9
+#: themes/default/admin/subscribers/ajax/rule.field.php:9
 msgid "value must be a number"
-msgstr ""
+msgstr "значение должно быть числом"
 
-#: ../themes/default/admin/subscribers/ajax/rule.field.php:13
+#: themes/default/admin/subscribers/ajax/rule.field.php:13
 msgid "value must not be blank"
-msgstr ""
+msgstr "значение не должно быть пустым"
 
-#: ../themes/default/admin/subscribers/ajax/rule.field.php:23
+#: themes/default/admin/subscribers/ajax/rule.field.php:23
 msgid "Match subscribers where"
-msgstr ""
+msgstr "Найти подписчиков, где"
 
-#: ../themes/default/admin/subscribers/ajax/rule.field.php:39
+#: themes/default/admin/subscribers/ajax/rule.field.php:39
 msgid "Value(s)"
-msgstr ""
+msgstr "Занчение(я)"
 
-#: ../themes/default/admin/subscribers/ajax/rule.group.php:8
+#: themes/default/admin/subscribers/ajax/rule.group.php:8
 msgid "Include"
-msgstr ""
+msgstr "Включить"
 
-#: ../themes/default/admin/subscribers/ajax/rule.group.php:9
+#: themes/default/admin/subscribers/ajax/rule.group.php:9
 msgid "Exclude"
-msgstr ""
+msgstr "Исключить"
 
-#: ../themes/default/admin/subscribers/ajax/rule.group.php:13
-#, php-format
+#: themes/default/admin/subscribers/ajax/rule.group.php:13
 msgid "members in group %s."
-msgstr ""
+msgstr "участники группы %s."
 
-#: ../themes/default/admin/subscribers/ajax/subscriber_add.php:3
-#, php-format
+#: themes/default/admin/subscribers/ajax/subscriber_add.php:3
 msgid ""
 "Welcome to adding subscribers! You can add subscribers one-by-one here. If "
 "you would like to add subscribers in bulk, visit the %sSubscriber Import%s "
 "page."
 msgstr ""
+"Здесь Вы можете добавить подписчиков одного за другим. Если вы хотите "
+"добавить несколько подписчиков сразу, перейдите на страницу %sИмпорт "
+"подписчиков%s."
 
-#: ../themes/default/admin/subscribers/ajax/subscriber_add.php:15
-#: ../themes/default/admin/subscribers/ajax/subscriber_add.php:155
+#: themes/default/admin/subscribers/ajax/subscriber_add.php:15
+#: themes/default/admin/subscribers/ajax/subscriber_add.php:155
 msgid "Add Subscriber"
-msgstr ""
+msgstr "Добавить подписчика"
 
-#: ../themes/default/admin/subscribers/ajax/subscriber_add.php:151
-#: ../themes/default/admin/subscribers/ajax/subscriber_edit.php:143
+#: themes/default/admin/subscribers/ajax/subscriber_add.php:151
+#: themes/default/admin/subscribers/ajax/subscriber_edit.php:143
 msgid "Force (bypasses validation)"
-msgstr ""
+msgstr "Принудительно (пропустить проверку)"
 
-#: ../themes/default/admin/subscribers/ajax/subscriber_del.php:3
+#: themes/default/admin/subscribers/ajax/subscriber_del.php:3
 msgid ""
 "Enter email addresses of subscribers in the box below. Seperate emails with "
 "commas, spaces, or line breaks."
 msgstr ""
+"Введите адреса подписчиков в поле ниже. Разделяйте адреса с помощью запятых, "
+"пробелов или новой строки."
 
-#: ../themes/default/admin/subscribers/ajax/subscriber_del.php:16
+#: themes/default/admin/subscribers/ajax/subscriber_del.php:16
 msgid "Email Addresses:"
-msgstr ""
+msgstr "Электронный адрес:"
 
-#: ../themes/default/admin/subscribers/ajax/subscriber_del.php:20
+#: themes/default/admin/subscribers/ajax/subscriber_del.php:20
 msgid "Enter Emails..."
-msgstr ""
+msgstr "Введите адреса..."
 
-#: ../themes/default/admin/subscribers/ajax/subscriber_edit.php:7
+#: themes/default/admin/subscribers/ajax/subscriber_edit.php:7
 msgid "Edit Subscriber"
-msgstr ""
+msgstr "Редактировать подписчика"
 
-#: ../themes/default/admin/subscribers/ajax/subscriber_edit.php:148
+#: themes/default/admin/subscribers/ajax/subscriber_edit.php:148
 msgid "Update Subscriber"
-msgstr ""
+msgstr "Изменить подписчика"
 
-#: ../themes/default/inc/admin.footer.php:5
-#: ../themes/default/inc/user.footer.php:8
+#: themes/default/inc/admin.footer.php:5 themes/default/inc/user.footer.php:8
 msgid "Page fueled by poMMo mailing management software"
-msgstr ""
+msgstr "Работает на poMMo - система управления рассылками"
 
-#: ../themes/default/inc/admin.header.php:37
+#: themes/default/inc/admin.header.php:37
 msgid "Logout"
-msgstr ""
+msgstr "Выйти"
 
-#: ../themes/default/inc/admin.header.php:39
+#: themes/default/inc/admin.header.php:39
 msgid "Support"
-msgstr ""
+msgstr "Поддержка"
 
-#: ../themes/default/inc/admin.header.php:41
+#: themes/default/inc/admin.header.php:41
 msgid "Admin Page"
-msgstr ""
+msgstr "Страница администратора"
 
-#: ../themes/default/inc/admin.sidebar.php:31
+#: themes/default/inc/admin.sidebar.php:31
 msgid "Setup Form"
-msgstr ""
+msgstr "Настроить форму"
 
-#: ../themes/default/inc/admin.sidebar.php:40
+#: themes/default/inc/admin.sidebar.php:40
 msgid "Demonstration mode is ON."
-msgstr ""
+msgstr "Включен демо режим."
 
-#: ../themes/default/inc/admin.sidebar.php:43
+#: themes/default/inc/admin.sidebar.php:43
 msgid "Demonstration mode is OFF."
-msgstr ""
+msgstr "Выключен демо режим."
 
-#: ../themes/default/inc/ui.grid.php:8
+#: themes/default/inc/ui.grid.php:8
 msgid "Processing..."
-msgstr ""
+msgstr "Обработка..."
 
-#: ../themes/default/inc/ui.grid.php:9
+#: themes/default/inc/ui.grid.php:9
 msgid "Record(s)"
-msgstr ""
+msgstr "Запись(и)"
 
-#: ../themes/default/inc/ui.grid.php:9
+#: themes/default/inc/ui.grid.php:9
 msgid "Match(es)"
-msgstr ""
+msgstr "Совпадение(ия)"
 
-#: ../themes/default/subscribe/form.mini.php:17
-#: ../themes/default/subscribe/form.subscribe.php:26
-#: ../themes/default/subscribe/form.update.php:22
-#: ../themes/default/user/login.php:25
+#: themes/default/subscribe/form.mini.php:17
+#: themes/default/subscribe/form.subscribe.php:26
+#: themes/default/subscribe/form.update.php:22
+#: themes/default/user/login.php:25
 msgid "Your Email:"
-msgstr ""
+msgstr "Ваш e-mail:"
 
-#: ../themes/default/subscribe/form.mini.php:23
-#: ../themes/default/subscribe/form.subscribe.php:170
+#: themes/default/subscribe/form.mini.php:23
+#: themes/default/subscribe/form.subscribe.php:170
 msgid "Subscribe"
-msgstr ""
+msgstr "Подписаться"
 
-#: ../themes/default/subscribe/form.subscribe.php:5
+#: themes/default/subscribe/form.subscribe.php:5
 msgid "Join newsletter"
-msgstr ""
+msgstr "Присоединить информационный бюллетень"
 
-#: ../themes/default/subscribe/form.subscribe.php:97
-#: ../themes/default/subscribe/form.update.php:77
+#: themes/default/subscribe/form.subscribe.php:97
+#: themes/default/subscribe/form.update.php:77
 msgid "Choose Selection"
-msgstr ""
+msgstr "Выберите выделение"
 
-#: ../themes/default/subscribe/form.update.php:8
+#: themes/default/subscribe/form.update.php:8
 msgid "Your Information"
-msgstr ""
+msgstr "Ваши данные"
 
-#: ../themes/default/subscribe/form.update.php:30
+#: themes/default/subscribe/form.update.php:30
 msgid "New Email:"
-msgstr ""
+msgstr "Новый e-mail:"
 
-#: ../themes/default/subscribe/form.update.php:36
+#: themes/default/subscribe/form.update.php:36
 msgid "Verify New Email:"
-msgstr ""
+msgstr "Подтвердите новый e-mail:"
 
-#: ../themes/default/subscribe/form.update.php:107
+#: themes/default/subscribe/form.update.php:107
 msgid "Update Records"
-msgstr ""
+msgstr "Обновить записи"
 
-#: ../themes/default/support/support.lib.php:13
+#: themes/default/support/support.lib.php:13
 msgid "poMMo support v0.02"
-msgstr ""
+msgstr "поддержка poMMo v0.02"
 
-#: ../themes/default/support/support.lib.php:21
+#: themes/default/support/support.lib.php:21
 msgid "Clear Work Directory"
-msgstr ""
+msgstr "Отчистить рабочий каталог"
 
-#: ../themes/default/support/support.lib.php:26
+#: themes/default/support/support.lib.php:26
 msgid "Test Mailing Processor"
-msgstr ""
+msgstr "Проверить обработчик рассылки"
 
-#: ../themes/default/support/support.lib.php:31
+#: themes/default/support/support.lib.php:31
 msgid "Terminate Current Mailing"
-msgstr ""
+msgstr "Прекратить текущую рассылку"
 
-#: ../themes/default/support/support.lib.php:36
+#: themes/default/support/support.lib.php:36
 msgid "Test Max Runtime (takes 90 seconds)"
-msgstr ""
+msgstr "Максимальное время исполнения (занимает 90сек)"
 
-#: ../themes/default/support/support.lib.php:41
+#: themes/default/support/support.lib.php:41
 msgid "Reset Database (clears all subscribers, groups, fields)"
-msgstr ""
+msgstr "Очистить базу данных (удалит всех подписчиков, группы, поля)"
 
-#: ../themes/default/support/support.lib.php:47
+#: themes/default/support/support.lib.php:47
 msgid "Reset Subscribers (clears all susbcribers)"
-msgstr ""
+msgstr "Стереть подписчиков (удалит всех подписчиков)"
 
-#: ../themes/default/support/support.lib.php:53
+#: themes/default/support/support.lib.php:53
 msgid "Load Sample Data (resets database, loads sample data)"
-msgstr ""
+msgstr "Загрузить данные образца (очистит базу данных, загузит данные примера)"
 
-#: ../themes/default/support/support.lib.php:62
+#: themes/default/support/support.lib.php:62
 msgid "Are you sure you want to "
-msgstr ""
+msgstr "Вы уверены, что хотите"
 
-#: ../themes/default/support/support.lib.php:63
+#: themes/default/support/support.lib.php:63
 msgid "?\\nData will be lost permanently."
-msgstr ""
+msgstr "?\\nДанные будут потеряны безвозвратно."
 
-#: ../themes/default/support/support.php:7
+#: themes/default/support/support.php:7
 msgid "Support Page"
-msgstr ""
+msgstr "Страница поддержки"
 
-#: ../themes/default/support/support.php:9
+#: themes/default/support/support.php:9
 msgid "poMMo Support Library"
-msgstr ""
+msgstr "Библиотека поддержки poMMo"
 
-#: ../themes/default/support/support.php:13
-#, php-format
+#: themes/default/support/support.php:13
 msgid "poMMo version: %s + %s"
-msgstr ""
+msgstr "Весия poMMo: %s + %s"
 
-#: ../themes/default/support/support.php:17
+#: themes/default/support/support.php:17
 msgid "Coming to a theatre near you"
-msgstr ""
+msgstr "Скоро в театре рядом с вами"
 
-#: ../themes/default/support/support.php:19
+#: themes/default/support/support.php:19
 msgid "MY NOTES:"
-msgstr ""
+msgstr "МОИ ЗАМЕТКИ:"
 
-#: ../themes/default/support/support.php:24
+#: themes/default/support/support.php:24
 msgid "+ Enhanced support library"
-msgstr ""
+msgstr "Расширенная библиотека поддержки"
 
-#: ../themes/default/support/support.php:25
+#: themes/default/support/support.php:25
 msgid ""
 "+ PHPInfo()  (or specifically mysql, php, gettext, safemode, webserver, "
 "versions, etc.)"
 msgstr ""
+"+ PHPInfo() (или  конкретно mysql, php, gettext, safemode, веб-сервер, "
+"вресии, и др.)"
 
-#: ../themes/default/support/support.php:26
+#: themes/default/support/support.php:26
 msgid "+ Database dump (allow selection of tables.. provide a dump of them)"
-msgstr ""
+msgstr "+ Дамп базы данных (можно выбрать таблицы.. предоставить их дамп)"
 
-#: ../themes/default/support/support.php:27
+#: themes/default/support/support.php:27
 msgid "+ Link to README.HTML  +  local documentation"
-msgstr ""
+msgstr "+ Ссылка на README.HTML + локальную документацию"
 
-#: ../themes/default/support/support.php:28
+#: themes/default/support/support.php:28
 msgid "+ Link to WIKI documentation"
-msgstr ""
+msgstr "+ Ссылка на WIKI документацию"
 
-#: ../themes/default/support/support.php:29
+#: themes/default/support/support.php:29
 msgid "\t+ Make a user-contributed open WIKI documentation system"
 msgstr ""
+"\t+ Создать открытую созданную пользователями WIKI систему документации "
 
-#: ../themes/default/support/support.php:30
+#: themes/default/support/support.php:30
 msgid ""
 "\t+ When support page is clicked, show specific support topics for that page"
 msgstr ""
+"\t+ Когда выбранна страница поддержки, показывает определенную для этой "
+"страницы тему"
 
-#: ../themes/default/support/support.php:31
+#: themes/default/support/support.php:31
 msgid "+ Clear All Subscribers"
-msgstr ""
+msgstr "+ Удалить всех подписчиков"
 
-#: ../themes/default/support/support.php:32
+#: themes/default/support/support.php:32
 msgid "+ Reset Database"
-msgstr ""
+msgstr "+ Сбросить базу данных"
 
-#: ../themes/default/support/support.php:33
+#: themes/default/support/support.php:33
 msgid "+ Backup Database"
-msgstr ""
+msgstr "+ Сохранить резервную копию базы данных"
 
-#: ../themes/default/support/support.php:34
+#: themes/default/support/support.php:34
 msgid "+ Ensure max run time is 30 seconds if safe mode is enabled"
 msgstr ""
+"+ Убедитесь, что максимальное время работы 30 сек, если включен безопасный "
+"режим"
 
-#: ../themes/default/user/activate.php:7
+#: themes/default/user/activate.php:7
 msgid "Update Activation"
-msgstr ""
+msgstr "Обновить активацию"
 
-#: ../themes/default/user/activate.php:10
+#: themes/default/user/activate.php:10
 msgid ""
 "We require that you verify your email address before unsubscribing or "
 "updating your records. This extra step is necessary to maintain your "
 "privacy, and to protect you against fraudulent activity."
 msgstr ""
+"Мы просим, чтобы вы проверили ваш адрес электронной почты, перед отказа от "
+"рассылки или обновлением ваших данных. Этот дополнительный шаг необходим для "
+"поддержания вашей конфиденциальности, и для защиты от мошенничества."
 
-#: ../themes/default/user/activate.php:24
-#, php-format
+#: themes/default/user/activate.php:24
 msgid ""
 "An activation email has recently been sent to %s. Please check your inbox."
 msgstr ""
+"Письмо с кодом активации недавно было отправлено на %s. Пожалуйста, "
+"проверьте свой почтовый ящик."
 
-#: ../themes/default/user/confirm.php:7
+#: themes/default/user/confirm.php:7
 msgid "Subscriber Confirmation"
-msgstr ""
+msgstr "Подтверждение для подписчика"
 
-#: ../themes/default/user/login.php:7
+#: themes/default/user/login.php:7
 msgid "Subscriber Login"
-msgstr ""
+msgstr "Вход для подписчика"
 
-#: ../themes/default/user/login.php:9
+#: themes/default/user/login.php:9
 msgid ""
 "In order to check your subscription status, update your information, or "
 "unsubscribe, you must enter your email address in the field below."
 msgstr ""
+"Для того чтобы проверить статус подписки, обновить двнные, или отказаться от "
+"подписки, необходимо ввести свой адрес электронной почты в поле ниже."
 
-#: ../themes/default/user/pending.php:7
+#: themes/default/user/pending.php:7
 msgid "Pending Changes"
-msgstr ""
+msgstr "Ожидающие изменения"
 
-#: ../themes/default/user/pending.php:32
+#: themes/default/user/pending.php:32
 msgid "SEND another confirmation email"
-msgstr ""
+msgstr "ОТПРАВИТЬ еще одно письмо подтверждения"
 
-#: ../themes/default/user/pending.php:34
+#: themes/default/user/pending.php:34
 msgid "CANCEL your pending request"
-msgstr ""
+msgstr "ОТМЕНИТЬ ваш ожидающий запрос"
 
-#: ../themes/default/user/process.php:7
+#: themes/default/user/process.php:7
 msgid "Subscription Review"
-msgstr ""
+msgstr "Обзор подписки"
 
-#: ../themes/default/user/process.php:17
+#: themes/default/user/process.php:17
 msgid "Back to Subscription Form"
-msgstr ""
+msgstr "Вернуться к форме подписки"
 
-#: ../themes/default/user/process.php:43
-#, php-format
+#: themes/default/user/process.php:43
 msgid "%sUpdate your records%s"
-msgstr ""
+msgstr "%sОбновить ваши данные%s"
 
-#: ../themes/default/user/update.php:22
+#: themes/default/user/update.php:22
 msgid "Subscriber Update"
-msgstr ""
+msgstr "Обновление подписчика"
 
-#: ../themes/default/user/update.php:37
+#: themes/default/user/update.php:37
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Отписать"
 
-#: ../themes/default/user/update.php:39
+#: themes/default/user/update.php:39
 msgid "Comments"
-msgstr ""
+msgstr "Комментарии"
 
-#: ../themes/default/user/update.php:56
+#: themes/default/user/update.php:56
 msgid "Click to unsubscribe"
-msgstr ""
+msgstr "Нажмите, чтобы отписать"
 
-#: ../themes/default/user/update.php:72
+#: themes/default/user/update.php:72
 msgid "Really unsubscribe?"
-msgstr ""
+msgstr "Действительно отписать?"
 
-#: ../themes/shared/datepicker/datepicker.php:23
+#: themes/shared/datepicker/datepicker.php:23
 msgid "January"
-msgstr ""
+msgstr "Январь"
 
-#: ../themes/shared/datepicker/datepicker.php:23
+#: themes/shared/datepicker/datepicker.php:23
 msgid "Febuary"
-msgstr ""
+msgstr "Февраль"
 
-#: ../themes/shared/datepicker/datepicker.php:23
+#: themes/shared/datepicker/datepicker.php:23
 msgid "March"
-msgstr ""
+msgstr "Март"
 
-#: ../themes/shared/datepicker/datepicker.php:23
+#: themes/shared/datepicker/datepicker.php:23
 msgid "April"
-msgstr ""
+msgstr "Апрель"
 
-#: ../themes/shared/datepicker/datepicker.php:23
+#: themes/shared/datepicker/datepicker.php:23
 msgid "May"
-msgstr ""
+msgstr "Май"
 
-#: ../themes/shared/datepicker/datepicker.php:23
+#: themes/shared/datepicker/datepicker.php:23
 msgid "June"
-msgstr ""
+msgstr "Июнь"
 
-#: ../themes/shared/datepicker/datepicker.php:23
+#: themes/shared/datepicker/datepicker.php:23
 msgid "July"
-msgstr ""
+msgstr "Июль"
 
-#: ../themes/shared/datepicker/datepicker.php:23
+#: themes/shared/datepicker/datepicker.php:23
 msgid "August"
-msgstr ""
+msgstr "Август"
 
-#: ../themes/shared/datepicker/datepicker.php:23
+#: themes/shared/datepicker/datepicker.php:23
 msgid "September"
-msgstr ""
+msgstr "Сентябрь"
 
-#: ../themes/shared/datepicker/datepicker.php:23
+#: themes/shared/datepicker/datepicker.php:23
 msgid "October"
-msgstr ""
+msgstr "Октябрь"
 
-#: ../themes/shared/datepicker/datepicker.php:23
+#: themes/shared/datepicker/datepicker.php:23
 msgid "November"
-msgstr ""
+msgstr "Ноябрь"
 
-#: ../themes/shared/datepicker/datepicker.php:23
+#: themes/shared/datepicker/datepicker.php:23
 msgid "December"
-msgstr ""
+msgstr "Декабрь"
 
-#: ../themes/shared/datepicker/datepicker.php:24
+#: themes/shared/datepicker/datepicker.php:24
 msgid "Sunday"
-msgstr ""
+msgstr "Воскресенье"
 
-#: ../themes/shared/datepicker/datepicker.php:24
+#: themes/shared/datepicker/datepicker.php:24
 msgid "Monday"
-msgstr ""
+msgstr "Понедельник"
 
-#: ../themes/shared/datepicker/datepicker.php:24
+#: themes/shared/datepicker/datepicker.php:24
 msgid "Tuesday"
-msgstr ""
+msgstr "Вториник"
 
-#: ../themes/shared/datepicker/datepicker.php:24
+#: themes/shared/datepicker/datepicker.php:24
 msgid "Wednesday"
-msgstr ""
+msgstr "Среда"
 
-#: ../themes/shared/datepicker/datepicker.php:24
+#: themes/shared/datepicker/datepicker.php:24
 msgid "Thursday"
-msgstr ""
+msgstr "Четверг"
 
-#: ../themes/shared/datepicker/datepicker.php:24
+#: themes/shared/datepicker/datepicker.php:24
 msgid "Friday"
-msgstr ""
+msgstr "Пятница"
 
-#: ../themes/shared/datepicker/datepicker.php:24
+#: themes/shared/datepicker/datepicker.php:24
 msgid "Saturday"
-msgstr ""
+msgstr "Суббота"
 
-#: ../themes/shared/datepicker/datepicker.php:25
+#: themes/shared/datepicker/datepicker.php:25
 msgid "Prev"
-msgstr ""
+msgstr "Пред."
 
-#: ../themes/shared/datepicker/datepicker.php:25
+#: themes/shared/datepicker/datepicker.php:25
 msgid "Next"
-msgstr ""
+msgstr "След."
 
-#: ../themes/shared/datepicker/datepicker.php:25
+#: themes/shared/datepicker/datepicker.php:25
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
-#: ../themes/shared/datepicker/datepicker.php:381
+#: themes/shared/datepicker/datepicker.php:381
 msgid "Choose Date"
-msgstr ""
+msgstr "Выбрать дату"
