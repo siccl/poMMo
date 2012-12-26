@@ -230,9 +230,9 @@ if ($this->tally > 0)
 						echo "'".$this->escape($f['name'])."',";
 					}
 				?>
-				'<?php echo $this->escape('Registered'); ?>',
-				'<?php echo $this->escape('Updated'); ?>',
-				'<?php echo $this->escape('IP Address'); ?>'
+				'<?php echo $this->escape(_('Registered')); ?>',
+				'<?php echo $this->escape(_('Updated')); ?>',
+				'<?php echo $this->escape(_('IP Address')); ?>'
 			],
 			colModel: [
 				{name: 'id', index: 'id', hidden: true, width: 1},
