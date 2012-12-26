@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: poMMo Soonic\n"
-"POT-Creation-Date: 2012-12-27 00:55+0400\n"
-"PO-Revision-Date: 2012-12-27 00:55+0400\n"
+"POT-Creation-Date: 2012-12-27 01:27+0400\n"
+"PO-Revision-Date: 2012-12-27 01:27+0400\n"
 "Last-Translator: Dmitriy S. Sinyavskiy <dreel@bk.ru>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -615,6 +615,7 @@ msgstr ""
 #: ../themes/default/admin/mailings/mailing/ajax.personalize.php:34
 #: ../themes/default/admin/subscribers/import_csv.php:57
 #: ../themes/default/admin/subscribers/subscribers_manage.php:165
+#: ../themes/default/admin/subscribers/subscribers_manage.php:235
 msgid "IP Address"
 msgstr ""
 
@@ -1461,6 +1462,7 @@ msgid "Tracking (ID)"
 msgstr ""
 
 #: ../themes/default/admin/mailings/mailing/ajax.personalize.php:35
+#: ../themes/default/admin/subscribers/subscribers_manage.php:233
 msgid "Registered"
 msgstr ""
 
@@ -2833,6 +2835,10 @@ msgstr ""
 
 #: ../themes/default/admin/subscribers/subscribers_manage.php:215
 msgid "Edit Checked"
+msgstr ""
+
+#: ../themes/default/admin/subscribers/subscribers_manage.php:234
+msgid "Updated"
 msgstr ""
 
 #: ../themes/default/admin/subscribers/ajax/rule.field.php:5
