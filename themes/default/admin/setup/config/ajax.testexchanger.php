@@ -1,8 +1,8 @@
 <p>
 <?php
-	echo sprintf(_('A test message will be sent to the supplied recipient. If
-			you receive it, poMMo can use the %s exchanger. Remember to check
-			your SPAM folder too.'), '<strong>'.$this->exchanger.'</strong>');
+	echo sprintf(_('A test message will be sent to the supplied recipient. If'
+			.' you receive it, poMMo can use the %s exchanger. Remember to check'
+			.' your SPAM folder too.'), '<strong>'.$this->exchanger.'</strong>');
 ?>
 </p>
 

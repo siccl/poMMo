@@ -111,7 +111,7 @@ foreach($mailings as $o)
 	//	If the mailing is not beeing tracked show "not tracked" instead of 0
 	if (0 == $o['track'])
 	{
-		$o['hits'] = "Not tracked";
+		$o['hits'] = Pommo::_T('Not tracked');
 	}
 
 	$row = array(

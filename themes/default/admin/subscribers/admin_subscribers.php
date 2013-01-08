@@ -13,9 +13,9 @@ include $this->template_dir.'/inc/admin.header.php';
 					?>images/icons/examine.png" class="navimage" />
 			<?php echo _('Manage'); ?>
 		</a>
-		- <?php echo _('subscribers. See an overview of your current and pending
-				subscribers. You can add, delete, and edit subscribers from
-				here.'); ?>
+		- <?php echo _('subscribers. See an overview of your current and pending'
+			.' subscribers. You can add, delete, and edit subscribers from'
+			.' here.'); ?>
 	</div>
 
 	<div>
@@ -24,8 +24,8 @@ include $this->template_dir.'/inc/admin.header.php';
 					?>images/icons/import.png" class="navimage" />
 			<?php echo _('Import'); ?>
 		</a>
-		- <?php echo _('Subscribers. You can import large amounts of subscribers
-				using files stored on your computer.'); ?>
+		- <?php echo _('Subscribers. You can import large amounts of subscribers'
+			.' using files stored on your computer.'); ?>
 	</div>
 
 	<div>
@@ -34,9 +34,9 @@ include $this->template_dir.'/inc/admin.header.php';
 					?>images/icons/groups.png" class="navimage" />
 			<?php echo _('Groups'); ?>
 		</a>
-		- <?php echo _('Manage "mailing groups" from this area. Mailing groups
-				allow you to mail subsets of your subscribers, rather than just
-				the entire list.'); ?>
+		- <?php echo _('Manage "mailing groups" from this area. Mailing groups'
+			.' allow you to mail subsets of your subscribers, rather than just'
+			.' the entire list.'); ?>
 	</div>
 </div>
 

@@ -43,8 +43,8 @@ $view = new Pommo_Template();
 
 if (Pommo_Mailing::isCurrent())
 {
-	Pommo::kill(sprintf(Pommo::_T('A Mailing is currently processing. Visit the
-			%sStatus%s page to check its progress.'),
+	Pommo::kill(sprintf(Pommo::_T('A Mailing is currently processing. Visit the'
+			.' %sStatus%s page to check its progress.'),
 			'<a href="mailing_status.php">','</a>'));
 }
 

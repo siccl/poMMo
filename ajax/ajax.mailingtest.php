@@ -141,8 +141,8 @@ else
 
 if (Pommo::$_config['demo_mode'] == 'on')
 {
-	$logger->addMsg(sprintf(_('%sDemonstration Mode%s is on -- no Emails will actually
-			be sent. This is good for testing settings.'),
+	$logger->addMsg(sprintf(_('%sDemonstration Mode%s is on -- no Emails will actually'
+			.' be sent. This is good for testing settings.'),
 			'<a href="'.Pommo::$_baseUrl.'setup_configure.php#mailings">',
 			'</a>'));
 }

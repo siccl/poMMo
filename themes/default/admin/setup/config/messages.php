@@ -1,8 +1,8 @@
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="json">
 	<fieldset>
 		<legend><?php echo _('notifications'); ?></legend>
-		<?php echo _('Administrators can be sent a notification of subscription
-				list changes.'); ?>
+		<?php echo _('Administrators can be sent a notification of subscription'
+			.' list changes.'); ?>
 
 		<div>
 			<label for="notify_email">
@@ -11,9 +11,9 @@
 			<input value="<?php echo $this->escape($this->notify_email); ?>"
 					type="text" name="notify_email" />
 			<span class="notes">
-				<?php echo _('(Notifications will be sent to the above
-						address(es). Multiple addresses can be entered --
-						seperate with a comma.)'); ?>
+				<?php echo _('(Notifications will be sent to the above'
+					.' address(es). Multiple addresses can be entered --'
+					.' seperate with a comma.)'); ?>
 			</span>
 		</div>
 
@@ -22,8 +22,8 @@
 			<input value="<?php echo $this->escape($this->notify_subject); ?>"
 					type="text" name="notify_subject" />
 			<span class="notes">
-				<?php echo _('(The subject of Notification Mails will begin with
-						this)'); ?>
+				<?php echo _('(The subject of Notification Mails will begin with'
+					.' this)'); ?>
 			</span>
 		</div>
 
@@ -152,9 +152,9 @@
 	<fieldset>
 		<legend><?php echo _('Messages'); ?></legend>
 
-		<?php echo _('Customize the messages sent to your users when they
-				subscribe, unsubscribe, attempt to subscribe, or request to
-				update their records.'); ?>
+		<?php echo _('Customize the messages sent to your users when they'
+			.' subscribe, unsubscribe, attempt to subscribe, or request to'
+			.' update their records.'); ?>
 
 		<h2><?php echo _('Subscription'); ?></h2>
 

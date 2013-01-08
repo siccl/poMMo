@@ -54,9 +54,9 @@ $view->assign(
 
 if($lang)
 {
-	$logger->addErr(Pommo::_T('You have changed the language for this session.
-			To make this the default language, you must update your config.php
-			file.'));
+	$logger->addErr(Pommo::_T('You have changed the language for this session.'
+			.' To make this the default language, you must update your config.php'
+			.' file.'));
 }
 
 $view->assign('lang',(Pommo::$_slanguage) ? Pommo::$_slanguage :

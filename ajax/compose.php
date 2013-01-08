@@ -41,8 +41,8 @@ $view = new Pommo_Template();
 
 if (Pommo_Mailing::isCurrent())
 {
-	Pommo::kill(sprintf(Pommo::_T('A Mailing is currently processing. Visit the
-			%sStatus%s page to check its progress.'),
+	Pommo::kill(sprintf(Pommo::_T('A Mailing is currently processing. Visit the'
+			.' %sStatus%s page to check its progress.'),
 			'<a href="mailing_status.php">',
 			'</a>'));
 }
@@ -83,11 +83,7 @@ $state = Pommo_Api::stateInit('mailing',array(
 ),
 $_POST);
 
-// We want more information about the attachments
-$attachments = Pommo_Api::getAttachmentsWithNames($state['attachments']);
-
 $view->assign($state);
-$view->assign('attachmentsDetails', $attachments);
 
 // assign language (for wysiwyg)
 $view->assign('lang',(Pommo::$_slanguage) ? Pommo::$_slanguage : Pommo::$_language);

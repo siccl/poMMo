@@ -9,8 +9,8 @@
         <img src="<?php echo($this->url['theme']['shared']); ?>images/icons/settings.png" alt="settings icon" 
              class="navimage" />
         <?php echo _('Configure') ?>
-    </a> - <?php echo _('Set your mailing list name, its default behaviour, 
-             and the administrator\'s information.') ?>
+    </a> - <?php echo _('Set your mailing list name, its default behaviour,'
+			.' and the administrator\'s information.') ?>
 </div>
 
 <div>

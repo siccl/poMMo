@@ -110,8 +110,8 @@ class Pommo_Template
 			if (!is_file($this->_themeDir . 'default/' . $resource_name))
 			{
 				// requested template file does not exist in "default" theme, die.
-				Pommo :: kill(sprintf(Pommo::_T('Template file (%s) not found in
-						default or current theme'), $resource_name));
+				Pommo :: kill(sprintf(Pommo::_T('Template file (%s) not found in'
+						.' default or current theme'), $resource_name));
 			}
 			else
 			{

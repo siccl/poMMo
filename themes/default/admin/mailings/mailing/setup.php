@@ -51,11 +51,11 @@
 			?>
 		</select>
 
-		<span class="notes"><?php echo _('(Select who should receive the mailing.
-				Control click ( or command click on the Mac ) to select multiple
-				groups. Note: If a subscriber is in more than one group they will
-				only receive one email and NOT one for each group that they\'re
-				in.)'); ?></span>
+		<span class="notes"><?php echo _('(Select who should receive the mailing.'
+			.' Control click ( or command click on the Mac ) to select multiple'
+			.' groups. Note: If a subscriber is in more than one group they will'
+			.' only receive one email and NOT one for each group that they\'re'
+			.' in.)'); ?></span>
 	</div>
 
 	<div>

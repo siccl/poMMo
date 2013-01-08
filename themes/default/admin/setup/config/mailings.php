@@ -80,9 +80,9 @@
 		?> /> <?php echo _('off'); ?>
 		<span class="notes">
 			<?php
-				echo sprintf(_('(When on, the public can view past mailings at
-						this %sURL%s)'),
-						'<a href="'.$this->url['base'].'mailings.php">', '</a>');
+				echo sprintf(_('(When on, the public can view past mailings at'
+					.' this %sURL%s)'),
+					'<a href="'.$this->url['base'].'mailings.php">', '</a>');
 			?>
 		</span>
 	</div>
@@ -94,8 +94,8 @@
 			<?php echo _('Set mailing throttle values'); ?>
 		</a>
 		<span class="notes">
-			<?php echo _('(controls mails per second, bytes per second, and
-					domain limits)'); ?>
+			<?php echo _('(controls mails per second, bytes per second, and'
+				.' domain limits)'); ?>
 		</span>
 		<br clear="left" />
 	</div>
@@ -188,8 +188,8 @@
 		<input value="<?php echo $this->escape($this->maxRuntime); ?>" size="4"
 				type="text" name="maxRuntime" maxlength="5" />
 		<span class="notes">
-			<?php echo _('(Seconds a processing script runs for. Default: 80,
-					Minimum: 15)'); ?>
+			<?php echo _('(Seconds a processing script runs for. Default: 80,'
+				.' Minimum: 15)'); ?>
 		</span>
 	</div>
 

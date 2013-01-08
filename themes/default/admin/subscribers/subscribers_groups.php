@@ -12,11 +12,11 @@ include $this->template_dir.'/inc/admin.header.php';
 	<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/groups.png"
 			class="navimage right" alt="groups icon" />
 	<?php
-		echo sprintf(_('Subscriber Groups allow you to mail subsets of subscribers
-				instead of the entire list. Groups are defined by customizable
-				matching rules, and members are automatically assigned based on
-				their %ssubscriber field%s values.'),
-				'<a href="'.$this->url['base'].'setup_fields.php">', '</a>');
+		echo sprintf(_('Subscriber Groups allow you to mail subsets of subscribers'
+			.' instead of the entire list. Groups are defined by customizable'
+			.' matching rules, and members are automatically assigned based on'
+			.' their %ssubscriber field%s values.'),
+			'<a href="'.$this->url['base'].'setup_fields.php">', '</a>');
 	?>
 </p>
 

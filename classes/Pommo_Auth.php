@@ -53,8 +53,8 @@ class Pommo_Auth
 
 		if ($p['requiredLevel'] > $this->_permissionLevel)
 		{
-			Pommo::kill(sprintf(Pommo::_T('Denied access. You must %slogin%s to
-					access this page...'), '<a href="'.Pommo::$_baseUrl.
+			Pommo::kill(sprintf(Pommo::_T('Denied access. You must %slogin%s to'
+					.' access this page...'), '<a href="'.Pommo::$_baseUrl.
 					'index.php?referer='.$_SERVER['PHP_SELF'].'">', '</a>'));
 		}
 

@@ -14,9 +14,9 @@ include $this->template_dir.'/inc/admin.header.php';
 				alt="form icon" class="navimage" />
 		<?php echo _('Default Subscription Form'); ?>
 	</a>
-	- <?php echo _('Preview the default subscription form. Its look and feel can
-			be adjusted through the theme template
-			([theme]/user/subscribe.php).'); ?>
+	- <?php echo _('Preview the default subscription form. Its look and feel can'
+			.' be adjusted through the theme template'
+			.' ([theme]/user/subscribe.php).'); ?>
 </div>
 
 <div>
@@ -25,8 +25,8 @@ include $this->template_dir.'/inc/admin.header.php';
 				alt="embed icon" class="navimage" />
 		<?php echo _('Embedded Subscription From'); ?>
 	</a>
-	- <?php echo _('Preview subscription forms that you can embed into an area
-			of an existing webpage.'); ?>
+	- <?php echo _('Preview subscription forms that you can embed into an area'
+			.' of an existing webpage.'); ?>
 </div>
 
 <div>
@@ -35,8 +35,8 @@ include $this->template_dir.'/inc/admin.header.php';
 				alt="plain icon" class="navimage" />
 		<?php echo _('HTML Subscription Form'); ?>
 	</a>
-	- <?php echo _('Generate a plain HTML subscription form that you can
-			customize to fit your site.'); ?>
+	- <?php echo _('Generate a plain HTML subscription form that you can'
+			.' customize to fit your site.'); ?>
 </div>
 
 </div>
