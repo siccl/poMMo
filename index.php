@@ -37,17 +37,23 @@ $logger = Pommo::$_logger;
 require_once(Pommo::$_baseDir.'classes/Pommo_Template.php');
 $view = new Pommo_Template();
 
+$fatal_error = null;
 // Check we have the mysql module installed
 if (!extension_loaded('mysql')) {
     $fatal_error[] = "Php mysql module is not installed.";
-    $view->assign('errors', $fatal_error);
-    $view->display('message');
-    exit();
+}
+
+// Check if module is installed
+if (!extension_loaded('gettext')) {
+    $fatal_error[] = "Php gettext module is not installed.";
 }
 
 //Check write permission to the cache directory
-if (!is_writable (dirname(__FILE__).'/cache')) {
+if (!is_writable(dirname(__FILE__).'/cache')) {
     $fatal_error[] = "The cache directory needs to be writable";
+}
+
+if ($fatal_error) {
     $view->assign('errors', $fatal_error);
     $view->display('message');
     exit();
