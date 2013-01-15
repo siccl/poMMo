@@ -67,7 +67,7 @@ class Pommo_Mailing
 	// accepts a mailing template (assoc array)
 	// accepts a flag (bool) to designate return of current mailing type
 	// return a mailing object (array)
-	function makeDB(&$row)
+	public static function makeDB(&$row)
 	{
 		$in = @array(
 		'id' => $row['mailing_id'],
@@ -180,7 +180,7 @@ class Pommo_Mailing
 	//   limit (int) limits # mailings returned
 	//   offset (int) the SQL offset to start at
 	// returns an array of mailings. Array key(s) correlates to mailing ID.
-	function get($p = array())
+	public static function get($p = array())
 	{
 		$defaults = array('active' => false, 'noBody' => false, 'id' => null,
 				'code' => null, 'sort' => null, 'order' => null, 'limit' => null,
@@ -441,7 +441,7 @@ class Pommo_Mailing
 
 	// gets the number of mailings
 	// returns mailing tally (int)
-	function tally() {
+	public static function tally() {
 		$dbo =& Pommo::$_dbo;
 
 		$query = "

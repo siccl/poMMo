@@ -154,7 +154,7 @@ class Pommo_Type {
 	 *  current_status	(enum)		'started', 'stopped' (default)
 	 */
 
-	function mailing()
+	public static function mailing()
 	{
 		return array(
 			'id' => null,
@@ -180,7 +180,7 @@ class Pommo_Type {
 		);
 	}
 
-	function &mailingCurrent()
+	public static function &mailingCurrent()
 	{
 		$o = Pommo_Type::mailing();
 		$o['touched'] = $o['current_id'] = $o['command'] = $o['serial']
