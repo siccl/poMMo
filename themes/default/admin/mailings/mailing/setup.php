@@ -17,7 +17,7 @@
 			<span class="required"><?php echo _('Subject:'); ?></span>
 		</label>
 		<input value="<?php echo $this->escape($this->subject); ?>"
-				type="text" name="subject" />
+				type="text" name="subject" maxlength="60" />
 		<span class="notes"><?php echo _('(maximum of 60 characters)'); ?></span>
 	</div>
 
