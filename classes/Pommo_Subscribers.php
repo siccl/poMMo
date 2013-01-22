@@ -92,7 +92,7 @@ class Pommo_Subscribers
 	// accepts a subscriber object (array)
 	// returns true if subscriber ($in) is valid, false if not
 	// NOTE: has the magic functionality of converting english status to bool equiv.
-	function validate(&$in) {
+	public static function validate(&$in) {
 		$logger = Pommo::$_logger;
 
 		$invalid = array();
@@ -390,7 +390,7 @@ class Pommo_Subscribers
 
 	// TODO -> potentially use the REPLACE INTO of this function
 	//  as a means for UPDATE?
-	function add($in, $id = null)
+	public static function add($in, $id = null)
 	{
 		$dbo = Pommo::$_dbo;
 

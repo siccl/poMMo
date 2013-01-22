@@ -76,7 +76,7 @@ class Pommo_Helper
 	// check an email. Function lifted from Monte's SmartyValidate class for consistency.
 	// accepts an email address (str)
 	// returns email legitimacy (bool)
-	function isEmail($_address) {
+	public static function isEmail($_address) {
 		return (!(preg_match('!@.*@|\.\.|\,|\;!', $_address) || !preg_match('!^.+\@(\[?)[a-zA-Z0-9\.\-]+\.([a-zA-Z]{2,6}|[0-9]{1,3})(\]?)$!', $_address))) ? true : false;
 	}
 
@@ -113,7 +113,7 @@ class Pommo_Helper
 	// accepts a single email (str) or array of emails
 	//  accepts a flag to include unsubcribed subscribers
 	// returns an array of duplicate found emails. FALSE if no dupes were found.
-	function isDupe(&$in,$includeUnsubscribed = false)
+	public static function isDupe(&$in,$includeUnsubscribed = false)
 	{
 		$dbo = Pommo::$_dbo;
 

@@ -2,7 +2,7 @@
 /**
  *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  *  released originally under GPLV2
- * 
+ *
  *  This file is part of poMMo.
  *
  *  poMMo is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  *  This fork is from https://github.com/soonick/poMMo
  *  Please see docs/contribs for Contributors
  *
@@ -39,7 +39,7 @@ $dbo 	= Pommo::$_dbo;
 require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
 $view = new Pommo_Template();
 
-// Maximum File Size (in MB) 
+// Maximum File Size (in MB)
 $max_file_size = 2;
 $view->assign('maxSize', $max_file_size * 1024 * 1024);
 
@@ -59,18 +59,18 @@ if (isset($_POST['submit']))
 	elseif (!empty($_POST['box']))
 	{
 		$str = &$_POST['box'];
-		
+
 		//	wrap $c as a file stream -- requires PHP 4.3.2
 		//  for early versions investigate using tmpfile() -- efficient?
 		if (!stream_wrapper_register('pommoCSV', 'Pommo_Csv_Stream'))
 		{
 			Pommo::kill('Failed to register pommoCSV');
 		}
-		$fp = fopen('pommoCSV://str', 'r+'); 
-		
+		$fp = fopen('pommoCSV://str', 'r+');
+
 		$box = true;
 	}
-	
+
 	if (is_resource($fp))
 	{
 		if ($_POST['type'] == 'csv') // csv data, store first 10 for preview
@@ -87,7 +87,7 @@ if (isset($_POST['submit']))
 				}
 				$i++;
 			}
-			
+
 			// save file for access after assignments
 			if ($box)
 			{
@@ -97,13 +97,13 @@ if (isset($_POST['submit']))
 					Pommo::kill('Could not write to temp CSV file ('.
 							Pommo::$_workDir.'/import.csv)');
 				}
-				
+
 				if (fwrite($handle, $_POST['box']) === FALSE)
 				{
 					Pommo::kill('Could not write to temp CSV file ('.
 							Pommo::$_workDir.'/import.csv)');
 				}
-				
+
 				 fclose($handle);
 			}
 			else
@@ -115,7 +115,7 @@ if (isset($_POST['submit']))
 							Pommo::$_workDir.'/import.csv)');
 				}
 			}
-			
+
 			Pommo::set(array('preview' => $a));
 			Pommo::redirect('import_csv.php'.(
 				isset($_REQUEST['excludeUnsubscribed']) ?
@@ -140,7 +140,7 @@ if (isset($_POST['submit']))
 			//	Removes from the array E-mails that are already on the database
 			$includeUnsubscribed = isset($_REQUEST['excludeUnsubscribed']) ?
 					false : true;
-			$dupes = &Pommo_Helper::isDupe($a, $includeUnsubscribed);
+			$dupes = Pommo_Helper::isDupe($a, $includeUnsubscribed);
 
 			if (!$dupes)
 			{
@@ -158,4 +158,3 @@ if (isset($_POST['submit']))
 }
 
 $view->display('admin/subscribers/subscribers_import');
-

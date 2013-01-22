@@ -397,7 +397,7 @@ class Pommo
 	 *
 	 *	@return	mixed	Saved value
 	 */
-	function set($value)
+	public static function set($value)
 	{
 		if (!is_array($value))
 		{
@@ -418,7 +418,7 @@ class Pommo
 	 *
 	 *	@return	mixed	value
 	 */
-	function get($name = FALSE)
+	public static function get($name = FALSE)
 	{
 		if ($name)
 		{
@@ -439,7 +439,7 @@ class Pommo
 	 *
 	 *	@return
 	 */
-	function redirect($url, $msg = NULL, $kill = true)
+	public static function redirect($url, $msg = NULL, $kill = true)
 	{
 		// adds http & baseURL if they aren't already provided...
 		//	allows code shortcuts ;)
