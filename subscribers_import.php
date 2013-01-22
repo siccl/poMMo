@@ -124,18 +124,17 @@ if (isset($_POST['submit']))
 		}
 		else
 		{
-			//	Saves all parsed E-mails in an array
-			$a = array();
-			while (($data = fgetcsv($fp, 2048, ',', '"')) !== FALSE)
-			{
-				foreach ($data as $email)
-				{
-					if (Pommo_Helper::isEmail($email))
-					{
-						array_push($a, $email);
-					}
-				}
-			}
+            //	Saves all parsed E-mails in an array
+            $a = array();
+            while (($data = fgetcsv($fp, 2048, ',', '"')) !== false) {
+                foreach ($data as $email) {
+                    if (Pommo_Helper::isEmail($email)) {
+                        $email = strtolower($email);
+                        $a[$email] = $email;
+                    }
+                }
+            }
+
 
 			//	Removes from the array E-mails that are already on the database
 			$includeUnsubscribed = isset($_REQUEST['excludeUnsubscribed']) ?
