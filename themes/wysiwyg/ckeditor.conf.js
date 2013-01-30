@@ -12,7 +12,7 @@ CKEDITOR.editorConfig = function( config )
 	config.docType = '' ;
 	config.baseHref = '' ;
 	    
-	config.extraPlugins = 'tableresize';
+	config.extraPlugins = '';
 	    
 	config.height = 300; // Make the default height a little bigger
 	config.resize_dir = 'vertical';
@@ -22,10 +22,10 @@ CKEDITOR.editorConfig = function( config )
 		['Undo','Redo','-','Find','Replace','-','SelectAll'],
 		['SpecialChar','Rule'],
 		['Scayt','-','ShowBlocks'],
+		['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
 		'/',
 		['Bold','Italic','Underline','Strike','-','Subscript','Superscript','RemoveFormat'],
 		['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
-		['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
 		['Link','Unlink','Anchor'],
 		['Image','Table'],
 		'/',

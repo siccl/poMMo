@@ -17,7 +17,7 @@ body {
 	color: #7E7E7E;
 	
 	/* remove for a liquid layout  */
-	width: 780px;
+	width: 880px;
 }
 
 #content {
@@ -279,6 +279,13 @@ select.pvInvalid {
 	border: 1px solid red;
 }
 
+/* WYSIWYG Styling */
+#ck_mailing {
+	background-color: white;
+	border: 1px dashed orange;
+	min-height: 50px;
+	color: black;
+}
 
 /*******************/
 /* Message Styling */

@@ -32,11 +32,11 @@ var wysiwyg = {
 			}
 			// lock the interface
 			poMMo.pause();
-			this.textarea = $('textarea[name=body]');
+			this.textarea = $('#no-wysiwyg');
 						
 			// prepare CKEditor
-			this.ck = CKEDITOR.replace('body', {
-				customConfig: this.baseURL + 'ckeditor.conf.js?v=3',
+			this.ck = CKEDITOR.inline('ck_mailing', {
+				customConfig: this.baseURL + 'ckeditor.conf.js?v=4',
 				language: this.language,
 				contentsLangDirection: 'ltr'
 			});
@@ -46,7 +46,7 @@ var wysiwyg = {
 			this.ck.setData(this.textarea.hide()[0].value);
 
 			// show the WYSIWYG
-			$('#cke_'+this.ck.name).show();
+			$('#ck_mailing').show();
 		}
 		return this.enabled = true;
 	},
@@ -55,7 +55,7 @@ var wysiwyg = {
 			return false;
 				
 		// hide the WYSIWYG
-		$('#cke_' + this.ck.name).hide();
+		$('#ck_mailing').hide();
 				
 		// show the textarea, update it with WYSIWYG contents
 		this.textarea.show()[0].value = this.ck.getData();
