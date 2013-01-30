@@ -40,11 +40,14 @@ CKEDITOR.editorConfig = function( config )
 	config.undoStackSize = 16 ;
 	    
 	config.filebrowserBrowseUrl = false ;
-	config.filebrowserImageBrowseUrl = false ;
+	config.filebrowserImageBrowseUrl = 'filemanager.php' ;
 	config.filebrowserFlashBrowseUrl = false ;
 	config.filebrowserUploadUrl = false ;
 	config.filebrowserImageUploadUrl = false ;
 	config.filebrowserFlashUploadUrl = false ;
+	
+	config.filebrowserWindowWidth = 900;
+	config.filebrowserWindowHeight = 500;
 };
 
 

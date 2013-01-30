@@ -4,8 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" /> 
 <title><?php echo $this->title; ?></title>
 
+	<?php if (isset($this->jQueryVersion)) {
+	?>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/<?php echo $this->jQueryVersion ?>/jquery.min.js"
+      	type="text/javascript"></script>
+	<?php
+	} else { ?>
 <script src="<?php echo $this->url['theme']['shared'] ?>js/jq/jquery.js"
       type="text/javascript"></script>
+	<?php } ?>
 <script src="<?php echo $this->url['theme']['shared'] ?>js/pommo.js"
       type="text/javascript"></script>
 <script type="text/javascript">
@@ -23,6 +30,8 @@ echo $this->capturedHead;
 </head>
 
 <body>
+
+<?php if (!isset($this->simpleTemplate)) { ?>
 
 <div id="header">
 
@@ -50,6 +59,7 @@ echo $this->capturedHead;
     {
         echo('<div id="content" class="wide">');
     }
+}
 ?>
 
         
