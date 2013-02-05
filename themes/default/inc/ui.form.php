@@ -13,7 +13,7 @@ poMMo.form = {
 	init: function(e,p) {
 		e = $(e);
 		if(e.size() < 1) { alert('bad form passed to init'); return; }
-	
+
 		p = $.extend({
 			type: 'ajax',  		// type can be 'ajax' or 'json'. Ajax type forms load their response into the DOM ("target"). JSON type forms evaluate/parse the response.
 			onValid: null,		// (for JSON) executed if the form is determined 'valid' [success=false]
@@ -22,24 +22,24 @@ poMMo.form = {
 			beforeSubmit: poMMo.form.defaults.beforeSubmit,
 			success: this.defaults.success
 		},p);
-		
+
 		return e.each(function(){
-		
+
 			var s = (this.pfSerial) ? this.pfSerial : poMMo.form.serial++;
 			this.pfSerial = s;
-			
+
 			p.form = this;
 			p.scope = p.target || $(this).parent()[0];
-			
+
 			poMMo.form.hash[s] = p;
-			
+
 			$(this).ajaxForm({
 				dataType: (p.type == 'ajax') ? null : 'json',
 				target: (p.type == 'ajax' && p.target == null) ? $(this).parent() : p.target, // load the form response into the parent div if not specified
 				beforeSubmit: function(formData,form,params) {
 					var s = $(form)[0].pfSerial;
 					var hash = poMMo.form.hash[s];
-					if(poMMo.form.currentForm !== false) { 
+					if(poMMo.form.currentForm !== false) {
 						alert ('cannot submit form at this time [waiting for the return of another]');
 						return false;
 					}
@@ -59,29 +59,29 @@ poMMo.form = {
 	},
 	defaults: {
 		// Default beforeSubmit callback [if not overriden]
-		beforeSubmit: function(formData,form,params) {	
+		beforeSubmit: function(formData,form,params) {
 			// reset errors
 			$('label span.error',form).remove();
 			$('div.output',form).html('');
-			
+
 			// toggle submit/loading state
-			$('input[@type=submit],img[@name=loading]', form).toggle();
+			$('input[type=submit],img[name=loading]', form).toggle();
 		},
 		// Default success callback [if not overriden]
-		success: function(response, hash) { 
-			
+		success: function(response, hash) {
+
 			if($(hash.form).is('.confirm')) {
-				var confirmed = $('input[@name=confirmed]',hash.form)[0];
+				var confirmed = $('input[name=confirmed]',hash.form)[0];
 				if (confirmed) {
 					$(confirmed).remove();
 					poMMo.resume();
 				}
 			}
-			
+
 			// if we're expecting a JSON return, execute the default JSON callback
 			if(hash.type == 'json')
 				return poMMo.form.defaults.jsonSuccess(response, hash);
-			
+
 			// reassign the form [designed to work in default setting, on forms with class ajax]
 			poMMo.form.assign(hash.scope, hash.form.pfSerial);
 		},
@@ -94,26 +94,26 @@ poMMo.form = {
 				if(poMMo.callback[json.callbackFunction](json.callbackParams, hash.form) === false)
 					return false;
 			}
-			
+
 			// toggle submit/loading state
-			$('input[@type=submit],img[@name=loading]', hash.form).toggle();
-			
+			$('input[type=submit],img[name=loading]', hash.form).toggle();
+
 			// check for and execute onValid/onInvalid callbacks
 			if(json.success && $.isFunction(hash.onValid))
 				return hash.onValid(json,hash);
 			else if(!json.success && $.isFunction(hash.onInvalid))
 				return hash.onInvalid(json,hash);
-		 	
+
 		 	// output any message(s) or errors(s)
 		 	if(json.messages.length > 0)
 				$('div.output',hash.form).html(poMMo.implode(json.messages));
 			if(json.errors.length > 0)
 				$('div.output',hash.form).append('<div class="error">'+poMMo.implode(json.errors)+'</div>');
-		
+
 			// append error messages to form fields
 			if(json.fieldErrors)
-			for (var i=0;i<json.fieldErrors.length;i++) 
-					$('label[@for='+json.fieldErrors[i].field+']',hash.form).append('<span class="error">'+json.fieldErrors[i].message+'</span>');
+			for (var i=0;i<json.fieldErrors.length;i++)
+					$('label[for='+json.fieldErrors[i].field+']',hash.form).append('<span class="error">'+json.fieldErrors[i].message+'</span>');
 		}
 	},
 	assign: function(scope, reassign) { // prepares forms found in scope. Usually called on ajax loaded content.

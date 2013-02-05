@@ -176,7 +176,7 @@ $().ready(function(){
 
 		// transform "d#" to "d[#]"
 		var name = (i.match(/^d\d+$/)) ? 'd['+i.substr(1)+']' : i;
-		$(':input[@name="'+name+'"]',scope).each(function(){
+		$(':input[name="'+name+'"]',scope).each(function(){
 			if($(this).attr('type') == 'checkbox')
 				this.checked = (data[i] == 'on') ? true : false;
 			else
@@ -184,7 +184,7 @@ $().ready(function(){
 		});
 	}
 
-	$('input[@name="force"]',scope).click(function(){
+	$('input[name="force"]',scope).click(function(){
 		if(this.checked)
 			$(this).jqvDisable();
 		else

@@ -6,7 +6,7 @@
 		<div>
 			<h2><?php echo _('Mail Rate'); ?></h2>
 			<div id="mps" class="ui-slider">
-				<div class="ui-slider-handle"></div>	
+				<div class="ui-slider-handle"></div>
 			</div>
 			<p>
 			<?php
@@ -19,7 +19,7 @@
 		<div>
 			<h2><?php echo _('Bandwidth Limit'); ?></h2>
 			<div id="bps" class="ui-slider">
-				<div class="ui-slider-handle"></div>	
+				<div class="ui-slider-handle"></div>
 			</div>
 			<p>
 			<?php
@@ -73,7 +73,7 @@
 		<div>
 			<h2><?php echo _('Period Interval'); ?></h2>
 			<div id="dp" class="ui-slider ui-slider-alt">
-				<div class="ui-slider-handle"></div>	
+				<div class="ui-slider-handle"></div>
 			</div>
 			<p>
 			<?php
@@ -85,7 +85,7 @@
 		<div>
 			<h2><?php echo _('Mail Rate'); ?></h2>
 			<div id="dmpp" class="ui-slider ui-slider-alt">
-				<div class="ui-slider-handle"></div>	
+				<div class="ui-slider-handle"></div>
 			</div>
 			<p>
 			<?php
@@ -97,7 +97,7 @@
 		<div>
 			<h2><?php echo _('Bandwidth Limit'); ?></h2>
 			<div id="dbpp" class="ui-slider ui-slider-alt">
-				<div class="ui-slider-handle"></div>	
+				<div class="ui-slider-handle"></div>
 			</div>
 			<p>
 			<?php
@@ -143,7 +143,7 @@ PommoSlider.onSlide = function(slider, v) {
 			break;
 	};
 	var val = (out[0].innerHTML == maxStr) ? 0 : out[0].innerHTML;
-	$('#inputs input[@name='+slider.id+']').val(val);
+	$('#inputs input[name='+slider.id+']').val(val);
 };
 
 
@@ -175,7 +175,7 @@ $('div.ui-slider').each(function(){
 			p.minValue = 0;
 			p.startValue = <?php echo $this->dbpp; ?>;
 			break;
-			
+
 	}
 	PommoSlider.onSlide(this,p.startValue);
 	PommoSlider.init($(this),p);

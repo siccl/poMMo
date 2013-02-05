@@ -57,7 +57,7 @@
 			</select>
 		</div>
 
-		<div class="pType hidden" name="track">	
+		<div class="pType hidden" name="track">
 			<select >
 			<option value="!subscriber_id"><?php echo _('Subscriber ID'); ?></option>
 			<option value="!mailing_id"><?php echo _('Mailing ID'); ?></option>
@@ -74,25 +74,25 @@
 
 <script type="text/javascript">
 $().ready(function(){
-	$('#personal input[@type=radio]').change(function(){
+	$('#personal input[type=radio]').change(function(){
 		$('#personal div.pType').hide();
-		$('#personal div.pType[@name='+this.value+']').show();
+		$('#personal div.pType[name='+this.value+']').show();
 	});
-	
-	$('#personal button[@name=submit]').click(function(){
-		
+
+	$('#personal button[name=submit]').click(function(){
+
 		// construct the value
 		var vals = $('#personal div.pType:visible :input');
 		var out = (vals.size()>1 && $(vals[1]).val() != '') ?
 			'[['+$(vals[0]).val()+'|'+$(vals[1]).val()+']]' :
 			'[['+$(vals[0]).val()+']]';
-		
-		// inject personalization into WYSIWYG	
+
+		// inject personalization into WYSIWYG
 		wysiwyg.inject(out);
-		
+
 		// close the dialog
 		$('#dialog').jqmHide();
-		
+
 	});
 });
 </script>

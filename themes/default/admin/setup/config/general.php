@@ -151,7 +151,7 @@ var showSMTP = function() {
 	else
 		$('#configSMTP').hide();
 }
-var exchanger = $('select[@name=list_exchanger]');
+var exchanger = $('select[name=list_exchanger]');
 
 $().ready(function(){
 	$('#smtpWindow').jqmAddTrigger($('#smtpTrigger'));

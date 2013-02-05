@@ -132,7 +132,7 @@ $().ready(function()
 		baseURL: '<?php echo $this->url['theme']['shared']; ?>../wysiwyg/',
 		t_weblink: '<?php echo _('View this Mailing on the Web'); ?>',
 		t_unsubscribe: '<?php echo _('Unsubscribe or Update Records'); ?>',
-		textarea: $('textarea[@name=body]')
+		textarea: $('textarea[name=body]')
 	});
 
 	<?php
@@ -174,7 +174,7 @@ $().ready(function()
 		// submit the bodies
 		var post = {
 			body: wysiwyg.getBody(),
-			altbody: $('textarea[@name=altbody]').val()
+			altbody: $('textarea[name=altbody]').val()
 		},trigger = this;
 
 		poMMo.pause();
@@ -197,7 +197,7 @@ $().ready(function()
 		poMMo.pause();
 
 		$.post('ajax/ajax.rpc.php?call=altbody',post,function(json){
-			$('textarea[@name=altbody]').val(json.altbody);
+			$('textarea[name=altbody]').val(json.altbody);
 			poMMo.resume();
 		},"json");
 
@@ -220,7 +220,7 @@ $().ready(function()
 		(
 			{
 				body: wysiwyg.getBody(),
-				altbody: $('textarea[@name=altbody]').val()
+				altbody: $('textarea[name=altbody]').val()
 			},
 			attachments
 		);
