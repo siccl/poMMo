@@ -1,30 +1,10 @@
 <?php
 /**
- * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
- *
- * This file is part of poMMo (http://www.pommo.org)
- *
- * poMMo is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published
- * by the Free Software Foundation; either version 2, or any later version.
- *
- * poMMo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty
- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
- * the GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with program; see the file docs/LICENSE. If not, write to the
- * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+ * Copyright (C) 2013 OpenCart (www.opencart.com)
  */
 
-class Pommo_Image
+class Pommo_Filesystem_Image extends Pommo_Filesystem_File
 {
-	/**
-	 * @var string File
-	 */
-	private $_filePath;
-	
 	/**
 	 * @var resource
 	 */
@@ -41,8 +21,6 @@ class Pommo_Image
 	public function __construct($filePath)
 	{
 		if (file_exists($filePath)) {
-			$this->_filePath = $filePath;
-
 			$info = getimagesize($filePath);
 
 			$this->_info = array(
@@ -51,18 +29,18 @@ class Pommo_Image
 				'bits' => $info['bits'],
 				'mime' => $info['mime']
 			);
-
-			$this->_imageHandle = $this->create($filePath);
-		} else {
-			exit('Error: Could not load image ' . $filePath . '!');
+	
+			$this->_imageHandle = $this->_create($filePath);
 		}
+		
+		parent::__construct($filePath);
 	}
 
 	/**
 	 * @param string $filePath
 	 * @return resource
 	 */
-	private function create($filePath)
+	private function _create($filePath)
 	{
 		$mime = $this->_info['mime'];
 
@@ -146,64 +124,4 @@ class Pommo_Image
 		$this->_info['width'] = $width;
 		$this->_info['height'] = $height;
 	}
-
-	/**
-	 * 
-	 * @param int $top_x
-	 * @param int $top_y
-	 * @param int $bottom_x
-	 * @param int $bottom_y
-	 */
-	public function crop($top_x, $top_y, $bottom_x, $bottom_y)
-	{
-		$image_old = $this->_imageHandle;
-		$this->_imageHandle = imagecreatetruecolor($bottom_x - $top_x, $bottom_y - $top_y);
-
-		imagecopy($this->_imageHandle, $image_old, 0, 0, $top_x, $top_y, $this->_info['width'], $this->_info['height']);
-		imagedestroy($image_old);
-
-		$this->_info['width'] = $bottom_x - $top_x;
-		$this->_info['height'] = $bottom_y - $top_y;
-	}
-
-	/**
-	 * @param string $text
-	 * @param int $x
-	 * @param int $y
-	 * @param int $size
-	 * @param string $color
-	 */
-	private function text($text, $x = 0, $y = 0, $size = 5, $color = '000000')
-	{
-		$rgb = $this->html2rgb($color);
-
-		imagestring($this->_imageHandle, $size, $x, $y, $text, imagecolorallocate($this->_imageHandle, $rgb[0], $rgb[1], $rgb[2]));
-	}
-
-	/**
-	 * @param string $color
-	 * @return array|bool
-	 */
-	private function html2Rgb($color)
-	{
-		if ($color[0] == '#') {
-			$color = substr($color, 1);
-		}
-
-		if (strlen($color) == 6) {
-			list($r, $g, $b) = array($color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5]);
-		} elseif (strlen($color) == 3) {
-			list($r, $g, $b) = array($color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2]);
-		} else {
-			return false;
-		}
-
-		$r = hexdec($r);
-		$g = hexdec($g);
-		$b = hexdec($b);
-
-		return array($r, $g, $b);
-	}
 }
-
-?>

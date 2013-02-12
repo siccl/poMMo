@@ -125,7 +125,9 @@ $(document).ready(function() {
 	
 	$('#column-right a').live('dblclick', function() {
 		var fileRelativePath = encodeURIComponent($(this).find('input[name=\'image\']').attr('value'));
-		fileRelativePath = fileRelativePath.replace("%2F", "/");
+		fileRelativePath = fileRelativePath.replace(/^%2F/, ""); // Remove prepended slash
+		fileRelativePath = fileRelativePath.replace(/%2F/g, "/"); // Decode back slashes
+		
 		if (PommoFileManager.ckeditorCallback) {
 			window.opener.CKEDITOR.tools.callFunction(PommoFileManager.ckeditorCallback, PommoFileManager.hostname + PommoFileManager.imageDirectory + fileRelativePath);
 			
@@ -178,45 +180,21 @@ $(document).ready(function() {
 		path = $('#column-right a.selected').find('input[name=\'image\']').attr('value');
 							 
 		if (path) {
-			$.ajax({
-				url: 'ajax/filemanager.php?action=delete',
-				type: 'post',
-				data: 'path=' + encodeURIComponent(path),
-				dataType: 'json',
-				success: function(json) {
-					if (json.success) {
-						var tree = $.tree.focused();
-					
-						tree.select_branch(tree.selected);
-						
-						alert(json.success);
-					}
-					
-					if (json.error) {
-						alert(json.error);
-					}
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-				}
-			});				
-		} else {
-			var tree = $.tree.focused();
-			
-			if (tree.selected) {
+			var fileName = path.substr(path.lastIndexOf('/') + 1);
+			if (confirm("Are you sure you want to delete '" + fileName + "'?")) {
 				$.ajax({
 					url: 'ajax/filemanager.php?action=delete',
 					type: 'post',
-					data: 'path=' + encodeURIComponent($(tree.selected).attr('directory')),
+					data: 'path=' + encodeURIComponent(path),
 					dataType: 'json',
 					success: function(json) {
 						if (json.success) {
-							tree.select_branch(tree.parent(tree.selected));
-							
-							tree.refresh(tree.selected);
+							var tree = $.tree.focused();
+						
+							tree.select_branch(tree.selected);
 							
 							alert(json.success);
-						} 
+						}
 						
 						if (json.error) {
 							alert(json.error);
@@ -225,7 +203,39 @@ $(document).ready(function() {
 					error: function(xhr, ajaxOptions, thrownError) {
 						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 					}
-				});			
+				});
+			}
+		} else {
+			var tree = $.tree.focused();
+			
+			if (tree.selected) {
+				var directoryName = $(tree.selected).attr('directory');
+				directoryName = directoryName.substr(directoryName.lastIndexOf('/') + 1);
+				
+				if (confirm("Are you sure you want to delete the folder: '" + directoryName + "'?")) {
+					$.ajax({
+						url: 'ajax/filemanager.php?action=delete',
+						type: 'post',
+						data: 'path=' + encodeURIComponent($(tree.selected).attr('directory')),
+						dataType: 'json',
+						success: function(json) {
+							if (json.success) {
+								tree.select_branch(tree.parent(tree.selected));
+								
+								tree.refresh(tree.selected);
+								
+								alert(json.success);
+							} 
+							
+							if (json.error) {
+								alert(json.error);
+							}
+						},
+						error: function(xhr, ajaxOptions, thrownError) {
+							alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+						}
+					});		
+				}
 			} else {
 				alert(PommoFileManager.language.error_select);
 			}			
