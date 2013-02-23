@@ -18,7 +18,7 @@ $.fn.jqGrid = function( p ) {
 		pager: "",
 		colModel: [],
 		rowList: [],
-		colNames: [],			
+		colNames: [],
 		sortorder: "asc",
 		sortname: "",
 		imgpath: "",
@@ -60,7 +60,7 @@ $.fn.jqGrid = function( p ) {
 			records : "rows>records",
 			repeatitems: true,
 			cell: "cell",
-			id: "[id]", 
+			id: "[id]",
 			subgrid: {root:"rows", row: "row", repeatitems: true, cell:"cell"}
 		},
 		xmlReader: {},
@@ -77,7 +77,7 @@ $.fn.jqGrid = function( p ) {
 		jsonReader: {}
 	}, p || {});
 
-	var grid={         
+	var grid={
 		headers:[],
 		cols:[],
 		dragStart: function(i,x) {
@@ -89,9 +89,9 @@ $.fn.jqGrid = function( p ) {
 				var diff = x-this.resizing.startX;
 				var h = this.headers[this.resizing.idx];
 				var newWidth = h.width + diff;
-				if(newWidth > 30) { 
+				if(newWidth > 30) {
 					h.el.style.width = newWidth+"px";
-					h.newWidth = newWidth; 
+					h.newWidth = newWidth;
 					this.cols[this.resizing.idx].style.width = newWidth+"px";
 					this.newWidth = this.width+diff;
 					$('table',this.bDiv).css("width",this.newWidth + "px");
@@ -113,7 +113,7 @@ $.fn.jqGrid = function( p ) {
 			this.hDiv.scrollLeft = this.bDiv.scrollLeft;
 	  	}
 	}
-	$.fn.getUrl = function() {return this[0].p.url;};           
+	$.fn.getUrl = function() {return this[0].p.url;};
 	$.fn.getSortName = function() {return this[0].p.sortname;};
 	$.fn.getSortOrder = function() {return this[0].p.sortorder;};
 	$.fn.getSelectedRow = function() {return this[0].p.selrow};
@@ -145,7 +145,7 @@ $.fn.jqGrid = function( p ) {
 		if( typeof newpage === 'number' && newpage > 0) {this.p.page=newpage;}
 		});
 	};
-	$.fn.setRowNum = function (newrownum) { 
+	$.fn.setRowNum = function (newrownum) {
 		return this.each(function(){if( typeof newrownum === 'number' && newrownum > 0) {this.p.rowNum=newrownum;} });
 	};
 	$.fn.setDataType = function(newtype) { return this.each( function(){this.p.datatype=newtype; });}
@@ -158,10 +158,10 @@ $.fn.jqGrid = function( p ) {
   			t.p.selrow = $(pt).attr("id");
   			if($(pt).attr("class") !== "subgrid") $(pt).addClass("selected");
   			if( t.p.onSelectRow ) { t.p.onSelectRow(t.p.selrow, true); }
-  		} else {  			
+  		} else {
 			t.p.selrow = selection;
 			var ia = t.p.selarrrow.indexOf(t.p.selrow);
-			if (  ia === -1 ){ 
+			if (  ia === -1 ){
 				if($(pt).attr("class") !== "subgrid") { $(pt).addClass("selected");};
 				stat = true;
 				$("#jqg_"+t.p.selrow,t.grid.bDiv).attr("checked",stat);
@@ -171,7 +171,7 @@ $.fn.jqGrid = function( p ) {
 				stat = false;
 				$("#jqg_"+t.p.selrow,t.grid.bDiv).attr("checked",stat);
 				t.p.selarrrow.splice(ia,1);
-			}			
+			}
   			if( t.p.onSelectRow ) { t.p.onSelectRow(t.p.selrow, stat); }
   		}
 		return false;
@@ -226,7 +226,7 @@ $.fn.jqGrid = function( p ) {
 						if(!$t.p.colModel[i].edittype) $t.p.colModel[i].edittype = "text";
 						var elc = createEl($t.p.colModel[i].edittype,opt,tmp);
 						$(elc).addClass("editable");
-						$(this).append(elc);						
+						$(this).append(elc);
 						cnt++;
 					}
 				});
@@ -338,7 +338,7 @@ $.fn.jqGrid = function( p ) {
 							if(fr >= 0) $t.p.savedRow.splice(fr,1);
 							if( typeof aftersavefunc === "function") aftersavefunc(rowid,res);
 						} else self.restoreRow(rowid);
-					} else {alert("Error Row: "+rowid+" Result: " +res+" Status: "+stat)}				
+					} else {alert("Error Row: "+rowid+" Result: " +res+" Status: "+stat)}
 				});
 				$t.grid.hDiv.loading = false;
 				$("div.loading",$t.grid.hDiv).fadeOut("fast");
@@ -360,7 +360,7 @@ $.fn.jqGrid = function( p ) {
 					$(this).html($t.p.savedRow[fr][nm] || "&nbsp;");
 				}
 			});
-			$('#'+rowid,$t.grid.bDiv).attr("editable","0");		
+			$('#'+rowid,$t.grid.bDiv).attr("editable","0");
 			$t.p.savedRow.splice(fr,1);
 		}
 		return false;
@@ -368,7 +368,7 @@ $.fn.jqGrid = function( p ) {
 	$.fn.getRowData = function( rowid ) { var res = {};	if (rowid){
 		var $t = this[0],nm;
 		$('#'+rowid+' td',$t.grid.bDiv).each( function(i) {
-			nm = $t.p.colModel[i].name; 
+			nm = $t.p.colModel[i].name;
 			if ( nm !== 'cb' && nm !== 'subgrid')
 				res[nm] = $(this).text().replace(/\&nbsp\;/ig,'');
 		});
@@ -433,13 +433,11 @@ $.fn.jqGrid = function( p ) {
 				if (pos === "last") $("tbody",t.grid.bDiv).append(row);
 				else $("tbody tr:eq(1)",t.grid.bDiv).before(row);
 				t.p.records++;
-				if(!$.browser.msie) {
-					t.scrollLeft = t.scrollLeft;
-					$("tbody tr:eq(1) td",t.grid.bDiv).each( function( k ) {
-						$(this).css("width",t.grid.headers[k].width+"px");
-						t.grid.cols[k] = this;
-					});
-				}
+                t.scrollLeft = t.scrollLeft;
+                $("tbody tr:eq(1) td",t.grid.bDiv).each( function( k ) {
+                    $(this).css("width",t.grid.headers[k].width+"px");
+                    t.grid.cols[k] = this;
+                });
 				success = true;
 			});
 		}
@@ -578,7 +576,7 @@ $.fn.jqGrid = function( p ) {
 				idn = ts.p.xmlReader.id;
 				if( idn.indexOf("[") === -1 )
 					var getId = function( trow, k) { return $(idn,trow).text() || k }
-				else 
+				else
 					var getId = function( trow, k) { return trow.getAttribute(idn.replace(/[\[\]]/g,"")) || k }
 			} else {
 				var getId = function(trow) { return f.length >= ts.p.keyIndex ? $(f[ts.p.keyIndex],trow).text() : $(ts.p.xmlReader.cell+":eq("+ts.p.keyIndex+")",trow).text() }
@@ -613,7 +611,6 @@ $.fn.jqGrid = function( p ) {
 			});
 			xml = null;
 			if(isMozilla) { ts.scrollLeft = ts.scrollLeft; resizeFirstRow(t);}
-			else if(!isMSIE){ resizeFirstRow(t);ts.scrollLeft = ts.scrollLeft;}
 		  	ts.scrollTop = 0;
 		  	if(ts.p.rowheight) $(grid.bDiv).css({height:rowh+2+'px'});
 		 	if( ts.p.altRows === true ) { $("tbody tr:odd", t).addClass("alt"); }
@@ -656,11 +653,10 @@ $.fn.jqGrid = function( p ) {
 				}
 				$("tbody",t).append(row);
 				if(ts.p.rowheight) rowh = rowh+ts.p.rowheight;
-			}		
+			}
 			}
 			data = null;
 			if(isMozilla) { ts.scrollLeft = ts.scrollLeft; resizeFirstRow(t);}
-			else if(!isMSIE){ resizeFirstRow(t);ts.scrollLeft = ts.scrollLeft;}
 		  	ts.scrollTop = 0;
 		  	if(ts.p.rowheight) $(grid.bDiv).css({height:rowh+2+'px'});
 		 	if( ts.p.altRows === true ) { $("tbody tr:odd", t).addClass("alt"); }
@@ -715,24 +711,16 @@ $.fn.jqGrid = function( p ) {
 		}
 		var stringToDoc =	function (xmlString) {
 			var xmlDoc;
-			if (isSafari2){
-			 	var z=document.createElement('div');
-			  	z.innerHTML = xmlString;
-				xmlDoc=z;
-				z.responseXML=z;
-			} 
-			else {
-				try	{
-					var parser = new DOMParser();
-					xmlDoc = parser.parseFromString(xmlString,"text/xml");
-				}
-				catch(e) {
-					xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-					xmlDoc.async=false;
-					xmlDoc["loadXM"+"L"](xmlString);
-				}
-			}
-			return (xmlDoc && xmlDoc.documentElement && xmlDoc.documentElement.tagName != 'parsererror') ? xmlDoc : null;			
+            try	{
+                var parser = new DOMParser();
+                xmlDoc = parser.parseFromString(xmlString,"text/xml");
+            }
+            catch(e) {
+                xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+                xmlDoc.async=false;
+                xmlDoc["loadXM"+"L"](xmlString);
+            }
+			return (xmlDoc && xmlDoc.documentElement && xmlDoc.documentElement.tagName != 'parsererror') ? xmlDoc : null;
 		}
 		var sortArrayData = function() {
 			var newDir = ts.p.sortorder == "asc" ? 1 :-1;
@@ -772,7 +760,6 @@ $.fn.jqGrid = function( p ) {
 				row.sortKey = null;
 			});
 			if(isMozilla) { ts.scrollLeft = ts.scrollLeft; resizeFirstRow(grid.bDiv);}
-			else if(!isMSIE){ resizeFirstRow(grid.bDiv);ts.scrollLeft = ts.scrollLeft;}
 			ts.scrollTop = 0;
 			grid.hDiv.loading = false;
 			$("div.loading",grid.hDiv).fadeOut("fast");
@@ -800,7 +787,7 @@ $.fn.jqGrid = function( p ) {
 					res = $(this).parent();
 					var atd= pos==1?'<td></td>':'';
 					_id = $(res).attr("id");
-					var subdata = "<tr class='subgrid'>"+atd+"<td><img src='"+ts.p.imgpath+"line3.gif'/></td><td colspan='"+parseInt(ts.p.colNames.length-1)+"'><div id='sg_"+_id+"' class='tablediv'>"; 
+					var subdata = "<tr class='subgrid'>"+atd+"<td><img src='"+ts.p.imgpath+"line3.gif'/></td><td colspan='"+parseInt(ts.p.colNames.length-1)+"'><div id='sg_"+_id+"' class='tablediv'>";
 					$(this).parent().after( subdata+ "</div></td></tr>" );
 					$(".tablediv",ts).css("width", ts.grid.width-20+"px");
 					if( typeof ts.p.subGridRowExpanded == 'function') {
@@ -923,7 +910,7 @@ $.fn.jqGrid = function( p ) {
 				}
 				str +="</SELECT>";
 				$(ts.p.pager).append("&nbsp;&nbsp;"+str);
-				$(ts.p.pager).find("select").bind('change',function() { 
+				$(ts.p.pager).find("select").bind('change',function() {
 					ts.p.rowNum = this.value>0 ? this.value : ts.p.rowNum; populate();
 					ts.p.selrow = null;
 				});
@@ -934,13 +921,13 @@ $.fn.jqGrid = function( p ) {
 				var fp=true; var pp=true; var np=true; var lp=true;
 				if(last ===0 || last===1) {fp=false;pp=false;np=false;lp=false; }
 				else if( last>1 && cp >=1) {
-					if( cp === 1) { fp=false; pp=false; } 
+					if( cp === 1) { fp=false; pp=false; }
 					else if( cp>1 && cp <last){ }
 					else if( cp===last){ np=false;lp=false; }
 				} else if( last>1 && cp===0 ) { np=false;lp=false; cp=last-1;}
-				if( $(this).attr('id') === 'first' && fp ) { ts.p.page=1; populate(); selclick=true;} 
-				if( $(this).attr('id') === 'prev' && pp) { ts.p.page=(cp-1);populate(); selclick=true;} 
-				if( $(this).attr('id') === 'next' && np) { ts.p.page=(cp+1);populate(); selclick=true;} 
+				if( $(this).attr('id') === 'first' && fp ) { ts.p.page=1; populate(); selclick=true;}
+				if( $(this).attr('id') === 'prev' && pp) { ts.p.page=(cp-1);populate(); selclick=true;}
+				if( $(this).attr('id') === 'next' && np) { ts.p.page=(cp+1);populate(); selclick=true;}
 				if( $(this).attr('id') === 'last' && lp) { ts.p.page=last;  populate(); selclick=true;}
 				if(selclick) {
 					ts.p.selrow = null;
@@ -948,7 +935,7 @@ $.fn.jqGrid = function( p ) {
 					ts.p.savedRow = [];
 				}
 			}).hover(function() { $(this).addClass("jsHover"); },
-				function () { $(this).removeClass("jsHover"); }  
+				function () { $(this).removeClass("jsHover"); }
 			);
 			$('input',ts.p.pager).keypress( function(e) {
 				var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
@@ -964,7 +951,7 @@ $.fn.jqGrid = function( p ) {
 		}
 		var sortData = function (index, idxcol,reload){
 			if(!reload) {
-				if( ts.p.lastsort === idxcol /*ts.p.sortname === index*/) {				    
+				if( ts.p.lastsort === idxcol /*ts.p.sortname === index*/) {
 					if( ts.p.sortorder === 'asc') {
 						ts.p.sortorder = 'desc';
 					} else if(ts.p.sortorder === 'desc') { ts.p.sortorder='asc';}
@@ -987,12 +974,12 @@ $.fn.jqGrid = function( p ) {
 			return false;
 		}
 		var setGridWidth = function () {
-			var initwidth = 0; 
+			var initwidth = 0;
 			for(var l=0;l<ts.p.colModel.length;l++)
 				initwidth += IntNum(ts.p.colModel[l].width || 150);
 			var tblwidth = ts.p.width ? ts.p.width : initwidth;
 			for(l=0;l<ts.p.colModel.length;l++) {
-                if(!ts.p.shrinkToFit) 
+                if(!ts.p.shrinkToFit)
                     ts.p.colModel[l].owidth = ts.p.colModel[l].width;
 				ts.p.colModel[l].width = Math.round(tblwidth/initwidth*ts.p.colModel[l].width);
 			}
@@ -1004,7 +991,7 @@ $.fn.jqGrid = function( p ) {
 				return defval ? defval : 0;
 			} else {
 				return val;
-			} 
+			}
 		}
 		if(this.p.subGrid) {
 		  this.p.colNames.unshift("");
@@ -1020,7 +1007,7 @@ $.fn.jqGrid = function( p ) {
 		if (this.p.width) setGridWidth();
 		var thead = document.createElement("thead");
 		var trow = document.createElement("tr");
-		thead.appendChild(trow); 
+		thead.appendChild(trow);
 		var i=0, th, idn, thdiv;
 		this.p.keyIndex=false;
 		for (var col in this.p.colModel) { //Brice Burgess
@@ -1077,7 +1064,7 @@ $.fn.jqGrid = function( p ) {
 		$("tr:first th div",thead).each(function(l) {
 			sort = ts.p.colModel[l].sortable;
 			if( typeof sort !== 'boolean') sort =  true;
-			if(sort) { 
+			if(sort) {
 				$(this).css("cursor","pointer");
 				$(this).click(function(){sortData(this.id,l);});
 			}
@@ -1110,14 +1097,14 @@ $.fn.jqGrid = function( p ) {
 		grid.width = $(this).width();
 		if (grid.width == 0) grid.width = gw;
 		grid.hTable = document.createElement("table");
-		grid.hTable.cellSpacing="0"; 
-		grid.hTable.cellPadding="0"; 
+		grid.hTable.cellSpacing="0";
+		grid.hTable.cellPadding="0";
 		grid.hTable.className = "scroll";
 		grid.hTable.appendChild(thead);
 		grid.hDiv = document.createElement("div");
 		$(grid.hDiv)
 		  	.css({ width: grid.width+"px", overflow: "hidden"})
-			.prepend('<div class="loading">'+ts.p.loadtext+'</div>')					
+			.prepend('<div class="loading">'+ts.p.loadtext+'</div>')
 			.append(grid.hTable)
 			.bind("selectstart", function () { return false; });
 		$(ts).mouseover(function(e) {
@@ -1180,15 +1167,8 @@ $.fn.jqGrid = function( p ) {
 		  	.scroll(function (e) {grid.scroll()})
 			.css({ height: ts.p.height+(isNaN(ts.p.height)?"":"px"), padding: "0px", margin: "0px", overflow: "auto", width: (grid.width)+17+"px"})
 			.append(this);
-		var isMSIE = $.browser.msie ? true:false;
-		var isMozilla = $.browser.mozilla ? true:false;
-		var isSafari2 = $.browser.safari && ( parseInt($.browser.version) <= 2 || parseInt($.browser.version) <= 419) ? true : false;
-		if( isMSIE ) {
-			if( $("tbody",this).size() === 2 ) { $("tbody:first",this).remove();}
-			if( ts.p.multikey) $(grid.bDiv).bind("selectstart",function(){return false;});
-		} else {
-			if( ts.p.multikey) $(grid.bDiv).bind("mousedown",function(){return false;});
-		}
+		var isMozilla = true;
+        if( ts.p.multikey) $(grid.bDiv).bind("mousedown",function(){return false;});
 		$(grid.hDiv).mousemove(function (e) {grid.dragMove(e.clientX);}).after(grid.bDiv);
 		if(ts.p.pager){
 			if( $(ts.p.pager).attr("class") === "scroll") $(ts.p.pager).css({ width: (grid.width)+"px", overflow: "hidden"});

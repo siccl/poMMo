@@ -37,15 +37,15 @@
     margin: 1px 0 0; /* position: relative makes opacity fail for disabled tab in IE */
     padding: 2px 9px 2px;
     text-align: center;
-    
-    white-space: nowrap; /* required in IE 6 */    
+
+    white-space: nowrap; /* required in IE 6 */
     outline: 0; /* prevent dotted border in Firefox */
-	
+
 	color: #0067ff;
     text-decoration: none;
     background: #e5f2ff;
 	text-decoration: none;
-	
+
 	border: 1px solid #0067ff;
     border-bottom: 0;
 }
@@ -54,7 +54,7 @@
     top: 1px;
     z-index: 2;
     margin-top: 0;
-	
+
 	background: #DDF0BD;
     color: green;
     border-color: green;

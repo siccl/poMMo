@@ -1,12 +1,12 @@
-<script type="text/javascript" src="<?php echo($this->url['theme']['shared']); ?>js/jq/ui.tabs.js"></script>
-<link type="text/css" rel="stylesheet" href="<?php echo($this->url['theme']['shared']); ?>css/ui.tabs.css" />
+<link type="text/css" rel="stylesheet" href="<?php
+        echo $this->url['theme']['shared']; ?>css/ui.tabs.css" />
 
 <script type="text/javascript">
 /* TabWizzard JS (c) 2007 Brice Burgess, <bhb@iceburg.net>
 	Licensed under the GPL */
-	
+
 	// forms with class "mandatory" are force submitted and verified before changing tabs.
-	
+
 var PommoTabs = {
 	tabs: null,
 	clicked: false,
@@ -44,7 +44,7 @@ var PommoTabs = {
 		PommoTabs.force = true;
 		if(!PommoTabs.clicked)
 			PommoTabs.clicked = $('li a',PommoTabs.tabs)[$(PommoTabs.tabs).tabsSelected()];
-		
+
 		$(PommoTabs.clicked).click();
 	}
 }
