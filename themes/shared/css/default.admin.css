@@ -282,9 +282,11 @@ select.pvInvalid {
 /* WYSIWYG Styling */
 #ck_mailing {
 	background-color: white;
-	border: 1px dashed orange;
-	min-height: 50px;
+	border: 1px solid #999;
+	min-height: 250px;
 	color: black;
+	/* Leave Room for the toolbar overlay in inline editing mode */
+	margin-top: 120px;
 }
 
 /*******************/

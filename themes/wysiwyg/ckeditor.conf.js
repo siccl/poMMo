@@ -33,7 +33,8 @@ CKEDITOR.editorConfig = function( config )
 		['TextColor','BGColor'],
 		['Maximize']
 	] ;
-	    
+
+	config.startupFocus = true;
 	config.enterMode = CKEDITOR.ENTER_P ;			// p | div | br
 	config.shiftEnterMode = CKEDITOR.ENTER_BR ;	// p | div | br
 	config.font_names		= 'Arial;Comic Sans MS;Courier New;Eurostile;Gill Sans;Tahoma;Times New Roman;Verdana' ;

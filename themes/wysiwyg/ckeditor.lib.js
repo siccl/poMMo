@@ -36,7 +36,7 @@ var wysiwyg = {
 						
 			// prepare CKEditor
 			this.ck = CKEDITOR.inline('ck_mailing', {
-				customConfig: this.baseURL + 'ckeditor.conf.js?v=5',
+				customConfig: this.baseURL + 'ckeditor.conf.js?v=6',
 				language: this.language,
 				contentsLangDirection: 'ltr'
 			});
