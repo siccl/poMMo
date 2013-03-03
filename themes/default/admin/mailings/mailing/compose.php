@@ -25,8 +25,7 @@
 				</li>
 			</ul>
 
-		<textarea name="body" id="no-wysiwyg" style="display: none"><?php echo $this->body; ?></textarea>
-		<div id="ck_mailing" contenteditable="true"><?php echo $this->body; ?></div> -->
+		<textarea name="body" id="ck_mailing"><?php echo $this->body; ?></textarea>
 		<span class="notes">(<?php echo _('Leave blank to send text only'); ?>)</span>
 	</div>
 
