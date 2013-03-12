@@ -22,7 +22,8 @@ var PommoTabs = {
 		this.tabs = $(e).tabs($.extend(this.defaults,p));
 		return this;
 	},
-	load: function(tab) {
+	load: function() {
+        tab = $('#tabs .ui-tabs-panel:visible');
 		this.clicked = false;
 		this.mandatoryForm = false;
 		$('form.json',tab).each(function(){
