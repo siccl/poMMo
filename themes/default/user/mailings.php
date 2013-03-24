@@ -29,20 +29,20 @@ if ($this->tally > 0)
 	<table id="grid" class="scroll" cellpadding="0" cellspacing="0"></table>
 	<div id="gridPager" class="scroll" style="text-align:center;"></div>
 
-	<ul class="inpage_menu">
-		<li>
-			<a href="ajax/mailing_preview.php" class="visit">
-				<img src="<?php echo $this->url['theme']['shared'];
-						?>images/icons/mailing_small.png"/>
-				<?php echo _('View Mailing'); ?>
-			</a>
-		</li>
-	</ul>
+    <ul class="inpage_menu">
+        <li>
+            <a href="mailings.php" class="visit">
+                <img src="<?php echo $this->url['theme']['shared'];
+                        ?>images/icons/mailing_small.png"/>
+                <?php echo _('View Mailing'); ?>
+            </a>
+        </li>
+    </ul>
 
 	<script type="text/javascript">
-	$().ready(function() {	
-	
-		var p = {	
+	$().ready(function() {
+
+		var p = {
 		colNames: [
 			'ID',
 			'<?php echo _('Subject'); ?>',
@@ -57,7 +57,7 @@ if ($this->tally > 0)
 		],
 		url: 'ajax/mailing.list.php'
 		};
-	
+
 		poMMo.grid = PommoGrid.init('#grid',p);
 	});
 	</script>
@@ -68,12 +68,12 @@ if ($this->tally > 0)
 			var rows = poMMo.grid.getRowIDs();
 			if(rows) {
 				// serialize the data
-				var data = $.param({'mailings[]': rows});
-			
+				var data = $.param({'mail_id': rows});
+
 				// rewrite the HREF of the clicked element
 				var oldHREF = this.href;
 				this.href += (this.href.match(/\?/) ? "&" : "?") + data
-			
+
 				window.location = this.href;
 			}
 			return false;

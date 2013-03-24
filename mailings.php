@@ -56,8 +56,6 @@ $state =& Pommo_Api::stateInit('mailings_history',array(
 	'page' => 1),
 	$_REQUEST);
 
-
-
 // if mail_id is passed, display the mailing.
 if(isset($_GET['mail_id']) && is_numeric($_GET['mail_id'])) {
 	$input = current(Pommo_Mailing::get(array('id' => $_GET['mail_id'])));
