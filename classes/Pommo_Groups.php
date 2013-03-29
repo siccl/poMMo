@@ -98,7 +98,7 @@ class Pommo_Groups {
  	// make a group template
 	// accepts a group template (assoc array)
 	// return a group object (array)
-	function & make($in = array()) {
+	public static function make($in = array()) {
 		$o = Pommo_Type::group();
 		return Pommo_Api::getParams($o, $in);
 	}
@@ -119,7 +119,7 @@ class Pommo_Groups {
 	// returns true if group ($in) is valid, false if not
 
 	// TODO -> add validation of group array
-	function validate(&$in) {
+	public static function validate(&$in) {
 		$logger =& Pommo::$_logger;
 
 		$invalid = array();
@@ -181,7 +181,7 @@ class Pommo_Groups {
 	// accepts a filtering array -->
 	//   id (int || array) -> an array of field IDs
 	// returns an array of group names. Array key(s) correlates to group ID.
-	function & getNames($id = null) {
+	public static function getNames($id = null) {
 		$dbo =& Pommo::$_dbo;
 
 		$o = array();
@@ -224,7 +224,7 @@ class Pommo_Groups {
 	// accepts filter by status (int) either 1 (active) (default), 0 (inactive), 2 (pending)
 	// accepts a toggle (bool) to return IDs or Group Tally
 	// returns a tally (int)
-	function tally($group, $status = 1) {
+	public static function tally($group, $status = 1) {
 		$dbo =& Pommo::$_dbo;
 		require_once(Pommo::$_baseDir. 'classes/Pommo_Sql.php');
 
@@ -239,7 +239,7 @@ class Pommo_Groups {
 	// adds a group to the database
 	// accepts a group object (array)
 	// returns the database ID of the added group or FALSE if failed
-	function add(&$in) {
+	public static function add(&$in) {
 		$dbo =& Pommo::$_dbo;
 
 		if (!Pommo_Groups::validate($in))
@@ -259,7 +259,7 @@ class Pommo_Groups {
 	// removes a group from the database
 	// accepts a single ID (int) or array of IDs
 	// returns the # of deleted groups (int). 0 (false) if none.
-	function delete(&$id) {
+	public static function delete(&$id) {
 		$dbo =& Pommo::$_dbo;
 
 		$query = "
@@ -286,7 +286,7 @@ class Pommo_Groups {
 	// Returns the # of rules affected by a group deletion
 	// accepts a single ID (int) or array of IDs.
 	// Returns a count (int) of affected rules. 0 if none.
-	function rulesAffected($id = array()) {
+	public static function rulesAffected($id = array()) {
 		$dbo =& Pommo::$_dbo;
 
 		$query = "
@@ -302,7 +302,7 @@ class Pommo_Groups {
 	// Checks if a group name exists
 	// accepts a name (str)
 	// returns (bool) true if exists, false if not
-	function nameExists($name = null) {
+	public static function nameExists($name = null) {
 		$dbo =& Pommo::$_dbo;
 
 		$query = "
