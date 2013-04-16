@@ -43,8 +43,11 @@ var PommoTabs = {
 	},
 	change: function() {
 		PommoTabs.force = true;
-		if(!PommoTabs.clicked)
-			PommoTabs.clicked = $('li a',PommoTabs.tabs)[$(PommoTabs.tabs).tabsSelected()];
+		if (!PommoTabs.clicked) {
+			PommoTabs.clicked = $('.ui-state-active', PommoTabs.tabs)
+                .next()
+                .find('a');
+        }
 
 		$(PommoTabs.clicked).click();
 	}
