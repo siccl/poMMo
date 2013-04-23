@@ -147,8 +147,7 @@ $().ready(function()
 	?>
 
 	// Command Buttons (toggle HTML, add personalization, save template, generate altbody)
-	$('#e_toggle').click(function()
-	{
+	$('#e_toggle').bind('click', function() {
 		if(wysiwyg.enabled) {
 			if(wysiwyg.disable()) {
 				$('#toggleText').html(offText)
