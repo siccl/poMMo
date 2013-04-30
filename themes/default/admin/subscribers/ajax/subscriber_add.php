@@ -175,7 +175,7 @@ $().ready(function(){
         	poMMo.grid.addRow(json.key,json);
 	};
 
-	$('input[@name="force"]').click(function(){
+	$('input[name="force"]').click(function(){
 		if(this.checked)
 			$(this).jqvDisable();
 		else

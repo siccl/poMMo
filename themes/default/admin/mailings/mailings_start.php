@@ -9,6 +9,7 @@ ob_start();
 		?>js/fileuploader/fileuploader.js"></script>
 <?php
 
+include $this->template_dir . '/inc/jquery.ui.php';
 include $this->template_dir.'/inc/ui.form.php';
 include $this->template_dir.'/inc/ui.dialog.php';
 include $this->template_dir.'/inc/ui.tabs.php';

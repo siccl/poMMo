@@ -32,9 +32,9 @@
 <script type="text/javascript">
 $().ready(function(){
 
-	var box = $('textarea[@name=emails]');
+	var box = $('textarea[name=emails]');
 	var orig = box.val();
-	
+
 	poMMo.callback.delSubscriber = function(ids) {
 		poMMo.grid.delRow(ids);
 		box.val("");
@@ -49,7 +49,7 @@ $().ready(function(){
 		if($.trim($(this).val()) == '')
 			$(this).val(orig);
 	});
-	
+
 	var rows = poMMo.grid.getRowIDs();
 	if(rows) {
 		var emails = new Array();

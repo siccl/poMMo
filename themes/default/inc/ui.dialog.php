@@ -11,7 +11,7 @@ PommoDialog = {
 		params = params || {};
 		if(!overloadParams)
 			params = $.extend(this.params,params);
-		
+
 		$(dialogs).jqm(this.params);
 	},
 	params: {
@@ -31,18 +31,12 @@ $().ready(function() {
 	// Close Button Highlighting. IE doesn't support :hover. Surprise?
 	$('input.jqmdX')
 	.hover(
-		function(){ $(this).addClass('jqmdXFocus'); }, 
+		function(){ $(this).addClass('jqmdXFocus'); },
 		function(){ $(this).removeClass('jqmdXFocus'); })
-	.focus( 
-		function(){ this.hideFocus=true; $(this).addClass('jqmdXFocus'); })
-	.blur( 
-		function(){ $(this).removeClass('jqmdXFocus'); });
-		
-	// Work around for IE's lack of :focus CSS selector
-	if($.browser.msie)
-		$('div.jqmDialog :input:visible')
-			.focus(function(){$(this).addClass('iefocus');})
-			.blur(function(){$(this).removeClass('iefocus');});
+	.focus(
+        function(){ this.hideFocus=true; $(this).addClass('jqmdXFocus'); })
+	.blur(
+        function(){ $(this).removeClass('jqmdXFocus'); });
 
 	// Initialize default wait dialog
 	$('#wait').jqm({modal: true});

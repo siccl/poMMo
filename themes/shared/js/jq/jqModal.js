@@ -4,15 +4,15 @@
  * Copyright (c) 2007 Brice Burgess <bhb@iceburg.net>, http://www.iceburg.net
  * Licensed under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * $Version: ??/??/???? +r12 beta
- * 
- * 
+ *
+ *
  * AJAX target is now cleared before load; TODO: add clearText/Img?
- * 
+ *
  * Configuration is now updated by most recent $.jqm call to an element; e.g.
- *   $('.dialogs').jqm({modal: false, overlay: 0}).find('#wait').jqm({modal: true}); 
- * 
+ *   $('.dialogs').jqm({modal: false, overlay: 0}).find('#wait').jqm({modal: true});
+ *
  */
 (function($) {
 $.fn.jqm=function(o){
@@ -55,7 +55,7 @@ open:function(s,t){var h=H[s],c=h.c,cc='.'+c.closeClass,z=(/^\d+$/.test(h.w.css(
   r.html(c.ajaxLoadText).load(u,function(){if(c.onLoad)c.onLoad.call(this,h);if(cc)h.w.jqmAddClose($(cc,h.w));e(h);});}
  else if(cc)h.w.jqmAddClose($(cc,h.w));
 
- if(c.toTop&&h.o)h.w.before('<span id="jqmP'+h.w[0]._jqm+'"></span>').insertAfter(h.o);	
+ if(c.toTop&&h.o)h.w.before('<span id="jqmP'+h.w[0]._jqm+'"></span>').insertAfter(h.o);
  (c.onShow)?c.onShow(h):h.w.show();e(h);return false;
 },
 close:function(s){var h=H[s];h.a=false;
@@ -63,7 +63,7 @@ close:function(s){var h=H[s];h.a=false;
  if(h.c.toTop&&h.o)$('#jqmP'+h.w[0]._jqm).after(h.w).remove();
  if(h.c.onHide)h.c.onHide(h);else{h.w.hide();if(h.o)h.o.remove();} return false;
 }};
-var s=0,H=$.jqm.hash,A=[],ie6=$.browser.msie&&($.browser.version == "6.0"),
+var s=0,H=$.jqm.hash,A=[],ie6=false,
 i=$('<iframe src="javascript:false;document.write(\'\');" class="jqm"></iframe>').css({opacity:0}),
 e=function(h){if(ie6)if(h.o)h.o.html('<p style="width:100%;height:100%"/>').prepend(i);else if(!$('iframe.jqm',h.w)[0])h.w.prepend(i); f(h);},
 f=function(h){try{$(':input:visible',h.w)[0].focus();}catch(e){}},
@@ -78,7 +78,7 @@ hs=function(w,e,y){var s=[];w.each(function(){s.push(this._jqm)});
  * Copyright (c) 2007 Brice Burgess <bhb@iceburg.net>, http://www.iceburg.net
  * Licensed under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * $Version: 2007.08.19 +r2
  */
 

@@ -477,10 +477,10 @@ $().ready(function(){
 });
 
 poMMo.callback.updateRule = function(p) {
-	$('#rules input[@name=fieldID]').val(p.fieldID);
-	$('#rules input[@name=logic]').val(p.logic);
-	$('#rules input[@name=type]').val(p.type);
-	$('#rules input[@name=request]').val(p.request);
+	$('#rules input[name=fieldID]').val(p.fieldID);
+	$('#rules input[name=logic]').val(p.logic);
+	$('#rules input[name=type]').val(p.type);
+	$('#rules input[name=request]').val(p.request);
 
 	poMMo.callback.pause();
 	$('#rules').submit();

@@ -239,7 +239,7 @@ class Pommo_Groups {
 	// adds a group to the database
 	// accepts a group object (array)
 	// returns the database ID of the added group or FALSE if failed
-	public static function add(&$in) {
+	public static function add($in) {
 		$dbo =& Pommo::$_dbo;
 
 		if (!Pommo_Groups::validate($in))
@@ -259,7 +259,7 @@ class Pommo_Groups {
 	// removes a group from the database
 	// accepts a single ID (int) or array of IDs
 	// returns the # of deleted groups (int). 0 (false) if none.
-	public static function delete(&$id) {
+	public static function delete($id) {
 		$dbo =& Pommo::$_dbo;
 
 		$query = "
