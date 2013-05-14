@@ -682,7 +682,21 @@ $.fn.jqGrid = function( p ) {
 				switch(ts.p.datatype)
 				{
 				case "json":
-					$.ajax({url:ts.p.url,type:ts.p.mtype,datatype:"json",data: gdata, complete:function(JSON) { addJSONData(eval("("+JSON.responseText+")"),ts.grid.bDiv); if(loadComplete) loadComplete();}});
+					$.ajax({
+                        url: ts.p.url,
+                        type: ts.p.mtype,
+                        datatype: 'json',
+                        data: gdata,
+                        complete: function(JSON) {
+                            addJSONData(
+                                eval('(' + JSON.responseText + ')'),
+                                ts.grid.bDiv
+                            );
+                            if (loadComplete) {
+                                loadComplete();
+                            }
+                        }
+                    });
 					if( ts.p.loadonce ) ts.p.datatype = "local";
   				break;
 				case "xml":
