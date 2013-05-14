@@ -1030,14 +1030,14 @@ $.fn.jqGrid = function( p ) {
 		if(this.p.multiselect) {
 			$('#cb_jqg',trow).addClass("cbox").click(function(){
 				if (this.checked) {
-					$("[@id^=jqg_]",grid.bDiv).attr("checked",true);
+					$("[id^=jqg_]",grid.bDiv).attr("checked",true);
 					$("tr:gt(0)",ts.grid.bDiv).each(function(i) {
 						$(this).addClass("selected");
 						ts.p.selarrrow[i]=this.id;
 					});
 				}
 				else {
-					$("[@id^=jqg_]",grid.bDiv).attr("checked",false);
+					$("[id^=jqg_]",grid.bDiv).attr("checked",false);
 					$("tr",grid.bDiv).removeClass("selected");
 					ts.p.selarrrow = [];
 				}
@@ -1135,9 +1135,9 @@ $.fn.jqGrid = function( p ) {
 					td = (e.target || e.srcElement);
 					ptr = $(td).parents("td:first");
 					if ( $(ptr).html() !== null) {
-						td = $("[@id^=jqg_]",ptr).attr("checked");
+						td = $("[id^=jqg_]",ptr).attr("checked");
 						td = typeof td == "undefined" ? false: td;
-						$("[@id^=jqg_]",ptr).attr("checked",!td);
+						$("[id^=jqg_]",ptr).attr("checked",!td);
 					}
 				}
 			}
