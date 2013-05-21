@@ -1,12 +1,12 @@
-<script type="text/javascript" src="<?php echo($this->url['theme']['shared']); ?>js/jq/ui.tabs.js"></script>
-<link type="text/css" rel="stylesheet" href="<?php echo($this->url['theme']['shared']); ?>css/ui.tabs.css" />
+<link type="text/css" rel="stylesheet" href="<?php
+        echo $this->url['theme']['shared']; ?>css/ui.tabs.css" />
 
 <script type="text/javascript">
 /* TabWizzard JS (c) 2007 Brice Burgess, <bhb@iceburg.net>
 	Licensed under the GPL */
-	
+
 	// forms with class "mandatory" are force submitted and verified before changing tabs.
-	
+
 var PommoTabs = {
 	tabs: null,
 	clicked: false,
@@ -22,7 +22,8 @@ var PommoTabs = {
 		this.tabs = $(e).tabs($.extend(this.defaults,p));
 		return this;
 	},
-	load: function(tab) {
+	load: function() {
+        tab = $('#tabs .ui-tabs-panel:visible');
 		this.clicked = false;
 		this.mandatoryForm = false;
 		$('form.json',tab).each(function(){
@@ -42,9 +43,12 @@ var PommoTabs = {
 	},
 	change: function() {
 		PommoTabs.force = true;
-		if(!PommoTabs.clicked)
-			PommoTabs.clicked = $('li a',PommoTabs.tabs)[$(PommoTabs.tabs).tabsSelected()];
-		
+		if (!PommoTabs.clicked) {
+			PommoTabs.clicked = $('.ui-state-active', PommoTabs.tabs)
+                .next()
+                .find('a');
+        }
+
 		$(PommoTabs.clicked).click();
 	}
 }

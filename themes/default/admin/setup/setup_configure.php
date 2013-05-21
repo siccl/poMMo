@@ -1,5 +1,6 @@
 <?php
 ob_start();
+include $this->template_dir . '/inc/jquery.ui.php';
 include $this->template_dir.'/inc/ui.form.php';
 include $this->template_dir.'/inc/ui.dialog.php';
 include $this->template_dir.'/inc/ui.tabs.php';
@@ -39,14 +40,14 @@ include $this->template_dir.'/inc/admin.header.php';
 <br class="clear">&nbsp;
 
 <script type="text/javascript">
-    $().ready(function(){ 
+    $().ready(function(){
 
         PommoDialog.init();
-	
+
         poMMo.tabs = PommoTabs.init('#tabs');
         // override changeTab function
         PommoTabs.change = function() { return true; };
-	
+
         <?php
         $selectedTab = $_GET['tab'];
         if (!is_Null($selectedTab))
@@ -57,7 +58,7 @@ include $this->template_dir.'/inc/admin.header.php';
             echo('var hash = location.hash.toLowerCase();');
         }
         ?>
-                
+
         switch(hash) {
         case '#users': $('#tabs li a:eq(0)').click();
         break;

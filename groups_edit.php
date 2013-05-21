@@ -2,7 +2,7 @@
 /**
  *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  *  released originally under GPLV2
- * 
+ *
  *  This file is part of poMMo.
  *
  *  poMMo is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  *  This fork is from https://github.com/soonick/poMMo
  *  Please see docs/contribs for Contributors
  *
@@ -47,16 +47,16 @@ $view->assign('returnStr', _('Groups Page'));
 $state =& Pommo_Api::stateInit('groups_edit',array(
 	'group' => 0),
 	$_REQUEST);
-	
 
-$groups = & Pommo_Groups::get();
-$fields = & Pommo_Fields::get();
+
+$groups = Pommo_Groups::get();
+$fields = Pommo_Fields::get();
 
 $group =& $groups[$state['group']];
 
 if(empty($group))
 	Pommo::redirect('subscribers_groups.php');
-	
+
 $rules = Pommo_Sql::sortRules($group['rules']);
 $rules['and'] = Pommo_Sql::sortLogic($rules['and']);
 $rules['or'] = Pommo_Sql::sortLogic($rules['or']);
