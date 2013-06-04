@@ -2,7 +2,7 @@
 /**
  *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  *  released originally under GPLV2
- * 
+ *
  *  This file is part of poMMo.
  *
  *  poMMo is free software: you can redistribute it and/or modify
@@ -17,34 +17,35 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  *  This fork is from https://github.com/soonick/poMMo
  *  Please see docs/contribs for Contributors
  *
  */
 
 /**********************************
-	INITIALIZATION METHODS
+    INITIALIZATION METHODS
  *********************************/
 require 'bootstrap.php';
 Pommo::init();
 $logger = Pommo::$_logger;
-$dbo 	= Pommo::$_dbo;
+$dbo    = Pommo::$_dbo;
+
 /**********************************
-	SETUP TEMPLATE, PAGE
+    SETUP TEMPLATE, PAGE
  *********************************/
-require_once Pommo::$_baseDir.'classes/Pommo_Template.php';
+require_once Pommo::$_baseDir . 'classes/Pommo_Template.php';
 $view = new Pommo_Template();
 
 if (isset($_GET['CKEditorFuncNum'])) {
-	$view->assign('ckeditorCallback', $_GET['CKEditorFuncNum']);
+    $view->assign('ckeditorCallback', $_GET['CKEditorFuncNum']);
 } else {
-	$view->assign('ckeditorCallback', false);
+    $view->assign('ckeditorCallback', false);
 }
 if (isset($_GET['field'])) {
-	$view->assign('field', $_GET['field']);
+    $view->assign('field', $_GET['field']);
 } else {
-	$view->assign('field', false);
+    $view->assign('field', false);
 }
 
 $view->display('admin/mailings/mailing/filemanager');

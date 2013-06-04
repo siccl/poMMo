@@ -1,5 +1,5 @@
-/*	Look originally based on  
-	template: What's your solution? 
+/*	Look originally based on
+	template: What's your solution?
 	author: Luka Cvrk (www.solucija.com)
 	from: Open Source Web Design (www.oswd.org)
 	Intergration & optimisation: R Walker (www.rmwpublishing.net)
@@ -15,7 +15,7 @@ body {
 	background: #FFF url(../images/bg_body.gif) repeat-x;
 	font: 80% Tahoma, Arial, Helvetica, sans-serif;
 	color: #7E7E7E;
-	
+
 	/* remove for a liquid layout  */
 	width: 880px;
 }
@@ -108,7 +108,7 @@ pre {
 
 #boxMenu { float: left; }
 
-#boxMenu div { 
+#boxMenu div {
     clear: both;
     padding: 15px 0;
 }
@@ -143,7 +143,7 @@ ul.inpage_menu li {
 #header strong {
 	position: relative;
 	left: 100px;
-	top: -40px; 
+	top: -40px;
 }
 #menu {
 	height: 25px;
@@ -281,12 +281,8 @@ select.pvInvalid {
 
 /* WYSIWYG Styling */
 #ck_mailing {
-	background-color: white;
 	border: 1px solid #999;
 	min-height: 250px;
-	color: black;
-	/* Leave Room for the toolbar overlay in inline editing mode */
-	margin-top: 120px;
 }
 
 /*******************/

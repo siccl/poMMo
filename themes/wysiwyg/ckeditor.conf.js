@@ -5,7 +5,6 @@
  *
  * Changes to this file will override the default settings.
  */
-
 CKEDITOR.editorConfig = function(config) {
     config.docType = '';
     config.baseHref = '';
