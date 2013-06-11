@@ -43,7 +43,7 @@ include $this->template_dir.'/inc/admin.header.php';
 		<div class="first"><a class="cmd" href="#stop"><img src="<?php echo $this->url['theme']['shared']; ?>images/icons/pause-small.png" alt=" icon" /><?php echo _('Pause Mailing'); ?></a></div>
 		<div class="second"><a class="cmd" href="#restart"><?php echo _('Resume Mailing'); ?> <img src="<?php echo $this->url['theme']['shared']; ?>images/icons/restart-small.png" alt="icon" /></a></div>
 	</div>
-	
+
 	<div class="hidden uniq" id="stopped">
 		<div class="first"><a class="cmd" href="#restart"><img src="<?php echo $this->url['theme']['shared']; ?>images/icons/restart-small.png" alt="icon" /> <?php echo _('Resume Mailing'); ?></a></div>
 		<div class="second"><a class="cmd" href="#cancel"><?php echo _('Cancel Mailing'); ?>	<img src="<?php echo $this->url['theme']['shared']; ?>images/icons/stopped-small.png" alt="icon" /></a></div>
@@ -109,15 +109,15 @@ var pommo = {
 	poll: function(get){get = get || '';  $.getJSON("ajax/status_poll.php?id=<?php echo $this->mailing['id']; ?>&"+get,pommo.process)},
 	process: function(mailing) {
 		$('#status').html(mailing.statusText);
-		
-		// status >> 1: Processing  2: Stopped  3: Frozen  4: Finished    5: command Sent	
+
+		// status >> 1: Processing  2: Stopped  3: Frozen  4: Finished    5: command Sent
 		$('#barHead img.go').css({display:((mailing.status == 1)?'inline':'none')});
 		$('#barHead img.stop').css({display:((mailing.status == 1)?'none':'inline')});
-		
+
 		$('#sent').html(mailing.sent);
 		$('#barFoot').html(mailing.percent+'%');
 		$('#bar').width(mailing.percent+'%');
-		
+
 		if (mailing.status != pommo.status) {
 			pommo.status = mailing.status;
 			var id = null;
@@ -125,34 +125,28 @@ var pommo = {
 				case 1: id = 'started'; break;
 				case 2: id = 'stopped'; break;
 				case 3: id = 'frozen'; break;
-				case 4: id = 'finished'; break; 
+				case 4: id = 'finished'; break;
 			}
 			$('#'+id).show().siblings('div.uniq').hide();
 		}
-		
+
 		if (typeof(mailing.notices) == 'object')
 			for (i in mailing.notices)
 				if (mailing.notices[i] != '')
 					$('#notices').prepend('<li>'+mailing.notices[i]+'</li>');
-	
+
 		// TODO --> make a nice XPATH selector out of this...
 		if ($('#notices li').size() > 50) {
 			$('#notices li').each(function(i){ if (i > 40) $(this).remove(); });
-		}		
-		
+		}
+
 	}
 };
 
-// continually ("hearbeat") poll the mailing
-$('body').ajaxStop(function(){ 
-	if (pommo.status == 1)
-		setTimeout('pommo.poll()',4500);
-});
 
-$().ready(function(){ 
-
+$().ready(function(){
 	// assign command events
-	$('#commands a.cmd').click(function() { 
+	$('#commands a.cmd').click(function() {
 		if(pommo.status != 5) {
 			pommo.status = 5;
 			$('#pause').show().siblings('div.uniq').hide();
@@ -164,14 +158,21 @@ $().ready(function(){
 		}
 		return false;
 	});
-	
+
 	// init
-	pommo.poll('resetNotices=true'); 
+	pommo.poll('resetNotices=true');
+
+    // continually ("hearbeat") poll the mailing
+    $(document).ajaxStop(function() {
+        if (1 == pommo.status) {
+            setTimeout('pommo.poll()', 4500);
+        }
+    });
 });
 
 </script>
 
-<?php 
+<?php
 
 include $this->template_dir.'/inc/admin.footer.php';
 
