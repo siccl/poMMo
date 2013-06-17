@@ -1,18 +1,18 @@
 <?php
 /**
  * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
- * 
+ *
  * This file is part of poMMo (http://www.pommo.org)
- * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
+ *
+ * poMMo is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation; either version 2, or any later version.
- * 
+ *
  * poMMo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
  * the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with program; see the file docs/LICENSE. If not, write to the
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
@@ -22,18 +22,18 @@ require_once(Pommo::$_baseDir. 'classes/Pommo_Fields.php');
 require_once(Pommo::$_baseDir. 'classes/Pommo_Subscribers.php');
 
 class Pommo_Helper_Personalize {
-	
+
 	/*
 	 * COMPATIBILITY ISSUE WITH REGEX ON WINDOWS (IIS) -- DEPRICATING IN FAVOR OF
 	 * Pommo_Helper_Personalize::search()  and Pommo_Helper_Personalize::replace()
-	 * 
+	 *
 	 * LEAVING IN SOURCE FOR REFERENCE....
 	 */
-	 
+
 	/*
 	// scans a message body and returns an array of applicable personaliztions
 	// accepts a message body (str)
-	// returns a personalization array (array of 4 arrays) 
+	// returns a personalization array (array of 4 arrays)
 	//  array[0] == fulltext replace, array[1] == field_name, array[2] == default value, array[3] == field_id
 
 	e.g.
@@ -66,20 +66,20 @@ class Pommo_Helper_Personalize {
 	  		[2] =>
 	  		string(1) "7"
 	  	}
-	} 
+	}
 	function & get(&$body) {
 		$fields = Pommo_Fields::get();
-		
+
 		$matches = array();
 		$pattern = '/\[\[([^\]|]+)(?:\|([^\]]+))?]]/';
-		
+
 		if (preg_match_all($pattern, $body, $matches) < 1) {
 			$a = array();
 			return $a;
 		}
-		
+
 		// add field_id to name
-		
+
 		$matches[3] = array();
 		foreach($matches[1] as $field) {
 			foreach($fields as $f) {
@@ -89,7 +89,7 @@ class Pommo_Helper_Personalize {
 		}
 		return $matches;
 	}
-	
+
 	// personalizes a message body || subject
 	// accepts message
 	// accepts subscriber object (single subscriber)
@@ -98,9 +98,9 @@ class Pommo_Helper_Personalize {
 	function body(&$msg, &$s, &$p) {
 		$body = $msg;
 		foreach($p[0] as $key => $search) {
-		
+
 			// lookup replace string
-			
+
 			switch (strtolower($p[1][$key])) {
 				case 'email':
 					$replace = $s['email'];
@@ -127,30 +127,30 @@ class Pommo_Helper_Personalize {
 					$replace = $s['data'][ ($p[3][$key]) ];
 					break;
 			}
-			
+
 			// attempt to add default if replacement is empty
 			if (empty($replace))
 				$replace = $p[2][$key];
-				
+
 			$body = str_replace($search, $replace, $body);
 		}
 		return $body;
 	}
-	
+
 	*/
-	
+
 	// scan a body and return an array of applicable personaliztions
 	// accepts a message body (str)
 	// returns a personalization array (array of personalizations)
 	//  e.g. array('search' => full_text_replace, 'field' => field_name, 'default' => default_value, 'field_id' => field_id);
-	function & search(&$body) {
+	public static function search(&$body) {
 		$personalizations = array();
-			
+
 		$matches = array();
 		$pattern = '/\[\[[^\]]+\]\]/';
 		if (preg_match_all($pattern, $body, $matches) < 1)
 			return $personalizations;
-		
+
 		$fields = Pommo_Fields::get();
 		foreach($matches[0] as $str) {
 			$p = array();
@@ -158,23 +158,23 @@ class Pommo_Helper_Personalize {
 			$a = explode('|',trim($str,'[]'));
 			$p['field'] = $a[0];
 			$p['default'] = (isset($a[1])) ? $a[1] : false;
-			foreach($fields as $f) 
+			foreach($fields as $f)
 				if ($f['name'] == $p['field'])
 					$p['field_id'] = $f['id'];
 			array_push($personalizations,$p);
 		}
 		return $personalizations;
 	}
-	
+
 	// personalizes a body
 	// accepts message
 	// accepts subscriber object (single subscriber)
 	// accepts personalization array
 	// returns a personalized body
-	function replace(&$msg, &$s, &$personalizations) {
+	public static function replace(&$msg, &$s, &$personalizations) {
 		$body = $msg;
 		foreach($personalizations as $p) {
-		
+
 			// lookup replace string
 			switch (strtolower($p['field'])) {
 				case 'email':
@@ -202,17 +202,13 @@ class Pommo_Helper_Personalize {
 					$replace = $s['data'][$p['field_id']];
 					break;
 			}
-			
+
 			// attempt to add default if replacement is empty
 			if (empty($replace))
 				$replace = $p['default'];
-				
+
 			$body = str_replace($p['search'], $replace, $body);
 		}
 		return $body;
 	}
-	
-	
-	
 }
-?>
