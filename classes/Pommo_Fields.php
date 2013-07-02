@@ -188,7 +188,7 @@ class Pommo_Fields {
 	// fetches field's belonging to a type
 	// accepts a field type or array of types
 	// returns an array of field IDs
-	function & getByType($type) {
+	public static function getByType($type) {
 		$dbo =& Pommo::$_dbo;
 
 		if(!is_array($type))

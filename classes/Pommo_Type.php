@@ -97,7 +97,7 @@ class Pommo_Type {
 	 *	value			(str)			Subscriber's field value
 	 */
 
-	function subscriber() {
+	public static function subscriber() {
 		return array(
 			'id' => null,
 			'email' => null,

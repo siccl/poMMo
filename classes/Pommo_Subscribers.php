@@ -64,7 +64,7 @@ class Pommo_Subscribers
 	// accepts a subscriber template (assoc array)
 	// accepts a flag (bool) to designate return of a pending subscriber type
 	// return a subscriber object (array)
-	function & makeDB(&$row, $pending = FALSE) {
+	public static function makeDB(&$row, $pending = FALSE) {
 		$in = @array(
 		'id' => $row['subscriber_id'],
 		'email' => $row['email'],
@@ -150,7 +150,7 @@ class Pommo_Subscribers
 	//   field (str) - the numeric field ID or 'email', 'time_touched', 'time_registered', 'ip, 'subscriber_id'
 	//   string (str) - the search query
 	// returns an array of subscribers. Array key(s) correlates to subscriber id.
-	function get($p = array(),
+	public static function get($p = array(),
 			$search = array('field' => null, 'string' => null))
 	{
 		$defaults = array(
@@ -621,7 +621,7 @@ class Pommo_Subscribers
 	}
 
 	// returns the activation code for the passed subscriber
-	function getActCode($subscriber){
+	public static function getActCode($subscriber){
 		if (empty($subscriber['id']) || empty($subscriber['registered']))
 			Pommo::kill('Invalid Subscriber passed to getActCode!');
 
