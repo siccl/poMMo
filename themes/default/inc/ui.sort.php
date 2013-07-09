@@ -1,5 +1,3 @@
-<script type="text/javascript" src="<?php echo($this->url['theme']['shared']); ?>js/jq/ui.mouse.js"></script>
-<script type="text/javascript" src="<?php echo($this->url['theme']['shared']); ?>js/jq/ui.sortable.js"></script>
 <script type="text/javascript">
 
 PommoSort = {
@@ -12,10 +10,9 @@ PommoSort = {
 		// ui.sortable params
 		items: '.sortable',
 		update: function(e,ui) {
-			
 			// re-stripe
 			$('#grid').jqStripe({rowSelector: 'div.sortable'});
-			
+
 			var order = new Array();
 			$(PommoSort.params.items,PommoSort.sortBox).each(function(){
 				var id = this.id.substr(2);

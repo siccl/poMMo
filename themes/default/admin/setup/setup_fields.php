@@ -4,6 +4,7 @@ ob_start();
 include $this->template_dir.'/inc/ui.form.php';
 include $this->template_dir.'/inc/ui.dialog.php';
 include $this->template_dir.'/inc/ui.cssTable.php';
+include $this->template_dir . '/inc/jquery.ui.php';
 include $this->template_dir.'/inc/ui.sort.php';
 $this->capturedHead = ob_get_clean();
 
@@ -159,10 +160,10 @@ $().ready(function(){
 
 	// setup dialogs
 	PommoDialog.init('#dialog',{modal: true, trigger: '.editTrigger'});
-	
+
 	// setup sorting
 	PommoSort.init('#grid',{updateURL: 'ajax/fields.rpc.php?call=updateOrdering'});
-	
+
 	// trigger editing of recently added field
 	var a = $('#added')[0];
 	if (a)
@@ -175,33 +176,33 @@ poMMo.callback.updateField = function(f) {
 	var name = f.name;
 	if(f.required == 'on')
 		name = '<strong>'+name+'</strong';
-		
+
 	var e = $('#id'+f.id+' span.name').html(name);
-	
+
 	e.removeClass('green');
 	if(f.active == 'on')
 		e.addClass('green');
 };
 
 poMMo.callback.updateOptions = function(json) {
-	
+
 	// remember #normally
 	var normally = $('#normally').val();
-	
+
 	// remove existing options
 	$('#delOptions option, #normally option:gt(0)').remove();
-	
-	
+
+
 	// clear addOptions input
 	$('#addOptions').val('');
-	
+
 	// populate options
 	for(var i=0;i<json.length;i++)
 		$('#delOptions, #normally').append('<option>'+json[i]+'</option>');
 
 	// restore #normally
 	$('#normally').val(normally);
-	
+
 };
 
 </script>
