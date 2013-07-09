@@ -103,6 +103,10 @@ p.count {
     vertical-align: middle;
 }
 
+#grid div a {
+    text-decoration: none;
+}
+
 #grid div.r1 { background: #fff;}
 #grid div.r2 { background: #f8ffe5; }
 #grid div.r3 { background: #edf5f8; }
