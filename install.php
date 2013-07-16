@@ -2,7 +2,7 @@
 /**
  *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  *  released originally under GPLV2
- * 
+ *
  *  This file is part of poMMo.
  *
  *  poMMo is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  *  This fork is from https://github.com/soonick/poMMo
  *  Please see docs/contribs for Contributors
  *
@@ -77,8 +77,7 @@ if (!empty($_POST))
 
             $install = Pommo_Install::parseSQL();
 
-            if ($install)
-            {
+            if ($install) {
                 // installation of DB went OK, set configuration values to user
                 // supplied ones
                 $pass = $_POST['admin_password'];
@@ -86,7 +85,7 @@ if (!empty($_POST))
                 // install configuration
                 require_once(Pommo::$_baseDir.'classes/Pommo_User.php');
                 $user = new Pommo_User();
-                $user->save('admin', $_POST['admin_password']);
+                $user->save('admin', $pass);
 
                 // generate key to uniquely identify this installation
                 $key = Pommo_Helper::makeCode(6);
@@ -109,9 +108,7 @@ if (!empty($_POST))
                 $logger->addMsg(Pommo::_T('Login Password: ').$pass);
 
                 $view->assign('installed', TRUE);
-            }
-            else
-            {
+            } else {
                 // INSTALL FAILED
                 $dbo->debug(FALSE);
 
