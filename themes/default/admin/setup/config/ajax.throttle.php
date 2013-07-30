@@ -126,8 +126,9 @@
 var maxStr='<?php echo _('No Limit'); ?>';
 
 PommoSlider.onSlide = function(slider, v) {
-	var out = $(slider).siblings().find('span');
-	switch(slider.id) {
+    var $slider = $(slider);
+    var out = $slider.parent().find('span');
+	switch($slider.attr('id')) {
 		case 'mps':
 			out[0].innerHTML=(v > 0) ? Math.round(v/60*10000)/10000 : maxStr;
 			out[1].innerHTML=(v > 0) ? (v/60)*60*60 : maxStr;
