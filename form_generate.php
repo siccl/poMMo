@@ -1,23 +1,23 @@
 <?php
 /**
  * Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
- * 
+ *
  * This file is part of poMMo (http://www.pommo.org)
- * 
- * poMMo is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published 
+ *
+ * poMMo is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published
  * by the Free Software Foundation; either version 2, or any later version.
- * 
+ *
  * poMMo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See
  * the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with program; see the file docs/LICENSE. If not, write to the
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  */
- 
+
 /**********************************
 	INITIALIZATION METHODS
 *********************************/
@@ -27,7 +27,7 @@ require_once(Pommo::$_baseDir.'classes/Pommo_Fields.php');
 Pommo::init();
 $logger = Pommo::$_logger;
 $dbo 	= Pommo::$_dbo;
- 
+
 // URL which processes the form input + adds (or warns) subscriber to pending table.
 $signup_url = "http://" . $_SERVER['HTTP_HOST'] . Pommo::$_baseUrl . "process.php";
 ?>
@@ -52,7 +52,7 @@ $form_name = "signup";
 <!-- 	Set "ACTION" to the URL of poMMo's process.php
 	process.php located in the "user" directory of your poMMo installation.
 	** poMMo attempted to detect this location, and it may not need to be changed. ** -->
-		
+
 <form method="post" action="<?php echo $signup_url; ?>" name="<?php echo $form_name; ?>">
 <fieldset>
 <legend>Subscribe</legend>
@@ -64,7 +64,7 @@ $form_name = "signup";
 </div>
 
 <?php
-$fields = & Pommo_Fields::get(array('active' => TRUE,'byName' => FALSE));
+$fields = Pommo_Fields::get(array('active' => TRUE,'byName' => FALSE));
 foreach (array_keys($fields) as $field_id) {
 	$field = & $fields[$field_id];
 
@@ -74,7 +74,7 @@ foreach (array_keys($fields) as $field_id) {
 		echo "<!--	BEGIN INPUT FOR FIELD \"".$field['name']."\" -->\r\n<div>\r\n<label for=\"field".$field_id."\">".$field['prompt'].":</label>\r\n";
 
 	switch ($field['type']) {
-		case "checkbox": // checkbox	
+		case "checkbox": // checkbox
 			if (empty($field['normally']))
 				echo "\r\n<input type=\"checkbox\" name=\"d[".$field_id."]\" id=\"field".$field_id."\" />";
 			else
@@ -93,7 +93,7 @@ foreach (array_keys($fields) as $field_id) {
 					echo "<option value=\"".htmlspecialchars($option)."\" selected=\"selected\"> ".$option."</option>\r\n";
 				else
 					echo "<option value=\"".htmlspecialchars($option)."\"> ".$option."</option>\r\n";
-			}			
+			}
 			echo "</select>\r\n";
 
 			break;
@@ -121,7 +121,7 @@ foreach (array_keys($fields) as $field_id) {
 
 <!--  *** DO NOT CHANGE name="pommo_signup" ! ***
 	  If you'd like to change the button text change the "value=" text. -->
-	  
+
 <input type="hidden" name="pommo_signup" value="true" />
 <input type="submit" value="<?php echo Pommo::_T('Subscribe'); ?>" />
 

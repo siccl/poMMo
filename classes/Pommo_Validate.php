@@ -3,7 +3,7 @@
 /**
  *  Original Code Copyright (C) 2005, 2006, 2007, 2008  Brice Burgess <bhb@iceburg.net>
  *  released originally under GPLV2
- * 
+ *
  *  This file is part of poMMo.
  *
  *  poMMo is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with Pommo.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  *  This fork is from https://github.com/soonick/poMMo
  *  Please see docs/contribs for Contributors
  *
@@ -56,7 +56,7 @@ class Pommo_Validate
      * 	Adds Data to the array to be checked
      *
      * 	@param	string	$name - Name of the input type (ie ID='name')
-     *	@param	string  $type - Type to check. Valid Values 
+     *	@param	string  $type - Type to check. Valid Values
      *                          Email
      *                          date
      *                          dateTime
@@ -173,7 +173,7 @@ class Pommo_Validate
     /**
      * 	getErrors
      * 	Returns what the validation errors were
-     *      
+     *
      * 	@param	void
      *
      *  @return	array Array containing all error messages
@@ -186,36 +186,36 @@ class Pommo_Validate
     /**
      * 	subscriberData
      * 	Validates supplied subscriber data against fields
-     *      
+     *
      * 	@param	array  $in - The subscriber Data
      *          array  $p  - A parameter array with values as follows :-
-     *                       boolean prune - if true, prune the data array 
+     *                       boolean prune - if true, prune the data array
      *                          (passed by reference) to only recognized/checked
      *                          fields
      *                       boolean ignore - if true, invalid fields will be pruned
      *                          from $in array -- no error thrown
-     *                       boolean ignoreInactive - if true, invalid inactive 
-     *                          fields will be pruned from $in array - no error 
+     *                       boolean ignoreInactive - if true, invalid inactive
+     *                          fields will be pruned from $in array - no error
      *                          thrown
-     *                       boolean active - if true, only check data against 
+     *                       boolean active - if true, only check data against
      *                          active fields. Typically true if subscribing via
-     *                          form, false if admin importing. 
-     *                       boolean skipReq - if true, skip the required check 
+     *                          form, false if admin importing.
+     *                       boolean skipReq - if true, skip the required check
      *                          AND empty fields.
      *                       boolean log - if true, log invalid fields as error.
      *                          Typically true if subscribing via form, false if
      *                          admin importing.
-     * 
+     *
      *  @return	boolean  validation status
-     * 
-     *  NOTE: has the MAGIC FUNCTIONALITY of converting date field input 
+     *
+     *  NOTE: has the MAGIC FUNCTIONALITY of converting date field input
      *     to a UNIX TIMESTAMP. This is necessary for quick SQL comparisson of dates, etc.
      *  NOTE: has the MAGIC FUNCTINALITY of changing "true"/"false" to checkbox "on"/off equivelent
      *  NOTE: has the MAGIC FUNCTIONALITY of trimming leading and trailing whitepace
      *  NOTE: has the MAGIC FUNCTIONALITY of shortening value to 60 characters (or 255 if a comment type)
      *  TODO -> should fields be passed by reference? e.g. are they usually already available when subscriberData() is called?
      */
-    function subscriberData(&$in, $p = array())
+    public static function subscriberData(&$in, $p = array())
     {
         $defaults = array(
             'prune' => true,

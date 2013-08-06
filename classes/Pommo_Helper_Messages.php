@@ -26,7 +26,7 @@ class Pommo_Helper_Messages
 	   // to: email to send message to [str]
 	   // type: message type type [str] either; 'subscribe', 'unsubscribe', 'confirm', 'activate', 'update', or 'password'
 	   // code: confirmation code [str]
-	function sendMessage($p = array('to' => false, 'type' => false, 'code' => false)) {
+	public static function sendMessage($p = array('to' => false, 'type' => false, 'code' => false)) {
 		$logger = Pommo::$_logger;
 
 		// retrieve messages
