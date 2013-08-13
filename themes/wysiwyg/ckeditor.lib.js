@@ -32,7 +32,7 @@ var wysiwyg = {
 			}
 			// lock the interface
 			poMMo.pause();
-			this.textarea = $('#no-wysiwyg');
+			this.textarea = $('#ck_mailing');
 
 			// prepare CKEditor
 			this.ck = CKEDITOR.replace('ck_mailing', {
@@ -46,7 +46,7 @@ var wysiwyg = {
 			this.ck.setData(this.textarea.hide()[0].value);
 
 			// show the WYSIWYG
-			$('#ck_mailing').show();
+			$('#cke_ck_mailing').show();
 		}
 		return this.enabled = true;
 	},
@@ -55,7 +55,7 @@ var wysiwyg = {
 			return false;
 
 		// hide the WYSIWYG
-		$('#ck_mailing').hide();
+		$('#cke_ck_mailing').hide();
 
 		// show the textarea, update it with WYSIWYG contents
 		this.textarea.show()[0].value = this.ck.getData();
