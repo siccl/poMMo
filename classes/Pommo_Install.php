@@ -201,5 +201,38 @@ class Pommo_Install
 
         return true;
     }
+
+    /**
+     * Saves user supplied installation values
+     * @param array data - Array with user supplied information. new Array(
+     *   'list_name' => 'Name of mailing list',
+     *   'site_name' => 'Name of the site',
+     *   'site_url' => 'Url of the user website'
+     * );
+     * @return boolean True if good, false otherwise
+     */
+    public static function saveUserValues($data)
+    {
+        $dbo = Pommo::$_dbo;
+
+        $query = 'UPDATE ' . $dbo->table['config'] . '
+            SET config_value = "%s"
+            WHERE config_name = "list_name"';
+        $query = $dbo->prepare($query, array($data['list_name']));
+        $dbo->query($query);
+
+        $query = 'UPDATE ' . $dbo->table['config'] . '
+            SET config_value = "%s"
+            WHERE config_name = "site_name"';
+        $query = $dbo->prepare($query, array($data['site_name']));
+        $dbo->query($query);
+
+        $query = 'UPDATE ' . $dbo->table['config'] . '
+            SET config_value = "%s"
+            WHERE config_name = "site_url"';
+        $query = $dbo->prepare($query, array($data['site_url']));
+        $dbo->query($query);
+
+        return true;
+    }
 }
-?>

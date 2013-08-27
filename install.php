@@ -57,11 +57,58 @@ elseif (isset($_REQUEST['debugInstall']))
 
 if (!empty($_POST))
 {
-    if (Pommo_Install::validateInstallationData($_POST))
-    {
-        // __ FORM IS VALID
-        if (isset($_POST['installerooni']))
-        {
+    if (isset($_POST['installerooni']) &&
+            Pommo_Install::validateInstallationData($_POST)) {
+        // FORM IS VALID
+        // drop existing poMMo tables
+        foreach (array_keys($dbo->table) as $key) {
+            $table = $dbo->table[$key];
+            $sql = 'DROP TABLE IF EXISTS '.$table;
+            $dbo->query($sql);
+        }
+
+        if (isset($_REQUEST['debugInstall'])) {
+            $dbo->debug(TRUE);
+        }
+
+        $install = Pommo_Install::parseSQL();
+
+        if ($install) {
+            // installation of DB went OK, set configuration values to user
+            // supplied ones
+            require_once Pommo::$_baseDir . 'classes/Pommo_User.php';
+            $pass = $_POST['admin_password'];
+            $user = new Pommo_User();
+            $user->save('admin', $pass);
+
+            // Save Mailing List, Name of Website, Website URL
+            Pommo_Install::saveUserValues($_POST);
+
+            // generate key to uniquely identify this installation
+            $key = Pommo_Helper::makeCode(6);
+            Pommo_Api::configUpdate(array('key' => $key), TRUE);
+
+            Pommo::reloadConfig();
+
+            // load configuration [depricated?], set message defaults, load templates
+            require_once(Pommo::$_baseDir.
+                    'classes/Pommo_Helper_Messages.php');
+            Pommo_Helper_Messages::resetDefault('all');
+
+            // install templates
+            $file = Pommo::$_baseDir.'sql/sql.templates.php';
+            if (!Pommo_Install::parseSQL(false, $file))
+                $logger->addErr('Error Loading Default Mailing Templates.');
+
+            $logger->addMsg(Pommo::_T('Installation Complete! You may now login and setup poMMo.'));
+            $logger->addMsg(Pommo::_T('Login Username: ').'admin');
+            $logger->addMsg(Pommo::_T('Login Password: ').$pass);
+
+            $view->assign('installed', TRUE);
+        } else {
+            // INSTALL FAILED
+            $dbo->debug(FALSE);
+
             // drop existing poMMo tables
             foreach (array_keys($dbo->table) as $key)
             {
@@ -70,61 +117,9 @@ if (!empty($_POST))
                 $dbo->query($sql);
             }
 
-            if (isset($_REQUEST['debugInstall']))
-            {
-                $dbo->debug(TRUE);
-            }
-
-            $install = Pommo_Install::parseSQL();
-
-            if ($install) {
-                // installation of DB went OK, set configuration values to user
-                // supplied ones
-                $pass = $_POST['admin_password'];
-
-                // install configuration
-                require_once(Pommo::$_baseDir.'classes/Pommo_User.php');
-                $user = new Pommo_User();
-                $user->save('admin', $pass);
-
-                // generate key to uniquely identify this installation
-                $key = Pommo_Helper::makeCode(6);
-                Pommo_Api::configUpdate(array('key' => $key), TRUE);
-
-                Pommo::reloadConfig();
-
-                // load configuration [depricated?], set message defaults, load templates
-                require_once(Pommo::$_baseDir.
-                        'classes/Pommo_Helper_Messages.php');
-                Pommo_Helper_Messages::resetDefault('all');
-
-                // install templates
-                $file = Pommo::$_baseDir.'sql/sql.templates.php';
-                if (!Pommo_Install::parseSQL(false, $file))
-                    $logger->addErr('Error Loading Default Mailing Templates.');
-
-                $logger->addMsg(Pommo::_T('Installation Complete! You may now login and setup poMMo.'));
-                $logger->addMsg(Pommo::_T('Login Username: ').'admin');
-                $logger->addMsg(Pommo::_T('Login Password: ').$pass);
-
-                $view->assign('installed', TRUE);
-            } else {
-                // INSTALL FAILED
-                $dbo->debug(FALSE);
-
-                // drop existing poMMo tables
-                foreach (array_keys($dbo->table) as $key)
-                {
-                    $table = $dbo->table[$key];
-                    $sql = 'DROP TABLE IF EXISTS '.$table;
-                    $dbo->query($sql);
-                }
-
-                $logger->addErr('Installation failed! Enable debbuging to expose the problem.');
-            }
+            $logger->addErr('Installation failed! Enable debbuging to expose the problem.');
         }
-    } else
-    {
+    } else {
         // __ FORM NOT VALID
         $view->assign('formError', Pommo_Install::$errors);
         $logger->addMsg(Pommo::_T('Please review and correct errors with your submission.'));
