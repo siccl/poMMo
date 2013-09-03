@@ -23,16 +23,16 @@ $.datePicker = function()
 	var months = ['<?php echo htmlentities(_('January')); ?>', '<?php echo htmlentities(_('Febuary')); ?>', '<?php echo htmlentities(_('March')); ?>', '<?php echo htmlentities(_('April')); ?>', '<?php echo htmlentities(_('May')); ?>', '<?php echo htmlentities(_('June')); ?>', '<?php echo htmlentities(_('July')); ?>', '<?php echo htmlentities(_('August')); ?>', '<?php echo htmlentities(_('September')); ?>', '<?php echo htmlentities(_('October')); ?>', '<?php echo htmlentities(_('November')); ?>', '<?php echo htmlentities(_('December')); ?>'];
 	var days = ['<?php echo htmlentities(_('Sunday')); ?>', '<?php echo htmlentities(_('Monday')); ?>', '<?php echo htmlentities(_('Tuesday')); ?>', '<?php echo htmlentities(_('Wednesday')); ?>', '<?php echo htmlentities(_('Thursday')); ?>', '<?php echo htmlentities(_('Friday')); ?>', '<?php echo htmlentities(_('Saturday')); ?>'];
 	var navLinks = {p:'<?php echo htmlentities(_('Prev')); ?>', n:'<?php echo htmlentities(_('Next')); ?>', c:'<?php echo htmlentities(_('Close')); ?>'};
-	var dateFormat = '<?php echo $this->config['app']['dateformat']; ?>';
+	var dateFormat = 'yyyy/mm/dd';
 	var _firstDate;
 	var _lastDate;
 
 	var _selectedDate;
 	var _openCal;
-	
-	var _zeroPad = function(num) { 
+
+	var _zeroPad = function(num) {
 		var s = '0'+num;
-		return s.substring(s.length-2) 
+		return s.substring(s.length-2)
 		//return ('0'+num).substring(-2); // doesn't work on IE :(
 	};
 	var _strToDate = function(dIn)
@@ -58,7 +58,7 @@ $.datePicker = function()
 		var dD = _zeroPad(d.getDate());
 		switch (dateFormat.toLowerCase()) {
 			case 'yyyy/mm/dd':
-				return dY + '-' + dM + '-' + dD;
+				return dY + '/' + dM + '/' + dD;
 			case 'dd/mm/yyyy':
 				return dD + '/' + dM + '/' + dY;
 			case 'mm/dd/yyyy':
@@ -66,7 +66,7 @@ $.datePicker = function()
 				return dM + '/' + dD + '/' + dY;
 		}
 	};
-	
+
 	var _getCalendarDiv = function(dIn)
 	{
 		var today = new Date();
@@ -78,21 +78,21 @@ $.datePicker = function()
 			d = dIn;
 			d.setDate(1);
 		}
-		// check that date is within allowed limits:		
+		// check that date is within allowed limits:
 		if ((d.getMonth() < _firstDate.getMonth() && d.getFullYear() == _firstDate.getFullYear()) || d.getFullYear() < _firstDate.getFullYear()) {
 			d = new Date(_firstDate.getFullYear(), _firstDate.getMonth(), 1);;
 		} else if ((d.getMonth() > _lastDate.getMonth() && d.getFullYear() == _lastDate.getFullYear()) || d.getFullYear() > _lastDate.getFullYear()) {
 			d = new Date(_lastDate.getFullYear(), _lastDate.getMonth(), 1);;
 		}
-		
+
 		var calDiv = $.DIV({className:'popup-calendar'}, '');
 		var jCalDiv = $(calDiv);
 		var firstMonth = true;
 		var firstDate = _firstDate.getDate();
-		
+
 		// create prev and next links
 		var prevLinkDiv = '';
-		if (!(d.getMonth() == _firstDate.getMonth() && d.getFullYear() == _firstDate.getFullYear())) { 
+		if (!(d.getMonth() == _firstDate.getMonth() && d.getFullYear() == _firstDate.getFullYear())) {
 			// not in first display month so show a previous link
 			firstMonth = false;
 			var lastMonth = new Date(d.getFullYear(), d.getMonth()-1, 1);
@@ -104,34 +104,34 @@ $.datePicker = function()
 			});
 			prevLinkDiv = $.DIV({className:'link-prev'}, '<', prevLink);
 		}
-		
+
 		var finalMonth = true;
 		var lastDate = _lastDate.getDate();
 		nextLinkDiv = '';
-		if (!(d.getMonth() == _lastDate.getMonth() && d.getFullYear() == _lastDate.getFullYear())) { 
+		if (!(d.getMonth() == _lastDate.getMonth() && d.getFullYear() == _lastDate.getFullYear())) {
 			// in the last month - no next link
 			finalMonth = false;
 			var nextMonth = new Date(d.getFullYear(), d.getMonth()+1, 1);
 			var nextLink = $.A({href:'javascript:;'}, navLinks.n);
-			$(nextLink).click(function() 
+			$(nextLink).click(function()
 			{
 				$.datePicker.changeMonth(nextMonth, this);
 				return false;
 			});
 			nextLinkDiv = $.DIV({className:'link-next'}, nextLink, '>');
 		}
-		
+
 		var closeLink = $.A({href:'javascript:;'}, navLinks.c);
 		$(closeLink).click(function()
 		{
 			$.datePicker.closeCalendar();
 		});
-		
+
 		jCalDiv.append(
 			$.DIV({className:'link-close'}, closeLink),
 			$.H3({}, months[d.getMonth()], ' ', d.getFullYear())
 		);
-		
+
 		var headRow = $.TR({});
 		for (var i=0; i<7; i++) {
 			var day = days[i];
@@ -139,21 +139,21 @@ $.datePicker = function()
 				$.TH({scope:'col', abbr:day, title:day}, day.substr(0, 1))
 			);
 		}
-		
+
 		var tBody = $.TBODY();
-		
+
 		var lastDay = (new Date(d.getFullYear(), d.getMonth()+1, 0)).getDate();
 		var curDay = -d.getDay();
-		
+
 		var todayDate = (new Date()).getDate();
 		var thisMonth = d.getMonth() == today.getMonth() && d.getFullYear() == today.getFullYear();
-		
+
 		var w = 0;
 		while (w++<6) {
 			var thisRow = $.TR({});
 			for (var i=0; i<7; i++) {
 				var atts = {};
-				
+
 				if (curDay < 0 || curDay >= lastDay) {
 					dayStr = ' ';
 				} else if (firstMonth && curDay < firstDate-1) {
@@ -175,7 +175,7 @@ $.datePicker = function()
 						$(dayStr).addClass('selected');
 					}
 				}
-				
+
 				if (thisMonth && curDay+1 == todayDate) {
 					atts.className = 'today';
 				}
@@ -184,19 +184,13 @@ $.datePicker = function()
 			}
 			tBody.appendChild(thisRow);
 		}
-		
+
 		jCalDiv.append(
 			$.TABLE({cellspacing:2}, $.THEAD({}, headRow), tBody),
 			prevLinkDiv,
 			nextLinkDiv
 		);
 
-		if ($.browser.msie) { 
-			
-			// we put a styled iframe behind the calendar so HTML SELECT elements don't show through
-			jCalDiv.append(document.createElement('iframe'));
-
-		}
 		jCalDiv.css({'display':'block'});
 		return calDiv;
 	};
@@ -219,14 +213,7 @@ $.datePicker = function()
 		$('div.popup-calendar a', _openCal).unbind();
 		$('div.popup-calendar', _openCal).empty();
 		$('div.popup-calendar', _openCal).css({'display':'none'});
-		
-		/*
-		if ($.browser.msie) {
-			_openCal.unbind('keypress', _handleKeys);
-		} else {
-			$(window).unbind('keypress', _handleKeys);
-		}
-		*/
+
 		$(document).unbind('mousedown', _checkMouse);
 		delete _openCal;
 		_openCal = null;
@@ -242,13 +229,13 @@ $.datePicker = function()
 	};
 	var _checkMouse = function(e)
 	{
-		var target = $.browser.msie ? window.event.srcElement : e.target;
+		var target = e.target;
 		var cp = $(target).findClosestParent('div.popup-calendar');
 		if (cp.get(0).className != 'date-picker-holder') {
 			_closeDatePicker();
 		}
 	};
-	
+
 	return {
 		show: function()
 		{
@@ -274,25 +261,19 @@ $.datePicker = function()
 				_selectedDate = false;
 				_draw(_getCalendarDiv());
 			}
-			/*
-			if ($.browser == "msie") {
-				_openCal.bind('keypress', _handleKeys);
-			} else {
-				$(window).bind('keypress', _handleKeys);
-			}
-			*/
 			$(document).bind('mousedown', _checkMouse);
 		},
 		changeMonth: function(d, e)
 		{
-			
+
 			_draw(_getCalendarDiv(d));
 		},
 		selectDate: function(d, ele)
 		{
 			selectedDate = d;
+            var formattedDate = _dateToStr(new Date(d));
 			var $theInput = $('input', $(ele).findClosestParent('input'));
-			$theInput.val(d);
+			$theInput.val(formattedDate);
 			$theInput.trigger('change');
 			_closeDatePicker(ele);
 		},
@@ -390,11 +371,11 @@ $.fn.datePicker = function(a)
 			$.datePicker.setInited(this);
 		}
 	});
-	
+
 };
 
 $().ready(function() {
-	$('input.datepicker').datePicker();
+    $('input.datepicker').datePicker();
 });
 
 </script>
