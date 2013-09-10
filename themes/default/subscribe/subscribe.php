@@ -8,6 +8,7 @@
 	</title>
 	<link href="<?php echo $this->url['theme']['shared']; ?>css/default.user.css"
 			type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="<?php echo $this->url['theme']['shared']; ?>js/jq/jquery.js"></script>
 	<?php
 		if ($this->datePicker)
 		{

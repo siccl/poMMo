@@ -1,3 +1,7 @@
+<?php
+    include $this->config['app']['path'] . 'themes/shared/datepicker/datepicker.php';
+?>
+
 <form class="json validate" action="ajax/manage.rpc.php?call=editSubscriber"
 		method="post" id="edForm">
 
@@ -75,7 +79,7 @@
 							break;
 						case 'date':
 							?>
-							<input type="text" class="pvDate <?php
+							<input type="text" class="datepicker pvDate <?php
 							if ('on' == $field['required'])
 							{
 								echo 'pvEmpty';
@@ -89,7 +93,7 @@
 								else
 								{
 									echo 'value="'
-											.$this['config']['app']['dateformat']
+											.$this->config['app']['dateformat']
 											.'"';
 								}
 							?> />

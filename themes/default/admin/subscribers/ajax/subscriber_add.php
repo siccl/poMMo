@@ -1,5 +1,8 @@
 <p>
 <?php
+    include $this->config['app']['path'] . 'themes/shared/datepicker/datepicker.php';
+
+
 	echo sprintf(_('Welcome to adding subscribers! You can add subscribers'
 			.' one-by-one here. If you would like to add subscribers in bulk,'
 			.' visit the %sSubscriber Import%s page.'),
@@ -84,7 +87,7 @@
 							break;
 						case 'date':
 							?>
-							<input type="text" class="pvDate <?php
+							<input type="text" class="datepicker pvDate <?php
 								if ('on' == $field['required'])
 								{
 									echo ' pvEmpty';

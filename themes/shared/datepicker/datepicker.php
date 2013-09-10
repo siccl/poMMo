@@ -1,5 +1,4 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $this->url['theme']['shared']; ?>datepicker/datepicker.css"/>
-<script type="text/javascript" src="<?php echo $this->url['theme']['shared']; ?>js/jq/jquery.js"></script>
 <script type="text/javascript" src="<?php echo $this->url['theme']['shared']; ?>js/jq/dom_creator.js"></script>
 <script type="text/javascript">
 /*

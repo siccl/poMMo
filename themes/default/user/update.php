@@ -1,16 +1,10 @@
+<script type="text/javascript" src="<?php echo $this->url['theme']['shared']; ?>js/jq/jquery.js"></script>
 <?php
 ob_start();
 
 if ($this->datePicker)
 {
 	include $this->config['app']['path'].'themes/shared/datepicker/datepicker.php';
-}
-else
-{
-?>
-	<script src="<?php echo $this->url['theme']['shared']; ?>js/jq/jquery.js"
-			type="text/javascript"></script>
-<?php
 }
 
 $this->capturedHead = ob_get_clean();
