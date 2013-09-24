@@ -1,4 +1,6 @@
-config.php
-cache/pommo/*
+cache/pommo/
+node_modules/
+
 cache/ERROR_LOG
 cache/maintenance.php
+config.php

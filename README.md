@@ -6,4 +6,5 @@ Some of the things that makes **poMMo** so cool is the lack of bloatware needed 
 
 **poMMo** can handle very large email lists upward of 20k addresses and can be installed alongside your existing website in a matter of minutes. Just make sure you create a new database for it and away you go.
 
-[User Documentation](docs/user/index.md)
+- [User Documentation](docs/user/index.md)
+- [Developer Documentation](docs/developer/index.md)
