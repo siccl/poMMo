@@ -4,12 +4,27 @@ module.exports = function(grunt) {
       all: [
         '*.php',
         'ajax/*.php',
-        'classes/*.php',
+        'classes/*.php'
       ]
+    },
+    phpcs: {
+      all: {
+        dir: '*.php'
+      },
+      ajax: {
+        dir: 'ajax/*.php'
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-phplint');
+  grunt.loadNpmTasks('grunt-phpcs');
 
-  grunt.registerTask('default', ['phplint:all']);
+  grunt.registerTask(
+    'default',
+    [
+      'phplint:all',
+      'phpcs'
+    ]
+  );
 };
