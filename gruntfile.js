@@ -23,8 +23,7 @@ module.exports = function(grunt) {
   grunt.registerTask(
     'default',
     [
-      'phplint:all',
-      'phpcs'
+      'phplint:all'
     ]
   );
 };
